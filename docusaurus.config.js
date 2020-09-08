@@ -15,7 +15,7 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/introduction',
+          to: 'docs/user',
           activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
@@ -74,6 +74,10 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} secureCodeBox, Inc. Built with Docusaurus.`,
     },
+    prism: {
+      theme: require('prism-react-renderer/themes/dracula'),
+      additionalLanguages: ['powershell', 'python', 'java', 'rust'],
+    },
   },
   presets: [
     [
@@ -82,12 +86,12 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/securecodebox',
+          editUrl: 'https://github.com/securecodebox/docusaurus',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/securecodebox',
+          editUrl: 'https://github.com/securecodebox/docusaurus',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -95,4 +99,5 @@ module.exports = {
       },
     ],
   ],
+  themes: ['@docusaurus/theme-live-codeblock'],
 };
