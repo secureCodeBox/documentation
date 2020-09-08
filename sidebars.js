@@ -41,5 +41,6 @@ module.exports = {
         ],
       },
     ],
+    'secureCodeBox.io': ['introduction'],
   },
 };
