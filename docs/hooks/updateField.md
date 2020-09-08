@@ -1,10 +1,5 @@
 ---
 title: "Update Field"
-path: "hooks/update-field"
-category: "hook"
-type: "dataProcessing"
-state: "released"
-usecase: "Updates fields in finding results."
 ---
 
 <!-- end -->

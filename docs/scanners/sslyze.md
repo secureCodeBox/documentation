@@ -1,11 +1,5 @@
 ---
 title: "SSLyze"
-path: "scanners/sslyze"
-category: "scanner"
-type: "SSL"
-state: "released"
-appVersion: "3.0.8"
-usecase: "SSL/TLS Configuration Scanner"
 ---
 
 SSLyze is a Python library and a CLI tool that can analyze the SSL configuration of a server by connecting to it. It is designed to be fast and comprehensive, and should help organizations and testers identify mis-configurations affecting their SSL/TLS servers. To learn more about the SSLyze scanner itself visit or [SSLyze GitHub].

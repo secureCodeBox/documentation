@@ -1,11 +1,5 @@
 ---
 title: "SSH"
-path: "scanners/ssh_scan"
-category: "scanner"
-type: "SSH"
-state: "released"
-appVersion: "0.0.43"
-usecase: "SSH Configuration and Policy Scanner"
 ---
 
 SSH_scan is an easy-to-use prototype SSH configuration and policy scanner, inspired by Mozilla OpenSSH Security Guide, which provides a reasonable baseline policy recommendation for SSH configuration parameters such as Ciphers, MACs, and KexAlgos and much more.

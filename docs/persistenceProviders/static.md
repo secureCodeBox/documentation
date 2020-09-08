@@ -1,10 +1,5 @@
 ---
 title: "Static Report"
-path: "hooks/persistence-staticreport"
-category: "hook"
-type: "persistenceProvider"
-state: "developing"
-usecase: "Publishes all Scan Findings as HTML Report."
 ---
 
 <!-- end -->

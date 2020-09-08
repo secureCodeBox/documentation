@@ -1,10 +1,5 @@
 ---
 title: "MS Teams WebHook"
-path: "hooks/teams-webhook"
-category: "hook"
-type: "integration"
-state: "roadmap"
-usecase: "Publishes Scan Summary to MS Teams."
 ---
 
 <!-- end -->

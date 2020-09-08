@@ -1,10 +1,5 @@
 ---
 title: "Elasticsearch"
-path: "hooks/persistence-elastic"
-category: "hook"
-type: "persistenceProvider"
-state: "released"
-usecase: "Publishes all Scan Findings to Elasticsearch."
 ---
 
 <!-- end -->

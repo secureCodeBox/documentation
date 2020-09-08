@@ -1,11 +1,5 @@
 ---
 title: "Amass"
-path: "scanners/amass"
-category: "scanner"
-type: "Network"
-state: "released"
-appVersion: "3.10.3"
-usecase: "Subdomain Enumeration Scanner"
 ---
 
 ![owasp logo](https://owasp.org/assets/images/logo.png)

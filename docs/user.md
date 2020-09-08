@@ -1,7 +1,5 @@
 ---
 title: "User Guide"
-path: "docs/user-guide"
-category: "use"
 ---
 
 <!-- end -->

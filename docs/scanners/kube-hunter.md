@@ -1,11 +1,5 @@
 ---
 title: "kube-hunter"
-path: "scanners/kube-hunter"
-category: "scanner"
-type: "Kubernetes"
-state: "released"
-appVersion: "0.3.1"
-usecase: "Kubernetes Vulnerability Scanner"
 ---
 
 kube-hunter hunts for security weaknesses in Kubernetes clusters. The tool was developed to increase awareness and visibility for security issues in Kubernetes environments. You should NOT run kube-hunter on a Kubernetes cluster that you don't own!

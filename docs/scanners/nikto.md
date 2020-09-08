@@ -1,11 +1,5 @@
 ---
 title: "Nikto"
-path: "scanners/nikto"
-category: "scanner"
-type: "Webserver"
-state: "released"
-appVersion: "2.1.6"
-usecase: "Webserver Vulnerability Scanner"
 ---
 
 ![nikto logo](https://cirt.net/files/alienlogo_3.gif)

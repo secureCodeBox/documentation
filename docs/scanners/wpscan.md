@@ -1,11 +1,5 @@
 ---
 title: 'WPScan'
-path: 'scanners/wpscan'
-category: 'scanner'
-type: "CMS"
-state: "released"
-appVersion: "3.8.5"
-usecase: 'Wordpress Vulnerability Scanner'
 ---
 
 ![WPScan Logo](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png)

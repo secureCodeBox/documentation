@@ -1,10 +1,5 @@
 ---
 title: "Cascading Scans"
-path: "hooks/declarative-subsequent-scans"
-category: "hook"
-type: "processing"
-state: "released"
-usecase: "Cascading Scans based declarative Rules."
 ---
 
 <!-- end -->

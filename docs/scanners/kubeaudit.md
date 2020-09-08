@@ -1,11 +1,5 @@
 ---
 title: "kubeaudit"
-path: "scanners/kubeaudit"
-category: "scanner"
-type: "Kubernetes"
-state: "roadmap"
-appVersion: "0.9.0"
-usecase: "Audit your Kubernetes clusters"
 ---
 
 kubeaudit helps you audit your Kubernetes clusters against common security controls.

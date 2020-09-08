@@ -1,10 +1,5 @@
 ---
 title: "Generic WebHook"
-path: "hooks/generic-webhook"
-category: "hook"
-type: "integration"
-state: "released"
-usecase: "Publishes Scan Findings as WebHook."
 ---
 
 <!-- end -->
