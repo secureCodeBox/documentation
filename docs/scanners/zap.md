@@ -52,3 +52,37 @@ Options:
     -z zap_options    ZAP command line options e.g. -z "-config aaa=bbb -config ccc=ddd"
     --hook            path to python file that define your custom hooks
 ```
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+defaultValue="ex"
+values={[
+{ label: 'example.com', value: 'ex', },
+]
+}>
+
+<TabItem value="ex">
+
+<Tabs
+defaultValue="sc"
+values={[
+{ label: 'Scan', value: 'sc', },
+{ label: 'Finding', value: 'fn', },
+]
+}>
+
+<TabItem value="sc">
+
+</TabItem>
+
+<TabItem value="fn">
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>

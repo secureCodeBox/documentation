@@ -36,3 +36,37 @@ Some useful example parameters listed below:
 - `-script` xx: Replace xx with the script name. Start the scan with the given script.
 - `--script` xx: Replace xx with a coma-separated list of scripts. Start the scan with the given scripts.
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+defaultValue="ex"
+values={[
+{ label: 'example.com', value: 'ex', },
+]
+}>
+
+<TabItem value="ex">
+
+<Tabs
+defaultValue="sc"
+values={[
+{ label: 'Scan', value: 'sc', },
+{ label: 'Finding', value: 'fn', },
+]
+}>
+
+<TabItem value="sc">
+
+</TabItem>
+
+<TabItem value="fn">
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>

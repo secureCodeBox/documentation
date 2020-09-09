@@ -56,5 +56,40 @@ Examples:
   ssh_scan -t 192.168.1.1 --unit-test -P custom_policy.yml
 ```
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+defaultValue="ex"
+values={[
+{ label: 'example.com', value: 'ex', },
+]
+}>
+
+<TabItem value="ex">
+
+<Tabs
+defaultValue="sc"
+values={[
+{ label: 'Scan', value: 'sc', },
+{ label: 'Finding', value: 'fn', },
+]
+}>
+
+<TabItem value="sc">
+
+</TabItem>
+
+<TabItem value="fn">
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
+
+
 [ssh_scan GitHub]: https://github.com/mozilla/ssh_scan
 [ssh_scan Documentation]: https://github.com/mozilla/ssh_scan#example-command-line-usage

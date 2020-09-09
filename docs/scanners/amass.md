@@ -1,5 +1,5 @@
 ---
-title: "Amass"
+title: 'Amass'
 ---
 
 ![owasp logo](https://owasp.org/assets/images/logo.png)
@@ -29,6 +29,84 @@ Special command line options:
 - Turn off recursive brute forcing `amass enum -brute -norecursive -d example.com`
 - Disable saving data into a local database `amass enum -nolocaldb -d example.com`
 - Domain names separated by commas (can be used multiple times) `amass enum -d example.com`
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+defaultValue="ex"
+values={[
+{ label: 'example.com', value: 'ex', },
+{ label: 'secureCodeBox.io', value: 'scb', },
+]
+}>
+
+<TabItem value="ex">
+
+<Tabs
+defaultValue="sc"
+values={[
+{ label: 'Scan', value: 'sc', },
+]
+}>
+
+<TabItem value="sc">
+
+```yaml
+apiVersion: "execution.experimental.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "amass-example.com"
+spec:
+  scanType: "amass"
+  parameters:
+    - "-noalts"
+    - "-norecursive"
+    - "-nolocaldb"
+    - "-d"
+    - "example.com"
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="scb">
+
+<Tabs
+defaultValue="sc"
+values={[
+{ label: 'Scan', value: 'sc', },
+]
+}>
+
+<TabItem value="sc">
+
+```yaml
+apiVersion: "execution.experimental.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "amass-securecodebox.io"
+  labels:
+    organization: "secureCodeBox"
+spec:
+  scanType: "amass"
+  parameters:
+    - "-noalts"
+    - "-norecursive"
+    - "-d"
+    - "securecodebox.io"
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
 
 [owasp_amass_project]: https://owasp.org/www-project-amass/
 [amass github]: https://github.com/OWASP/Amass

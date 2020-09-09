@@ -123,5 +123,40 @@ Options:
                         vulnerability (CVE-2014-0224).
 ```
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+defaultValue="ex"
+values={[
+{ label: 'example.com', value: 'ex', },
+]
+}>
+
+<TabItem value="ex">
+
+<Tabs
+defaultValue="sc"
+values={[
+{ label: 'Scan', value: 'sc', },
+{ label: 'Finding', value: 'fn', },
+]
+}>
+
+<TabItem value="sc">
+
+</TabItem>
+
+<TabItem value="fn">
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
+
+
 [SSLyze GitHub]: https://github.com/nabla-c0d3/sslyze
 [SSLyze Documentation]: https://nabla-c0d3.github.io/sslyze/documentation/
