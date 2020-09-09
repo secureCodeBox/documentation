@@ -43,6 +43,7 @@
   padding: 2rem 0;
   a {
     text-decoration: none !important;
+    color: unset;
   }
 }
 
@@ -76,7 +77,7 @@ h2 {
 
 .dark {
   background-color: whitesmoke;
-  color: black;
+  color: black !important;
   &:hover {
     box-shadow: 2px 2px 8px rgba(255, 255, 255, 0.4);
   }
