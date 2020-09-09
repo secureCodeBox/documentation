@@ -1,6 +1,6 @@
 module.exports = {
   title: 'secureCodeBox',
-  tagline: 'Testing your Software Security',
+  tagline: 'Testing your Software Security, Well Documented',
   url: 'https://securecodebox.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -100,4 +100,5 @@ module.exports = {
     ],
   ],
   themes: ['@docusaurus/theme-live-codeblock'],
+  plugins: ['docusaurus-plugin-sass'],
 };

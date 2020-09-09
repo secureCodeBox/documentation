@@ -4,45 +4,45 @@ author: Daniel Patanin
 author_title: Maintainer of securecodebox.io
 author_url: https://github.com/dpatanin
 author_image_url: https://avatars1.githubusercontent.com/u/44839597?s=400&u=df006f35797ebb585d8279513305a0bbf1f616b5&v=4
-tags: [cooking, blins]
+tags: [cooking, blini]
 description: This is my first post on securecodebox.io.
 image: https://avatars1.githubusercontent.com/u/44839597?s=400&u=df006f35797ebb585d8279513305a0bbf1f616b5&v=4
 ---
 
-This is the first post on the new [securecodebox.io](https://securecodebox.io) documentation. What would be better than to teach you how to make some blins. 😸
+This is the first post on the new [securecodebox.io](https://securecodebox.io) documentation. What would be better than to teach you how to make some Blini. 😸
 
 <!--truncate-->
 
 ## Making the Blin
 
-Blins are from Eastern Europe. They're basically pancakes in 10 times as thin, but 10 times as good and easy to make. The main components are some eggs, milk and flour.
-Nothing extraordinary, actually three very basic things that you have at home most of the time. For one portion of Blins you will need 1 chicken produce, 200ml cow juice and 100g dry snow.
-Mix them together and you are ready to make 4 Blins.
+Blini are from Eastern Europe. They're basically pancakes in 10 times as thin, but 10 times as good and easy to make. The main components are some eggs, milk and flour.
+Nothing extraordinary, actually three very basic things that you have at home most of the time. For one portion of Blini you will need 1 chicken produce, 200ml cow juice and 100g dry snow.
+Mix them together and you are ready to make 4 Blini.
 
 :::info Blinmaker
-If you think: "But i can't memorize that amounts, is there an easier way? Yes there is! Meet the [Blinmaker](#the-blinmaker). You can also compute the amount of Blins you can make right [here](#computing-blin-amount). "
+If you think: "But i can't memorize that amounts, is there an easier way? Yes there is! Meet the [Blinmaker](#the-blinmaker). You can also compute the amount of Blini you can make right [here](#computing-blin-amount). "
 :::
 
-As for actually making the Blins, it's even easier:
+As for actually making the Blini, it's even easier:
 
 1. Take a pan
    - Heat it up
 2. Add a small amount of yellow cooking slime (source may be your choice)
-3. Pour in the liquid Blins until they just cover the surface of the pan
+3. Pour in the liquid Blini until they just cover the surface of the pan
    1. Keep the pan hot while you wait until the blin magically solidifies.
    2. Carefully flip the Blin...
       - before it starts burning
       - and when it is somewhat solid, but not for a long time
 4. Remove the Blin when it is ready.
-5. Eat your Blins.
+5. Eat your Blini.
 
-:::caution Watch your blins
-Warning! You better pay attention! If not, your neighbor Vadim might steal some blins while you are not looking!
+:::caution Watch your Blini
+Warning! You better pay attention! If not, your neighbor Vadim might steal some Blini while you are not looking!
 :::
 
 ## Serving the Blin
 
-When you are ready to eat some blins and think: "This is not bad but something is missing.", Then you're absolutely right. See, while Blins are delicious themselves, their true potential lies in the toppings you eat them with. Pretty much anything sweet you like will make you very happy, but there are also some different things you may try:
+When you are ready to eat some Blini and think: "This is not bad but something is missing.", Then you're absolutely right. See, while Blini are delicious themselves, their true potential lies in the toppings you eat them with. Pretty much anything sweet you like will make you very happy, but there are also some different things you may try:
 
 | Sweet             | Not sweet  |        Drinks |
 | :---------------- | :--------: | ------------: |
@@ -54,16 +54,16 @@ When you are ready to eat some blins and think: "This is not bad but something i
 | Ice cream         |            |
 
 :::tip
-Blins fit very nicely in lunch bags.
+Blini fit very nicely in lunch bags.
 :::
 
 ## The Blinmaker
 
-Meet the **_Blinmaker_**. It is a magnificent tool which computes how many Blins you can make with what you have at home.
+Meet the **_Blinmaker_**. It is a magnificent tool which computes how many Blini you can make with what you have at home.
 
 ### Blinmaker in different languages
 
-Here is the Blinmaker in different languages. Just copy, paste and click run whenever you need to know how many Blins you can make!
+Here is the Blinmaker in different languages. Just copy, paste and click run whenever you need to know how many Blini you can make!
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -205,7 +205,7 @@ public class cooker {
       int smallest = Math.min(Math.min(flourPortions, milkPortions), eggsAmount);
 
       System.out.println(" ");
-      System.out.println("You can make " + smallest*4 + " blins.");
+      System.out.println("You can make " + smallest*4 + " Blini.");
       System.out.println(" ");
       System.out.println("You will need " + smallest*eggsMin + " eggs.");
       System.out.println("You will need " + smallest*milkMin + " milk.");
@@ -222,7 +222,7 @@ public class cooker {
 
 ### Computing Blin Amount
 
-If you say you want to make some Blins right now, then here you go, a Blinmaker ready to use.
+If you say you want to make some Blini right now, then here you go, a Blinmaker ready to use.
 
 :::note Did you know
 With this live editor you can change the blinmaker to use e.g. imperial units, if you're a western spy.
@@ -262,10 +262,10 @@ class BlinMaker extends React.Component {
         flourPortions,
         milkPortions
       );
-      const blins = smallest * 4;
+      const Blini = smallest * 4;
 
       alert(
-        `You can make ${blins} blins. You will need ${
+        `You can make ${Blini} Blini. You will need ${
           smallest * eggsMin
         } eggs, ${smallest * milkMin}ml milk and ${smallest * flourMin}g flour.`
       );
@@ -343,5 +343,5 @@ class BlinMaker extends React.Component {
 ```
 
 :::danger
-Don't make too many Blins. Throwing them away is a crime in eastern Europe!
+Don't make too many Blini. Throwing them away is a crime in eastern Europe!
 :::

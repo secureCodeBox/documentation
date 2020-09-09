@@ -1,0 +1,83 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+  .buttons {
+    flex-direction: column;
+    height: 120px;
+  }
+  .integrations {
+    grid-template-columns: auto !important;
+  }
+  .integration {
+    width: auto !important;
+    height: min-content !important;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 600px;
+  margin: auto;
+}
+
+.integrations {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 2rem 0;
+  a {
+    text-decoration: none !important;
+  }
+}
+
+.integrationImage {
+  height: 40px;
+  width: 40px;
+}
+
+.integration {
+  padding: 1em;
+  margin: 0 2em 2em;
+  border: 1px solid gray;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+  height: 180px;
+  cursor: pointer;
+}
+
+.light:hover {
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  margin: 20px 0 10px;
+}
+
+h2 {
+  margin: 20px 0 0;
+}
+
+.dark {
+  background-color: whitesmoke;
+  color: black;
+  &:hover {
+    box-shadow: 2px 2px 8px rgba(255, 255, 255, 0.4);
+  }
+}

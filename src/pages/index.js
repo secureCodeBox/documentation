@@ -4,27 +4,37 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
-import styles from './styles.module.css';
-import {Scanners, PersistenceProviders, Hooks} from './integrations'
+import { Hooks, PersistenceProviders, Scanners } from './integrations';
+import styles from './styles.module.scss';
+import useThemeContext from '@theme/hooks/useThemeContext';
 
-function Integration({ imageUrl, title, description }) {
+function Integration({ imageUrl, title, description, type, path }) {
+  const { isDarkTheme } = useThemeContext();
+
   const imgUrl = useBaseUrl(imageUrl);
+
   return (
-    <div className={clsx('col col--4', styles.feature)}>
+    <Link
+      className={clsx(styles.integration, isDarkTheme ? styles.dark : styles.light)}
+      to={path}
+    >
       {imgUrl && (
         <div className="text--center">
-          <img className={styles.featureImage} src={imgUrl} alt={title} />
+          <img className={styles.integrationImage} src={imgUrl} alt={title} />
         </div>
       )}
-      <h3>{title}</h3>
+      <h3>
+        {title} ({type})
+      </h3>
       <p>{description}</p>
-    </div>
+    </Link>
   );
 }
 
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
+
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
@@ -57,17 +67,36 @@ function Home() {
         </div>
       </header>
       <main>
-        {/* {Integrations.hooks && Integrations.hooks.length > 0 && (
-          <section className={styles.features}>
-            <div className="container">
-              <div className="row">
-                {Integrations.hooks.map((props, idx) => (
-                  <Integration key={idx} {...props} />
-                ))}
-              </div>
-            </div>
-          </section>
-        )} */}
+        {Scanners && Scanners.length > 0 && (
+          <div className="container">
+            <h2>Scanners</h2>
+            <section className={styles.integrations}>
+              {Scanners.map((props, idx) => (
+                <Integration key={idx} {...props} />
+              ))}
+            </section>
+          </div>
+        )}
+        {PersistenceProviders && PersistenceProviders.length > 0 && (
+          <div className="container">
+            <h2>Persistence Providers</h2>
+            <section className={styles.integrations}>
+              {PersistenceProviders.map((props, idx) => (
+                <Integration key={idx} {...props} />
+              ))}
+            </section>
+          </div>
+        )}
+        {Hooks && Hooks.length > 0 && (
+          <div className="container">
+            <h2>Hooks</h2>
+            <section className={styles.integrations}>
+              {Hooks.map((props, idx) => (
+                <Integration key={idx} {...props} />
+              ))}
+            </section>
+          </div>
+        )}
       </main>
     </Layout>
   );
