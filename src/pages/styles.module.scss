@@ -111,7 +111,8 @@ main {
 }
 
 .featureContainer {
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   justify-content: space-between;
   @media screen and (max-width: 966px) {
     display: none;
@@ -126,7 +127,6 @@ main {
 
 .feature {
   height: 100%;
-  width: 240px;
   border: 2px solid #eaeaea;
   padding: 20px;
   background-color: #ffffff;
@@ -269,4 +269,11 @@ main {
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.subHeader {
+  margin-top: 4em;
+  @media screen and (max-width: 966px) {
+    display: none;
+  }
 }

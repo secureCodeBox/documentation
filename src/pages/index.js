@@ -44,6 +44,7 @@ Integration.propTypes = {
   path: PropTypes.string.isRequired,
 };
 
+// TODO: Remove Feature when marketing page exists
 // eslint-disable-next-line react/prop-types
 function Feature({ feature }) {
   const { isDarkTheme } = useThemeContext();
@@ -72,6 +73,73 @@ function Feature({ feature }) {
         <h3 className={styles.featureTitle}>{feature.title}</h3>
         {/* eslint-disable-next-line react/prop-types */}
         <span className={styles.tooltiptext}>{feature.description}</span>
+      </div>
+    </div>
+  );
+}
+
+function FeatureList() {
+  const { isDarkTheme } = useThemeContext();
+
+  return (
+    <div className={clsx('container pt-3 pb-5 pb-md-7', styles.subHeader)}>
+      <h2 className="title-3 text-dark mb-2">
+        How does the secureCodeBox help our team?
+      </h2>
+      <div
+        className={clsx(
+          'row',
+          styles.featureContainer,
+          isDarkTheme ? styles.dark : styles.light
+        )}
+      >
+        <div className={styles.feature}>
+          <div className={styles.featureList}>
+            <ul className={styles.pro}>
+              <li>
+                <img
+                  src="../../static/img/features/tick.svg"
+                  alt="checked icon"
+                />
+                SDLC support
+              </li>
+              <li>
+                <img
+                  src="../../static/img/features/tick.svg"
+                  alt="checked icon"
+                />
+                Highly scalable: multiple teams, applications and whole
+                networks.
+              </li>
+              <li>
+                <img
+                  src="../../static/img/features/tick.svg"
+                  alt="checked icon"
+                />
+                Scans can range from low-hanging fruits to pen testing.
+              </li>
+            </ul>
+
+            <ul className={styles.con}>
+              <li>
+                <img
+                  src="../../static/img/features/close.svg"
+                  alt="unchecked icon"
+                />
+                We don`t assign grades, someone needs to interpret the scan
+                results.
+              </li>
+              <li>
+                <img
+                  src="../../static/img/features/close.svg"
+                  alt="unchecked icon"
+                />
+                Besides our examples, we do not provide many advanced,
+                pre-configured scans.
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -127,6 +195,7 @@ function Home() {
             ))}
           </div>
         </div>
+        <FeatureList></FeatureList>
         {Scanners && Scanners.length > 0 && (
           <div className="container">
             <h2>Scanners</h2>
