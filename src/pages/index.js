@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useThemeContext from '@theme/hooks/useThemeContext';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Hooks, PersistenceProviders, Scanners } from './integrations';
 import styles from './styles.module.scss';
@@ -33,6 +34,14 @@ function Integration({ imageUrl, title, description, type, path }) {
     </Link>
   );
 }
+
+Integration.propTypes = {
+  imageUrl: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  type: PropTypes.string,
+  path: PropTypes.string.isRequired,
+};
 
 function Home() {
   const context = useDocusaurusContext();
