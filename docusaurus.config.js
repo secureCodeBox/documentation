@@ -1,6 +1,6 @@
 module.exports = {
   title: 'secureCodeBox',
-  tagline: 'Testing your Software Security, Well Documented',
+  tagline: 'Testing your Software Security, Network and Applications',
   url: 'https://securecodebox.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
