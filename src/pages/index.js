@@ -1,12 +1,12 @@
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useThemeContext from '@theme/hooks/useThemeContext';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React from 'react';
 import { Hooks, PersistenceProviders, Scanners } from './integrations';
 import styles from './styles.module.scss';
-import useThemeContext from '@theme/hooks/useThemeContext';
 
 function Integration({ imageUrl, title, description, type, path }) {
   const { isDarkTheme } = useThemeContext();
@@ -15,7 +15,10 @@ function Integration({ imageUrl, title, description, type, path }) {
 
   return (
     <Link
-      className={clsx(styles.integration, isDarkTheme ? styles.dark : styles.light)}
+      className={clsx(
+        styles.integration,
+        isDarkTheme ? styles.dark : styles.light
+      )}
       to={path}
     >
       {imgUrl && (

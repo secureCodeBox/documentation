@@ -1,4 +1,4 @@
-const Scanners = [
+export const Scanners = [
   {
     title: 'Amass',
     imageUrl: 'img/integrationIcons/Amass.svg',
@@ -78,7 +78,7 @@ const Scanners = [
   },
 ];
 
-const PersistenceProviders = [
+export const PersistenceProviders = [
   {
     title: 'DefectDojo',
     imageUrl: 'img/integrationIcons/DefectDojo.svg',
@@ -99,7 +99,7 @@ const PersistenceProviders = [
   },
 ];
 
-const Hooks = [
+export const Hooks = [
   {
     title: 'Cascading Scans',
     imageUrl: 'img/integrationIcons/Cascading Scans.svg',
@@ -138,4 +138,4 @@ const Hooks = [
   },
 ];
 
-export { Scanners, PersistenceProviders, Hooks };
+export default { Scanners, PersistenceProviders, Hooks };
