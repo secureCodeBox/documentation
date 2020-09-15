@@ -6,7 +6,7 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Hooks, PersistenceProviders, Scanners } from './integrations';
+import { Hooks, PersistenceProviders, Scanners } from '../integrations';
 import styles from './styles.module.scss';
 
 function Integration({ imageUrl, title, description, type, path }) {
