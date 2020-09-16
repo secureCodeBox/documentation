@@ -1,4 +1,5 @@
 const fs = require('fs');
+const rimraf = require('rimraf');
 const download = require('download-git-repo');
 const colors = require('colors');
 
@@ -29,6 +30,7 @@ colors.setTheme({
  * |-|-|-...
  * |-...
  *
+ *! This script overrides all existing subdirectories within 'trgPath', with the same name as as the names in 'srcDirs'
  *! This script does not check for markdown files but for files named 'README.md'
  *? The subdirectories are not required to contain a README.md
  */
@@ -70,6 +72,15 @@ new Promise((res, rej) => {
 
             for (const dir of srcDirs) {
               const trgDir = `${trgPath}/${dir}`;
+
+              // Overwrites existing directories with the same name
+              if (fs.existsSync(trgDir)) {
+                rimraf.sync(trgDir);
+
+                console.warn(
+                  `WARN: ${trgDir.info} already existed and was overwritten.`.warn
+                );
+              }
 
               fs.mkdirSync(trgDir);
               createDocFiles(
@@ -140,7 +151,7 @@ function clearDocsOnFailure() {
   for (const dir of srcDirs) {
     const trgDir = `${trgPath}/${dir}`;
     if (fs.existsSync(trgDir)) {
-      fs.rmdir(trgDir, { maxRetries: 3, recursive: true }, function (err) {
+      rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
         if (err) {
           console.error(`ERROR: Could not remove ${trgDir} on failure.`.error);
           console.error(err);
