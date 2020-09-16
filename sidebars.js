@@ -1,8 +1,8 @@
 module.exports = {
   someSidebar: {
-    Others: ['test'],
-    docs: ['docs/developer-guide', 'docs/user-guide'],
-    hooks: [
+    Others: ['Test'],
+    Docs: ['docs/developer-guide', 'docs/user-guide'],
+    Hooks: [
       'hooks/declarative-subsequent-scans',
       'hooks/generic-webhook',
       'hooks/imperative-subsequent-scans',
@@ -13,7 +13,7 @@ module.exports = {
       'hooks/teams-webhook',
       'hooks/update-field',
     ],
-    scanners: [
+    Scanners: [
       'scanners/amass',
       'scanners/kube-hunter',
       'scanners/kubeaudit',
@@ -26,11 +26,11 @@ module.exports = {
       'scanners/wpscan',
       'scanners/zap',
     ],
-    test: [
+    Test: [
       {
         type: 'category',
         label: 'testdeep',
-        items: [{ testdeep: ['test/testdeep/testdeep'] }],
+        items: ['test/testdeep/testdeep'],
       },
       'test/testlow',
     ],

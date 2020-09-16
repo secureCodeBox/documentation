@@ -35,16 +35,18 @@ const categories = fs
 const fileNames = fs
   .readdirSync(`docs`, { encoding: 'utf8', withFileTypes: true })
   .filter((dirent) => dirent.isFile())
-  .map((dirent) => dirent.name.split('.').slice(0, -1).join('.'));
+  .map((dirent) =>
+    capitalizeFirst(dirent.name.split('.').slice(0, -1).join('.'))
+  );
 
 if (fileNames.length > 0) sidebar.someSidebar[generalCategory] = fileNames;
 
 if (categories.length > 0) {
   for (const category of categories) {
-    sidebar.someSidebar[category] = createObjectFromDir(
-      `docs/${category}`,
-      category
-    )[category];
+    const cat = capitalizeFirst(category);
+    sidebar.someSidebar[cat] = createObjectFromDir(`docs/${category}`, cat)[
+      cat
+    ];
   }
 
   fs.writeFile(
@@ -73,10 +75,11 @@ if (categories.length > 0) {
 }
 
 function createObjectFromDir(dir, categoryName) {
+  const category = capitalizeFirst(categoryName);
   // remove 'docs/' for correct reference
   const relDir = dir.replace('docs/', '', 1);
 
-  const obj = { [categoryName]: [] };
+  const obj = { [category]: [] };
 
   const fileNames = fs
     .readdirSync(dir, {
@@ -99,16 +102,20 @@ function createObjectFromDir(dir, categoryName) {
   // Iterates through all subdirectories recursively
   if (subDirs.length > 0) {
     for (const subDir of subDirs) {
-      const items = createObjectFromDir(`${dir}/${subDir}`, subDir);
-      obj[categoryName].push({
+      const items = createObjectFromDir(`${dir}/${subDir}`, subDir)[capitalizeFirst(subDir)];
+      obj[category].push({
         type: 'category',
         label: subDir,
-        items: [items],
+        items: items,
       });
     }
   }
 
-  obj[categoryName] = obj[categoryName].concat(fileLinks);
+  obj[category] = obj[category].concat(fileLinks);
 
   return obj;
+}
+
+function capitalizeFirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
