@@ -35,7 +35,7 @@ colors.setTheme({
  *? The subdirectories are not required to contain a README.md
  */
 
-const temp = 'gitHubRepo';
+const temp = 'githubRepo';
 
 const repository = 'secureCodeBox/secureCodeBox-v2'; // The repository url without the github part of the link
 const trgPath = 'docs'; // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
@@ -43,7 +43,7 @@ const trgPath = 'docs'; // This needs to be 'docs' for the docusaurus build, but
 const srcDirs = ['scanners', 'hooks', 'docs'];
 
 new Promise((res, rej) => {
-  console.log(`Downloading ${repository}...`.info);
+  console.log(`Downloading ${repository} into ${temp}...`.info);
 
   download(repository, temp, function (err) {
     if (err) {

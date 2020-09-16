@@ -1,5 +1,6 @@
 module.exports = {
   someSidebar: {
+    Others: ['test'],
     docs: ['docs/developer-guide', 'docs/user-guide'],
     hooks: [
       'hooks/declarative-subsequent-scans',
