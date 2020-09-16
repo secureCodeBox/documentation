@@ -51,3 +51,5 @@ yarn-error.log*
 
 # Build script
 /secureCodeBox-v2
+/temp
+/documentation
