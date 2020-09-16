@@ -88,7 +88,7 @@ export const PersistenceProviders = [
   {
     title: 'Elasticsearch',
     imageUrl: 'img/integrationIcons/ElasticSearch.svg',
-    path: 'docs/hooks/persistence-elasticSearch',
+    path: 'docs/hooks/persistence-elastic',
     description: 'Publishes all Scan Findings to Elasticsearch',
   },
   {

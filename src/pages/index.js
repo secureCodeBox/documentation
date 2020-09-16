@@ -170,7 +170,7 @@ function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted
               )}
-              to={useBaseUrl('docs/user')}
+              to={useBaseUrl('docs/docs/user-guide')}
             >
               User Guide
             </Link>
@@ -179,7 +179,7 @@ function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted
               )}
-              to={useBaseUrl('docs/developer')}
+              to={useBaseUrl('docs/docs/developer-guide')}
             >
               Developer Guide
             </Link>
