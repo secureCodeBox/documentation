@@ -35,12 +35,12 @@ colors.setTheme({
  *? The subdirectories are not required to contain a README.md
  */
 
-const temp = 'temp/gitHubRepo';
+const temp = 'gitHubRepo';
 
 const repository = 'secureCodeBox/secureCodeBox-v2'; // The repository url without the github part of the link
 const trgPath = 'docs'; // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
 
-const srcDirs = ['scanners', 'hooks'];
+const srcDirs = ['scanners', 'hooks', 'docs'];
 
 new Promise((res, rej) => {
   console.log(`Downloading ${repository}...`.info);
@@ -50,7 +50,7 @@ new Promise((res, rej) => {
       console.error('ERROR: Download failed.'.error);
       rej(err);
     } else {
-      console.log(`${repository} downloaded.`.success);
+      console.log(`SUCCESS: ${repository} downloaded.`.success);
       res();
     }
   });
@@ -90,6 +90,12 @@ new Promise((res, rej) => {
                 dataArray[srcDirs.indexOf(dir)]
               );
             }
+
+            rimraf(temp, function (err) {
+              err
+                ? console.warn(`WARN: Could not remove ${temp.info}.`.warn)
+                : console.log(`Removed ${temp}.`.info);
+            });
           },
           (err) => {
             console.error(err);
@@ -140,11 +146,11 @@ function createDocFiles(relPath, targetPath, dirNames) {
       fs.writeFileSync(filePath, fileBuffer);
 
       console.log(
-        `Created file for ${dirName.help} at ${filePath.info}`.success
+        `SUCCESS: Created file for ${dirName.help} at ${filePath.info}`.success
       );
     } else {
       console.log(
-        `Skipping ${dirName.help}: file not found at ${readMe.info}.`.warn
+        `WARN: Skipping ${dirName.help}: file not found at ${readMe.info}.`.warn
       );
     }
   }
