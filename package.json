@@ -17,6 +17,7 @@
     "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.39",
     "@mdx-js/react": "^1.5.8",
     "clsx": "^1.1.1",
+    "colors": "^1.4.0",
     "docusaurus-plugin-sass": "^0.1.9",
     "download-git-repo": "^3.0.2",
     "node-fetch": "^3.0.0-beta.9",

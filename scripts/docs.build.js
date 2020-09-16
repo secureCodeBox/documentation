@@ -1,5 +1,14 @@
 const fs = require('fs');
 const download = require('download-git-repo');
+const colors = require('colors');
+
+colors.setTheme({
+  info: 'blue',
+  help: 'cyan',
+  warn: 'yellow',
+  success: 'green',
+  error: 'red',
+});
 
 /**
  ** This script works as follows:
@@ -21,7 +30,7 @@ const download = require('download-git-repo');
  * |-...
  *
  *! This script does not check for markdown files but for files named 'README.md'
- *? The subdirectories are not required to contain a README.md 
+ *? The subdirectories are not required to contain a README.md
  */
 
 const temp = 'temp/gitHubRepo';
@@ -32,51 +41,61 @@ const trgPath = 'docs'; // This needs to be 'docs' for the docusaurus build, but
 const srcDirs = ['scanners', 'hooks'];
 
 new Promise((res, rej) => {
-  console.log(`Downloading ${repository}.`);
+  console.log(`Downloading ${repository}...`.info);
 
   download(repository, temp, function (err) {
     if (err) {
-      console.error('Download failed.');
+      console.error('ERROR: Download failed.'.error);
       rej(err);
     } else {
-      console.log(`${repository} downloaded.`);
+      console.log(`${repository} downloaded.`.success);
       res();
     }
   });
-}).then(
-  () => {
-    const promises = [];
+})
+  .then(
+    () => {
+      const promises = [];
 
-    for (const dir of srcDirs) {
-      promises.push(readDirectory(dir));
-    }
-
-    Promise.all(promises).then(
-      (dataArray) => {
-        for (const dir of srcDirs) {
-          const trgDir = `${trgPath}/${dir}`;
-
-          fs.mkdirSync(trgDir, function (err) {
-            console.error(`Could not create directory at ${trgDir}.`);
-            console.error(err);
-          });
-
-          createDocFiles(
-            `${temp}/${dir}`,
-            trgDir,
-            dataArray[srcDirs.indexOf(dir)]
-          );
-        }
-      },
-      (err) => {
-        console.error(err);
+      for (const dir of srcDirs) {
+        promises.push(readDirectory(dir));
       }
-    );
-  },
-  (err) => {
-    console.error(err);
-  }
-);
+
+      Promise.all(promises)
+        .then(
+          (dataArray) => {
+            if (!fs.existsSync(trgPath)) {
+              fs.mkdirSync(trgPath);
+            }
+
+            for (const dir of srcDirs) {
+              const trgDir = `${trgPath}/${dir}`;
+
+              fs.mkdirSync(trgDir);
+              createDocFiles(
+                `${temp}/${dir}`,
+                trgDir,
+                dataArray[srcDirs.indexOf(dir)]
+              );
+            }
+          },
+          (err) => {
+            console.error(err);
+          }
+        )
+        .catch((err) => {
+          clearDocsOnFailure();
+          console.error(err.stack.error); // To point error out by color
+        });
+    },
+    (err) => {
+      console.error(err);
+    }
+  )
+  .catch((err) => {
+    clearDocsOnFailure();
+    console.error(err.stack.error); // To point error out by color
+  });
 
 function readDirectory(dir) {
   return new Promise((res, rej) => {
@@ -85,7 +104,7 @@ function readDirectory(dir) {
       { encoding: 'utf8', withFileTypes: true },
       function (err, data) {
         if (err) {
-          console.error(`Could not read directory at: ${dir}`);
+          console.error(`ERROR: Could not read directory at: ${dir}`.error);
           rej(err);
         } else {
           const directories = data
@@ -106,9 +125,31 @@ function createDocFiles(relPath, targetPath, dirNames) {
       const fileBuffer = fs.readFileSync(readMe);
       fs.writeFileSync(`${targetPath}/${dirName}.md`, fileBuffer);
 
-      console.log(`Created file for ${dirName} at ${targetPath}/${dirName}.md`);
+      console.log(
+        `Created file for ${dirName} at ${targetPath}/${dirName}.md`.success
+      );
     } else {
-      console.error(`File not found at ${readMe}.`);
+      console.log(
+        `Skipping ${dirName.help}: file not found at ${readMe.info}.`.warn
+      );
+    }
+  }
+}
+
+function clearDocsOnFailure() {
+  for (const dir of srcDirs) {
+    const trgDir = `${trgPath}/${dir}`;
+    if (fs.existsSync(trgDir)) {
+      fs.rmdir(trgDir, { maxRetries: 3, recursive: true }, function (err) {
+        if (err) {
+          console.error(`ERROR: Could not remove ${trgDir} on failure.`.error);
+          console.error(err);
+        } else {
+          console.log(
+            `Removed ${trgDir.info} due to previous failure.`.magenta
+          );
+        }
+      });
     }
   }
 }
