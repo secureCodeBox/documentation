@@ -20,7 +20,7 @@ colors.setTheme({
 
 const sidebarName = 'sidebars.js';
 const sidebar = { someSidebar: {} };
-const rootCategory = 'Others';
+const rootCategory = 'Introduction';
 
 if (fs.existsSync(sidebarName)) {
   rimraf.sync(sidebarName);
@@ -38,9 +38,7 @@ const categories = fs
 const fileNames = fs
   .readdirSync(`docs`, { encoding: 'utf8', withFileTypes: true })
   .filter((dirent) => dirent.isFile())
-  .map((dirent) =>
-    capitalizeFirst(dirent.name.split('.').slice(0, -1).join('.'))
-  );
+  .map((dirent) => dirent.name.split('.').slice(0, -1).join('.'));
 
 if (fileNames.length > 0) {
   sidebar.someSidebar[rootCategory] = fileNames;

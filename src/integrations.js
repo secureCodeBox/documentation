@@ -82,19 +82,19 @@ export const PersistenceProviders = [
   {
     title: 'DefectDojo',
     imageUrl: 'img/integrationIcons/DefectDojo.svg',
-    path: 'docs/persistenceProviders/defectDojo',
+    path: 'docs/hooks/persistence-defectdojo',
     description: 'Publishes all Scan Findings to DefectDojo.',
   },
   {
     title: 'Elasticsearch',
     imageUrl: 'img/integrationIcons/ElasticSearch.svg',
-    path: 'docs/persistenceProviders/elasticSearch',
+    path: 'docs/hooks/persistence-elasticSearch',
     description: 'Publishes all Scan Findings to Elasticsearch',
   },
   {
     title: 'Static Report',
     imageUrl: 'img/integrationIcons/Static Report.svg',
-    path: 'docs/persistenceProviders/static',
+    path: 'docs/hooks/persistence-static-report',
     description: 'Publishes all Scan Findings as HTML Report',
   },
 ];
@@ -103,37 +103,37 @@ export const Hooks = [
   {
     title: 'Cascading Scans',
     imageUrl: 'img/integrationIcons/Cascading Scans.svg',
-    path: 'docs/hooks/declarative',
+    path: 'docs/hooks/declarative-subsequent-scans',
     description: 'Cascading Scans based Declarative Rules',
   },
   {
     title: 'Generic Webhook',
     imageUrl: 'img/integrationIcons/Generic Webhook.svg',
-    path: 'docs/hooks/generic',
+    path: 'docs/hooks/generic-webhook',
     description: 'Publishes Scan Findings as WebHook',
   },
   {
     title: 'Imperative Scans',
     imageUrl: 'img/integrationIcons/Imperative Scans.svg',
-    path: 'docs/hooks/imperative',
+    path: 'docs/hooks/imperative-subsequent-scans',
     description: 'Cascading Scans based imperative Rules',
   },
   {
     title: 'MS Teams WebHook',
     imageUrl: 'img/integrationIcons/MS Teams Webhook.svg',
-    path: 'docs/hooks/teams',
+    path: 'docs/hooks/teams-webhook',
     description: 'Publishes Scan Summary to MS Teams',
   },
   {
     title: 'Slack WebHook',
     imageUrl: 'img/integrationIcons/Slack Webhook.svg',
-    path: 'docs/hooks/slack',
+    path: 'docs/hooks/slack-webhook',
     description: 'Publishes Scan Summary to Slack',
   },
   {
     title: 'Update Field',
     imageUrl: 'img/integrationIcons/Update Field.svg',
-    path: 'docs/hooks/updateField',
+    path: 'docs/hooks/update-field',
     description: 'Updates Fields in Finding Results',
   },
 ];
