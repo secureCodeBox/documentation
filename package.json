@@ -7,6 +7,7 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "build:docs": "node ./scripts/docs.build.js",
+    "build:sidebar": "node ./scripts/sidebar.build.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve"

@@ -78,7 +78,8 @@ new Promise((res, rej) => {
                 rimraf.sync(trgDir);
 
                 console.warn(
-                  `WARN: ${trgDir.info} already existed and was overwritten.`.warn
+                  `WARN: ${trgDir.info} already existed and was overwritten.`
+                    .warn
                 );
               }
 
@@ -134,10 +135,12 @@ function createDocFiles(relPath, targetPath, dirNames) {
 
     if (fs.existsSync(readMe)) {
       const fileBuffer = fs.readFileSync(readMe);
-      fs.writeFileSync(`${targetPath}/${dirName}.md`, fileBuffer);
+      const filePath = `${targetPath}/${dirName}.md`;
+
+      fs.writeFileSync(filePath, fileBuffer);
 
       console.log(
-        `Created file for ${dirName} at ${targetPath}/${dirName}.md`.success
+        `Created file for ${dirName.help} at ${filePath.info}`.success
       );
     } else {
       console.log(
