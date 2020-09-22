@@ -98,14 +98,14 @@ function FeatureList() {
             <ul className={styles.pro}>
               <li>
                 <img
-                  src="../../static/img/features/tick.svg"
+                  src="img/features/tick.svg"
                   alt="checked icon"
                 />
                 SDLC support
               </li>
               <li>
                 <img
-                  src="../../static/img/features/tick.svg"
+                  src="img/features/tick.svg"
                   alt="checked icon"
                 />
                 Highly scalable: multiple teams, applications and whole
@@ -113,7 +113,7 @@ function FeatureList() {
               </li>
               <li>
                 <img
-                  src="../../static/img/features/tick.svg"
+                  src="img/features/tick.svg"
                   alt="checked icon"
                 />
                 Scans can range from low-hanging fruits to pen testing.
@@ -123,7 +123,7 @@ function FeatureList() {
             <ul className={styles.con}>
               <li>
                 <img
-                  src="../../static/img/features/close.svg"
+                  src="img/features/close.svg"
                   alt="unchecked icon"
                 />
                 We don`t assign grades, someone needs to interpret the scan
@@ -131,7 +131,7 @@ function FeatureList() {
               </li>
               <li>
                 <img
-                  src="../../static/img/features/close.svg"
+                  src="img/features/close.svg"
                   alt="unchecked icon"
                 />
                 Besides our examples, we do not provide many advanced,
