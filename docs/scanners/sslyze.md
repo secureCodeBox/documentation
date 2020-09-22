@@ -131,3 +131,95 @@ Options:
 
 [SSLyze GitHub]: https://github.com/nabla-c0d3/sslyze
 [SSLyze Documentation]: https://nabla-c0d3.github.io/sslyze/documentation/
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="example.com"
+  values={[{"label":"Example.com","value":"example.com"},{"label":"SecureCodeBox.io","value":"secureCodeBox.io"}]}>
+            
+            
+<TabItem value="example.com">
+  
+<span>
+
+</span>
+
+<Tabs
+defaultValue="sc"
+values={[
+  {label: 'Scan', value: 'sc'}, 
+  ,
+]}>
+
+
+<TabItem value="sc">
+
+```yaml
+
+apiVersion: "execution.experimental.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "sslyze-securecodebox.io"
+spec:
+  scanType: "sslyze"
+  parameters:
+    - "--regular"
+    - "example.com"
+
+
+```
+
+</TabItem>
+
+
+
+
+</Tabs>
+          
+</TabItem>
+          
+<TabItem value="secureCodeBox.io">
+  
+<span>
+
+</span>
+
+<Tabs
+defaultValue="sc"
+values={[
+  {label: 'Scan', value: 'sc'}, 
+  ,
+]}>
+
+
+<TabItem value="sc">
+
+```yaml
+
+apiVersion: "execution.experimental.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "sslyze-securecodebox.io"
+  labels:
+    organization: "secureCodeBox"
+spec:
+  scanType: "sslyze"
+  parameters:
+    - "--regular"
+    - "securecodebox.io"
+
+
+```
+
+</TabItem>
+
+
+
+
+</Tabs>
+          
+</TabItem>
+          
+</Tabs>

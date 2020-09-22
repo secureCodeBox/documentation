@@ -2,7 +2,8 @@ const fs = require('fs'),
   rimraf = require('rimraf'),
   download = require('download-git-repo'),
   colors = require('colors'),
-  fm = require('front-matter');
+  fm = require('front-matter'),
+  { capitalizeFirst, removeWhitespaces } = require('./utils/capitalizer');
 
 colors.setTheme({
   info: 'blue',
@@ -15,18 +16,22 @@ colors.setTheme({
 /**
  ** This script works as follows:
  ** 1. Download the specified github repository into a temporary location.
- ** 2. Read out the subdirectories of the specified directories (srcDirs).
- ** 3. Create for each srcDir a corresponding directory in trgPath.
- ** 4. Create for each README.md found in each subdirectory a new file (named after the subdirectory the file's in).
+ ** 2. Read out the subdirectories of the specified directories (`srcDirs`).
+ ** 3. Create for each `srcDir` a corresponding directory in `trgPath`.
+ ** 4. Create for each `README.md` found in each subdirectory a new file (named after the title attribute in its frontmatter).
+ **   I. If an `/examples` subdirectory exists composite examples part, else continue on step 5.
+ **  II. Build a tab for each subdirectory in the `/examples` directory.
+ ** III. In each tab add contents of the respective example `README.md` and build new tabs for `scan.yaml` and `findings.yaml` (all files are optional).
+ **  IV. Concatenate example part to previous `README.md`
  ** 5. Delete temporary folder.
  *
  * The target file structure will look something like this (in the root directory):
  * |-...
  * |- <trgPath>
  * |-|- <dir 1 of srcDir>
- * |-|-|- <README.md as <dir>.md from subDir 1 of dir 1>
+ * |-|-|- <README.md as <frontmatter title>.md from subDir 1 of dir 1>
  * |-|-|-...
- * |-|-|- <README.md as <dir>.md from subDir n of dir 1>
+ * |-|-|- <README.md as <frontmatter title>.md from subDir n of dir 1>
  * |-|-...
  * |-|- <dir n of srcDir>
  * |-|-|-...
@@ -60,7 +65,7 @@ new Promise((res, rej) => {
       const promises = [];
 
       for (const dir of srcDirs) {
-        promises.push(readDirectory(dir));
+        promises.push(readDirectory(`${temp}/${dir}`));
       }
 
       Promise.all(promises)
@@ -117,27 +122,33 @@ new Promise((res, rej) => {
 
 function readDirectory(dir) {
   return new Promise((res, rej) => {
-    fs.readdir(
-      `${temp}/${dir}`,
-      { encoding: 'utf8', withFileTypes: true },
-      function (err, data) {
-        if (err) {
-          console.error(`ERROR: Could not read directory at: ${dir}`.error);
-          rej(err);
-        } else {
-          const directories = data
-            .filter((dirent) => dirent.isDirectory())
-            .map((dirent) => dirent.name);
-          res(directories);
-        }
+    fs.readdir(dir, { encoding: 'utf8', withFileTypes: true }, function (
+      err,
+      data
+    ) {
+      if (err) {
+        console.error(`ERROR: Could not read directory at: ${dir}`.error);
+        rej(err);
+      } else {
+        const directories = data
+          .filter((dirent) => dirent.isDirectory())
+          .map((dirent) => dirent.name);
+        res(directories);
       }
-    );
+    });
   });
 }
 
-function createDocFiles(relPath, targetPath, dirNames) {
+async function createDocFiles(relPath, targetPath, dirNames) {
   for (const dirName of dirNames) {
     const readMe = `${relPath}/${dirName}/README.md`;
+    let examplesContent = '';
+
+    if (fs.existsSync(`${relPath}/${dirName}/examples`)) {
+      await getTemplatedExamples(`${relPath}/${dirName}/examples`).then(
+        (content) => (examplesContent = examplesContent.concat(content))
+      );
+    }
 
     if (fs.existsSync(readMe)) {
       const fileContent = fs.readFileSync(readMe, { encoding: 'utf8' }),
@@ -146,7 +157,7 @@ function createDocFiles(relPath, targetPath, dirNames) {
           : dirName,
         filePath = `${targetPath}/${fileName}.md`;
 
-      fs.writeFileSync(filePath, fileContent);
+      fs.writeFileSync(filePath, fileContent.concat(examplesContent));
 
       console.log(
         `SUCCESS: Created file for ${dirName.help} at ${filePath.info}`.success
@@ -157,6 +168,127 @@ function createDocFiles(relPath, targetPath, dirNames) {
       );
     }
   }
+}
+
+//! The indentation is mandatory for the file content structure
+function getTemplatedExamples(dir) {
+  return readDirectory(dir).then(
+    (dirNames) => {
+      let examplesContent = '';
+
+      if (dirNames.length === 0) {
+        console.warn(`WARN: Found empty examples folder at ${dir.info}.`.warn);
+      } else {
+        const tabs = [];
+
+        for (const dirName of dirNames) {
+          tabs.push({
+            label: capitalizeFirst(dirName),
+            value: removeWhitespaces(dirName),
+          });
+        }
+
+        examplesContent = examplesContent.concat(`
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="${removeWhitespaces(dirNames[0])}"
+  values={${JSON.stringify(tabs)}}>
+            
+            `);
+
+        for (const dirName of dirNames) {
+          let example = '';
+          let readMe = '';
+
+          if (fs.existsSync(`${dir}/${dirName}/README.md`)) {
+            readMe = fs.readFileSync(`${dir}/${dirName}/README.md`, {
+              encoding: 'utf8',
+            });
+          }
+
+          const scanFound = fs.existsSync(`${dir}/${dirName}/scan.yaml`),
+            findingsFound = fs.existsSync(`${dir}/${dirName}/findings.yaml`);
+
+          const scanContent = scanFound
+            ? fs.readFileSync(`${dir}/${dirName}/scan.yaml`, {
+                encoding: 'utf8',
+              })
+            : '';
+          const findingsContent = findingsFound
+            ? fs.readFileSync(`${dir}/${dirName}/findings.yaml`, {
+                encoding: 'utf8',
+              })
+            : '';
+
+          example = example.concat(`
+<div>
+${fm(readMe).body}
+</div>
+
+<Tabs
+defaultValue="sc"
+values={[
+  ${scanFound ? `{label: 'Scan', value: 'sc'}` : ''}, 
+  ${findingsFound ? `{label: 'Findings', value: 'fd'}` : ''},
+]}>
+
+${
+  scanFound
+    ? `
+<TabItem value="sc">
+
+\`\`\`yaml
+
+${scanContent}
+
+\`\`\`
+
+</TabItem>
+`
+    : ''
+}
+
+${
+  findingsFound
+    ? `
+<TabItem value="fd">
+
+\`\`\`yaml
+
+${findingsContent}
+
+\`\`\`
+
+</TabItem>
+`
+    : ''
+}
+
+</Tabs>
+          `);
+
+          examplesContent = examplesContent.concat(`
+<TabItem value="${removeWhitespaces(dirName)}">
+  ${example}
+</TabItem>
+          `);
+        }
+        examplesContent = examplesContent.concat(`
+</Tabs>`);
+
+        return examplesContent;
+      }
+    },
+    (err) => {
+      console.error(
+        `ERROR: Encountered error while attempting to read examples folder.`
+          .error,
+        err.message.error
+      );
+    }
+  );
 }
 
 function clearDocsOnFailure() {

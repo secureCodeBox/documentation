@@ -2,7 +2,7 @@ const fs = require('fs'),
   rimraf = require('rimraf'),
   colors = require('colors'),
   fm = require('front-matter'),
-  capitalizer = require('./utils/capitalizer');
+  { removeWhitespaces, capitalizeEach } = require('./utils/capitalizer');
 
 colors.setTheme({
   info: 'blue',
@@ -123,9 +123,7 @@ const itgsMap = new Map(itgsArray),
   itgKeys = [];
 
 itgsMap.forEach((itgObject, itgName) => {
-  const constantName = capitalizer.removeWhitespaces(
-    capitalizer.capitalizeEach(itgName)
-  );
+  const constantName = removeWhitespaces(capitalizeEach(itgName));
 
   itgKeys.push(constantName);
 

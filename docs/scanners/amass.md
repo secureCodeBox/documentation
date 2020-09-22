@@ -39,3 +39,103 @@ Special command line options:
 [owasp_amass_project]: https://owasp.org/www-project-amass/
 [amass github]: https://github.com/OWASP/Amass
 [amass user guide]: https://github.com/OWASP/Amass/blob/master/doc/user_guide.md
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="example.com"
+  values={[{"label":"Example.com","value":"example.com"},{"label":"SecureCodeBox.io","value":"secureCodeBox.io"}]}>
+            
+            
+<TabItem value="example.com">
+  
+<span>
+
+> ✍ **Page under construction.**
+ 
+the frontmatter requires the name of the scantarget as 'title'
+</span>
+
+<Tabs
+defaultValue="sc"
+values={[
+  {label: 'Scan', value: 'sc'}, 
+  ,
+]}>
+
+
+<TabItem value="sc">
+
+```yaml
+
+apiVersion: "execution.experimental.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "amass-example.com"
+spec:
+  scanType: "amass"
+  parameters:
+    - "-noalts"
+    - "-norecursive"
+    - "-nolocaldb"
+    - "-d"
+    - "example.com"
+
+
+```
+
+</TabItem>
+
+
+
+
+</Tabs>
+          
+</TabItem>
+          
+<TabItem value="secureCodeBox.io">
+  
+<span>
+
+</span>
+
+<Tabs
+defaultValue="sc"
+values={[
+  {label: 'Scan', value: 'sc'}, 
+  ,
+]}>
+
+
+<TabItem value="sc">
+
+```yaml
+
+apiVersion: "execution.experimental.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "amass-securecodebox.io"
+  labels:
+    organization: "secureCodeBox"
+spec:
+  scanType: "amass"
+  parameters:
+    - "-noalts"
+    - "-norecursive"
+    - "-d"
+    - "securecodebox.io"
+
+
+```
+
+</TabItem>
+
+
+
+
+</Tabs>
+          
+</TabItem>
+          
+</Tabs>

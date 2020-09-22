@@ -1,6 +1,6 @@
 const fs = require('fs'),
   rimraf = require('rimraf'),
-  capitalizer = require('./utils/capitalizer'),
+  { capitalizeEach } = require('./utils/capitalizer'),
   colors = require('colors');
 
 colors.setTheme({
@@ -50,7 +50,7 @@ if (fileNames.length > 0) {
 
 if (categories.length > 0) {
   for (const category of categories) {
-    const cat = capitalizer.capitalizeEach(category);
+    const cat = capitalizeEach(category);
     sidebar.someSidebar[cat] = createObjectFromDir(`docs/${category}`, cat)[
       cat
     ];
@@ -85,7 +85,7 @@ if (categories.length > 0) {
 }
 
 function createObjectFromDir(dir, categoryName) {
-  const category = capitalizer.capitalizeEach(categoryName),
+  const category = capitalizeEach(categoryName),
     // remove 'docs/' for correct reference
     relDir = dir.replace('docs/', '', 1),
     obj = { [category]: [] };
@@ -112,7 +112,7 @@ function createObjectFromDir(dir, categoryName) {
   if (subDirs.length > 0) {
     for (const subDir of subDirs) {
       const items = createObjectFromDir(`${dir}/${subDir}`, subDir)[
-        capitalizer.capitalizeEach(subDir)
+        capitalizeEach(subDir)
       ];
       obj[category].push({
         type: 'category',
