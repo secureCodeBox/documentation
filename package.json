@@ -8,6 +8,7 @@
     "build": "docusaurus build",
     "build:docs": "node ./scripts/docs.build.js",
     "build:sidebar": "node ./scripts/sidebar.build.js",
+    "build:integrations": "node ./scripts/integrations.build.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve"
@@ -21,6 +22,7 @@
     "colors": "^1.4.0",
     "docusaurus-plugin-sass": "^0.1.9",
     "download-git-repo": "^3.0.2",
+    "front-matter": "^4.0.2",
     "node-fetch": "^3.0.0-beta.9",
     "prism-react-renderer": "^1.1.1",
     "react": "^16.8.4",

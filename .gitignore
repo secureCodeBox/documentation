@@ -50,7 +50,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # Build script
-/secureCodeBox-v2
+/githubRepo
 /temp
-/documentation
-sidebarsDeleteMe.js

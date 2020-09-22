@@ -2,25 +2,25 @@
   {
     "title": "Quick & easy installation",
     "description": "It's a quick and straight forward installation. It works on every system and is ready to use from start.",
-    "image": "../../static/img/features/quick.svg",
+    "image": "static/img/features/quick.svg",
     "altText": "speed clock"
   },
   {
     "title": "For professionals & rookies",
     "description": "You can start scans without any configuration right away and use best practice tests. But each scanner also provides extensive configuration options.",
-    "image": "../../static/img/features/code.svg",
+    "image": "static/img/features/code.svg",
     "altText": "code terminal"
   },
   {
     "title": "Monitor your results",
     "description": "Easily monitor each scanner's results through pre-designed (or self made) dashboards, use a tool integration such as e.g. DefectDojo or integrate the persistence tool of your choice.",
-    "image": "../../static/img/features/graph.svg",
+    "image": "static/img/features/graph.svg",
     "altText": "graph icon"
   },
   {
     "title": "Design your own process",
     "description": "Our architecture is designed for open flexibility and free adjustments. New tools can be integrated fairly simple and you can design your own scan and monitor process.",
-    "image": "../../static/img/features/content.svg",
+    "image": "static/img/features/content.svg",
     "altText": "content icon"
   }
 ]

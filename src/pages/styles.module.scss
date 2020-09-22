@@ -63,7 +63,7 @@
   border-radius: 5px;
   text-align: center;
   width: 300px;
-  height: 180px;
+  min-height: 180px;
   cursor: pointer;
 }
 
@@ -95,7 +95,7 @@ main {
   }
 }
 
-// TODO: Remove styles below when marketing page exists 
+// TODO: Remove styles below when marketing page exists
 
 .description {
   width: 45%;
@@ -237,6 +237,10 @@ main {
   }
 }
 
+.featureCard {
+  width: 260px;
+}
+
 .noHighlight {
   > a {
     text-decoration: none;
@@ -259,7 +263,7 @@ main {
   text-align: center;
   padding: 1em;
   border-radius: 6px;
- 
+
   /* Position the tooltip text - see examples below! */
   position: absolute;
   bottom: 50%;
