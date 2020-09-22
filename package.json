@@ -1,10 +1,10 @@
 {
   "name": "securecodebox",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "prebuild": "npm run build:docs && npm run build:sidebar && npm run build:integrations",
     "build": "docusaurus build",
     "build:docs": "node ./scripts/docs.build.js",
     "build:sidebar": "node ./scripts/sidebar.build.js",
