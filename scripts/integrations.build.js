@@ -20,7 +20,7 @@ colors.setTheme({
 
 const integrationsFN = 'src/integrations.js', // Name of the target file to (over-)write
   itgDirs = ['hooks', 'scanners'], // Names of the directories relative to the root level of the `/docs` folder
-  defaultIcon = '/static/img/integrationIcons/Default.svg'; // Default Icon when no imageUrl provided or could not resolve imageUrl
+  defaultIcon = 'img/integrationIcons/Default.svg'; // Default Icon when no imageUrl provided or could not resolve imageUrl
 
 class Integration {
   constructor(title, type, usecase, path, imageUrl) {
@@ -97,9 +97,9 @@ for (const dir of itgDirs) {
         `Description: ${integration.usecase}`
       );
     } else {
-      const imageUrl = `static/img/integrationIcons/${integration.title}.svg`;
+      const imageUrl = `img/integrationIcons/${integration.title}.svg`;
 
-      if (fs.existsSync(`${imageUrl}`)) {
+      if (fs.existsSync(`static/${imageUrl}`)) {
         integration.imageUrl = imageUrl;
       } else {
         integration.imageUrl = defaultIcon;

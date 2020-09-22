@@ -34,6 +34,10 @@ The following security scan configuration example are based on the [kube-hunter 
 [kube-hunter GitHub]: https://github.com/aquasecurity/kube-hunter
 [kube-hunter Documentation]: https://github.com/aquasecurity/kube-hunter#scanning-options
 
+
+
+## Examples
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -44,9 +48,9 @@ import TabItem from '@theme/TabItem';
             
 <TabItem value="in-cluster">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -77,6 +81,7 @@ spec:
 
 
 <TabItem value="fd">
+
 
 ```yaml
 
@@ -164,6 +169,7 @@ spec:
 }
 
 ```
+
 
 </TabItem>
 

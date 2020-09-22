@@ -40,6 +40,10 @@ Special command line options:
 [amass github]: https://github.com/OWASP/Amass
 [amass user guide]: https://github.com/OWASP/Amass/blob/master/doc/user_guide.md
 
+
+
+## Examples
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -50,12 +54,12 @@ import TabItem from '@theme/TabItem';
             
 <TabItem value="example.com">
   
-<span>
-
+<div>
 > ✍ **Page under construction.**
  
 the frontmatter requires the name of the scantarget as 'title'
-</span>
+
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -96,9 +100,9 @@ spec:
           
 <TabItem value="secureCodeBox.io">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"

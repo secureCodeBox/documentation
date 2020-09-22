@@ -22,7 +22,8 @@ colors.setTheme({
  **   I. If an `/examples` subdirectory exists composite examples part, else continue on step 5.
  **  II. Build a tab for each subdirectory in the `/examples` directory.
  ** III. In each tab add contents of the respective example `README.md` and build new tabs for `scan.yaml` and `findings.yaml` (all files are optional).
- **  IV. Concatenate example part to previous `README.md`
+ **  IV. If `findings.yaml` exceeds size limit, create downloadable file and embed respective link.
+ **   V. Concatenate example part to previous `README.md`
  ** 5. Delete temporary folder.
  *
  * The target file structure will look something like this (in the root directory):
@@ -45,7 +46,8 @@ colors.setTheme({
 const temp = 'githubRepo', // Name of temporary folder, will be deleted after build
   repository = 'secureCodeBox/secureCodeBox-v2', // The repository url without the github part of the link
   trgPath = 'docs', // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
-  srcDirs = ['scanners', 'hooks', 'docs']; // Directory names, relative to the root directory of the github project, containing the subdirectories with documentation
+  srcDirs = ['scanners', 'hooks', 'docs'], // Directory names, relative to the root directory of the github project, containing the subdirectories with documentation
+  sizeLimit = 500000; // Limit of file size, most importantly used for large findings.
 
 new Promise((res, rej) => {
   console.log(`Downloading ${repository} into ${temp}...`.info);
@@ -189,6 +191,10 @@ function getTemplatedExamples(dir) {
         }
 
         examplesContent = examplesContent.concat(`
+
+
+## Examples
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -216,11 +222,29 @@ import TabItem from '@theme/TabItem';
                 encoding: 'utf8',
               })
             : '';
-          const findingsContent = findingsFound
-            ? fs.readFileSync(`${dir}/${dirName}/findings.yaml`, {
-                encoding: 'utf8',
-              })
-            : '';
+
+          const findingsLimitReached = findingsFound
+            ? fs.statSync(`${dir}/${dirName}/findings.yaml`).size >= sizeLimit
+            : false;
+
+          let findingsLink = '',
+            findingsContent = '';
+
+          if (findingsLimitReached) {
+            console.warn(
+              `WARN: Findings for ${dirName.info} exceeded size limit.`.warn
+            );
+
+            findingsLink = copyFindingsForDownload(
+              `${dir}/${dirName}/findings.yaml`
+            );
+          } else {
+            findingsContent = findingsFound
+              ? fs.readFileSync(`${dir}/${dirName}/findings.yaml`, {
+                  encoding: 'utf8',
+                })
+              : '';
+          }
 
           example = example.concat(`
 <div>
@@ -255,11 +279,22 @@ ${
     ? `
 <TabItem value="fd">
 
+${
+  findingsLimitReached
+    ? `
+<span>
+The findings are too large to display, you may download
+<a target="_blank" href='/${findingsLink}' download> the file.</a>
+</span>
+`
+    : `
 \`\`\`yaml
 
 ${findingsContent}
 
 \`\`\`
+`
+}
 
 </TabItem>
 `
@@ -291,14 +326,37 @@ ${findingsContent}
   );
 }
 
+function copyFindingsForDownload(filePath) {
+  const dirNames = filePath.split('/'),
+    name =
+      dirNames[dirNames.indexOf('examples') - 1] +
+      '-' +
+      dirNames[dirNames.indexOf('examples') + 1],
+    targetPath = `public/findings/${name}-findings.yaml`;
+
+  if (!fs.existsSync('public')) {
+    fs.mkdirSync('public/');
+  }
+  if (!fs.existsSync('public/findings')) {
+    fs.mkdirSync('public/findings/');
+  }
+
+  fs.copyFileSync(filePath, targetPath);
+  console.log(`SUCCESS: Created download link for ${name.info}.`.success);
+
+  return targetPath;
+}
+
 function clearDocsOnFailure() {
   for (const dir of srcDirs) {
     const trgDir = `${trgPath}/${dir}`;
     if (fs.existsSync(trgDir)) {
       rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
         if (err) {
-          console.error(`ERROR: Could not remove ${trgDir} on failure.`.error);
-          console.error(err);
+          console.error(
+            `ERROR: Could not remove ${trgDir.info} on failure.`.error
+          );
+          console.error(err.message.error);
         } else {
           console.log(
             `Removed ${trgDir.info} due to previous failure.`.magenta

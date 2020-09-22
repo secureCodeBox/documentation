@@ -20,6 +20,10 @@ To learn more about the Ncrack scanner itself visit [Ncrack GitHub] or [Ncrack W
 [Ncrack GitHub]: https://github.com/nmap/ncrack
 [Ncrack Documentation]: https://nmap.org/ncrack/man.html
 
+
+
+## Examples
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -30,7 +34,7 @@ import TabItem from '@theme/TabItem';
             
 <TabItem value="dummy-ssh">
   
-<span>
+<div>
 In this example we execute an ncrack scan against the intentional vulnerable ssh service (dummy-ssh)
 
 ### Install dummy-ssh
@@ -61,7 +65,7 @@ scannerJob:
 EOF
 ```
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"

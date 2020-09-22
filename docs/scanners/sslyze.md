@@ -132,6 +132,10 @@ Options:
 [SSLyze GitHub]: https://github.com/nabla-c0d3/sslyze
 [SSLyze Documentation]: https://nabla-c0d3.github.io/sslyze/documentation/
 
+
+
+## Examples
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -142,9 +146,9 @@ import TabItem from '@theme/TabItem';
             
 <TabItem value="example.com">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -182,9 +186,9 @@ spec:
           
 <TabItem value="secureCodeBox.io">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"

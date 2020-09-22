@@ -43,6 +43,10 @@ Some useful example parameters listed below:
 - `--script` xx: Replace xx with a coma-separated list of scripts. Start the scan with the given scripts.
 
 
+
+
+## Examples
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -53,9 +57,9 @@ import TabItem from '@theme/TabItem';
             
 <TabItem value="demo-app-ssh">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -91,6 +95,7 @@ spec:
 
 
 <TabItem value="fd">
+
 
 ```yaml
 
@@ -136,6 +141,7 @@ spec:
 
 ```
 
+
 </TabItem>
 
 
@@ -145,9 +151,9 @@ spec:
           
 <TabItem value="demo-juice-shop">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -183,6 +189,7 @@ spec:
 
 
 <TabItem value="fd">
+
 
 ```yaml
 
@@ -228,6 +235,7 @@ spec:
 
 ```
 
+
 </TabItem>
 
 
@@ -237,9 +245,9 @@ spec:
           
 <TabItem value="local-network">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -271,6 +279,7 @@ spec:
 
 
 <TabItem value="fd">
+
 
 ```yaml
 
@@ -469,6 +478,7 @@ spec:
 
 ```
 
+
 </TabItem>
 
 
@@ -478,9 +488,9 @@ spec:
           
 <TabItem value="localhost">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -514,6 +524,7 @@ spec:
 
 <TabItem value="fd">
 
+
 ```yaml
 
 [
@@ -536,6 +547,7 @@ spec:
 
 ```
 
+
 </TabItem>
 
 
@@ -545,9 +557,9 @@ spec:
           
 <TabItem value="scan.nmap.org">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -578,6 +590,7 @@ spec:
 
 
 <TabItem value="fd">
+
 
 ```yaml
 
@@ -761,6 +774,7 @@ spec:
 
 
 ```
+
 
 </TabItem>
 

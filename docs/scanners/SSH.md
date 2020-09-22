@@ -65,6 +65,10 @@ Examples:
 [ssh_scan GitHub]: https://github.com/mozilla/ssh_scan
 [ssh_scan Documentation]: https://github.com/mozilla/ssh_scan#example-command-line-usage
 
+
+
+## Examples
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -75,9 +79,9 @@ import TabItem from '@theme/TabItem';
             
 <TabItem value="demo-app-ssh">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -109,6 +113,7 @@ spec:
 
 
 <TabItem value="fd">
+
 
 ```yaml
 
@@ -235,6 +240,7 @@ spec:
 
 ```
 
+
 </TabItem>
 
 
@@ -244,9 +250,9 @@ spec:
           
 <TabItem value="example.com">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -288,9 +294,9 @@ spec:
           
 <TabItem value="localhost">
   
-<span>
+<div>
 
-</span>
+</div>
 
 <Tabs
 defaultValue="sc"
@@ -324,6 +330,7 @@ spec:
 
 
 <TabItem value="fd">
+
 
 ```yaml
 
@@ -13078,6 +13085,7 @@ spec:
 
 
 ```
+
 
 </TabItem>
 
