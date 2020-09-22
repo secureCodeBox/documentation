@@ -7,10 +7,10 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import features from '../features.json';
-import { Hooks, PersistenceProviders, Scanners } from '../integrations';
+import { Hooks, Scanners } from '../integrations';
 import styles from './styles.module.scss';
 
-function Integration({ imageUrl, title, description, type, path }) {
+function Integration({ imageUrl, title, usecase, type, path }) {
   const { isDarkTheme } = useThemeContext();
 
   const imgUrl = useBaseUrl(imageUrl);
@@ -29,9 +29,9 @@ function Integration({ imageUrl, title, description, type, path }) {
         </div>
       )}
       <h3>
-        {title} ({type})
+        {title} {type ? `(${type})` : ''}
       </h3>
-      <p>{description}</p>
+      <p>{usecase}</p>
     </Link>
   );
 }
@@ -39,7 +39,7 @@ function Integration({ imageUrl, title, description, type, path }) {
 Integration.propTypes = {
   imageUrl: PropTypes.string,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string,
+  usecase: PropTypes.string.isRequired,
   type: PropTypes.string,
   path: PropTypes.string.isRequired,
 };
@@ -61,7 +61,7 @@ function Feature({ feature }) {
       // eslint-disable-next-line react/prop-types
       data-tip={feature.description}
     >
-      <div className={clsx(styles.feature, styles.hoverable)}>
+      <div className={clsx(styles.feature, styles.hoverable, styles.featureCard)}>
         {/* eslint-disable-next-line react/prop-types */}
         {feature.image && (
           <div className={styles.featureImage}>
@@ -170,7 +170,7 @@ function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted
               )}
-              to={useBaseUrl('docs/docs/user-guide')}
+              to={useBaseUrl('docs/docs/User Guide')}
             >
               User Guide
             </Link>
@@ -179,7 +179,7 @@ function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted
               )}
-              to={useBaseUrl('docs/docs/developer-guide')}
+              to={useBaseUrl('docs/docs/Developer Guide')}
             >
               Developer Guide
             </Link>
@@ -201,16 +201,6 @@ function Home() {
             <h2>Scanners</h2>
             <section className={styles.integrations}>
               {Scanners.map((props, idx) => (
-                <Integration key={idx} {...props} />
-              ))}
-            </section>
-          </div>
-        )}
-        {PersistenceProviders && PersistenceProviders.length > 0 && (
-          <div className="container">
-            <h2>Persistence Providers</h2>
-            <section className={styles.integrations}>
-              {PersistenceProviders.map((props, idx) => (
                 <Integration key={idx} {...props} />
               ))}
             </section>

@@ -1,7 +1,8 @@
-const fs = require('fs');
-const rimraf = require('rimraf');
-const download = require('download-git-repo');
-const colors = require('colors');
+const fs = require('fs'),
+  rimraf = require('rimraf'),
+  download = require('download-git-repo'),
+  colors = require('colors'),
+  fm = require('front-matter');
 
 colors.setTheme({
   info: 'blue',
@@ -17,6 +18,7 @@ colors.setTheme({
  ** 2. Read out the subdirectories of the specified directories (srcDirs).
  ** 3. Create for each srcDir a corresponding directory in trgPath.
  ** 4. Create for each README.md found in each subdirectory a new file (named after the subdirectory the file's in).
+ ** 5. Delete temporary folder.
  *
  * The target file structure will look something like this (in the root directory):
  * |-...
@@ -35,12 +37,10 @@ colors.setTheme({
  *? The subdirectories are not required to contain a README.md
  */
 
-const temp = 'githubRepo';
-
-const repository = 'secureCodeBox/secureCodeBox-v2'; // The repository url without the github part of the link
-const trgPath = 'docs'; // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
-
-const srcDirs = ['scanners', 'hooks', 'docs'];
+const temp = 'githubRepo', // Name of temporary folder, will be deleted after build
+  repository = 'secureCodeBox/secureCodeBox-v2', // The repository url without the github part of the link
+  trgPath = 'docs', // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
+  srcDirs = ['scanners', 'hooks', 'docs']; // Directory names, relative to the root directory of the github project, containing the subdirectories with documentation
 
 new Promise((res, rej) => {
   console.log(`Downloading ${repository} into ${temp}...`.info);
@@ -140,10 +140,13 @@ function createDocFiles(relPath, targetPath, dirNames) {
     const readMe = `${relPath}/${dirName}/README.md`;
 
     if (fs.existsSync(readMe)) {
-      const fileBuffer = fs.readFileSync(readMe);
-      const filePath = `${targetPath}/${dirName}.md`;
+      const fileContent = fs.readFileSync(readMe, { encoding: 'utf8' }),
+        fileName = fm(fileContent).attributes.title
+          ? fm(fileContent).attributes.title
+          : dirName,
+        filePath = `${targetPath}/${fileName}.md`;
 
-      fs.writeFileSync(filePath, fileBuffer);
+      fs.writeFileSync(filePath, fileContent);
 
       console.log(
         `SUCCESS: Created file for ${dirName.help} at ${filePath.info}`.success

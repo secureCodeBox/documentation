@@ -1,6 +1,7 @@
-const fs = require('fs');
-const rimraf = require('rimraf');
-const colors = require('colors');
+const fs = require('fs'),
+  rimraf = require('rimraf'),
+  capitalizer = require('./utils/capitalizer'),
+  colors = require('colors');
 
 colors.setTheme({
   info: 'blue',
@@ -18,9 +19,9 @@ colors.setTheme({
  ** 4. (Over-)Write 'sidebars.js'
  */
 
-const sidebarName = 'sidebars.js';
-const sidebar = { someSidebar: {} };
-const rootCategory = 'Introduction';
+const sidebarName = 'sidebars.js', // Docusaurus looks for a file named `sidebars.js`
+  sidebar = { someSidebar: {} }, // If you need more than one sidebar, you might change the "root object" on which to build the sidebar on
+  rootCategory = 'Introduction'; // Name of category for all docs on the root level of the `/docs` folder
 
 if (fs.existsSync(sidebarName)) {
   rimraf.sync(sidebarName);
@@ -49,7 +50,7 @@ if (fileNames.length > 0) {
 
 if (categories.length > 0) {
   for (const category of categories) {
-    const cat = capitalizeFirst(category);
+    const cat = capitalizer.capitalizeEach(category);
     sidebar.someSidebar[cat] = createObjectFromDir(`docs/${category}`, cat)[
       cat
     ];
@@ -84,11 +85,10 @@ if (categories.length > 0) {
 }
 
 function createObjectFromDir(dir, categoryName) {
-  const category = capitalizeFirst(categoryName);
-  // remove 'docs/' for correct reference
-  const relDir = dir.replace('docs/', '', 1);
-
-  const obj = { [category]: [] };
+  const category = capitalizer.capitalizeEach(categoryName),
+    // remove 'docs/' for correct reference
+    relDir = dir.replace('docs/', '', 1),
+    obj = { [category]: [] };
 
   const fileNames = fs
     .readdirSync(dir, {
@@ -112,7 +112,7 @@ function createObjectFromDir(dir, categoryName) {
   if (subDirs.length > 0) {
     for (const subDir of subDirs) {
       const items = createObjectFromDir(`${dir}/${subDir}`, subDir)[
-        capitalizeFirst(subDir)
+        capitalizer.capitalizeEach(subDir)
       ];
       obj[category].push({
         type: 'category',
@@ -125,8 +125,4 @@ function createObjectFromDir(dir, categoryName) {
   obj[category] = obj[category].concat(fileLinks);
 
   return obj;
-}
-
-function capitalizeFirst(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
