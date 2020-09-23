@@ -1,0 +1,56 @@
+
+
+{{ readme }}
+
+## Example
+
+{{#examples}}
+### {{name}}
+
+<div>
+{{exampleReadme}}
+</div>
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="scan"
+    values={[
+    {{#scan}}{ label: "Scan", value: "scan" },{{/scan}}
+    {{#findings}}{ label: "Findings", value: "findings" },{{/findings}}
+    ]}>
+
+{{#scan}}
+<TabItem value="scan">
+
+```yaml
+{{scan}}
+```
+
+</TabItem>
+{{/scan}}
+
+{{#findings}}
+<TabItem value="findings">
+{{#limitReached}}
+<span>
+The findings are too large to display, you may download
+<a target="_blank" href='/{{value}}' download> the file.</a>
+</span>
+{{/limitReached}}
+
+{{^limitReached}}
+
+```yaml
+{{value}}
+```
+
+{{/limitReached}}
+</TabItem>
+{{/findings}}
+
+
+</Tabs>
+
+{{/examples}}
