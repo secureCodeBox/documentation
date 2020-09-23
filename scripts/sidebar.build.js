@@ -1,7 +1,8 @@
 const fs = require('fs'),
   rimraf = require('rimraf'),
+  colors = require('colors'),
   { capitalizeEach } = require('./utils/capitalizer'),
-  colors = require('colors');
+  { sidebarConfig: config } = require('./utils/config');
 
 colors.setTheme({
   info: 'blue',
@@ -19,15 +20,11 @@ colors.setTheme({
  ** 4. (Over-)Write 'sidebars.js'
  */
 
-const sidebarName = 'sidebars.js', // Docusaurus looks for a file named `sidebars.js`
-  sidebar = { someSidebar: {} }, // If you need more than one sidebar, you might change the "root object" on which to build the sidebar on
-  rootCategory = 'Introduction'; // Name of category for all docs on the root level of the `/docs` folder
-
-if (fs.existsSync(sidebarName)) {
-  rimraf.sync(sidebarName);
+if (fs.existsSync(config.sidebarName)) {
+  rimraf.sync(config.sidebarName);
 
   console.warn(
-    `WARN: ${sidebarName.info} already existed and was removed.`.warn
+    `WARN: ${config.sidebarName.info} already existed and was removed.`.warn
   );
 }
 
@@ -42,31 +39,31 @@ const fileNames = fs
   .map((dirent) => dirent.name.split('.').slice(0, -1).join('.'));
 
 if (fileNames.length > 0) {
-  sidebar.someSidebar[rootCategory] = fileNames;
+  config.sidebar.someSidebar[config.rootCategory] = fileNames;
   console.log(
-    `SUCCESS: Added root document files to ${sidebarName.info}.`.success
+    `SUCCESS: Added root document files to ${config.sidebarName.info}.`.success
   );
 }
 
 if (categories.length > 0) {
   for (const category of categories) {
     const cat = capitalizeEach(category);
-    sidebar.someSidebar[cat] = createObjectFromDir(`docs/${category}`, cat)[
+    config.sidebar.someSidebar[cat] = createObjectFromDir(`docs/${category}`, cat)[
       cat
     ];
     console.log(
-      `SUCCESS: Added ${category.help} to ${sidebarName.info}.`.success
+      `SUCCESS: Added ${category.help} to ${config.sidebarName.info}.`.success
     );
   }
 
   fs.writeFile(
-    sidebarName,
-    `module.exports = ${JSON.stringify(sidebar)};`,
+    config.sidebarName,
+    `module.exports = ${JSON.stringify(config.sidebar)};`,
     function (err) {
       err
-        ? console.error(`ERROR: Could not create ${sidebarName.info}.`)
+        ? console.error(`ERROR: Could not create ${config.sidebarName.info}.`)
         : console.warn(
-            `SUCCESS: Created ${sidebarName.info} successfully.`.success
+            `SUCCESS: Created ${config.sidebarName.info} successfully.`.success
           );
     }
   );
@@ -74,12 +71,12 @@ if (categories.length > 0) {
   console.warn(`WARN: Nothing found in ${'docs/'.info}.`.warn);
 
   fs.writeFile(
-    sidebarName,
-    `module.exports = ${JSON.stringify(sidebar)};`,
+    config.sidebarName,
+    `module.exports = ${JSON.stringify(config.sidebar)};`,
     function (err) {
       err
-        ? console.error(`ERROR: Could not create empty ${sidebarName.info}.`)
-        : console.warn(`WARN: Empty ${sidebarName.info} created`.warn);
+        ? console.error(`ERROR: Could not create empty ${config.sidebarName.info}.`)
+        : console.warn(`WARN: Empty ${config.sidebarName.info} created`.warn);
     }
   );
 }

@@ -3,6 +3,7 @@ const fs = require('fs'),
   download = require('download-git-repo'),
   colors = require('colors'),
   fm = require('front-matter'),
+  { docsConfig: config} = require('./utils/config'),
   { capitalizeFirst, removeWhitespaces } = require('./utils/capitalizer');
 
 colors.setTheme({
@@ -43,21 +44,15 @@ colors.setTheme({
  *? The subdirectories are not required to contain a README.md
  */
 
-const temp = 'githubRepo', // Name of temporary folder, will be deleted after build
-  repository = 'secureCodeBox/secureCodeBox-v2', // The repository url without the github part of the link
-  trgPath = 'docs', // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
-  srcDirs = ['scanners', 'hooks', 'docs'], // Directory names, relative to the root directory of the github project, containing the subdirectories with documentation
-  sizeLimit = 500000; // Limit of file size, most importantly used for large findings.
-
 new Promise((res, rej) => {
-  console.log(`Downloading ${repository} into ${temp}...`.info);
+  console.log(`Downloading ${config.repository} into ${config.temp}...`.info);
 
-  download(repository, temp, function (err) {
+  download(config.repository, config.temp, function (err) {
     if (err) {
       console.error('ERROR: Download failed.'.error);
       rej(err);
     } else {
-      console.log(`SUCCESS: ${repository} downloaded.`.success);
+      console.log(`SUCCESS: ${config.repository} downloaded.`.success);
       res();
     }
   });
@@ -66,19 +61,19 @@ new Promise((res, rej) => {
     () => {
       const promises = [];
 
-      for (const dir of srcDirs) {
-        promises.push(readDirectory(`${temp}/${dir}`));
+      for (const dir of config.srcDirs) {
+        promises.push(readDirectory(`${config.temp}/${dir}`));
       }
 
       Promise.all(promises)
         .then(
           (dataArray) => {
-            if (!fs.existsSync(trgPath)) {
-              fs.mkdirSync(trgPath);
+            if (!fs.existsSync(config.trgPath)) {
+              fs.mkdirSync(config.trgPath);
             }
 
-            for (const dir of srcDirs) {
-              const trgDir = `${trgPath}/${dir}`;
+            for (const dir of config.srcDirs) {
+              const trgDir = `${config.trgPath}/${dir}`;
 
               // Overwrites existing directories with the same name
               if (fs.existsSync(trgDir)) {
@@ -92,16 +87,16 @@ new Promise((res, rej) => {
 
               fs.mkdirSync(trgDir);
               createDocFiles(
-                `${temp}/${dir}`,
+                `${config.temp}/${dir}`,
                 trgDir,
-                dataArray[srcDirs.indexOf(dir)]
+                dataArray[config.srcDirs.indexOf(dir)]
               );
             }
 
-            rimraf(temp, function (err) {
+            rimraf(config.temp, function (err) {
               err
-                ? console.warn(`WARN: Could not remove ${temp.info}.`.warn)
-                : console.log(`Removed ${temp}.`.info);
+                ? console.warn(`WARN: Could not remove ${config.temp.info}.`.warn)
+                : console.log(`Removed ${config.temp}.`.info);
             });
           },
           (err) => {
@@ -224,7 +219,7 @@ import TabItem from '@theme/TabItem';
             : '';
 
           const findingsLimitReached = findingsFound
-            ? fs.statSync(`${dir}/${dirName}/findings.yaml`).size >= sizeLimit
+            ? fs.statSync(`${dir}/${dirName}/findings.yaml`).size >= config.sizeLimit
             : false;
 
           let findingsLink = '',
@@ -348,8 +343,8 @@ function copyFindingsForDownload(filePath) {
 }
 
 function clearDocsOnFailure() {
-  for (const dir of srcDirs) {
-    const trgDir = `${trgPath}/${dir}`;
+  for (const dir of config.srcDirs) {
+    const trgDir = `${config.trgPath}/${dir}`;
     if (fs.existsSync(trgDir)) {
       rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
         if (err) {

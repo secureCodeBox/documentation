@@ -2,6 +2,7 @@ const fs = require('fs'),
   rimraf = require('rimraf'),
   colors = require('colors'),
   fm = require('front-matter'),
+  {integrationsConfig: config} = require('./utils/config'),
   { removeWhitespaces, capitalizeEach } = require('./utils/capitalizer');
 
 colors.setTheme({
@@ -18,10 +19,6 @@ colors.setTheme({
  ** parsing it to objects of type `Integration` (see below) and joins them into importable modules, respective to the given directories.
  */
 
-const integrationsFN = 'src/integrations.js', // Name of the target file to (over-)write
-  itgDirs = ['hooks', 'scanners'], // Names of the directories relative to the root level of the `/docs` folder
-  defaultIcon = 'img/integrationIcons/Default.svg'; // Default Icon when no imageUrl provided or could not resolve imageUrl
-
 class Integration {
   constructor(title, type, usecase, path, imageUrl) {
     this.title = title;
@@ -36,16 +33,16 @@ class Integration {
   }
 }
 
-if (fs.existsSync(integrationsFN)) {
-  rimraf.sync(integrationsFN);
+if (fs.existsSync(config.integrationsFN)) {
+  rimraf.sync(config.integrationsFN);
 
   console.warn(
-    `WARN: ${integrationsFN.info} already existed and was removed.`.warn
+    `WARN: ${config.integrationsFN.info} already existed and was removed.`.warn
   );
 }
 
 // Inform about subdirectories (this runs asynchronously)
-for (const dir of itgDirs) {
+for (const dir of config.itgDirs) {
   fs.readdir(
     `docs/${dir}`,
     { encoding: 'utf8', withFileTypes: true },
@@ -71,7 +68,7 @@ for (const dir of itgDirs) {
 
 const itgsArray = [];
 // Build integrations from files
-for (const dir of itgDirs) {
+for (const dir of config.itgDirs) {
   const integrations = [],
     fileNames = fs
       .readdirSync(`docs/${dir}`, { encoding: 'utf8', withFileTypes: true })
@@ -102,7 +99,7 @@ for (const dir of itgDirs) {
       if (fs.existsSync(`static/${imageUrl}`)) {
         integration.imageUrl = imageUrl;
       } else {
-        integration.imageUrl = defaultIcon;
+        integration.imageUrl = config.defaultIcon;
         console.warn(
           `WARN: Could not resolve ${imageUrl.info}. Using default image.`.warn
         );
@@ -134,10 +131,10 @@ export const ${constantName} = ${JSON.stringify(itgObject)};
 
 itgsStringArray.push(`export default { ${itgKeys.join(',')} };`);
 
-fs.writeFile(`${integrationsFN}`, itgsStringArray.join(''), function (err) {
+fs.writeFile(`${config.integrationsFN}`, itgsStringArray.join(''), function (err) {
   if (err) {
     console.error(
-      `ERROR: Could not build ${integrationsFN.help}.`.error,
+      `ERROR: Could not build ${config.integrationsFN.help}.`.error,
       err.message.error
     );
   }
