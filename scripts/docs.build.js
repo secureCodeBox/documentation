@@ -1,10 +1,13 @@
 const fs = require('fs'),
   rimraf = require('rimraf'),
-  download = require('download-git-repo'),
+  downloadCallback = require('download-git-repo'),
   colors = require('colors'),
   fm = require('front-matter'),
+  { promisify } = require('util'),
   { docsConfig: config } = require('./utils/config'),
   { capitalizeFirst, removeWhitespaces } = require('./utils/capitalizer');
+
+const download = promisify(downloadCallback)
 
 colors.setTheme({
   info: 'blue',
@@ -46,86 +49,64 @@ colors.setTheme({
  *? The subdirectories are not required to contain a README.md
  */
 
-new Promise((res, rej) => {
+async function main(){
   console.log(`Downloading ${config.repository} into ${config.temp}...`.info);
 
-  download(config.repository, config.temp, function (err) {
-    if (err) {
-      console.error('ERROR: Download failed.'.error);
-      rej(err);
-    } else {
-      console.log(`SUCCESS: ${config.repository} downloaded.`.success);
-      res();
+  await download(config.repository, config.temp).catch((err) => {
+    console.error('ERROR: Download failed.'.error);
+    throw err;
+  })
+  
+  console.log(`SUCCESS: ${config.repository} downloaded.`.success);
+
+  if (config.srcFiles.length > 0) createSingleDocFiles();
+
+  const promises = config.srcDirs.map((dir) => readDirectory(`${config.temp}/${dir}`));
+
+  const dataArray = await Promise.all(promises);
+
+  if (!fs.existsSync(config.trgPath)) {
+    fs.mkdirSync(config.trgPath);
+  }
+  // Clear preexisting findings
+  if (fs.existsSync(config.findingsDir)) {
+    rimraf.sync(config.findingsDir);
+  }
+
+  for (const dir of config.srcDirs) {
+    const trgDir = `${config.trgPath}/${dir}`;
+
+    // Overwrites existing directories with the same name
+    if (fs.existsSync(trgDir)) {
+      rimraf.sync(trgDir);
+
+      console.warn(
+        `WARN: ${trgDir.info} already existed and was overwritten.`
+          .warn
+      );
     }
-  });
-})
-  .then(
-    () => {
-      if (config.srcFiles.length > 0) createSingleDocFiles();
 
-      const promises = [];
+    fs.mkdirSync(trgDir);
+    createDocFilesFromDir(
+      `${config.temp}/${dir}`,
+      trgDir,
+      dataArray[config.srcDirs.indexOf(dir)]
+    );
+  }
 
-      for (const dir of config.srcDirs) {
-        promises.push(readDirectory(`${config.temp}/${dir}`));
-      }
-
-      Promise.all(promises)
-        .then(
-          (dataArray) => {
-            if (!fs.existsSync(config.trgPath)) {
-              fs.mkdirSync(config.trgPath);
-            }
-            // Clear preexisting findings
-            if (fs.existsSync(config.findingsDir)) {
-              rimraf.sync(config.findingsDir);
-            }
-
-            for (const dir of config.srcDirs) {
-              const trgDir = `${config.trgPath}/${dir}`;
-
-              // Overwrites existing directories with the same name
-              if (fs.existsSync(trgDir)) {
-                rimraf.sync(trgDir);
-
-                console.warn(
-                  `WARN: ${trgDir.info} already existed and was overwritten.`
-                    .warn
-                );
-              }
-
-              fs.mkdirSync(trgDir);
-              createDocFilesFromDir(
-                `${config.temp}/${dir}`,
-                trgDir,
-                dataArray[config.srcDirs.indexOf(dir)]
-              );
-            }
-
-            rimraf(config.temp, function (err) {
-              err
-                ? console.warn(
-                    `WARN: Could not remove ${config.temp.info}.`.warn
-                  )
-                : console.log(`Removed ${config.temp}.`.info);
-            });
-          },
-          (err) => {
-            console.error(err);
-          }
+  rimraf(config.temp, function (err) {
+    err
+      ? console.warn(
+          `WARN: Could not remove ${config.temp.info}.`.warn
         )
-        .catch((err) => {
-          clearDocsOnFailure();
-          console.error(err.stack.error); // To point error out by color
-        });
-    },
-    (err) => {
-      console.error(err);
-    }
-  )
-  .catch((err) => {
-    clearDocsOnFailure();
-    console.error(err.stack.error); // To point error out by color
+      : console.log(`Removed ${config.temp}.`.info);
   });
+}
+
+main().catch((err) => {
+  clearDocsOnFailure();
+  console.error(err.stack.error);
+})
 
 function readDirectory(dir) {
   return new Promise((res, rej) => {
@@ -152,9 +133,8 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     let examplesContent = '';
 
     if (fs.existsSync(`${relPath}/${dirName}/examples`)) {
-      await getTemplatedExamples(`${relPath}/${dirName}/examples`).then(
-        (content) => (examplesContent = examplesContent.concat(content))
-      );
+      const content = await getTemplatedExamples(`${relPath}/${dirName}/examples`)
+      examplesContent = examplesContent.concat(content)
     }
 
     if (fs.existsSync(readMe)) {
