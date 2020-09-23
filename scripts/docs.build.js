@@ -3,7 +3,7 @@ const fs = require('fs'),
   download = require('download-git-repo'),
   colors = require('colors'),
   fm = require('front-matter'),
-  { docsConfig: config} = require('./utils/config'),
+  { docsConfig: config } = require('./utils/config'),
   { capitalizeFirst, removeWhitespaces } = require('./utils/capitalizer');
 
 colors.setTheme({
@@ -17,27 +17,29 @@ colors.setTheme({
 /**
  ** This script works as follows:
  ** 1. Download the specified github repository into a temporary location.
- ** 2. Read out the subdirectories of the specified directories (`srcDirs`).
- ** 3. Create for each `srcDir` a corresponding directory in `trgPath`.
- ** 4. Create for each `README.md` found in each subdirectory a new file (named after the title attribute in its frontmatter).
+ ** 2. Copy each file of srcFiles into the config.singleFileDirectory
+ ** 3. Read out the subdirectories of the specified directories (`srcDirs`).
+ ** 4. Create for each `srcDir` a corresponding directory in `trgPath`.
+ ** 5. Create for each `README.md` found in each subdirectory a new file (named after the title attribute in its frontmatter).
  **   I. If an `/examples` subdirectory exists composite examples part, else continue on step 5.
  **  II. Build a tab for each subdirectory in the `/examples` directory.
  ** III. In each tab add contents of the respective example `README.md` and build new tabs for `scan.yaml` and `findings.yaml` (all files are optional).
  **  IV. If `findings.yaml` exceeds size limit, create downloadable file and embed respective link.
  **   V. Concatenate example part to previous `README.md`
- ** 5. Delete temporary folder.
+ ** 6. Delete temporary folder.
  *
  * The target file structure will look something like this (in the root directory):
  * |-...
  * |- <trgPath>
- * |-|- <dir 1 of srcDir>
+ * |-|- <dir 1 of srcDirs>
  * |-|-|- <README.md as <frontmatter title>.md from subDir 1 of dir 1>
  * |-|-|-...
- * |-|-|- <README.md as <frontmatter title>.md from subDir n of dir 1>
  * |-|-...
- * |-|- <dir n of srcDir>
  * |-|-|-...
- * |-...
+ * |- <config.singleFileDirectory>
+ * |-|- <file 1 of srcFiles>
+ * |-|-...
+ * |-..
  *
  *! This script overrides all existing subdirectories within 'trgPath', with the same name as as the names in 'srcDirs'
  *! This script does not check for markdown files but for files named 'README.md'
@@ -59,6 +61,8 @@ new Promise((res, rej) => {
 })
   .then(
     () => {
+      if (config.srcFiles.length > 0) createSingleDocFiles();
+
       const promises = [];
 
       for (const dir of config.srcDirs) {
@@ -70,6 +74,10 @@ new Promise((res, rej) => {
           (dataArray) => {
             if (!fs.existsSync(config.trgPath)) {
               fs.mkdirSync(config.trgPath);
+            }
+            // Clear preexisting findings
+            if (fs.existsSync(config.findingsDir)) {
+              rimraf.sync(config.findingsDir);
             }
 
             for (const dir of config.srcDirs) {
@@ -86,7 +94,7 @@ new Promise((res, rej) => {
               }
 
               fs.mkdirSync(trgDir);
-              createDocFiles(
+              createDocFilesFromDir(
                 `${config.temp}/${dir}`,
                 trgDir,
                 dataArray[config.srcDirs.indexOf(dir)]
@@ -95,7 +103,9 @@ new Promise((res, rej) => {
 
             rimraf(config.temp, function (err) {
               err
-                ? console.warn(`WARN: Could not remove ${config.temp.info}.`.warn)
+                ? console.warn(
+                    `WARN: Could not remove ${config.temp.info}.`.warn
+                  )
                 : console.log(`Removed ${config.temp}.`.info);
             });
           },
@@ -136,7 +146,7 @@ function readDirectory(dir) {
   });
 }
 
-async function createDocFiles(relPath, targetPath, dirNames) {
+async function createDocFilesFromDir(relPath, targetPath, dirNames) {
   for (const dirName of dirNames) {
     const readMe = `${relPath}/${dirName}/README.md`;
     let examplesContent = '';
@@ -164,6 +174,53 @@ async function createDocFiles(relPath, targetPath, dirNames) {
         `WARN: Skipping ${dirName.help}: file not found at ${readMe.info}.`.warn
       );
     }
+  }
+}
+
+function createSingleDocFiles() {
+  const targetPath = config.singleFileDirectory
+    ? `docs/${config.singleFileDirectory}`
+    : 'docs';
+
+  if (!fs.existsSync(targetPath)) {
+    fs.mkdirSync(targetPath);
+  }
+
+  for (const path of config.srcFiles) {
+    // Transform filepath into a more readable variant
+    const pathFragments = path.split('/'),
+      fileName =
+        pathFragments.length > 1 &&
+        pathFragments[pathFragments.length - 1] === 'README.md'
+          ? pathFragments[pathFragments.length - 2] + '.md'
+          : path;
+
+    fs.copyFile(
+      `${config.temp}/${path}`,
+      `${targetPath}/${fileName}`,
+      function (err) {
+        if (err) {
+          console.error(
+            `ERROR: Could not copy ${fileName.info} into ${targetPath.info}.`
+              .error,
+            err.message.error
+          );
+          rimraf(targetPath, function (err) {
+            if (err) {
+              console.error(
+                `ERROR: Could not remove fragment ${targetPath.info} of previous failure.`
+                  .error,
+                err.message.error
+              );
+            }
+          });
+        } else {
+          console.log(
+            `Success: Copied ${fileName.info} into ${targetPath.info}.`.success
+          );
+        }
+      }
+    );
   }
 }
 
@@ -219,7 +276,8 @@ import TabItem from '@theme/TabItem';
             : '';
 
           const findingsLimitReached = findingsFound
-            ? fs.statSync(`${dir}/${dirName}/findings.yaml`).size >= config.sizeLimit
+            ? fs.statSync(`${dir}/${dirName}/findings.yaml`).size >=
+              config.sizeLimit
             : false;
 
           let findingsLink = '',

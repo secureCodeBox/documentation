@@ -15,7 +15,7 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/introduction',
+          to: 'docs/guides/user-guide',
           activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
@@ -31,15 +31,15 @@ module.exports = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'docs/introduction#style-guide',
-            },
-          ],
-        },
+        // {
+        //   title: 'Docs',
+        //   items: [
+        //     {
+        //       label: 'Style Guide',
+        //       to: 'docs/introduction#style-guide',
+        //     },
+        //   ],
+        // },
         {
           title: 'Community',
           items: [
