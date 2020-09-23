@@ -1,3 +1,18 @@
+const sideBar = require('./sidebars');
+
+// Get programmatically first page link due to scripted build
+function getFirstPageLink(sidebarObject) {
+  return Object.entries(sidebarObject).map((entry) => {
+    if (typeof entry[1] === typeof [] && typeof entry[1][0] === typeof '') {
+      return entry[1][0];
+    } else if (typeof entry[1] === typeof {}) {
+      return getFirstPageLink(entry[1]);
+    } else {
+      return '';
+    }
+  })[0];
+}
+
 module.exports = {
   title: 'secureCodeBox',
   tagline: 'Testing your Software Security, Network and Applications',
@@ -15,7 +30,7 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/guides/user-guide',
+          to: `docs/${getFirstPageLink(sideBar)}`,
           activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
