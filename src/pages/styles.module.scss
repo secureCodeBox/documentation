@@ -135,6 +135,7 @@ main {
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
+  color: #1c1e21;
   @media screen and (max-width: 966px) {
     flex-wrap: nowrap;
   }
