@@ -52,3 +52,7 @@ yarn-error.log*
 # Build script
 /githubRepo
 /temp
+sidebars.js
+src/integrations.js
+docs/scanners/
+docs/hooks/
