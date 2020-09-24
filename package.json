@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "docusaurus": "docusaurus",
+    "prestart": "npm run build:docs && npm run build:sidebar && npm run build:integrations",
     "start": "docusaurus start",
     "prebuild": "npm run build:docs && npm run build:sidebar && npm run build:integrations",
     "build": "docusaurus build",

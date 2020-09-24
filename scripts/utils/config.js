@@ -22,7 +22,6 @@ const docsConfig = {
         "getting-started/first-scans",
       ],
     }, // If you need more than one sidebar, you might change the "root object" on which to build the sidebar on
-    rootCategory: "others", // Name of category for all docs on the root level of the `/docs` folder
   };
 
 module.exports = {

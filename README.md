@@ -5,13 +5,13 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 ### Installation
 
 ```
-$ yarn
+$ npm install
 ```
 
 ### Local Development
 
 ```
-$ yarn start
+$ npm start
 ```
 
 This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
@@ -19,18 +19,15 @@ This command starts a local development server and open up a browser window. Mos
 ### Build
 
 ```
-$ yarn build
+$ npm build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 ### Deployment
 
-```
-$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+The website is automatically build and deployed on pushes to the master branch.
+If you open up a pull request a preview environment should be automatically created by netlify.
 
 # Documentation secureCodeBox
 
@@ -52,7 +49,7 @@ Done! :) Now you can start developing and contributing.
 For development:
 
 ```bash
-npm run develop
+npm start
 ```
 
 For production locally:
@@ -64,7 +61,7 @@ npm run serve
 
 Important note: We host a big part of our documentation in the main [securecodebox] repository, thus we build programmatically the `docs/` folder, the `sidebars.js` and provide information about everything categorized as an integration (scanners, hooks, etc.) to the frontend through the as well programmatically build `src/integrations.js`.
 
-The build is automatically triggered via a pre-hook to the `npm run build` command. But you can run each respective script on it's own, namely:
+The build is automatically triggered via a pre-hook to the `npm start` and `npm run build` command. But you can run each respective script on it's own, namely:
 
 ```bash
 npm run build:docs
@@ -123,133 +120,46 @@ Scanners and hooks are referred to as integrations. Scanners, which are integrat
 
 #### Scanner
 
-Additionally you can and (for the sake of aesthetics) should provide an icon in `.svg` format (the fancy icons you see on the "Integrations" page), located at `/src/static/integrationIcons`. Simply name it according to the title in the frontmatter, e.g. if the scanner's title is "Arachni" your filename is "Arachni.svg", it's as simple as that. Each of our scanner has a release svg, which needs to be put in the frontmatter of the respective documentation. Our scanner are structured uniformly with a frontmatter of mandatory fields as follows ("Scame" represents the scanner name):
+Additionally you can and (for the sake of aesthetics) should provide an icon in `.svg` format (the fancy icons you see on the "Integrations" page), located at `/src/static/integrationIcons`. Simply name it according to the title in the frontmatter, e.g. if the scanner's title is "Nmap" your filename is "Nmap.svg", it's as simple as that. Each of our scanner has a release svg, which needs to be put in the frontmatter of the respective documentation. Our scanner are structured uniformly with a frontmatter of mandatory fields as follows:
 
 <details>
-<summary>Scanner documentation structure</summary>
+<summary>Scanner Frontmatter Documentation Structure</summary>
 <br>
-<pre>
 
-        ---
-        title: "Scame"
-        ---
+```md
+title: "Nmap"
+category: "scanner"
+type: "Network"
+state: "released"
+appVersion: "7.80"
+usecase: "Network discovery and security auditing"
+```
 
-        ![Scame Logo](url to scanner logo) //not required but nice to have
-
-        A brief description about this scanner.
-
-        <!-- end -->
-
-        # About
-
-        This repository contains a self contained µService utilizing the Scame scanner for the secureCodeBox project. To learn more about the Scame scanner itself visit [reference the scanner].
-
-        ## Scame parameters
-
-        To hand over supported parameters through api usage, you can set following attributes:
-
-        ```
-        [
-          {
-            specify parameter and how to configure the scanner
-          }
-        ]
-        ```
-
-        ## Example
-        Provide a simple scan example which everyone can simply reconstruct. Give a Example input/configuration and the according output.
-
-        ## Development
-
-        ### Configuration Options
-
-        To configure this service specify the following environment variables:
-
-        | Environment Variable       | Value Example |
-        | -------------------------- | ------------- |
-        | ENGINE_ADDRESS             | http://engine |
-        | ENGINE_BASIC_AUTH_USER     | username      |
-        | ENGINE_BASIC_AUTH_PASSWORD | 123456        |
-
-        ### Local setup
-
-        How to set up the scanner locally.
-
-        ### Test
-
-        How to run the test.
-
-        ### Build with docker
-
-        How to build the docker container.
-
-
-        >Travis build status
-        >License
-        >GitHub latest release of our Scame repository
-
-        [reference the scanner]: url
-
-</pre>
 </details>
 
 You can add and extend categories as you will, but keep the main structure and if one section would be empty, write an explanation why, if it's not obvious. See this as a adjustable template and have a look at what is written in the other scanner's docs.
 
+Besides the frontmatter you can add any markdown content you'd like. Thought it would be preferred if it could match the rough structure of the existing scanner readmes.
+
 #### Hook
 
-To add hook documentation simply add the markdown file to the folder mentioned above. To provide an icon do as explained before for the scanner. Our hooks are structured uniformly with a frontmatter of mandatory fields as follows ("Hoome" represents the persistence provider name):
+To add hook documentation simply add the markdown file to the folder mentioned above. To provide an icon do as explained before for the scanner. Our hooks are structured uniformly with a frontmatter of mandatory fields as follows:
 
 <details>
-<summary>Hook documentation structure</summary>
+<summary>Hook Frontmatter Documentation Structure</summary>
 <br>
-<pre>
 
-        ---
-        title: "Hoome"
-        ---
+```md
+---
+title: "Elasticsearch"
+path: "hooks/persistence-elastic"
+category: "hook"
+type: "persistenceProvider"
+state: "released"
+usecase: "Publishes all Scan Findings to Elasticsearch."
+---
+```
 
-        ## About
-
-        A brief description of this persistence provider with reference: [Perprame].
-
-        ## Configuration
-
-        ### Setting the Persistence Provider
-
-        The engine supports multiple different persistence providers. Each of the prepackaged persistence providers can be toggled on by using environment variables.
-
-        The currently available persistence providers are:
-
-        | Name          | Environment Variable                              | Default Value |
-        | ------------- | ------------------------------------------------- | ------------- |
-        | Perprame      | `SECURECODEBOX_PERSISTENCE_PERPRAME_ENABLED`      | `"false"`     |
-        | Elasticsearch | `SECURECODEBOX_PERSISTENCE_ELASTICSEARCH_ENABLED` | `"false"`     |
-        | DefectDojo    | `SECURECODEBOX_PERSISTENCE_DEFECTDOJO_ENABLED`    | `"false"`     |
-        | S3            | `SECURECODEBOX_PERSISTENCE_S3_ENABLED`            | `"false"`     |
-        | None          | `SECURECODEBOX_PERSISTENCE_NONE_ENABLED`          | `"false"`     |
-
-        To activate the persistence providers the `enabled` variable must be set to `"true"`.
-
-        > **Note**: Most PersistenceProviders require additional configuration to set the location and access credentials. These are documented in the sections for the individual persistence providers below.
-
-        The corresponding PersistenceProvider-implementation class must have a matching `@ConditionalOnProperty` annotation, e.g. `@ConditionalOnProperty(name = "securecodebox.persistence.perprame.enabled", havingValue = "true")` for Perprame.
-
-        ## Specific Settings
-
-        #### Enabling Perprame as Persistence Provider
-
-        To use Perprame for persistence set `securecodebox.persistence.perprame.enabled` or the corresponding environment variable to `"true"`.
-
-        #### Properties / Environment Variables
-
-        | Property | Example Value | Mandatory |
-        | -------- | ------------- | --------- |
-        |          |               |           |
-
-
-        [Perprame]: reference url
-
-</pre>
 </details>
 
 ### Adding tutorials or developer docs
@@ -321,17 +231,15 @@ findingsDir: string, // Directory for large findings which exceeded sizeLimit
 
 The sidebar script iterates through the entire `docs/` folder and work as follows:
 
-1. Put all root documents into the category 'rootCategory'.
-2. Translate each directory into a category, listing files as page links and subdirectories as subcategories.
-3. Repeat step 2 if subdirectories exist.
-4. (Over-)Write `sidebars.js`
+1. Translate each of the automatically created directories into a category, listing files as page links.
+2. Merging the automatically created config with the manual config. See `sidebar` config value below
+3. (Over-)Write `sidebars.json`
 
 Its configuration options are:
 
 ```ts
 sidebarName: string, // Docusaurus looks for a file named `sidebars.js`
-sidebar Object = {someSidebar = {}}, // If you need more than one sidebar, you might change the "root object" on which to build the sidebar on
-rootCategory: string, // Name of category for all docs on the root level of the `/docs` folder
+sidebar Object = {someSidebar = {}}, // Contains manual sidebar configuration, this is merged with the automatically created entries from the docs build script
 ```
 
 ### Integrations builder
