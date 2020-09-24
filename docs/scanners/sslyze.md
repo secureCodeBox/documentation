@@ -139,30 +139,20 @@ Options:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="example.com"
-  values={[{"label":"Example.com","value":"example.com"},{"label":"SecureCodeBox.io","value":"secureCodeBox.io"}]}>
-  
+### example.com
 
-<TabItem value="example.com">
-  
-<div>
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  ,
+    { label: "Scan", value: "scan" },
+    
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -173,36 +163,27 @@ spec:
     - "--regular"
     - "example.com"
 
-
 ```
 
 </TabItem>
 
 
-
-
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="secureCodeBox.io">
-  
-<div>
 
-</div>
+### secureCodeBox.io
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  ,
+    { label: "Scan", value: "scan" },
+    
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -215,16 +196,10 @@ spec:
     - "--regular"
     - "securecodebox.io"
 
-
 ```
 
 </TabItem>
 
 
-
-
 </Tabs>
-          
-</TabItem>
-          
-</Tabs>
+

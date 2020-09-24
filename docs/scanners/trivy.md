@@ -13,7 +13,7 @@ A software vulnerability is a glitch, flaw, or weakness present in the software 
 `Trivy` detects vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and application dependencies (Bundler, Composer, npm, yarn, etc.).
 `Trivy` is easy to use. Just install the binary and you're ready to scan. All you need to do for scanning is to specify a target such as an image name of the container.
 
-To learn more about the Trivy scanner itself visit or [Trivy GitHub].
+To learn more about the Trivy scanner itself visit on [Trivy's GitHub Repository](https://github.com/aquasecurity/trivy).
 
 <!-- end -->
 
@@ -29,13 +29,10 @@ helm upgrade --install trivy ./scanners/trivy/
 
 The following security scan configuration example are based on the [Trivy Documentation], please take a look at the original documentation for more configuration examples.
 
-* Filter the vulnerabilities by severities `trivy image --severity HIGH,CRITICAL ruby:2.4.0`
-* Filter the vulnerabilities by type (`os` or `library`) `trivy image --vuln-type os ruby:2.4.0`
-* Skip update of vulnerability DB: `trivy image --skip-update python:3.4-alpine3.9`
-* Ignore unfixed vulnerabilities:`trivy image --ignore-unfixed ruby:2.4.0` By default, Trivy also detects unpatched/unfixed vulnerabilities. This means you can't fix these vulnerabilities even if you update all packages. If you would like to ignore them, use the `--ignore-unfixed` option.
-
-[Trivy GitHub]: https://github.com/aquasecurity/trivy
-[Trivy Documentation]: https://github.com/aquasecurity/trivy#examples
+- Filter the vulnerabilities by severities `trivy image --severity HIGH,CRITICAL ruby:2.4.0`
+- Filter the vulnerabilities by type (`os` or `library`) `trivy image --vuln-type os ruby:2.4.0`
+- Skip update of vulnerability DB: `trivy image --skip-update python:3.4-alpine3.9`
+- Ignore unfixed vulnerabilities:`trivy image --ignore-unfixed ruby:2.4.0` By default, Trivy also detects unpatched/unfixed vulnerabilities. This means you can't fix these vulnerabilities even if you update all packages. If you would like to ignore them, use the `--ignore-unfixed` option.
 
 
 
@@ -44,30 +41,20 @@ The following security scan configuration example are based on the [Trivy Docume
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="juice-shop"
-  values={[{"label":"Juice-shop","value":"juice-shop"},{"label":"Mediawiki","value":"mediawiki"}]}>
-  
+### juice-shop
 
-<TabItem value="juice-shop">
-  
-<div>
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -79,18 +66,13 @@ spec:
   parameters:
     - "bkimminich/juice-shop:v10.2.0"
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
   {
     "Target": "bkimminich/juice-shop:v10.2.0 (alpine 3.11.5)",
@@ -295,35 +277,26 @@ spec:
     ]
   }
 ]
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="mediawiki">
-  
-<div>
 
-</div>
+### mediawiki
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -333,27 +306,15 @@ spec:
   parameters:
     - "mediawiki:stable"
 
-
 ```
 
 </TabItem>
 
+<TabItem value="findings">
 
-
-<TabItem value="fd">
-
-
-<span>
-The findings are too large to display, you may download
-<a target="_blank" href='/public/findings/trivy-mediawiki-findings.yaml' download> the file.</a>
-</span>
-
+The findings are too large to display, you may download <a target="_blank" href="/public/findings/trivy-mediawiki-findings.yaml" download> the file.</a>
 
 </TabItem>
 
+</Tabs>
 
-</Tabs>
-          
-</TabItem>
-          
-</Tabs>

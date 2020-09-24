@@ -27,18 +27,11 @@ To learn more about the Ncrack scanner itself visit [Ncrack GitHub] or [Ncrack W
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="dummy-ssh"
-  values={[{"label":"Dummy-ssh","value":"dummy-ssh"}]}>
-  
+### dummy-ssh
 
-<TabItem value="dummy-ssh">
-  
-<div>
 In this example we execute an ncrack scan against the intentional vulnerable ssh service (dummy-ssh)
 
-### Install dummy-ssh
+#### Install dummy-ssh
 
 Before executing the scan, make sure to have dummy-ssh installed, and have the proper username & password lists:
 
@@ -66,20 +59,17 @@ scannerJob:
 EOF
 ```
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  ,
+    { label: "Scan", value: "scan" },
+    
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -95,16 +85,10 @@ spec:
     - /ncrack/passwords.txt
     - ssh://dummy-ssh
 
-
 ```
 
 </TabItem>
 
 
-
-
 </Tabs>
-          
-</TabItem>
-          
-</Tabs>
+

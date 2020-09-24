@@ -59,30 +59,20 @@ Nikto also has a comprehensive list of [command line options documented](https:/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="demo-bodgeit"
-  values={[{"label":"Demo-bodgeit","value":"demo-bodgeit"},{"label":"Demo-juice-shop","value":"demo-juice-shop"},{"label":"Demo-secureCodeBox.io","value":"demo-secureCodeBox.io"}]}>
-  
+### demo-bodgeit
 
-<TabItem value="demo-bodgeit">
-  
-<div>
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: 'execution.experimental.securecodebox.io/v1'
 kind: Scan
 metadata:
@@ -99,18 +89,13 @@ spec:
     # Only enable fast (ish) Scan Options, remove attack option like SQLi and RCE. We will leave those to ZAP
     - '1,2,3,5,7,b'
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
   {
     "name": "The anti-clickjacking X-Frame-Options header is not present.",
@@ -233,35 +218,26 @@ spec:
   }
 ]
 
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="demo-juice-shop">
-  
-<div>
 
-</div>
+### demo-juice-shop
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: 'execution.experimental.securecodebox.io/v1'
 kind: Scan
 metadata:
@@ -278,18 +254,13 @@ spec:
     # Only enable fast (ish) Scan Options, remove attack option like SQLi and RCE. We will leave those to ZAP
     - '1,2,3,5,7,b'
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
   {
     "name": "Retrieved x-powered-by header: Express",
@@ -2044,35 +2015,26 @@ spec:
   }
 ]
 
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="demo-secureCodeBox.io">
-  
-<div>
 
-</div>
+### demo-secureCodeBox.io
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  ,
+    { label: "Scan", value: "scan" },
+    
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: 'execution.experimental.securecodebox.io/v1'
 kind: Scan
 metadata:
@@ -2088,16 +2050,10 @@ spec:
     # Only enable fast (ish) Scan Options, remove attack option like SQLi and RCE. We will leave those to ZAP
     - '1,2,3,5,7,b'
 
-
 ```
 
 </TabItem>
 
 
-
-
 </Tabs>
-          
-</TabItem>
-          
-</Tabs>
+

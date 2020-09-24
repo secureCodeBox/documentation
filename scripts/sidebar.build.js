@@ -12,13 +12,7 @@ colors.setTheme({
   error: 'red',
 });
 
-/**
- ** This script iterates through the entire 'docs/' folder and work as follows:
- ** 1. Put all root documents into the category 'rootCategory'.
- ** 2. Translate each directory into a category, listing files as page links and subdirectories as subcategories.
- ** 3. Repeat step 2 if subdirectories exist.
- ** 4. (Over-)Write 'sidebars.js'
- */
+// For the documentation on this script look at the README.md of this repository
 
 if (fs.existsSync(config.sidebarName)) {
   rimraf.sync(config.sidebarName);

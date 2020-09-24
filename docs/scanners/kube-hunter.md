@@ -41,30 +41,20 @@ The following security scan configuration example are based on the [kube-hunter 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="in-cluster"
-  values={[{"label":"In-cluster","value":"in-cluster"}]}>
-  
+### in-cluster
 
-<TabItem value="in-cluster">
-  
-<div>
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -74,18 +64,13 @@ spec:
   parameters:
     - "--pod"
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 {
     "nodes": [
         {
@@ -168,15 +153,9 @@ spec:
     ],
     "kburl": "https://aquasecurity.github.io/kube-hunter/kb/{vid}"
 }
-
 ```
 
-
 </TabItem>
 
+</Tabs>
 
-</Tabs>
-          
-</TabItem>
-          
-</Tabs>

@@ -13,11 +13,7 @@ colors.setTheme({
   error: 'red',
 });
 
-/**
- ** This script builds an `integrations.js` file, parsing frontmatter information into objects.
- ** It reads the files of the given directories (not the subdirectories) and retrieves frontmatter data,
- ** parsing it to objects of type `Integration` (see below) and joins them into importable modules, respective to the given directories.
- */
+// For the documentation on this script look at the README.md of this repository
 
 class Integration {
   constructor(title, type, usecase, path, imageUrl) {

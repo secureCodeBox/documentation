@@ -13,3 +13,6 @@ usecase: "Publishes all Scan Findings as HTML Report."
 
 > 🔧 The implementation is currently work-in-progress and still undergoing major changes. It'll be released here once it has stabilized.
 
+
+
+

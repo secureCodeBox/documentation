@@ -47,33 +47,23 @@ Special command line options:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="example.com"
-  values={[{"label":"Example.com","value":"example.com"},{"label":"SecureCodeBox.io","value":"secureCodeBox.io"}]}>
-  
+### example.com
 
-<TabItem value="example.com">
-  
-<div>
 > ✍ **Page under construction.**
  
 the frontmatter requires the name of the scantarget as 'title'
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  ,
+    { label: "Scan", value: "scan" },
+    
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -87,36 +77,27 @@ spec:
     - "-d"
     - "example.com"
 
-
 ```
 
 </TabItem>
 
 
-
-
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="secureCodeBox.io">
-  
-<div>
 
-</div>
+### secureCodeBox.io
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  ,
+    { label: "Scan", value: "scan" },
+    
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -131,16 +112,10 @@ spec:
     - "-d"
     - "securecodebox.io"
 
-
 ```
 
 </TabItem>
 
 
-
-
 </Tabs>
-          
-</TabItem>
-          
-</Tabs>
+

@@ -66,30 +66,20 @@ Options:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="demo-bodgeit-baseline-scan"
-  values={[{"label":"Demo-bodgeit-baseline-scan","value":"demo-bodgeit-baseline-scan"},{"label":"Demo-bodgeit-full-scan","value":"demo-bodgeit-full-scan"},{"label":"Demo-juice-shop-baseline-scan","value":"demo-juice-shop-baseline-scan"},{"label":"Demo-juice-shop-full-scan","value":"demo-juice-shop-full-scan"},{"label":"Demo-petstore-api-scan","value":"demo-petstore-api-scan"}]}>
-  
+### demo-bodgeit-baseline-scan
 
-<TabItem value="demo-bodgeit-baseline-scan">
-  
-<div>
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -107,18 +97,13 @@ spec:
     # the number of minutes to spider for (default 1)
     - "-m"
     - "2"
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
     {
         "name": "Content Security Policy (CSP) Header Not Set",
@@ -1462,35 +1447,26 @@ spec:
         "id": "325de9a9-63f3-4ec1-a6aa-fd0e1eeae7c4"
     }
 ]
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="demo-bodgeit-full-scan">
-  
-<div>
 
-</div>
+### demo-bodgeit-full-scan
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -1510,18 +1486,13 @@ spec:
     # the number of minutes to spider for (default 1)
     - "-m"
     - "3"
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
     {
         "name": "HTTP Only Site",
@@ -4476,35 +4447,26 @@ spec:
         "id": "720769b2-8e67-40b7-9922-17160a083a7d"
     }
 ]
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="demo-juice-shop-baseline-scan">
-  
-<div>
 
-</div>
+### demo-juice-shop-baseline-scan
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -4525,47 +4487,32 @@ spec:
     - "-m"
     - "3"
         
-
 ```
 
 </TabItem>
 
+<TabItem value="findings">
 
-
-<TabItem value="fd">
-
-
-<span>
-The findings are too large to display, you may download
-<a target="_blank" href='/public/findings/zap-demo-juice-shop-baseline-scan-findings.yaml' download> the file.</a>
-</span>
-
+The findings are too large to display, you may download <a target="_blank" href="/public/findings/zap-demo-juice-shop-baseline-scan-findings.yaml" download> the file.</a>
 
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="demo-juice-shop-full-scan">
-  
-<div>
 
-</div>
+### demo-juice-shop-full-scan
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -4588,47 +4535,32 @@ spec:
     - "-m"
     - "3"
         
-
 ```
 
 </TabItem>
 
+<TabItem value="findings">
 
-
-<TabItem value="fd">
-
-
-<span>
-The findings are too large to display, you may download
-<a target="_blank" href='/public/findings/zap-demo-juice-shop-full-scan-findings.yaml' download> the file.</a>
-</span>
-
+The findings are too large to display, you may download <a target="_blank" href="/public/findings/zap-demo-juice-shop-full-scan-findings.yaml" download> the file.</a>
 
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="demo-petstore-api-scan">
-  
-<div>
 
-</div>
+### demo-petstore-api-scan
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -4652,18 +4584,13 @@ spec:
     - "-m"
     - "3"
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
     {
         "name": "X-Content-Type-Options Header Missing",
@@ -5259,15 +5186,9 @@ spec:
         "id": "dc81e191-d6c7-4893-9acf-597b8befa7e7"
     }
 ]
-
 ```
 
-
 </TabItem>
 
+</Tabs>
 
-</Tabs>
-          
-</TabItem>
-          
-</Tabs>

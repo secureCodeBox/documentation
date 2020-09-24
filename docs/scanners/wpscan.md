@@ -79,30 +79,20 @@ Incompatible choices (only one of each group/s can be used):
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="example.com"
-  values={[{"label":"Example.com","value":"example.com"},{"label":"Old-wordpress","value":"old-wordpress"}]}>
-  
+### example.com
 
-<TabItem value="example.com">
-  
-<div>
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -119,18 +109,13 @@ spec:
     - "--api-token"
     - "AAAAABBBBBCCCCCDDDDEEEEEEE"
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 {
     "banner": {
       "description": "WordPress Security Scanner by the WPScan Team",
@@ -359,35 +344,26 @@ spec:
     "used_memory": 272867328,
     "used_memory_humanised": "260.227 MB"
   }
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="old-wordpress">
-  
-<div>
 
-</div>
+### old-wordpress
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -402,18 +378,13 @@ spec:
     - "--plugins-detection"
     - "mixed"
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
   {
     "name": "WordPress Service",
@@ -516,15 +487,9 @@ spec:
   }
 ]
 
-
 ```
 
-
 </TabItem>
 
+</Tabs>
 
-</Tabs>
-          
-</TabItem>
-          
-</Tabs>

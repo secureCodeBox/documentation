@@ -18,3 +18,6 @@ To learn more about the kubeaudit scanner itself visit [kubeaudit GitHub].
 
 [kubeaudit GitHub]: https://github.com/Shopify/kubeaudit
 [kubeaudit Documentation]: https://github.com/Shopify/kubeaudit#quick-start
+
+
+

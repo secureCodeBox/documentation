@@ -50,30 +50,20 @@ Some useful example parameters listed below:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="demo-app-ssh"
-  values={[{"label":"Demo-app-ssh","value":"demo-app-ssh"},{"label":"Demo-juice-shop","value":"demo-juice-shop"},{"label":"Local-network","value":"local-network"},{"label":"Localhost","value":"localhost"},{"label":"Scan.nmap.org","value":"scan.nmap.org"}]}>
-  
+### demo-app-ssh
 
-<TabItem value="demo-app-ssh">
-  
-<div>
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -88,18 +78,13 @@ spec:
     # Actual Service Address will depend on you cluster and namespace configuration. 🤷‍
     - "dummy-ssh.demo-apps.svc"
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
     {
         "name": "ssh",
@@ -139,35 +124,26 @@ spec:
         "id": "584bc8ff-d6e0-48a0-9e58-40f8247b90f3"
     }
 ]
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="demo-juice-shop">
-  
-<div>
 
-</div>
+### demo-juice-shop
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -182,18 +158,13 @@ spec:
     # Actual Service Address will depend on you cluster and namespace configuration. 🤷‍
     - juice-shop.demo-apps.svc.cluster.local
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
     {
         "name": "http",
@@ -233,35 +204,26 @@ spec:
         "id": "080d888a-a9bc-4c74-8d03-c4c6cc40238d"
     }
 ]
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="local-network">
-  
-<div>
 
-</div>
+### local-network
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -272,18 +234,13 @@ spec:
     # Actual IP will depend on you network config. 🤷‍
     - 192.168.178.0/24
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
   {
     "name": "Host: fritz.box",
@@ -476,35 +433,26 @@ spec:
   }
 ]
 
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="localhost">
-  
-<div>
 
-</div>
+### localhost
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -516,18 +464,13 @@ spec:
     # This container doesn't have any ports open...
     - localhost
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
   {
     "name": "Host: localhost",
@@ -545,35 +488,26 @@ spec:
   }
 ]
 
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="scan.nmap.org">
-  
-<div>
 
-</div>
+### scan.nmap.org
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -583,18 +517,13 @@ spec:
   parameters:
     - scanme.nmap.org
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
   {
     "name": "ssh",
@@ -773,15 +702,9 @@ spec:
   }
 ]
 
-
 ```
 
-
 </TabItem>
 
+</Tabs>
 
-</Tabs>
-          
-</TabItem>
-          
-</Tabs>

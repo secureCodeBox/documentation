@@ -24,3 +24,5 @@ To learn more about DefectDojo visit [DefectDojo GitHub] or [DefectDojo Website]
 [DefectDojo Website]: https://www.defectdojo.org/
 [DefectDojo GitHub]: https://github.com/DefectDojo/django-DefectDojo
 [DefectDojo Documentation]: https://defectdojo.readthedocs.io/en/latest/
+
+

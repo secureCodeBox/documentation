@@ -72,30 +72,20 @@ Examples:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Localhost Scan
-<Tabs
-  defaultValue="demo-app-ssh"
-  values={[{"label":"Demo-app-ssh","value":"demo-app-ssh"},{"label":"Example.com","value":"example.com"},{"label":"Localhost","value":"localhost"}]}>
-  
+### demo-app-ssh
 
-<TabItem value="demo-app-ssh">
-  
-<div>
 
-</div>
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -106,18 +96,13 @@ spec:
     - "-t"
     - "dummy-ssh.demo-apps.svc"
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
     {
         "name": "SSH Service",
@@ -238,35 +223,26 @@ spec:
         "id": "4485916d-3747-4c16-a730-a9b1146dd9a2"
     }
 ]
-
 ```
 
-
 </TabItem>
-
 
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="example.com">
-  
-<div>
 
-</div>
+### example.com
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  ,
+    { label: "Scan", value: "scan" },
+    
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -281,36 +257,27 @@ spec:
     - "-p"
     - "22222"
 
-
 ```
 
 </TabItem>
 
 
-
-
 </Tabs>
-          
-</TabItem>
-          
-<TabItem value="localhost">
-  
-<div>
 
-</div>
+### localhost
+
+
 
 <Tabs
-defaultValue="sc"
+defaultValue="scan"
 values={[
-  {label: 'Scan', value: 'sc'}, 
-  {label: 'Findings', value: 'fd'},
+    { label: "Scan", value: "scan" },
+    { label: "Findings", value: "findings" },
 ]}>
 
-
-<TabItem value="sc">
+<TabItem value="scan">
 
 ```yaml
-
 apiVersion: "execution.experimental.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -323,18 +290,13 @@ spec:
     - "-t"
     - localhost
 
-
 ```
 
 </TabItem>
 
-
-
-<TabItem value="fd">
-
+<TabItem value="findings">
 
 ```yaml
-
 [
   {
     "ssh_scan_version": "0.0.42",
@@ -13084,15 +13046,9 @@ spec:
   }
 ]
 
-
 ```
 
-
 </TabItem>
 
+</Tabs>
 
-</Tabs>
-          
-</TabItem>
-          
-</Tabs>
