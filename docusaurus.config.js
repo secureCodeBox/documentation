@@ -91,11 +91,11 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} iteratec, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} iteratec GmbH. Built with Docusaurus.`,
     },
     prism: {
       theme: require('prism-react-renderer/themes/dracula'),
-      additionalLanguages: ['powershell', 'python', 'java', 'rust', 'yaml'],
+      additionalLanguages: ['python', 'java', 'rust', 'yaml'],
     },
   },
   presets: [
