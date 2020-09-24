@@ -46,15 +46,19 @@ module.exports = {
     footer: {
       style: 'dark',
       links: [
-        // {
-        //   title: 'Docs',
-        //   items: [
-        //     {
-        //       label: 'Style Guide',
-        //       to: 'docs/introduction#style-guide',
-        //     },
-        //   ],
-        // },
+        {
+          title: 'Docs',
+          items: [
+            {
+              label: 'Style Guide',
+              to: 'https://github.com/securecodebox/docusaurus#Styleguide',
+            },
+            {
+              label: 'Icons',
+              to: 'https://www.flaticon.com/',
+            },
+          ],
+        },
         {
           title: 'Community',
           items: [
@@ -87,7 +91,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} secureCodeBox, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} iteratec, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: require('prism-react-renderer/themes/dracula'),
@@ -100,12 +104,10 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
           editUrl: 'https://github.com/securecodebox/docusaurus',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
           editUrl: 'https://github.com/securecodebox/docusaurus',
         },
         theme: {
