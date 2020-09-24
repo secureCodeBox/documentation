@@ -235,7 +235,7 @@ async function getExamples(dir) {
       });
     }
 
-    let scanContent = "";
+    let scanContent = null;
     if (fs.existsSync(`${dir}/${dirName}/scan.yaml`)) {
       scanContent = fs.readFileSync(`${dir}/${dirName}/scan.yaml`, {
         encoding: "utf8",
@@ -264,14 +264,19 @@ async function getExamples(dir) {
       }
     }
 
+    let findings = null;
+    if (findingContent && findingSizeLimitReached !== null) {
+      findings = {
+        value: findingContent,
+        limitReached: findingSizeLimitReached,
+      };
+    }
+
     return {
       name: removeWhitespaces(dirName),
       exampleReadme: readMe,
       scan: scanContent,
-      findings: {
-        value: findingContent,
-        limitReached: findingSizeLimitReached,
-      },
+      findings,
     };
   });
 }
