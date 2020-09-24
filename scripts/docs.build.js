@@ -1,21 +1,21 @@
-const fs = require('fs'),
-  rimraf = require('rimraf'),
-  downloadCallback = require('download-git-repo'),
-  colors = require('colors'),
-  fm = require('front-matter'),
-  { promisify } = require('util'),
-  { docsConfig: config } = require('./utils/config'),
-  { capitalizeFirst, removeWhitespaces } = require('./utils/capitalizer'),
-  Mustache = require('mustache');
+const fs = require("fs"),
+  rimraf = require("rimraf"),
+  downloadCallback = require("download-git-repo"),
+  colors = require("colors"),
+  fm = require("front-matter"),
+  { promisify } = require("util"),
+  { docsConfig: config } = require("./utils/config"),
+  { removeWhitespaces } = require("./utils/capitalizer"),
+  Mustache = require("mustache");
 
 const download = promisify(downloadCallback);
 
 colors.setTheme({
-  info: 'blue',
-  help: 'cyan',
-  warn: 'yellow',
-  success: 'green',
-  error: 'red',
+  info: "blue",
+  help: "cyan",
+  warn: "yellow",
+  success: "green",
+  error: "red",
 });
 
 /**
@@ -54,7 +54,7 @@ async function main() {
   console.log(`Downloading ${config.repository} into ${config.temp}...`.info);
 
   await download(config.repository, config.temp).catch((err) => {
-    console.error('ERROR: Download failed.'.error);
+    console.error("ERROR: Download failed.".error);
     throw err;
   });
 
@@ -110,7 +110,7 @@ main().catch((err) => {
 
 function readDirectory(dir) {
   return new Promise((res, rej) => {
-    fs.readdir(dir, { encoding: 'utf8', withFileTypes: true }, function (
+    fs.readdir(dir, { encoding: "utf8", withFileTypes: true }, function (
       err,
       data
     ) {
@@ -130,39 +130,46 @@ function readDirectory(dir) {
 async function createDocFilesFromDir(relPath, targetPath, dirNames) {
   for (const dirName of dirNames) {
     const readMe = `${relPath}/${dirName}/README.md`;
-    let examplesContent = '';
 
-    if (fs.existsSync(`${relPath}/${dirName}/examples`)) {
-      const content = await getTemplatedExamples(
-        `${relPath}/${dirName}/examples`
-      );
-      examplesContent = examplesContent.concat(content);
-    }
-
-    if (fs.existsSync(readMe)) {
-      const readmeContent = fs.readFileSync(readMe, { encoding: 'utf8' });
-      const fileName = fm(readmeContent).attributes.title
-        ? fm(readmeContent).attributes.title
-        : dirName;
-      const filePath = `${targetPath}/${fileName}.md`;
-
-      fs.writeFileSync(filePath, readmeContent.concat(examplesContent));
-
-      console.log(
-        `SUCCESS: Created file for ${dirName.help} at ${filePath.info}`.success
-      );
-    } else {
+    if (!fs.existsSync(readMe)) {
       console.log(
         `WARN: Skipping ${dirName.help}: file not found at ${readMe.info}.`.warn
       );
+      continue;
     }
+
+    // Read readme content of scanner / hook directory
+    const readmeContent = fs.readFileSync(readMe, { encoding: "utf8" });
+
+    const examples = await getExamples(`${relPath}/${dirName}/examples`);
+
+    const integrationPage = Mustache.render(
+      fs.readFileSync("./scripts/utils/scannerReadme.mustache", {
+        encoding: "utf8",
+      }),
+      {
+        readme: readmeContent,
+        examples,
+        hasExamples: examples.length !== 0,
+      }
+    );
+
+    const fileName = fm(readmeContent).attributes.title
+      ? fm(readmeContent).attributes.title
+      : dirName;
+    const filePath = `${targetPath}/${fileName}.md`;
+    fs.writeFileSync(filePath, integrationPage);
+
+    console.log(
+      `SUCCESS: Created file for ${dirName.help} at ${filePath.info}`.success
+    );
   }
 }
 
 function createSingleDocFiles() {
   const targetPath = config.singleFileDirectory
     ? `docs/${config.singleFileDirectory}`
-    : 'docs';
+    : "docs";
 
   if (!fs.existsSync(targetPath)) {
     fs.mkdirSync(targetPath);
@@ -170,11 +177,11 @@ function createSingleDocFiles() {
 
   for (const path of config.srcFiles) {
     // Rename readmes to their folder names to avoid naming collisions
-    const pathFragments = path.split('/');
+    const pathFragments = path.split("/");
     const fileName =
       pathFragments.length > 1 &&
-      pathFragments[pathFragments.length - 1] === 'README.md'
-        ? pathFragments[pathFragments.length - 2] + '.md'
+      pathFragments[pathFragments.length - 1] === "README.md"
+        ? pathFragments[pathFragments.length - 2] + ".md"
         : path;
 
     fs.copyFile(
@@ -206,180 +213,82 @@ function createSingleDocFiles() {
   }
 }
 
-//! The indentation is mandatory for the file content structure
-async function getTemplatedExamples(dir) {
-  // return Mustache.render(
-  //   fs.readFileSync('./scripts/utils/scannerReadme.mustache', { encoding: 'utf8' }),
-  //   {
-  //     readme: 'Hello World this is the nmap scanner speaking.',
-  //     examples: [
-  //       {
-  //         name: 'localhost',
-  //         exampleReadme: 'This is an awesome example',
-  //         scan: 'some yaml here',
-  //         findings: {
-  //           value: 'findings json',
-  //           limitReached: true,
-  //         },
-  //       },
-  //     ],
-  //   }
-  // );
-
-  const dirNames = await readDirectory(dir);
-
-  let examplesContent = '';
+async function getExamples(dir) {
+  let dirNames = [];
+  try {
+    dirNames = await readDirectory(dir);
+  } catch (err) {
+    return [];
+  }
 
   if (dirNames.length === 0) {
     console.warn(`WARN: Found empty examples folder at ${dir.info}.`.warn);
-    return;
+    return [];
   }
 
-  const tabs = dirNames.map((dirName) => {
-    return {
-      label: capitalizeFirst(dirName),
-      value: removeWhitespaces(dirName),
-    };
-  });
-
-  examplesContent = examplesContent.concat(`
-
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-### Localhost Scan
-<Tabs
-  defaultValue="${removeWhitespaces(dirNames[0])}"
-  values={${JSON.stringify(tabs)}}>
-  
-`);
-
-  for (const dirName of dirNames) {
-    let example = '';
-    let readMe = '';
+  return dirNames.map((dirName) => {
+    let readMe = "";
 
     if (fs.existsSync(`${dir}/${dirName}/README.md`)) {
       readMe = fs.readFileSync(`${dir}/${dirName}/README.md`, {
-        encoding: 'utf8',
+        encoding: "utf8",
       });
     }
 
-    const scanFound = fs.existsSync(`${dir}/${dirName}/scan.yaml`),
-      findingsFound = fs.existsSync(`${dir}/${dirName}/findings.yaml`);
-
-    const scanContent = scanFound
-      ? fs.readFileSync(`${dir}/${dirName}/scan.yaml`, {
-          encoding: 'utf8',
-        })
-      : '';
-
-    const findingsLimitReached = findingsFound
-      ? fs.statSync(`${dir}/${dirName}/findings.yaml`).size >= config.sizeLimit
-      : false;
-
-    let findingsLink = '',
-      findingsContent = '';
-
-    if (findingsLimitReached) {
-      console.warn(
-        `WARN: Findings for ${dirName.info} exceeded size limit.`.warn
-      );
-
-      findingsLink = copyFindingsForDownload(`${dir}/${dirName}/findings.yaml`);
-    } else {
-      findingsContent = findingsFound
-        ? fs.readFileSync(`${dir}/${dirName}/findings.yaml`, {
-            encoding: 'utf8',
-          })
-        : '';
+    let scanContent = "";
+    if (fs.existsSync(`${dir}/${dirName}/scan.yaml`)) {
+      scanContent = fs.readFileSync(`${dir}/${dirName}/scan.yaml`, {
+        encoding: "utf8",
+      });
     }
 
-    example = example.concat(`
-<div>
-${fm(readMe).body}
-</div>
+    let findingContent = null;
+    let findingSizeLimitReached = null;
 
-<Tabs
-defaultValue="sc"
-values={[
-  ${scanFound ? `{label: 'Scan', value: 'sc'}` : ''}, 
-  ${findingsFound ? `{label: 'Findings', value: 'fd'}` : ''},
-]}>
+    if (fs.existsSync(`${dir}/${dirName}/findings.yaml`)) {
+      findingSizeLimitReached =
+        fs.statSync(`${dir}/${dirName}/findings.yaml`).size >= config.sizeLimit;
 
-${
-  scanFound
-    ? `
-<TabItem value="sc">
+      if (findingSizeLimitReached) {
+        console.warn(
+          `WARN: Findings for ${dirName.info} exceeded size limit.`.warn
+        );
 
-\`\`\`yaml
+        findingContent = copyFindingsForDownload(
+          `${dir}/${dirName}/findings.yaml`
+        );
+      } else {
+        findingContent = fs.readFileSync(`${dir}/${dirName}/findings.yaml`, {
+          encoding: "utf8",
+        });
+      }
+    }
 
-${scanContent}
-
-\`\`\`
-
-</TabItem>
-`
-    : ''
-}
-
-${
-  findingsFound
-    ? `
-<TabItem value="fd">
-
-${
-  findingsLimitReached
-    ? `
-<span>
-The findings are too large to display, you may download
-<a target="_blank" href='/${findingsLink}' download> the file.</a>
-</span>
-`
-    : `
-\`\`\`yaml
-
-${findingsContent}
-
-\`\`\`
-`
-}
-
-</TabItem>
-`
-    : ''
-}
-
-</Tabs>
-          `);
-
-    examplesContent = examplesContent.concat(`
-<TabItem value="${removeWhitespaces(dirName)}">
-  ${example}
-</TabItem>
-          `);
-  }
-  examplesContent = examplesContent.concat(`
-</Tabs>`);
-
-  return examplesContent;
+    return {
+      name: removeWhitespaces(dirName),
+      exampleReadme: readMe,
+      scan: scanContent,
+      findings: {
+        value: findingContent,
+        limitReached: findingSizeLimitReached,
+      },
+    };
+  });
 }
 
 function copyFindingsForDownload(filePath) {
-  const dirNames = filePath.split('/'),
+  const dirNames = filePath.split("/"),
     name =
-      dirNames[dirNames.indexOf('examples') - 1] +
-      '-' +
-      dirNames[dirNames.indexOf('examples') + 1],
+      dirNames[dirNames.indexOf("examples") - 1] +
+      "-" +
+      dirNames[dirNames.indexOf("examples") + 1],
     targetPath = `public/findings/${name}-findings.yaml`;
 
-  if (!fs.existsSync('public')) {
-    fs.mkdirSync('public/');
+  if (!fs.existsSync("public")) {
+    fs.mkdirSync("public/");
   }
-  if (!fs.existsSync('public/findings')) {
-    fs.mkdirSync('public/findings/');
+  if (!fs.existsSync("public/findings")) {
+    fs.mkdirSync("public/findings/");
   }
 
   fs.copyFileSync(filePath, targetPath);

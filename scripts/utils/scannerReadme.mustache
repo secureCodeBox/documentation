@@ -1,29 +1,29 @@
 {{{ readme }}}
 
-## Example
 
-{{#examples}}
-### {{name}}
-
-<div>
-{{exampleReadme}}
-</div>
+{{#hasExamples}}
+## Examples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+{{#examples}}
+### {{name}}
+
+{{exampleReadme}}
+
 <Tabs
-    defaultValue="scan"
-    values={[
+defaultValue="scan"
+values={[
     {{#scan}}{ label: "Scan", value: "scan" },{{/scan}}
     {{#findings}}{ label: "Findings", value: "findings" },{{/findings}}
-    ]}>
+]}>
 
 {{#scan}}
 <TabItem value="scan">
 
 ```yaml
-{{scan}}
+{{{scan}}}
 ```
 
 </TabItem>
@@ -31,24 +31,20 @@ import TabItem from '@theme/TabItem';
 
 {{#findings}}
 <TabItem value="findings">
+
 {{#limitReached}}
-<span>
-The findings are too large to display, you may download
-<a target="_blank" href='/{{value}}' download> the file.</a>
-</span>
+The findings are too large to display, you may download <a target="_blank" href="/{{{value}}}" download> the file.</a>
 {{/limitReached}}
-
 {{^limitReached}}
-
 ```yaml
-{{value}}
+{{{value}}}
 ```
-
 {{/limitReached}}
+
 </TabItem>
 {{/findings}}
-
 
 </Tabs>
 
 {{/examples}}
+{{/hasExamples}}
