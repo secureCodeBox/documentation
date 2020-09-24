@@ -47,11 +47,12 @@ Special command line options:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+### Localhost Scan
 <Tabs
   defaultValue="example.com"
   values={[{"label":"Example.com","value":"example.com"},{"label":"SecureCodeBox.io","value":"secureCodeBox.io"}]}>
-            
-            
+  
+
 <TabItem value="example.com">
   
 <div>

@@ -72,11 +72,12 @@ Examples:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+### Localhost Scan
 <Tabs
   defaultValue="demo-app-ssh"
   values={[{"label":"Demo-app-ssh","value":"demo-app-ssh"},{"label":"Example.com","value":"example.com"},{"label":"Localhost","value":"localhost"}]}>
-            
-            
+  
+
 <TabItem value="demo-app-ssh">
   
 <div>

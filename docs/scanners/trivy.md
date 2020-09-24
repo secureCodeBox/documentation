@@ -44,11 +44,12 @@ The following security scan configuration example are based on the [Trivy Docume
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+### Localhost Scan
 <Tabs
   defaultValue="juice-shop"
   values={[{"label":"Juice-shop","value":"juice-shop"},{"label":"Mediawiki","value":"mediawiki"}]}>
-            
-            
+  
+
 <TabItem value="juice-shop">
   
 <div>

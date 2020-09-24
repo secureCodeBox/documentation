@@ -41,11 +41,12 @@ The following security scan configuration example are based on the [kube-hunter 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+### Localhost Scan
 <Tabs
   defaultValue="in-cluster"
   values={[{"label":"In-cluster","value":"in-cluster"}]}>
-            
-            
+  
+
 <TabItem value="in-cluster">
   
 <div>

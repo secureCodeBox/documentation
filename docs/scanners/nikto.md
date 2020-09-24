@@ -59,11 +59,12 @@ Nikto also has a comprehensive list of [command line options documented](https:/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+### Localhost Scan
 <Tabs
   defaultValue="demo-bodgeit"
   values={[{"label":"Demo-bodgeit","value":"demo-bodgeit"},{"label":"Demo-juice-shop","value":"demo-juice-shop"},{"label":"Demo-secureCodeBox.io","value":"demo-secureCodeBox.io"}]}>
-            
-            
+  
+
 <TabItem value="demo-bodgeit">
   
 <div>

@@ -27,11 +27,12 @@ To learn more about the Ncrack scanner itself visit [Ncrack GitHub] or [Ncrack W
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+### Localhost Scan
 <Tabs
   defaultValue="dummy-ssh"
   values={[{"label":"Dummy-ssh","value":"dummy-ssh"}]}>
-            
-            
+  
+
 <TabItem value="dummy-ssh">
   
 <div>

@@ -50,11 +50,12 @@ Some useful example parameters listed below:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+### Localhost Scan
 <Tabs
   defaultValue="demo-app-ssh"
   values={[{"label":"Demo-app-ssh","value":"demo-app-ssh"},{"label":"Demo-juice-shop","value":"demo-juice-shop"},{"label":"Local-network","value":"local-network"},{"label":"Localhost","value":"localhost"},{"label":"Scan.nmap.org","value":"scan.nmap.org"}]}>
-            
-            
+  
+
 <TabItem value="demo-app-ssh">
   
 <div>

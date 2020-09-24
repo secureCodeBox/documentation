@@ -66,11 +66,12 @@ Options:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+### Localhost Scan
 <Tabs
   defaultValue="demo-bodgeit-baseline-scan"
   values={[{"label":"Demo-bodgeit-baseline-scan","value":"demo-bodgeit-baseline-scan"},{"label":"Demo-bodgeit-full-scan","value":"demo-bodgeit-full-scan"},{"label":"Demo-juice-shop-baseline-scan","value":"demo-juice-shop-baseline-scan"},{"label":"Demo-juice-shop-full-scan","value":"demo-juice-shop-full-scan"},{"label":"Demo-petstore-api-scan","value":"demo-petstore-api-scan"}]}>
-            
-            
+  
+
 <TabItem value="demo-bodgeit-baseline-scan">
   
 <div>
