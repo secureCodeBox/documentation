@@ -123,7 +123,6 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     const readmeWithEditUrl = matter.stringify(content, {
       ...frontmatter,
       custom_edit_url: `https://github.com/${config.repository}/edit/master/${filePathInRepo}/${dirName}/README.md`,
-      //              https://github.com/secureCodeBox/secureCodeBox-v2/edit/master/scanners/ncrack/README.md
     });
 
     const integrationPage = Mustache.render(
