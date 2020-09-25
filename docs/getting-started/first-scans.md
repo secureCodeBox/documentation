@@ -25,7 +25,7 @@ nmap   securecodebox/nmap:7.80
 
 ## Starting a Scan
 
-Now that we have the ScanType installed,we are ready to start our first scan. `Scan` like ScanTypes are also Namespaced CRD's which let you define your own Scans in yaml. This example creates a Nmap Scan which scans the [scanme.nmap.org](scanme.nmap.org) host. This scan is equivalent to running `nmap scanme.nmap.org` locally.
+Now that we have the ScanType installed,we are ready to start our first scan. `Scan` like ScanTypes are also Namespaced CRD's which let you define your own Scans in yaml. This example creates a Nmap Scan which scans the [scanme.nmap.org](http://scanme.nmap.org) host. This scan is equivalent to running `nmap scanme.nmap.org` locally.
 
 :::caution
 Please not the terms of usage for the [http://scanme.nmap.org/](http://scanme.nmap.org/) website.
