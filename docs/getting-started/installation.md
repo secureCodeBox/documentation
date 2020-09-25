@@ -1,5 +1,6 @@
 ---
-title: "Installation"
+title: "secureCodeBox Installation"
+sidebar_label: Installation
 path: "docs/getting-started/installation"
 ---
 
@@ -17,6 +18,8 @@ helm install securecodebox-operator secureCodeBox/operator
 ```
 
 If you didn't see any errors you now have the secureCodeBox Operator up and running! 🥳🚀
+
+Your now ready to install your [first scan types and start your first scans](/docs/getting-started/first-scans).
 
 ## Version Support
 
