@@ -1,26 +1,18 @@
 ---
-title: "Developer Guide"
-path: "docs/developer-guide"
-category: "develop"
+title: "Modifying the Operator"
 ---
 
-<!-- end -->
+## Prerequisites
 
-# Extending secureCodeBox
-
-## Developing the SCB Operator
-
-### Prerequisites
-
-#### Golang
+### Golang
 
 The operator is written in Golang. To build the operator you will need to install [Go](https://golang.org/).
 
-#### Minikube or Kind
+### Local Kubernetes Environnement
 
 For local development we recommend to use [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) or [kind](https://github.com/kubernetes-sigs/kind). If you are using MacOS or Windows you can also use the kubernetes cluster included within Docker for Mac/Windows. All of these tools will enable you to run a local kubernetes cluster on your development machine.
 
-#### Operating Your Local Kubernetes Cluster
+### Operating Your Local Kubernetes Cluster
 
 To operate your (local) Kubernetes cluster you will need to install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [helm](https://helm.sh/)
 
@@ -38,19 +30,7 @@ After that start the `Docker.app` and go to it's settings and start Kubernetes.
 #### Minio
 
 For your local development you will need a S3 compatible storage.
-We would recommend to use [Minio](https://min.io/download#/) inside a Podman or docker container.
-
-##### If You Want to Use Podman
-
-```bash
-podman run \
-  --name minio \
-  -p 9000:9000 \
-  minio/minio \
-  server /data
-```
-
-##### If You Want to Use Docker
+We would recommend to use [Minio](https://min.io/download#/) inside a docker container.
 
 ```bash
 docker container run \
@@ -87,62 +67,9 @@ This will produce the operator as `bin/manager`. If you wonder why the operator 
 
 To run the operator locally you can simply execute `make run` in the `operator` directory of this repository:
 
-*NOTICE:* You will need to uninstall the operator with `helm -n securecodebox-system uninstall securecodebox-operator` from your local cluster, if you've installed it via helm. Unless both operators try to work on the same cluster which may cause unexpected behavior.
+_NOTICE:_ You will need to uninstall the operator with `helm -n securecodebox-system uninstall securecodebox-operator` from your local cluster, if you've installed it via helm. Unless both operators try to work on the same cluster which may cause unexpected behavior.
 
 ```bash
 cd operator
 make run
-```
-
-## How to add a New Security Scanner
-
-### ScanType Definition
-> ✍ **Following...**
-
-### Parsing SDK
-
-1. Install the dependencies `npm install`
-2. Update the parser function here: `./parser/parser.js`
-3. Update the parser tests here: `./parser/parser.test.js`
-4. Run the test suite: `npm test`
-
-## How to Integrate a New Hook
-> ✍ **Following...**
-
-### HookType Definition
-> ✍ **Following...**
-
-### Hook SDK
-> ✍ **Following...**
-
-## Guidelines
-> ✍ **Following...**
-
-### Coding Guidelines
-> ✍ **Following...**
-
-#### JSON
-
-We're using snake_case (lower case) for json attributes. If an enum type is used as attribute its converted to lower case. If it's an value it's always used UPPERCASE. This is to hold the attribute api consistent, but make sure Enums are recognized as enums.
-
-```json
-{
-    "id": "e18cdc5e-6b49-4346-b623-28a4e878e154",
-    "name": "Open mysql Port",
-    "description": "Port 3306 is open using tcp protocol.",
-    "category": "Open Port",
-    "osi_layer": "NETWORK",
-    "severity": "INFORMATIONAL",
-    "attributes": {
-      "protocol": "tcp",
-      "port": 3306,
-      "service": "mysql",
-      "mac_address": null,
-      "start": "1520606104",
-      "end": "1520606118",
-      "ip_address": "127.0.0.1",
-      "state": "open"
-    },
-    "location": "tcp://127.0.0.1:3306"
-  }
 ```

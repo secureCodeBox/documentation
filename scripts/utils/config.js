@@ -29,6 +29,8 @@ const docsConfig = {
       "Developer Guide": [
         "developer-guide/integrating-a-scanner",
         "developer-guide/integrating-a-hook",
+        "developer-guide/operator",
+        "developer-guide/conventions",
       ],
     }, // If you need more than one sidebar, you might change the "root object" on which to build the sidebar on
   };
