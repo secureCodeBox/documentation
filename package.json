@@ -23,7 +23,7 @@
     "colors": "^1.4.0",
     "docusaurus-plugin-sass": "^0.1.9",
     "download-git-repo": "^3.0.2",
-    "front-matter": "^4.0.2",
+    "gray-matter": "^4.0.2",
     "mustache": "^4.0.1",
     "node-fetch": "^3.0.0-beta.9",
     "prism-react-renderer": "^1.1.1",

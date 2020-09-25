@@ -1,16 +1,16 @@
-const fs = require('fs'),
-  rimraf = require('rimraf'),
-  colors = require('colors'),
-  fm = require('front-matter'),
-  {integrationsConfig: config} = require('./utils/config'),
-  { removeWhitespaces, capitalizeEach } = require('./utils/capitalizer');
+const fs = require("fs"),
+  rimraf = require("rimraf"),
+  colors = require("colors"),
+  matter = require("gray-matter"),
+  { integrationsConfig: config } = require("./utils/config"),
+  { removeWhitespaces, capitalizeEach } = require("./utils/capitalizer");
 
 colors.setTheme({
-  info: 'blue',
-  help: 'cyan',
-  warn: 'yellow',
-  success: 'green',
-  error: 'red',
+  info: "blue",
+  help: "cyan",
+  warn: "yellow",
+  success: "green",
+  error: "red",
 });
 
 // For the documentation on this script look at the README.md of this repository
@@ -41,11 +41,11 @@ if (fs.existsSync(config.integrationsFN)) {
 for (const dir of config.itgDirs) {
   fs.readdir(
     `docs/${dir}`,
-    { encoding: 'utf8', withFileTypes: true },
+    { encoding: "utf8", withFileTypes: true },
     function (err, files) {
       if (err) {
         console.error(
-          `ERROR: Could not read directory ${('docs/' + dir).info}.`.error,
+          `ERROR: Could not read directory ${("docs/" + dir).info}.`.error,
           err.message.error
         );
       } else {
@@ -67,15 +67,15 @@ const itgsArray = [];
 for (const dir of config.itgDirs) {
   const integrations = [],
     fileNames = fs
-      .readdirSync(`docs/${dir}`, { encoding: 'utf8', withFileTypes: true })
+      .readdirSync(`docs/${dir}`, { encoding: "utf8", withFileTypes: true })
       .filter((dirent) => dirent.isFile())
-      .map((dirent) => dirent.name.split('.').slice(0, -1).join('.'));
+      .map((dirent) => dirent.name.split(".").slice(0, -1).join("."));
 
   for (const fileName of fileNames) {
     const content = fs.readFileSync(`docs/${dir}/${fileName}.md`, {
-        encoding: 'utf8',
+        encoding: "utf8",
       }),
-      attributes = fm(content).attributes,
+      attributes = matter(content).data,
       integration = new Integration(
         attributes.title,
         attributes.type,
@@ -125,9 +125,11 @@ export const ${constantName} = ${JSON.stringify(itgObject)};
 `);
 });
 
-itgsStringArray.push(`export default { ${itgKeys.join(',')} };`);
+itgsStringArray.push(`export default { ${itgKeys.join(",")} };`);
 
-fs.writeFile(`${config.integrationsFN}`, itgsStringArray.join(''), function (err) {
+fs.writeFile(`${config.integrationsFN}`, itgsStringArray.join(""), function (
+  err
+) {
   if (err) {
     console.error(
       `ERROR: Could not build ${config.integrationsFN.help}.`.error,
