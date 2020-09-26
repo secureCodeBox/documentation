@@ -1,21 +1,21 @@
-const fs = require('fs'),
-  rimraf = require('rimraf'),
-  downloadCallback = require('download-git-repo'),
-  colors = require('colors'),
-  fm = require('front-matter'),
-  { promisify } = require('util'),
-  { docsConfig: config } = require('./utils/config'),
-  { removeWhitespaces } = require('./utils/capitalizer'),
-  Mustache = require('mustache');
+const fs = require("fs"),
+  rimraf = require("rimraf"),
+  downloadCallback = require("download-git-repo"),
+  colors = require("colors"),
+  matter = require("gray-matter"),
+  { promisify } = require("util"),
+  { docsConfig: config } = require("./utils/config"),
+  { removeWhitespaces } = require("./utils/capitalizer"),
+  Mustache = require("mustache");
 
 const download = promisify(downloadCallback);
 
 colors.setTheme({
-  info: 'blue',
-  help: 'cyan',
-  warn: 'yellow',
-  success: 'green',
-  error: 'red',
+  info: "blue",
+  help: "cyan",
+  warn: "yellow",
+  success: "green",
+  error: "red",
 });
 
 // For the documentation on this script look at the README.md of this repository
@@ -24,7 +24,7 @@ async function main() {
   console.log(`Downloading ${config.repository} into ${config.temp}...`.info);
 
   await download(config.repository, config.temp).catch((err) => {
-    console.error('ERROR: Download failed.'.error);
+    console.error("ERROR: Download failed.".error);
     throw err;
   });
 
@@ -85,7 +85,7 @@ main().catch((err) => {
 
 function readDirectory(dir) {
   return new Promise((res, rej) => {
-    fs.readdir(dir, { encoding: 'utf8', withFileTypes: true }, function (
+    fs.readdir(dir, { encoding: "utf8", withFileTypes: true }, function (
       err,
       data
     ) {
@@ -113,24 +113,30 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     }
 
     // Read readme content of scanner / hook directory
-    const readmeContent = fs.readFileSync(readMe, { encoding: 'utf8' });
+    const readmeContent = fs.readFileSync(readMe, { encoding: "utf8" });
 
     const examples = await getExamples(`${relPath}/${dirName}/examples`);
 
+    // Add a custom editUrl to the frontMatter to ensure that it points to the correct repo
+    const { data: frontmatter, content } = matter(readmeContent);
+    const filePathInRepo = relPath.replace(/^githubRepo\//, "");
+    const readmeWithEditUrl = matter.stringify(content, {
+      ...frontmatter,
+      custom_edit_url: `https://github.com/${config.repository}/edit/master/${filePathInRepo}/${dirName}/README.md`,
+    });
+
     const integrationPage = Mustache.render(
-      fs.readFileSync('./scripts/utils/scannerReadme.mustache', {
-        encoding: 'utf8',
+      fs.readFileSync("./scripts/utils/scannerReadme.mustache", {
+        encoding: "utf8",
       }),
       {
-        readme: readmeContent,
+        readme: readmeWithEditUrl,
         examples,
         hasExamples: examples.length !== 0,
       }
     );
 
-    const fileName = fm(readmeContent).attributes.title
-      ? fm(readmeContent).attributes.title
-      : dirName;
+    const fileName = frontmatter.title ? frontmatter.title : dirName;
     const filePath = `${targetPath}/${fileName}.md`;
     fs.writeFileSync(filePath, integrationPage);
 
@@ -143,7 +149,7 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
 function createSingleDocFiles() {
   const targetPath = config.singleFileDirectory
     ? `docs/${config.singleFileDirectory}`
-    : 'docs';
+    : "docs";
 
   if (!fs.existsSync(targetPath)) {
     fs.mkdirSync(targetPath);
@@ -151,11 +157,11 @@ function createSingleDocFiles() {
 
   for (const path of config.srcFiles) {
     // Rename readmes to their folder names to avoid naming collisions
-    const pathFragments = path.split('/');
+    const pathFragments = path.split("/");
     const fileName =
       pathFragments.length > 1 &&
-      pathFragments[pathFragments.length - 1] === 'README.md'
-        ? pathFragments[pathFragments.length - 2] + '.md'
+      pathFragments[pathFragments.length - 1] === "README.md"
+        ? pathFragments[pathFragments.length - 2] + ".md"
         : path;
 
     fs.copyFile(
@@ -200,20 +206,20 @@ async function getExamples(dir) {
   }
 
   return dirNames.map((dirName) => {
-    let readMe = '';
+    let readMe = "";
 
     if (fs.existsSync(`${dir}/${dirName}/README.md`)) {
-      readMe = fm(
+      readMe = matter(
         fs.readFileSync(`${dir}/${dirName}/README.md`, {
-          encoding: 'utf8',
+          encoding: "utf8",
         })
-      ).body;
+      ).content;
     }
 
     let scanContent = null;
     if (fs.existsSync(`${dir}/${dirName}/scan.yaml`)) {
       scanContent = fs.readFileSync(`${dir}/${dirName}/scan.yaml`, {
-        encoding: 'utf8',
+        encoding: "utf8",
       });
     }
 
@@ -234,7 +240,7 @@ async function getExamples(dir) {
         );
       } else {
         findingContent = fs.readFileSync(`${dir}/${dirName}/findings.yaml`, {
-          encoding: 'utf8',
+          encoding: "utf8",
         });
       }
     }
@@ -257,18 +263,18 @@ async function getExamples(dir) {
 }
 
 function copyFindingsForDownload(filePath) {
-  const dirNames = filePath.split('/'),
+  const dirNames = filePath.split("/"),
     name =
-      dirNames[dirNames.indexOf('examples') - 1] +
-      '-' +
-      dirNames[dirNames.indexOf('examples') + 1],
+      dirNames[dirNames.indexOf("examples") - 1] +
+      "-" +
+      dirNames[dirNames.indexOf("examples") + 1],
     targetPath = `public/findings/${name}-findings.yaml`;
 
-  if (!fs.existsSync('public')) {
-    fs.mkdirSync('public/');
+  if (!fs.existsSync("public")) {
+    fs.mkdirSync("public/");
   }
-  if (!fs.existsSync('public/findings')) {
-    fs.mkdirSync('public/findings/');
+  if (!fs.existsSync("public/findings")) {
+    fs.mkdirSync("public/findings/");
   }
 
   fs.copyFileSync(filePath, targetPath);
