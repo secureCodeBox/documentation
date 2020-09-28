@@ -1,34 +1,3 @@
-# Website
-
-This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
-
-### Installation
-
-```
-$ npm install
-```
-
-### Local Development
-
-```
-$ npm start
-```
-
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ npm build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-The website is automatically build and deployed on pushes to the master branch.
-If you open up a pull request a preview environment should be automatically created by netlify.
-
 # Documentation secureCodeBox
 
 This repository sources the [securecodebox.io] website. Our webpage is meant to provide an extensive documentation about our [secureCodeBox] and many helpful guides on how to start and operate it. The website is build with the [Docusaurus] Framework and hosted through [Netlify]. All important decision about this website are documented in our `/adr` folder in the [secureCodeBox] repo. If you want to contribute to our website, please follow the Style Guide down below.
@@ -49,6 +18,7 @@ Done! :) Now you can start developing and contributing.
 For development:
 
 ```bash
+npm build // This triggers the build scripts
 npm start
 ```
 
