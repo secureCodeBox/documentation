@@ -95,6 +95,13 @@ module.exports = {
         blog: {
           showReadingTime: true,
           editUrl: "https://github.com/securecodebox/docusaurus",
+          feedOptions: {
+            type: 'all',
+            title: 'The secureCodeBox Developer Blog',
+            description: 'In this blog the core maintainer will write about the development, roadmap, ideas RFCs etc. of the OWASP secureCodeBos.',
+            copyright: `Copyright © ${new Date().getFullYear()} iteratec GmbH`,
+            language: 'en',
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
