@@ -98,7 +98,7 @@ module.exports = {
           feedOptions: {
             type: 'all',
             title: 'The secureCodeBox Developer Blog',
-            description: 'In this blog the core maintainer will write about the development, roadmap, ideas RFCs etc. of the OWASP secureCodeBos.',
+            description: 'In this blog the core maintainer will write about the development, roadmap, ideas RFCs etc. of the OWASP secureCodeBox.',
             copyright: `Copyright © ${new Date().getFullYear()} iteratec GmbH`,
             language: 'en',
           },
