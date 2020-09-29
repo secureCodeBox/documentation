@@ -94,7 +94,7 @@ module.exports = {
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/securecodebox/docusaurusedit/master/',
+          editUrl: 'https://github.com/securecodebox/docusaurus/edit/master/',
           feedOptions: {
             type: 'all',
             title: 'The secureCodeBox Developer Blog',
