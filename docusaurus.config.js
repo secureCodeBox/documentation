@@ -91,6 +91,13 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.json'),
           editUrl: 'https://github.com/securecodebox/docusaurus/edit/master/',
+          lastVersion: 'current', 
+          versions: {
+            current: {
+              label: 'Current',
+              path: '',
+            },
+          },
         },
         blog: {
           showReadingTime: true,
