@@ -29,16 +29,16 @@ class Integration {
   }
 }
 
-if (fs.existsSync(config.integrationsFN)) {
-  rimraf.sync(config.integrationsFN);
+if (fs.existsSync(config.targetFile)) {
+  rimraf.sync(config.targetFile);
 
   console.warn(
-    `WARN: ${config.integrationsFN.info} already existed and was removed.`.warn
+    `WARN: ${config.targetFile.info} already existed and was removed.`.warn
   );
 }
 
 // Inform about subdirectories (this runs asynchronously)
-for (const dir of config.itgDirs) {
+for (const dir of config.integrationDirs) {
   fs.readdir(
     `docs/${dir}`,
     { encoding: "utf8", withFileTypes: true },
@@ -64,7 +64,7 @@ for (const dir of config.itgDirs) {
 
 const itgsArray = [];
 // Build integrations from files
-for (const dir of config.itgDirs) {
+for (const dir of config.integrationDirs) {
   const integrations = [],
     fileNames = fs
       .readdirSync(`docs/${dir}`, { encoding: "utf8", withFileTypes: true })
@@ -127,12 +127,12 @@ export const ${constantName} = ${JSON.stringify(itgObject)};
 
 itgsStringArray.push(`export default { ${itgKeys.join(",")} };`);
 
-fs.writeFile(`${config.integrationsFN}`, itgsStringArray.join(""), function (
+fs.writeFile(`${config.targetFile}`, itgsStringArray.join(""), function (
   err
 ) {
   if (err) {
     console.error(
-      `ERROR: Could not build ${config.integrationsFN.help}.`.error,
+      `ERROR: Could not build ${config.targetFile.help}.`.error,
       err.message.error
     );
   }

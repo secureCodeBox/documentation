@@ -43,8 +43,8 @@ async function main() {
 
   const dataArray = await Promise.all(promises);
 
-  if (!fs.existsSync(config.trgPath)) {
-    fs.mkdirSync(config.trgPath);
+  if (!fs.existsSync(config.targetPath)) {
+    fs.mkdirSync(config.targetPath);
   }
   // Clear preexisting findings
   if (fs.existsSync(config.findingsDir)) {
@@ -52,7 +52,7 @@ async function main() {
   }
 
   for (const dir of config.srcDirs) {
-    const trgDir = `${config.trgPath}/${dir}`;
+    const trgDir = `${config.targetPath}/${dir}`;
 
     // Overwrites existing directories with the same name
     if (fs.existsSync(trgDir)) {
@@ -285,7 +285,7 @@ function copyFindingsForDownload(filePath) {
 
 function clearDocsOnFailure() {
   for (const dir of config.srcDirs) {
-    const trgDir = `${config.trgPath}/${dir}`;
+    const trgDir = `${config.targetPath}/${dir}`;
     if (fs.existsSync(trgDir)) {
       rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
         if (err) {

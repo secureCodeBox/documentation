@@ -155,7 +155,7 @@ The docs builder script is responsible to retrieve and generate specified folder
 1. Download the specified github repository into a temporary location.
 2. Copy each file of srcFiles into the config.singleFileDirectory
 3. Read out the subdirectories of the specified directories (`srcDirs`).
-4. Create for each `srcDir` a corresponding directory in `trgPath`.
+4. Create for each `srcDir` a corresponding directory in `targetPath`.
 5. Create for each `README.md` found in each subdirectory a new file (named after the title attribute in its frontmatter).
    1. If an `/examples` subdirectory exists composite examples part, else continue on step 5.
    2. Build a tab for each subdirectory in the `/examples` directory.
@@ -168,7 +168,7 @@ The target file structure will look something like this (in the root directory):
 
 ```txt
 |-...
-|- <trgPath>
+|- <targetPath>
 |-|- <dir 1 of srcDirs>
 |-|-|- <README.md as <frontmatter title>.md from subDir 1 of dir 1>
 |-|-|-...
@@ -180,7 +180,7 @@ The target file structure will look something like this (in the root directory):
 |-..
 ```
 
-This script overrides all existing subdirectories within 'trgPath', with the same name as as the names in 'srcDirs'.
+This script overrides all existing subdirectories within 'targetPath', with the same name as as the names in 'srcDirs'.
 This script does not check for markdown files but for files named 'README.md'.
 The subdirectories are not required to contain a README.md.
 
@@ -189,7 +189,7 @@ Its configuration options are:
 ```ts
 temp: string, // Name of temporary folder, will be deleted after build
 repository: string, // The repository url without the github part of the link
-trgPath: string, // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
+targetPath: string, // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
 srcDirs: string[], // Directory names, relative to the root directory of the github project, containing the subdirectories with documentation
 srcFiles: string[], // File names for documentation, relative to the root directory of the github project
 singleFileDirectory: string, // Docs subdirectory as root category for `srcFiles`, defaults to root level of `docs/`
@@ -246,8 +246,8 @@ class Integration {
 Its configuration options are:
 
 ```ts
-integrationsFN: string, // Name of the target file to (over-)write
-itgDirs: string[], // Names of the directories relative to the root level of the `/docs` folder
+targetFile: string, // Name of the target file to (over-)write
+integrationDirs: string[], // Names of the directories relative to the root level of the `/docs` folder
 defaultIcon: string, // Default Icon when no imageUrl provided or could not resolve imageUrl
 ```
 
