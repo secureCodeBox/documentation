@@ -18,7 +18,6 @@ Done! :) Now you can start developing and contributing.
 For development:
 
 ```bash
-npm build // This triggers the build scripts
 npm start
 ```
 
