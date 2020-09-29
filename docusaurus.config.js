@@ -1,7 +1,7 @@
 module.exports = {
   title: 'secureCodeBox',
   tagline: 'Testing your Software Security, Network and Applications',
-  url: 'https://securecodebox.io',
+  url: 'https://docs.securecodebox.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   favicon: 'img/Favicon.svg',
