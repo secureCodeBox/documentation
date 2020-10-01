@@ -9,6 +9,8 @@ description: This is my first post on securecodebox.io.
 image: https://avatars1.githubusercontent.com/u/44839597?s=400&u=df006f35797ebb585d8279513305a0bbf1f616b5&v=4
 ---
 
+![Blini](https://de.rc-cdn.community.thermomix.com/recipeimage/2x05l6nw-3e498-537901-cfcd2-jt8sarpr/250dc4d4-b140-4d4b-b4a0-acb8054a97d7/main/blini-pfannkuchen.jpg)
+
 This is the first post on the new [securecodebox.io](https://securecodebox.io) documentation. What would be better than to teach you how to make some Blini. 😸
 
 <!--truncate-->
@@ -69,15 +71,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-  defaultValue="rs"
-  values={[
-    { label: 'Rust', value: 'rs', },
-    { label: 'Python', value: 'py', },
-    { label: 'Java', value: 'java', },
-  ]
+defaultValue="rs"
+values={[
+{ label: 'Rust', value: 'rs', },
+{ label: 'Python', value: 'py', },
+{ label: 'Java', value: 'java', },
+]
 }>
 <TabItem value="rs">
-
 
 ```rust
 pub const EGGS_MIN: i32 = 1;
@@ -124,9 +125,7 @@ pub fn find_materials_amount(mut flour_amount: f32, mut milk_amount: f32, mut eg
 
 </TabItem>
 
-
 <TabItem value="py">
-
 
 ```py
 i=""
@@ -160,7 +159,6 @@ else:
 
 </TabItem>
 <TabItem value="java">
-
 
 ```java
 package blinmaker;
@@ -219,7 +217,6 @@ public class cooker {
 </TabItem>
 </Tabs>
 
-
 ### Computing Blin Amount
 
 If you say you want to make some Blini right now, then here you go, a Blinmaker ready to use.
@@ -252,7 +249,7 @@ class BlinMaker extends React.Component {
       this.state.milkAmount < milkMin ||
       this.state.flourAmount < flourMin
     ) {
-      alert('No blin today :(');
+      alert("No blin today :(");
     } else {
       const flourPortions = Math.floor(this.state.flourAmount / flourMin);
       const milkPortions = Math.floor(this.state.milkAmount / milkMin);
@@ -274,23 +271,23 @@ class BlinMaker extends React.Component {
 
   render() {
     const gridStyle = {
-      display: 'inline-block',
-      width: '50%',
-      minWidth: 'max-content',
+      display: "inline-block",
+      width: "50%",
+      minWidth: "max-content",
     };
 
     const inputStyle = {
-      float: 'right',
+      float: "right",
     };
 
     const buttonStyle = {
-      backgroundColor: '#55a8e2',
-      maxWidth: '200px',
-      height: '30px',
-      font: '400 14px/18px Roboto, sans-serif',
-      marginTop: '10px',
-      border: 'none',
-      cursor: 'pointer',
+      backgroundColor: "#55a8e2",
+      maxWidth: "200px",
+      height: "30px",
+      font: "400 14px/18px Roboto, sans-serif",
+      marginTop: "10px",
+      border: "none",
+      cursor: "pointer",
     };
 
     return (
