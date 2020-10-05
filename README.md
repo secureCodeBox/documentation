@@ -2,6 +2,22 @@
 
 This repository sources the [securecodebox.io] website. Our webpage is meant to provide an extensive documentation about our [secureCodeBox] and many helpful guides on how to start and operate it. The website is build with the [Docusaurus] Framework and hosted through [Netlify]. All important decision about this website are documented in our `/adr` folder in the [secureCodeBox] repo. If you want to contribute to our website, please follow the Style Guide down below.
 
+## How the Documentation is Structured and Organized
+
+Here we describe where whicht type of documentation goes:
+
+- We have two main documentaion types:
+  1. Documentation for end users and
+  2. documentaion for contributing developers.
+- The end user documentation provides groups of documents which are top level in the sidebar in this order:
+  - "Getting Started"
+  - "HowTos"
+  - "Scanners"
+  - "Hooks"
+- The second type of documentation for contributing is below the group "Contributing".
+
+We do not use the terms "guide" nor "tutorial" at the moment.
+
 ## Build and Run
 
 In order to build and run this website you need to install [Node.js and NPM] for your platform.  
