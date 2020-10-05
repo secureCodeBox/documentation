@@ -6,10 +6,10 @@ author_url: https://github.com/dpatanin
 author_image_url: https://avatars1.githubusercontent.com/u/44839597?s=400&u=df006f35797ebb585d8279513305a0bbf1f616b5&v=4
 tags: [cooking, blini]
 description: This is my first post on securecodebox.io.
-image: https://avatars1.githubusercontent.com/u/44839597?s=400&u=df006f35797ebb585d8279513305a0bbf1f616b5&v=4
+image: /img/blog/2020-09-08-blini.jpg
 ---
 
-![Blini](https://de.rc-cdn.community.thermomix.com/recipeimage/2x05l6nw-3e498-537901-cfcd2-jt8sarpr/250dc4d4-b140-4d4b-b4a0-acb8054a97d7/main/blini-pfannkuchen.jpg)
+![Blini](/img/blog/2020-09-08-blini.jpg)
 
 This is the first post on the new [securecodebox.io](https://securecodebox.io) documentation. What would be better than to teach you how to make some Blini. 😸
 
