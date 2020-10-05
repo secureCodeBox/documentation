@@ -4,11 +4,11 @@ title: "HowTo: Network Scans"
 
 ## Introduction
 
-In this step-by-step tutorial we will go through all the required stages to set up network scanning with the secureCodeBox. We will first use **Nmap** to scan all devices for open ports and then see how to use *Cascading Rules* to follow up our port findings with a vulnerability scanner. In this tutorial we will mainly focus on a follow up ssh port cracking using **Ncrack**, but you will quickly notice that it's quite easy to configure the scanner for different ports to fit your needs.
+In this step-by-step tutorial, we will go through all the required stages to set up network scanning with the secureCodeBox. We will first use **Nmap** to scan all devices for open ports and then see how to use *Cascading Rules* to follow up on our port findings with a vulnerability scanner. In this tutorial, we will mainly focus on a follow-up ssh port cracking using **Ncrack**, but you will quickly notice that it's quite easy to configure the scanner for different ports to fit your needs.
 
 ## Setup
 
-For the sake of the tutorial we assume that you have your kubernetes cluster already up and running and that we can work in your default namespace.
+For the sake of the tutorial, we assume that you have your Kubernetes cluster already up and running and that we can work in your default namespace.
 
 If not done yet, **install the nmap scanner:**
 
@@ -145,7 +145,7 @@ Let's take a look at the attributes:
 * *name:* Obviously, our scan is called "ncrack-ssh" to identify it correctly.
 * *spec - matches - anyOf:* Here we specify that we want to subsequently scan every open port 22, or every port where a ssh service is running. You can use any attribute that is specified in the nmap findings, see for example: [Nmap Example Findings]
 * *scanSpec - scanType:* This is where the actual ncrack scan gets configured. We use the optional -d10 for a better console output, with -U we specify the usernames list, -P is for password list. Now it gets more interesting: The -p option is used in ncrack to specify a port for a service different from its standard port. We pick the needed port from the findings via {{attributes.port}}. After that, we just have to directly set the target IP with "{{attributes.ip_address}}" and we are done.
-* *invasive & intensive:* Finally you may have noticed that we skipped these both attributes. A scan can either be *invasive* or *non-invasive* and its intensive can vary from *light* to *medium* to *high*.
+* *invasive & intensive:* Finally you may have noticed that we skipped these both attributes. A scan can either be *invasive* or *non-invasive* and its intensity can vary from *light* to *medium* to *high*.
 
 These last two labels work as scan-triggers in the cascading rules, so our last step is to modify the nmap scan defined above and **add the cascading scan rules**:
 
@@ -168,7 +168,7 @@ spec:
       securecodebox.io/invasive: invasive
 ```
 
-Of course, you can just use one of the both labels and change them as you need it.
+Of course, you can just use one of both labels and change them as you need them.
 
 Now let's **run** our scan! Make sure to be in the correct directory where your scan.yaml is located:
 
@@ -176,7 +176,7 @@ Now let's **run** our scan! Make sure to be in the correct directory where your 
 kubectl apply -f scan.yaml
 ```
 
-After a short period of time, we can check whether our subsequent scan has been triggered correctly:
+After a short time, we can check whether our subsequent scan has been triggered correctly:
 
 ```bash
 kubectl get scans
@@ -185,9 +185,9 @@ kubectl get scans
 Now we should see something like:
 
 ```bash
-NAME                                	TYPE     STATE                    FINDINGS
-ncrack-ssh-tutorial-ncrack-ssh-abc12   	ncrack   ReadOnlyHookProcessing   1
-nmap-ssh-tutorial                      	nmap     Done                     2
+NAME                                    TYPE     STATE                    FINDINGS
+ncrack-ssh-tutorial-ncrack-ssh-abc12    ncrack   ReadOnlyHookProcessing   1
+nmap-ssh-tutorial                       nmap     Done                     2
 ```
 
 Nice, our scan was triggered as expected!
