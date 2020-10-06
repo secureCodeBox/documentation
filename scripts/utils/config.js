@@ -21,10 +21,10 @@ const docsConfig = {
         "getting-started/installation",
         "getting-started/first-scans",
       ],
-      "User Guide": [
-        "user-guide/automatically-repeating-scans",
-        "user-guide/scanning-networks",
-        "user-guide/scanning-web-applications",
+      "How To's": [
+        "how-tos/automatically-repeating-scans",
+        "how-tos/scanning-networks",
+        "how-tos/scanning-web-applications",
       ],
     },
     sidebarEnd: {
