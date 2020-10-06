@@ -165,8 +165,8 @@ Nmap is just one of the many security testing tools integrated into the secureCo
 
 To get started you can also take a look at our more detailed guides:
 
-- [HowTo: Network Scans](/docs/user-guide/scanning-networks)
-- [HowTo: Scanning Web Applications](/docs/user-guide/scanning-web-applications)
+- [HowTo: Network Scans](/docs/how-tos/scanning-networks)
+- [HowTo: Scanning Web Applications](/docs/how-tos/scanning-web-applications)
 
 ### Persistence Providers
 
