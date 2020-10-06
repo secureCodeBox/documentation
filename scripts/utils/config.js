@@ -28,11 +28,11 @@ const docsConfig = {
       ],
     },
     sidebarEnd: {
-      "Developer Guide": [
-        "developer-guide/integrating-a-scanner",
-        "developer-guide/integrating-a-hook",
-        "developer-guide/operator",
-        "developer-guide/conventions",
+      "Contributing": [
+        "contributing/integrating-a-scanner",
+        "contributing/integrating-a-hook",
+        "contributing/operator",
+        "contributing/conventions",
       ],
     }
   };
