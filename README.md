@@ -168,16 +168,15 @@ Since we want to have our documentation in the main repository available on this
 The docs builder script is responsible to retrieve and generate specified folder and files, containing documentation and works as follows:
 
 1. Download the specified github repository into a temporary location.
-2. Copy each file of srcFiles into the config.singleFileDirectory
-3. Read out the subdirectories of the specified directories (`srcDirs`).
-4. Create for each `srcDir` a corresponding directory in `targetPath`.
-5. Create for each `README.md` found in each subdirectory a new file (named after the title attribute in its frontmatter).
+2. Read out the subdirectories of the specified directories (`srcDirs`).
+3. Create for each `srcDir` a corresponding directory in `targetPath`.
+4. Create for each `README.md` found in each subdirectory a new file (named after the title attribute in its frontmatter).
    1. If an `/examples` subdirectory exists composite examples part, else continue on step 5.
    2. Build a tab for each subdirectory in the `/examples` directory.
    3. In each tab add contents of the respective example `README.md` and build new tabs for `scan.yaml` and `findings.yaml` (all files are optional).
    4. If `findings.yaml` exceeds size limit, create downloadable file and embed respective link.
    5. Concatenate example part to previous `README.md`
-6. Delete temporary folder.
+5. Delete temporary folder.
 
 The target file structure will look something like this (in the root directory):
 
@@ -186,13 +185,6 @@ The target file structure will look something like this (in the root directory):
 |- <targetPath>
 |-|- <dir 1 of srcDirs>
 |-|-|- <README.md as <frontmatter title>.md from subDir 1 of dir 1>
-|-|-|-...
-|-|-...
-|-|-|-...
-|- <config.singleFileDirectory>
-|-|- <file 1 of srcFiles>
-|-|-...
-|-..
 ```
 
 This script overrides all existing subdirectories within 'targetPath', with the same name as as the names in 'srcDirs'.
@@ -206,8 +198,6 @@ temp: string, // Name of temporary folder, will be deleted after build
 repository: string, // The repository url without the github part of the link
 targetPath: string, // This needs to be 'docs' for the docusaurus build, but you may specify a 'docs/<subdirectory>'
 srcDirs: string[], // Directory names, relative to the root directory of the github project, containing the subdirectories with documentation
-srcFiles: string[], // File names for documentation, relative to the root directory of the github project
-singleFileDirectory: string, // Docs subdirectory as root category for `srcFiles`, defaults to root level of `docs/`
 sizeLimit: number, // Limit of file size, most importantly used for large findings.
 findingsDir: string, // Directory for large findings which exceeded sizeLimit
 ```

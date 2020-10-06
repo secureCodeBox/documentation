@@ -30,8 +30,6 @@ async function main() {
 
   console.log(`SUCCESS: ${config.repository} downloaded.`.success);
 
-  if (config.srcFiles.length > 0) createSingleDocFiles();
-
   const promises = config.srcDirs.map((dir) =>
     readDirectory(`${config.temp}/${dir}`).catch((err) =>
       console.error(
@@ -142,53 +140,6 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
 
     console.log(
       `SUCCESS: Created file for ${dirName.help} at ${filePath.info}`.success
-    );
-  }
-}
-
-function createSingleDocFiles() {
-  const targetPath = config.singleFileDirectory
-    ? `docs/${config.singleFileDirectory}`
-    : "docs";
-
-  if (!fs.existsSync(targetPath)) {
-    fs.mkdirSync(targetPath);
-  }
-
-  for (const path of config.srcFiles) {
-    // Rename readmes to their folder names to avoid naming collisions
-    const pathFragments = path.split("/");
-    const fileName =
-      pathFragments.length > 1 &&
-      pathFragments[pathFragments.length - 1] === "README.md"
-        ? pathFragments[pathFragments.length - 2] + ".md"
-        : path;
-
-    fs.copyFile(
-      `${config.temp}/${path}`,
-      `${targetPath}/${fileName}`,
-      function (err) {
-        if (err) {
-          console.error(
-            `ERROR: Could not copy ${fileName.info} into ${targetPath.info}.`
-              .error,
-            err.message.error
-          );
-          rimraf(targetPath, function (err) {
-            if (err) {
-              console.error(
-                `ERROR: Could not remove fragment ${targetPath.info} of previous failure.`
-                  .error,
-                err.message.error
-              );
-            }
-          });
-        } else {
-          console.log(
-            `Success: Copied ${fileName.info} into ${targetPath.info}.`.success
-          );
-        }
-      }
     );
   }
 }
