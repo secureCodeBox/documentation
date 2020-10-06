@@ -45,8 +45,9 @@ for (const category of categories) {
 
 const sidebar = {
   docs: {
-    ...sidebarConfig.sidebar,
+    ...sidebarConfig.sidebarStart,
     ...generatedEntries,
+    ...sidebarConfig.sidebarEnd,
   },
 };
 
