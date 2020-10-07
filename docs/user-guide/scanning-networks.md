@@ -49,7 +49,7 @@ If you have already installed Ncrack, make sure to remove it first:
 helm delete ncrack
 ```
 
-Lastly, we now **install Ncrack** and mount our secret, so that we get access to the files via the mount path /ncrack/:
+Lastly, we now **install Ncrack** and configure the scanType to mount our secret, so that we get access to the username and password files via the mount path `/ncrack/`:
 
 ```bash
 cat <<EOF | helm install ncrack ./scanners/ncrack --values -
