@@ -142,7 +142,7 @@ Let's take a look at the attributes:
 
 * *name:* Obviously, our scan is called "ncrack-ssh" to identify it correctly.
 * *spec - matches - anyOf:* Here we specify that we want to subsequently scan every open port 22, or every port where a ssh service is running. You can use any attribute that is specified in the nmap findings, see for example: [Nmap Example Findings]
-* *scanSpec - scanType:* This is where the actual ncrack scan gets configured. We use the optional -d10 for a better console output, with -U we specify the usernames list, -P is for password list. Now it gets more interesting: The -p option is used in ncrack to specify a port for a service different from its standard port. We pick the needed port from the findings via {{attributes.port}}. After that, we just have to directly set the target IP with "{{attributes.ip_address}}" and we are done.
+* *scanSpec - scanType:* This is where the actual ncrack scan gets configured. We use the optional -d10 for a better console output, with -U we specify the usernames list, -P is for password list. Now it gets more interesting: The -p option is used in ncrack to specify a port for a service different from its standard port. We pick the needed port from the findings via `{{attributes.port}}`. After that, we just have to directly set the target IP with `"{{attributes.ip_address}}"` and we are done.
 * *invasive & intensive:* Finally you may have noticed that we skipped these both attributes. A scan can either be *invasive* or *non-invasive* and its intensity can vary from *light* to *medium* to *high*.
 
 These last two labels work as scan-triggers in the cascading rules, so our last step is to modify the nmap scan defined above and **add the cascading scan rules**:
