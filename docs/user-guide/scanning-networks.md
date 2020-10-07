@@ -80,6 +80,8 @@ spec:
   parameters:
     # Service Detection enabled
     - "-sV"
+    # If you want to scan an entire network instead, you can specify it to nmap via a CIDR notation. 
+    # E.g: 192.168.178.0/24
     - "dummy-ssh"
 ```
 
