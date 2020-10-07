@@ -78,8 +78,6 @@ metadata:
 spec:
   scanType: "nmap"
   parameters:
-    # Internal cluster is blocking our ping probes, therefore we skip them
-    - "-Pn"
     # Service Detection enabled
     - "-sV"
     - "dummy-ssh"
@@ -157,8 +155,6 @@ metadata:
 spec:
   scanType: "nmap"
   parameters:
-    # Internal cluster is blocking our ping probes, therefore we skip them
-    - "-Pn"
     # Service Detection enabled
     - "-sV"
     - "dummy-ssh"
