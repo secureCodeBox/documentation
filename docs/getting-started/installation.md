@@ -14,7 +14,7 @@ helm repo add secureCodeBox https://charts.securecodebox.io
 kubectl create namespace securecodebox-system
 
 # Install the Operator & CRD's
-helm install securecodebox-operator secureCodeBox/operator
+helm --namespace securecodebox-system install securecodebox-operator secureCodeBox/operator --version v2.0.0-rc.10
 ```
 
 If you didn't see any errors you now have the secureCodeBox Operator up and running! 🥳🚀

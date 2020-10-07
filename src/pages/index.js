@@ -170,18 +170,18 @@ function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted
               )}
-              to={useBaseUrl('docs/guides/user-guide')}
+              to={useBaseUrl('docs/getting-started/installation')}
             >
-              User Guide
+              Installation
             </Link>
             <Link
               className={clsx(
                 'button button--outline button--secondary button--lg',
                 styles.getStarted
               )}
-              to={useBaseUrl('docs/guides/developer-guide')}
+              to={useBaseUrl('docs/getting-started/first-scans')}
             >
-              Developer Guide
+              Starting Scans
             </Link>
           </div>
         </div>

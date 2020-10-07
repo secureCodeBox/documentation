@@ -23,7 +23,7 @@ if (fs.existsSync(sidebarConfig.sidebarName)) {
   );
 }
 
-const categories = docsConfig.srcDirs.concat(docsConfig.singleFileDirectory);
+const categories = docsConfig.srcDirs;
 
 if (categories.length === 0) {
   console.warn(`WARN: Nothing found in ${"docs/".info}.`.warn);
@@ -45,8 +45,9 @@ for (const category of categories) {
 
 const sidebar = {
   docs: {
-    ...sidebarConfig.sidebar,
+    ...sidebarConfig.sidebarStart,
     ...generatedEntries,
+    ...sidebarConfig.sidebarEnd,
   },
 };
 
