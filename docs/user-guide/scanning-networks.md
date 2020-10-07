@@ -106,7 +106,7 @@ kubectl delete scans --all
 kubectl delete scans nmap-ssh-tutorial
 ```
 
-Now we also want to start the **Ncrack scan** after Nmap has finished. We use cascading rules for that. Fortunately, the secureCodeBox comes already with a [predefined ncrack cascading rule] for ssh scanning. We will take an in-depth look at the file (scanners/ncrack/cascading-rules) to understand what's happening:
+Now we also want to start the **Ncrack scan** after Nmap has finished. We use cascading rules for that. Cascading rules allow us to automatically call any scanner that matches our given labels (see below) in order to start further security checks. As in our example for ssh, we don't only want to check if there are open ports on our server, but we also want to follow that up with a check, that it uses secure credentials and does not use an insecure password from our list. Fortunately, the secureCodeBox already comes with a [predefined ncrack cascading rule] for ssh scanning. We will take an in-depth look at the file (scanners/ncrack/cascading-rules) to understand what's happening:
 
 ```yaml
 apiVersion: "cascading.securecodebox.io/v1"
