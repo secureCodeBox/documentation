@@ -192,7 +192,7 @@ nmap-ssh-tutorial                       nmap     Done                     2
 
 Nice, our scan was triggered as expected!
 
-Final hint: If you want to **create a cascading rule yourself**, you must also apply it via:
+Final hint: If you want to **create a cascading rule yourself**, you can create them like any resource in Kubernetes via:
 
 ```bash
 kubectl apply -f cascadingRule.yaml
