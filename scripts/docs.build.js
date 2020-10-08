@@ -123,6 +123,11 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
       custom_edit_url: `https://github.com/${config.repository}/edit/master/${filePathInRepo}/${dirName}/README.md`,
     });
 
+    // Skip File if its marked as "hidden" in its frontmatter
+    if (frontmatter.hidden !== undefined && frontmatter.hidden === true) {
+      continue;
+    }
+
     const integrationPage = Mustache.render(
       fs.readFileSync("./scripts/utils/scannerReadme.mustache", {
         encoding: "utf8",
