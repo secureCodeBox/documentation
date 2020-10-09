@@ -16,12 +16,6 @@ If not done yet, **install the nmap scanner:**
 helm upgrade --install nmap ./scanners/nmap/
 ```
 
-It will also be necessary to have a server with an open port to test our configuration. You can either use your own server (you should know its IP and it should have an open ssh Port!) or you can best follow along the tutorial with **installing our dummy-ssh demo app**:
-
-```bash
-helm upgrade --install dummy-ssh ./demo-apps/dummy-ssh/
-```
-
 Now we also need the **declarative subsequent scan hook** (if not installed yet):
 
 ```bash
@@ -43,16 +37,10 @@ Now we can create a **kubernetes secret**:
 kubectl create secret generic --from-file users.txt --from-file passwords.txt ncrack-lists
 ```
 
-If you have already installed Ncrack, make sure to remove it first:
-
-```bash
-helm delete ncrack
-```
-
 Lastly, we now **install Ncrack** and configure the scanType to mount our secret, so that we get access to the username and password files via the mount path `/ncrack/`:
 
 ```bash
-cat <<EOF | helm install ncrack ./scanners/ncrack --values -
+cat <<EOF | helm upgrade --install ncrack ./scanners/ncrack --values -
 scannerJob:
   extraVolumes:
     - name: ncrack-lists
@@ -64,8 +52,6 @@ scannerJob:
 EOF
 ```
 
-
-
 ## Creating the Scan Cascade
 
 After everything is set up properly, it's now time to configure our scans. The **Nmap** Scan configuration is pretty straight forward. We create a **scan.yaml** where we define, what nmap should do:
@@ -74,15 +60,17 @@ After everything is set up properly, it's now time to configure our scans. The *
 apiVersion: "execution.securecodebox.io/v1"
 kind: Scan
 metadata:
-  name: "nmap-ssh-tutorial"
+  name: "nmap-ssh-howto"
 spec:
   scanType: "nmap"
   parameters:
     # Service Detection enabled
     - "-sV"
-    # If you want to scan an entire network instead, you can specify it to nmap via a CIDR notation. 
-    # E.g: 192.168.178.0/24
-    - "dummy-ssh"
+    # We'll just scan for port 22 to speed up the scan.
+    - "-p"
+    - "22"
+    # Watch out to configure you network correctly and if you are allowed to perform scans against the hosts in it!
+    - "192.168.178.0/24"
 ```
 
 We can test run it via:
@@ -153,13 +141,17 @@ These last two labels work as scan-triggers in the cascading rules, so our last 
 apiVersion: "execution.securecodebox.io/v1"
 kind: Scan
 metadata:
-  name: "nmap-ssh-tutorial"
+  name: "nmap-ssh-howto"
 spec:
   scanType: "nmap"
   parameters:
     # Service Detection enabled
     - "-sV"
-    - "dummy-ssh"
+    # We'll just scan for port 22 to speed up the scan.
+    - "-p"
+    - "22"
+    # Watch out to configure you network correctly and if you are allowed to perform scans against the hosts in it!
+    - "192.168.178.0/24"
   cascades:
     matchLabels:
       securecodebox.io/intensive: high
@@ -183,12 +175,14 @@ kubectl get scans
 Now we should see something like:
 
 ```bash
-NAME                                    TYPE     STATE                    FINDINGS
-ncrack-ssh-tutorial-ncrack-ssh-abc12    ncrack   ReadOnlyHookProcessing   1
-nmap-ssh-tutorial                       nmap     Done                     2
+kubectl get scans
+NAME                                TYPE     STATE   FINDINGS
+ncrack-ssh-howto-ncrack-ssh-48qnz   ncrack   Done    1
+nmap-ssh-howto                      nmap     Done    8
 ```
 
 Nice, our scan was triggered as expected!
+Your network liekly looks different. Depending on how many ssh hosts nmap was able to find you will see more ncrack scans started.
 
 Final hint: If you want to **create a cascading rule yourself**, you can create them like any resource in Kubernetes via:
 
