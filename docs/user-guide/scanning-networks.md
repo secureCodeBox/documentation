@@ -64,7 +64,6 @@ scannerJob:
 EOF
 ```
 
-
 ## Creating the Scan Cascade
 
 After everything is set up properly, it's now time to configure our scans. The **Nmap** Scan configuration is pretty straight forward. We create a **scan.yaml** where we define, what nmap should do:
