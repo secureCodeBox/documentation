@@ -28,6 +28,9 @@ const docsConfig = {
       ],
     },
     sidebarEnd: {
+      "Custom Resource Definitions": [
+        "crds/scan",
+      ],
       "Contributing": [
         "contributing/integrating-a-scanner",
         "contributing/integrating-a-hook",
