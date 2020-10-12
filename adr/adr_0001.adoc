@@ -39,4 +39,5 @@ Furthermore, we need to decide which version increments need to have their own b
 
 * We need to update the documentation version everytime we increment minor or major versions of the SecureCodeBox (manually or with action)
 * Maintaining the documentation could be more difficult due to now increased number of documentation files
+* Documentation has to be maintained in two repositories because when creating a new version Docusaurus creates a copy of all files in this respository (see https://v2.docusaurus.io/docs/versioning/#directory-structure[])
 
