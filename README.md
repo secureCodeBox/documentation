@@ -4,11 +4,11 @@ This repository sources the [securecodebox.io] website. Our webpage is meant to 
 
 ## How the Documentation is Structured and Organized
 
-Here we describe where whicht type of documentation goes:
+Here we describe where which type of documentation goes:
 
-- We have two main documentaion types:
+- We have two main documentation types:
   1. Documentation for end users and
-  2. documentaion for contributing developers.
+  2. documentation for contributing developers.
 - The end user documentation provides groups of documents which are top level in the sidebar in this order:
   - "Getting Started"
   - "HowTos"
@@ -20,7 +20,7 @@ We do not use the terms "guide" nor "tutorial" at the moment.
 
 ## Build and Run
 
-In order to build and run this website you need to install [Node.js and NPM] for your platform.  
+In order to build and run this website you need to install [Node.js and NPM] for your platform.
 Finally you download/clone this repository and install all required Node modules:
 
 ```bash
@@ -68,7 +68,7 @@ The color scheme is aimed to be basically white with a soft blue coloring as the
 
 Included color palette:
 
-```
+```css
 --ifm-color-primary: #77b9e8;
 --ifm-color-primary-dark: #55a8e2;
 --ifm-color-primary-darker: #49a2e0;
