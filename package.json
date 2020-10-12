@@ -1,6 +1,7 @@
 {
   "name": "securecodebox",
   "version": "0.0.0",
+  "license": "Apache-2.0",
   "scripts": {
     "docusaurus": "docusaurus",
     "prestart": "npm run build:docs && npm run build:sidebar && npm run build:integrations",
