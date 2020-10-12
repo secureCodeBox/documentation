@@ -2,6 +2,10 @@
   "name": "securecodebox",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/secureCodeBox/documentation.git"
+  },
   "scripts": {
     "docusaurus": "docusaurus",
     "prestart": "npm run build:docs && npm run build:sidebar && npm run build:integrations",
