@@ -12,7 +12,8 @@ Before we can start scans, we need to install their `ScanTypes`, these tell the 
 In this guide, we'll use the [Nmap Port & Network Scanner](https://nmap.org), as it is fast and relatively easy to use. We can install the Nmap ScanType via Helm:
 
 ```bash
-helm install nmap secureCodeBox/nmap
+# Make sure to add the helm repo first. See "Installation"
+helm install nmap secureCodeBox/nmap --version v2.0.0-rc.11
 ```
 
 To verify or to see which ScanTypes are installed in your current Namespace you can run:
