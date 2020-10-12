@@ -14,9 +14,9 @@ image: /img/blog/2020-10-12-javier-allegue-barros-unsplash.jpg
 
 ![Cat](/img/blog/2020-10-12-javier-allegue-barros-unsplash.jpg)
 
-Photo by [Javier Allegue Barros](https://unsplash.com/@soymeraki) on [Unsplash](https://unsplash.com/)
+Photo by [Javier Allegue Barros](https://unsplash.com/@soymeraki) on [Unsplash](https://unsplash.com/).
 
-Maybe you're wondering what's going on with my beloved _secureCodeBox_. If you look at the [GitHub insights][gh-insights] for the main repo, you'll see: Not that much is going on:
+Maybe you're wondering what's going on with my beloved _secureCodeBox_. If you look at the [GitHub insights](https://github.com/secureCodeBox/secureCodeBox/pulse) for the main repo, you'll see: Not that much is going on:
 
 ![Commits in the last months](/img/blog/2020-10-12-commits.png)
 
@@ -26,7 +26,7 @@ So is _secureCodeProject_ dead? Of course not! But we gained a lot of experience
 
 ## The State of the Union
 
-I teasered you with the experiences we gained from using _secureCodeBox_. Since these were the major reason for the changes let me start with them.
+I teased you with the experiences we gained from using _secureCodeBox_. Since these were the major reason for the changes let me start with them.
 
 ### Project MKULTRA
 
@@ -52,7 +52,6 @@ In consequence, we decided to put as much as possible at GitHub to be open to th
 
 Also, we decided to do more and better communication with the community. In the past, we were not very good in communicate what we plan to do. This is the reason why we started this blog to give you more information about our plans and our rationales.
 
-[gh-insights]: https://github.com/secureCodeBox/secureCodeBox/pulse
 [nmap]: https://nmap.org/
 [nikto]: https://cirt.net/Nikto2
 [sslyze]: https://github.com/nabla-c0d3/sslyze
