@@ -24,8 +24,8 @@ In order to build and run this website you need to install [Node.js and NPM] for
 Finally you download/clone this repository and install all required Node modules:
 
 ```bash
-git clone https://github.com/secureCodeBox/docusaurus.git
-cd docusaurus
+git clone https://github.com/secureCodeBox/documentation.git
+cd documentation
 npm install
 ```
 
