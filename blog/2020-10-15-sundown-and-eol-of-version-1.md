@@ -17,7 +17,7 @@ draft: true
 
 (Photo by [Zou Meng](https://unsplash.com/@xxm) on [Unsplash](https://unsplash.com/s/photos/sundown))
 
-Sad news but the _secureCodeBox_ version 1 will  soon reach its end of life. So here we announce its sundown phase beginning from now on until the end of the year.
+Sad news but the _secureCodeBox_ version 1 will soon reach its end of life. So here we announce its sundown phase beginning from now on until the end of the year.
 
 <!--truncate-->
 
