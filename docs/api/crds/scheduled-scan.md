@@ -23,17 +23,17 @@ The `scanSpec` contains the specification of the scan which should be repeated.
 
 See the `spec` field of the [Scan CRD](https://docs.securecodebox.io/docs/crds/scan) for all supported attributes.
 
-### HistoryLimit (Optional)
+### SuccessfulJobsHistoryLimit (Optional)
 
-The `historyLimit` controls how many completed scans are supposed to 
+The `successfulJobsHistoryLimit` controls how many completed scans are supposed to 
 
-HistoryLimit determines how many past Scans will be kept until the oldest one will be delted, defaults to 3.
+HistoryLimit determines how many past Scans will be kept until the oldest one will be deleted, defaults to 3.
 When set to `0`, Scans will be deleted directly after their completion.
 
-:::caution 
-The historyLimit only applied to "successful" scans.
-Failed scans are not automatically deleted by the historyLimit.
-We plan to improve this in the future, by providing a custom format which also supports days and weeks.
+:::info 
+The successfulJobsHistoryLimit only applied to "successful" scans.
+Failed jobs currently need to be manually deleted.
+We plan to add a `failedJobsHistoryLimit` field in a future release.
 :::
 
 ## Example
