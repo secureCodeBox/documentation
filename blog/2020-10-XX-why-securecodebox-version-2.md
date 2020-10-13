@@ -17,7 +17,7 @@ eu, pretium quis, sem?
 
 <!--truncate-->
 
-## The State of the Union
+## Lorem ipsum dolor sit amet
 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit; Aenean commodo ligula
 eget dolor? Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
