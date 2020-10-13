@@ -23,7 +23,7 @@ Sad news but the _secureCodeBox_ version 1 will soon reach its end of life. So h
 
 ## Sundown
 
-From today we announce the sundown phase of _secureCodeBox_ version 1. This means that we will **not implement any new features nor we update any dependencies** in this version! We will only patch critical security issues or bugs. 
+From today we announce the sundown phase of _secureCodeBox_ version 1. This means that we will **not implement any new features nor update any dependencies** in this version! We will only patch critical security issues or bugs. 
 
 Of course, you can submit pull requests or ask kindly for a bug fix. We may do it if we have the resources. But don't be annoyed if we won't. If you need urgently a patch you may pay us for doing it. But also don't be annoyed if we decline.
 
