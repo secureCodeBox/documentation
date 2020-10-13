@@ -31,7 +31,7 @@ We won't put any more effort into the *secureCodeBox* version 1 as necessary and
 
 ## End of Live
 
-The sundown phase will last until 31. December 2020. After that date, we will archive all the repositories belonging only to version 1, we will not do any updates or accept pull requests for version 1.
+The sundown phase will last until 31. December 2020. After that date, we will archive all the repositories belonging only to version 1 and won't do any updates or accept pull requests for version 1.
 
 If you need patches after this date you must pay us or fork the sources and do it by yourself.
 
