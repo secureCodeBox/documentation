@@ -9,9 +9,7 @@ The secureCodeBox Operator will then use this specification the execute the scan
 
 ### ScanType (Required)
 
-The `scanType` references the **name** of a ScanType CRD.
-
-See [ScanType CRD Specification](https://docs.securecodebox.io/docs/crds/scan-type)
+The `scanType` references the **name** of a [ScanType Custom Resource](https://docs.securecodebox.io/docs/crds/scan-type).
 
 ### Parameters (Required)
 
@@ -34,10 +32,9 @@ See:
 
 `cascades` let you start new scans based on the results of the current scan.
 
-The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which allow you to select which [CascadingRule CR's](https://docs.securecodebox.io/docs/crds/cascading-rule) are allowed to be used by the cascading logic.
+The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which allow you to select which [CascadingRule](https://docs.securecodebox.io/docs/crds/cascading-rule) are allowed to be used by the cascading logic.
 
-CascadingScans require to have the CombinedScan hook installed.
-See [CascadingScan Hook Documentation](https://docs.securecodebox.io/docs/hooks/Cascading%20Scans)
+To use cascades you'll need to have the [CombinedScan hook](https://docs.securecodebox.io/docs/hooks/Cascading%20Scans) installed.
 
 For an example on how they can be used see the [Scanning Networks HowTo](https://docs.securecodebox.io/docs/how-tos/scanning-networks)
 

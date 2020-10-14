@@ -2,7 +2,7 @@
 title: "ScanType"
 ---
 
-The ScanType Custom Resource Definition (CRD) is used to define to the secureCodeBox how a specific scanner can be executed in Kubernetes. The main part of the ScanType is the [JobTemplate](#jobtemplate-required), which contains a Kubernetes Job definition which will be used to construct the Scans Job.
+The ScanType Custom Resource Definition (CRD) is used to define to the secureCodeBox how a specific scanner can be executed in Kubernetes. The main part of the ScanType is the [JobTemplate](#jobtemplate-required), which contains a Kubernetes Job definition which will be used to construct the scans Job.
 
 ## Specification (Spec)
 

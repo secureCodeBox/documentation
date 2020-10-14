@@ -12,9 +12,9 @@ For more detailed explanations on how a new hook can be integrated, see the [hoo
 
 The `type` field can be either `ReadOnly` or `ReadAndWrite`.
 
-`ReadOnly` Hooks only have read rights on the findings and the raw scan reports (e.g. XML output from nmap). These are usually used to export the findings into a external system like Elasticsearch or DefectDojo or send out notifications to chats like Slack. ReadOnly hooks are executed in parallel to speed up their runtime.
+`ReadOnly` hooks only have read rights on the findings and the raw scan reports (e.g. XML output from nmap). These are usually used to export the findings into a external system like "Elasticsearch" or "DefectDojo" or to send out notifications to chats like "Slack". ReadOnly hooks are executed in parallel to speed up their runtime.
 
-`ReadAndWrite` Hooks have the ability to update both the findings and raw scan reports. This can be used to attach additional metadata to the findings by comparing the findings to external inventory systems or APIs of cloud providers.
+`ReadAndWrite` hooks have the ability to update both the findings and raw scan reports. This can be used to attach additional metadata to the findings by comparing the findings to external inventory systems or APIs of cloud providers.
 
 ### Image (Required)
 

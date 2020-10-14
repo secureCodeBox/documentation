@@ -13,7 +13,7 @@ The `interval` specifies the interval between two scans.
 Specified as a [golang duration string](https://golang.org/pkg/time/#ParseDuration).
 
 :::caution 
-The biggest duration goalng time strings support is **hours**. Longer durations e.g. days / weeks need to specified as multiples of hours.
+The biggest duration golang time strings support is **hours**. Longer durations e.g. days / weeks need to specified as multiples of hours.
 We plan to improve this in the future, by providing a custom format which also supports days and weeks.
 :::
 
@@ -25,10 +25,8 @@ See the `spec` field of the [Scan CRD](https://docs.securecodebox.io/docs/crds/s
 
 ### SuccessfulJobsHistoryLimit (Optional)
 
-The `successfulJobsHistoryLimit` controls how many completed scans are supposed to 
-
-HistoryLimit determines how many past Scans will be kept until the oldest one will be deleted, defaults to 3.
-When set to `0`, Scans will be deleted directly after their completion.
+The `successfulJobsHistoryLimit` controls how many completed scans are supposed to be kept until the oldest one will be deleted, defaults to 3.
+When set to `0`, scans will be deleted directly after their completion.
 
 :::info 
 The `successfulJobsHistoryLimit` applies only to "successful" scans.
