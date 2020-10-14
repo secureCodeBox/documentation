@@ -10,7 +10,6 @@ tags:
   - v1
 description: Sundown and end of live of secureCodeBox version 1.
 image: /img/blog//2020-10-15-zou-meng-unsplash.jpg
-draft: true
 ---
 
 ![Sundown](/img/blog/2020-10-15-sundown.jpg)
@@ -23,7 +22,7 @@ Sad news but the _secureCodeBox_ version 1 will soon reach its end of life. So h
 
 ## Sundown
 
-From today we announce the sundown phase of _secureCodeBox_ version 1. This means that we will **not implement any new features nor update any dependencies** in this version! We will only patch critical security issues or bugs. 
+From today we announce the sundown phase of _secureCodeBox_ version 1. This means that we will **not implement any new features nor update any dependencies** in this version! We will only patch critical security issues or bugs.
 
 Of course, you can submit pull requests or ask kindly for a bug fix. We may do it if we have the resources. But don't be annoyed if we won't. If you need urgently a patch you may pay us for doing it. But also don't be annoyed if we decline.
 
@@ -45,7 +44,7 @@ It may be possible to migrate the data collected by version 1 in Elastic. But at
 
 ## Please Sorry 🥺
 
-So you may face a major fuckup now. We understand that such a move is almost always quite a bit annoying. That's why we ask you for sorry and hope we won't lose you as a *secureCodeBox* user. If you need help moving to *secureCodeBox* version 2 don't hesitate to ask us for help! You can reach us at [Twitter](https://www.twitter.com/secureCodeBox), [Slack](https://join.slack.com/t/securecodebox/shared_invite/enQtNDU3MTUyOTM0NTMwLTBjOWRjNjVkNGEyMjQ0ZGMyNDdlYTQxYWQ4MzNiNGY3MDMxNThkZjJmMzY2NDRhMTk3ZWM3OWFkYmY1YzUxNTU), E-Mail (securecodebox [at] iteratec [dot] com) or just file an issue at GitHub. 
+So you may face a major fuckup now. We understand that such a move is almost always quite a bit annoying. That's why we ask you for sorry and hope we won't lose you as a *secureCodeBox* user. If you need help moving to *secureCodeBox* version 2 don't hesitate to ask us for help! You can reach us at [Twitter](https://www.twitter.com/secureCodeBox), [Slack](https://join.slack.com/t/securecodebox/shared_invite/enQtNDU3MTUyOTM0NTMwLTBjOWRjNjVkNGEyMjQ0ZGMyNDdlYTQxYWQ4MzNiNGY3MDMxNThkZjJmMzY2NDRhMTk3ZWM3OWFkYmY1YzUxNTU), E-Mail (securecodebox [at] iteratec [dot] com) or just file an issue at GitHub.
 
 Finally to cheer you up a little cute kitten:
 
