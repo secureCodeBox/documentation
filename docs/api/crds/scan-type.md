@@ -29,7 +29,7 @@ E.g. `/home/securecodebox/nmap-results.xml`
 
 Template of the kubernetes job to create when running the scan.
 
-See: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#jobspec-v1-batch
+See: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#job-v1-batch
 
 ## Example
 
