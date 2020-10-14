@@ -25,8 +25,9 @@ See the `spec` field of the [Scan CRD](https://docs.securecodebox.io/docs/crds/s
 
 ### SuccessfulJobsHistoryLimit (Optional)
 
-The `successfulJobsHistoryLimit` controls how many completed scans are supposed to be kept until the oldest one will be deleted, defaults to 3.
-When set to `0`, scans will be deleted directly after their completion.
+The `successfulJobsHistoryLimit` controls how many completed scans are supposed to be kept until the oldest one will be deleted. 
+
+Defaults to 3 if not set. When set to `0`, scans will be deleted directly after their completion.
 
 :::info 
 The `successfulJobsHistoryLimit` applies only to "successful" scans.
