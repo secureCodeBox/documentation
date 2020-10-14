@@ -24,7 +24,7 @@ Contains the [spec of the Scan](/docs/api/crds/scan#specification-spec) which is
 
 The `scanType` and the entries in the `parameters` list  can use [mustache](https://mustache.github.io/mustache.5.html) templates to refer to fields of the finding the cascadingRule has been applied to. The finding is passed in directly into the mustache templating call, so that fields of the findings can be directly referenced. E.g. the location can be directly referred to by: `{{location}}`.
 
-For convenient a helper object has been added to the mustache call under the `$` shorthand.
+For convenience a helper object has been added to the mustache call under the `$` shorthand.
 
 This helper object has the following attributes:
 

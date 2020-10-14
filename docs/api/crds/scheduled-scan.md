@@ -31,7 +31,7 @@ HistoryLimit determines how many past Scans will be kept until the oldest one wi
 When set to `0`, Scans will be deleted directly after their completion.
 
 :::info 
-The successfulJobsHistoryLimit only applied to "successful" scans.
+The `successfulJobsHistoryLimit` applies only to "successful" scans.
 Failed jobs currently need to be manually deleted.
 We plan to add a `failedJobsHistoryLimit` field in a future release.
 :::

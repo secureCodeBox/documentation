@@ -2,7 +2,7 @@
 title: "Finding"
 ---
 
-All scanners integrated in the secureCodeBox create Findings objects.
+All scanners integrated in the secureCodeBox create findings objects.
 These findings all contain the same set of fields listed in the example below.
 
 ```yaml

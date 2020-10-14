@@ -11,7 +11,7 @@ A scanType will reference the **name** of a *ParseDefinition* via the
 
 ### Image (Required)
 
-`image` is the reference to the parser container image which ca transform the raw scan report into findings.
+`image` is the reference to the parser container image which can transform the raw scan report into findings.
 
 To see how to write parsers and package them into images, checkout the [documentation page on integrating new scanners](docs/contributing/integrating-a-scanner).
 
