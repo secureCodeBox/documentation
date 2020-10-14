@@ -28,13 +28,28 @@ const docsConfig = {
       ],
     },
     sidebarEnd: {
-      "Contributing": [
+      "API Reference": [
+        {
+          type: "category",
+          label: "Custom Resource Definitions",
+          items: [
+            "api/crds/scan",
+            "api/crds/scheduled-scan",
+            "api/crds/scan-type",
+            "api/crds/parse-definition",
+            "api/crds/scan-completion-hook",
+            "api/crds/cascading-rule",
+          ],
+        },
+        "api/finding",
+      ],
+      Contributing: [
         "contributing/integrating-a-scanner",
         "contributing/integrating-a-hook",
         "contributing/operator",
         "contributing/conventions",
       ],
-    }
+    },
   };
 
 module.exports = {
