@@ -20,6 +20,7 @@ const docsConfig = {
       "Getting Started": [
         "getting-started/installation",
         "getting-started/first-scans",
+        "getting-started/uninstallation",
       ],
       "How To's": [
         "how-tos/automatically-repeating-scans",
