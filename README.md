@@ -101,7 +101,7 @@ Since we work with various different tools, it is even more important to keep a 
 
 ### Adding a scanner or hook
 
-Scanners and hooks are referred to as integrations. Scanners, which are integrated into our [secureCodeBox] repository have their own directories (located at [/scanners/](https://github.com/secureCodeBox/secureCodeBox-v2-alpha/tree/master/scanners)) in which the main documentation must be written in a `README.md` file. Hooks have their own respective directory of similar structure. But in general the documentation is build programmatically, so for further information have a look at the respective build script (`scripts/`).
+Scanners and hooks are referred to as integrations. Scanners, which are integrated into our [secureCodeBox] repository have their own directories (located at [/scanners/](https://github.com/secureCodeBox/secureCodeBox/tree/master/scanners)) in which the main documentation must be written in a `README.md` file. Hooks have their own respective directory of similar structure. But in general the documentation is build programmatically, so for further information have a look at the respective build script (`scripts/`).
 
 #### Scanner
 
@@ -261,7 +261,7 @@ defaultIcon: string, // Default Icon when no imageUrl provided or could not reso
 All changes pushed to the `master` branch get automatically build by [Netlify]. This also means that the `npm run build` command is executed, thus executing our custom build scripts through a pre-hook.
 
 [securecodebox.io]: https://securecodebox.github.io
-[securecodebox]: https://github.com/secureCodeBox/secureCodeBox-v2
+[securecodebox]: https://github.com/secureCodeBox/secureCodeBox
 [docusaurus]: https://v2.docusaurus.io/
 [netlify]: https://www.netlify.com/
 [node.js and npm]: https://nodejs.org/en/download/

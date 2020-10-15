@@ -59,4 +59,4 @@ Also, we decided to do more and better communication with the community. In the 
 [ssh_scan]: https://github.com/mozilla/ssh_scan
 [kubernetes]: https://kubernetes.io/
 [custom-resources]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
-[scb-]: https://github.com/secureCodeBox/secureCodeBox-v2
+[scb-v2]: https://github.com/secureCodeBox/secureCodeBox
