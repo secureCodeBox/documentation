@@ -6,6 +6,8 @@ path: "docs/getting-started/installation"
 
 The secureCodeBox is running on Kubernetes. To install it you need to use [Helm](https://helm.sh), a package manager for Kubernetes.
 
+First of all you need to install the secureCodeBox Operator which is responsible for starting all security scans.
+
 ```bash
 # Add the secureCodeBox Helm Repo
 helm repo add secureCodeBox https://charts.securecodebox.io
@@ -14,10 +16,10 @@ helm repo add secureCodeBox https://charts.securecodebox.io
 kubectl create namespace securecodebox-system
 
 # Install the Operator & CRD's
-helm --namespace securecodebox-system install securecodebox-operator secureCodeBox/operator --version v2.0.0-rc.12
+helm --namespace securecodebox-system upgrade --install securecodebox-operator secureCodeBox/operator --version v2.0.0-rc.12
 ```
 
-If you didn't see any errors you now have the secureCodeBox Operator up and running! 🥳🚀
+If you didn't see any errors you now have the secureCodeBox Operator up and running! 🥳 🚀
 
 Your now ready to install your [first scan types and start your first scans](/docs/getting-started/first-scans).
 
@@ -40,13 +42,13 @@ Port Forward Minio UI: `kubectl port-forward -n securecodebox-system service/sec
 
 Then open your browser on [http://localhost:9000](http://localhost:9000) and login in with the credentials returned by the command listed above.
 
-## Configuration Options
+## Operator Configuration Options
 
-### Using a hosted S3 Buckets
+### Using a hosted S3 Buckets as storage backend
 
 To change out the default minio instance with a S3 Bucket from a cloud provider you can update the helm values to connect the operator with you S3 bucket.
 
-#### AWS S3
+#### AWS S3 Buckets
 
 ```yaml
 minio:
@@ -79,7 +81,52 @@ s3:
   keySecret: gcs-bucket-credentials
 ```
 
-## Common Issues
+## Install SCB Scanner
+
+The following list will give you a short overview of all supported security scanner charts and how to install them.
+You will find a more detailed documentation for each scanner in our _Scanners_ documentation section.
+
+:::note
+If you are installing the secureCodeBox the first time we recommend to read the [first scans](/docs/getting-started/first-scans) documentation first.
+:::
+
+You can optionally deploy SCB scanner charts for each security scanner you want to use. They should not be installed into the securecodebox-system like the operator so that different teams can use different kinds of scanners.
+
+```bash
+# The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by 
+# adding `--namespace YOURNAMESPACE` to each line
+helm upgrade --install amass secureCodeBox/amass --version v2.0.0-rc.12
+helm upgrade --install gitleaks secureCodeBox/gitleaks --version v2.0.0-rc.12
+helm upgrade --install kube-hunter secureCodeBox/kube-hunter --version v2.0.0-rc.12
+helm upgrade --install nikto secureCodeBox/nikto --version v2.0.0-rc.12
+helm upgrade --install nmap secureCodeBox/nmap --version v2.0.0-rc.12
+helm upgrade --install ssh-scan secureCodeBox/ssh_scan --version v2.0.0-rc.12
+helm upgrade --install sslyze secureCodeBox/sslyze --version v2.0.0-rc.12
+helm upgrade --install trivy secureCodeBox/trivy --version v2.0.0-rc.12
+helm upgrade --install wpscan secureCodeBox/wpscan --version v2.0.0-rc.12
+helm upgrade --install zap secureCodeBox/zap --version v2.0.0-rc.12
+```
+
+## Install some demo targets
+
+If you want to test some of the security scanners within your namespace you can use some demo targets.
+
+:::danger
+As these demo targets are intentionally vulnerable you shouldn't expose them to the internet - keep them internal. 
+Otherwise you could be targeted by someone else really fast 😈
+:::
+
+```bash
+# The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by 
+# adding `--namespace YOURNAMESPACE` to each line
+helm upgrade --install dummy-ssh secureCodeBox/dummy-ssh --version v2.0.0-rc.12
+helm upgrade --install bodgeit secureCodeBox/bodgeit --version v2.0.0-rc.12
+helm upgrade --install juice-shop secureCodeBox/juice-shop --version v2.0.0-rc.12
+helm upgrade --install old-wordpress secureCodeBox/old-wordpress --version v2.0.0-rc.12
+helm upgrade --install swagger-petstore secureCodeBox/swagger-petstore --version v2.0.0-rc.12
+```
+
+## Common Operator Issues
 
 ### Minio Startup Problems
 
