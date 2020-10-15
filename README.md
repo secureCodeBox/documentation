@@ -101,7 +101,7 @@ Since we work with various different tools, it is even more important to keep a 
 
 ### Adding a scanner or hook
 
-Scanners and hooks are referred to as integrations. Scanners, which are integrated into our [secureCodeBox] repository have their own directories (located at [/scanners/](https://github.com/secureCodeBox/secureCodeBox-alpha/tree/master/scanners)) in which the main documentation must be written in a `README.md` file. Hooks have their own respective directory of similar structure. But in general the documentation is build programmatically, so for further information have a look at the respective build script (`scripts/`).
+Scanners and hooks are referred to as integrations. Scanners, which are integrated into our [secureCodeBox] repository have their own directories (located at [/scanners/](https://github.com/secureCodeBox/secureCodeBox/tree/master/scanners)) in which the main documentation must be written in a `README.md` file. Hooks have their own respective directory of similar structure. But in general the documentation is build programmatically, so for further information have a look at the respective build script (`scripts/`).
 
 #### Scanner
 
