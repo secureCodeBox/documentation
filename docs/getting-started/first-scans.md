@@ -13,7 +13,7 @@ In this guide, we'll use the [Nmap Port & Network Scanner](https://nmap.org), as
 
 ```bash
 # Make sure to add the helm repo first. See "Installation"
-helm install nmap secureCodeBox/nmap --version v2.0.0-rc.11
+helm install nmap secureCodeBox/nmap --version v2.0.0-rc.12
 ```
 
 To verify or to see which ScanTypes are installed in your current Namespace you can run:
