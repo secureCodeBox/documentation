@@ -35,7 +35,7 @@ If you miss something in our documentation or you think it is unclear or wrong d
 The big changes we did in the architecture of _secureCodeBox_ we we will discuss in a later post. For now I'll give you only a brief outline of the hottest key features:
 
 - **Kubernetes bases orchestration of scans**: This means that we do not need the whole engine known from version 1.
-- **No UI anymore**: In consequence this means without the engine there is also no web UI anymore.
+- **No UI anymore**: In consequence, this means without the engine there is also no web UI anymore.
 - **Cascading scans**: Now it is possible to feed the result of a scan into subsequent scans.
 - **Resource consumption**: Massive reduction of consumed CPU and RAM because scanners only run when they scan.
 - **Stability and scalability**: At [iteratec](https://www.iteratec.com) we run approximately a thousand scans a day against our infrastructure 😍
