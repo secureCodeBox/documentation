@@ -42,4 +42,4 @@ The big changes we did in the architecture of _secureCodeBox_ we we will discuss
 
 ## What about secureCodeBox v1
 
-Due to the fact of limited resources we can't afford the maintenance for version 1. So we are forced to announce the [sundown and end of life](/blog/2020/10/15/sundown-and-eol-of-version-1) for _secureCodeBox_ version 1.
+Due to the fact of limited resources, we can't afford the maintenance for version 1. So we are forced to announce the [sundown and end of life](/blog/2020/10/15/sundown-and-eol-of-version-1) for _secureCodeBox_ version 1.
