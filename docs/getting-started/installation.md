@@ -16,7 +16,7 @@ helm repo add secureCodeBox https://charts.securecodebox.io
 kubectl create namespace securecodebox-system
 
 # Install the Operator & CRD's
-helm --namespace securecodebox-system upgrade --install securecodebox-operator secureCodeBox/operator --version v2.0.0
+helm --namespace securecodebox-system upgrade --install securecodebox-operator secureCodeBox/operator
 ```
 
 If you didn't see any errors you now have the secureCodeBox Operator up and running! 🥳 🚀
@@ -95,16 +95,16 @@ You can optionally deploy SCB scanner charts for each security scanner you want 
 ```bash
 # The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by
 # adding `--namespace YOURNAMESPACE` to each line
-helm upgrade --install amass secureCodeBox/amass --version v2.0.0
-helm upgrade --install gitleaks secureCodeBox/gitleaks --version v2.0.0
-helm upgrade --install kube-hunter secureCodeBox/kube-hunter --version v2.0.0
-helm upgrade --install nikto secureCodeBox/nikto --version v2.0.0
-helm upgrade --install nmap secureCodeBox/nmap --version v2.0.0
-helm upgrade --install ssh-scan secureCodeBox/ssh_scan --version v2.0.0
-helm upgrade --install sslyze secureCodeBox/sslyze --version v2.0.0
-helm upgrade --install trivy secureCodeBox/trivy --version v2.0.0
-helm upgrade --install wpscan secureCodeBox/wpscan --version v2.0.0
-helm upgrade --install zap secureCodeBox/zap --version v2.0.0
+helm upgrade --install amass secureCodeBox/amass
+helm upgrade --install gitleaks secureCodeBox/gitleaks
+helm upgrade --install kube-hunter secureCodeBox/kube-hunter
+helm upgrade --install nikto secureCodeBox/nikto
+helm upgrade --install nmap secureCodeBox/nmap
+helm upgrade --install ssh-scan secureCodeBox/ssh_scan
+helm upgrade --install sslyze secureCodeBox/sslyze
+helm upgrade --install trivy secureCodeBox/trivy
+helm upgrade --install wpscan secureCodeBox/wpscan
+helm upgrade --install zap secureCodeBox/zap
 ```
 
 ## Install some demo targets
@@ -119,11 +119,11 @@ Otherwise you could be targeted by someone else really fast 😈
 ```bash
 # The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by
 # adding `--namespace YOURNAMESPACE` to each line
-helm upgrade --install dummy-ssh secureCodeBox/dummy-ssh --version v2.0.0
-helm upgrade --install bodgeit secureCodeBox/bodgeit --version v2.0.0
-helm upgrade --install juice-shop secureCodeBox/juice-shop --version v2.0.0
-helm upgrade --install old-wordpress secureCodeBox/old-wordpress --version v2.0.0
-helm upgrade --install swagger-petstore secureCodeBox/swagger-petstore --version v2.0.0
+helm upgrade --install dummy-ssh secureCodeBox/dummy-ssh
+helm upgrade --install bodgeit secureCodeBox/bodgeit
+helm upgrade --install juice-shop secureCodeBox/juice-shop
+helm upgrade --install old-wordpress secureCodeBox/old-wordpress
+helm upgrade --install swagger-petstore secureCodeBox/swagger-petstore
 ```
 
 ## Common Operator Issues
