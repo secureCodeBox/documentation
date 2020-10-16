@@ -16,7 +16,7 @@ helm repo add secureCodeBox https://charts.securecodebox.io
 kubectl create namespace securecodebox-system
 
 # Install the Operator & CRD's
-helm --namespace securecodebox-system upgrade --install securecodebox-operator secureCodeBox/operator --version v2.0.0-rc.12
+helm --namespace securecodebox-system upgrade --install securecodebox-operator secureCodeBox/operator --version v2.0.0
 ```
 
 If you didn't see any errors you now have the secureCodeBox Operator up and running! 🥳 🚀
@@ -93,18 +93,18 @@ If you are installing the secureCodeBox the first time we recommend to read the 
 You can optionally deploy SCB scanner charts for each security scanner you want to use. They should not be installed into the securecodebox-system namespace like the operator, but into the individual namespaces where you want to run the scans.
 
 ```bash
-# The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by 
+# The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by
 # adding `--namespace YOURNAMESPACE` to each line
-helm upgrade --install amass secureCodeBox/amass --version v2.0.0-rc.12
-helm upgrade --install gitleaks secureCodeBox/gitleaks --version v2.0.0-rc.12
-helm upgrade --install kube-hunter secureCodeBox/kube-hunter --version v2.0.0-rc.12
-helm upgrade --install nikto secureCodeBox/nikto --version v2.0.0-rc.12
-helm upgrade --install nmap secureCodeBox/nmap --version v2.0.0-rc.12
-helm upgrade --install ssh-scan secureCodeBox/ssh_scan --version v2.0.0-rc.12
-helm upgrade --install sslyze secureCodeBox/sslyze --version v2.0.0-rc.12
-helm upgrade --install trivy secureCodeBox/trivy --version v2.0.0-rc.12
-helm upgrade --install wpscan secureCodeBox/wpscan --version v2.0.0-rc.12
-helm upgrade --install zap secureCodeBox/zap --version v2.0.0-rc.12
+helm upgrade --install amass secureCodeBox/amass --version v2.0.0
+helm upgrade --install gitleaks secureCodeBox/gitleaks --version v2.0.0
+helm upgrade --install kube-hunter secureCodeBox/kube-hunter --version v2.0.0
+helm upgrade --install nikto secureCodeBox/nikto --version v2.0.0
+helm upgrade --install nmap secureCodeBox/nmap --version v2.0.0
+helm upgrade --install ssh-scan secureCodeBox/ssh_scan --version v2.0.0
+helm upgrade --install sslyze secureCodeBox/sslyze --version v2.0.0
+helm upgrade --install trivy secureCodeBox/trivy --version v2.0.0
+helm upgrade --install wpscan secureCodeBox/wpscan --version v2.0.0
+helm upgrade --install zap secureCodeBox/zap --version v2.0.0
 ```
 
 ## Install some demo targets
@@ -112,18 +112,18 @@ helm upgrade --install zap secureCodeBox/zap --version v2.0.0-rc.12
 If you want to test some of the security scanners within your namespace you can use some demo targets.
 
 :::danger
-As these demo targets are intentionally vulnerable you shouldn't expose them to the internet - keep them internal. 
+As these demo targets are intentionally vulnerable you shouldn't expose them to the internet - keep them internal.
 Otherwise you could be targeted by someone else really fast 😈
 :::
 
 ```bash
-# The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by 
+# The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by
 # adding `--namespace YOURNAMESPACE` to each line
-helm upgrade --install dummy-ssh secureCodeBox/dummy-ssh --version v2.0.0-rc.12
-helm upgrade --install bodgeit secureCodeBox/bodgeit --version v2.0.0-rc.12
-helm upgrade --install juice-shop secureCodeBox/juice-shop --version v2.0.0-rc.12
-helm upgrade --install old-wordpress secureCodeBox/old-wordpress --version v2.0.0-rc.12
-helm upgrade --install swagger-petstore secureCodeBox/swagger-petstore --version v2.0.0-rc.12
+helm upgrade --install dummy-ssh secureCodeBox/dummy-ssh --version v2.0.0
+helm upgrade --install bodgeit secureCodeBox/bodgeit --version v2.0.0
+helm upgrade --install juice-shop secureCodeBox/juice-shop --version v2.0.0
+helm upgrade --install old-wordpress secureCodeBox/old-wordpress --version v2.0.0
+helm upgrade --install swagger-petstore secureCodeBox/swagger-petstore --version v2.0.0
 ```
 
 ## Common Operator Issues
