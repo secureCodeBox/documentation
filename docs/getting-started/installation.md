@@ -90,7 +90,7 @@ You will find a more detailed documentation for each scanner in our _Scanners_ d
 If you are installing the secureCodeBox the first time we recommend to read the [first scans](/docs/getting-started/first-scans) documentation first.
 :::
 
-You can optionally deploy SCB scanner charts for each security scanner you want to use. They should not be installed into the securecodebox-system like the operator so that different teams can use different kinds of scanners.
+You can optionally deploy SCB scanner charts for each security scanner you want to use. They should not be installed into the securecodebox-system namespace like the operator, but into the individual namespaces where you want to run the scans.
 
 ```bash
 # The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by 
