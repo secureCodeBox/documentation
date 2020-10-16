@@ -9,7 +9,7 @@ tags:
   - sundown
   - v1
 description: Sundown and end of live of secureCodeBox version 1.
-image: /img/blog//2020-10-15-zou-meng-unsplash.jpg
+image: /img/blog/2020-10-15-sundown.jpg
 ---
 
 ![Sundown](/img/blog/2020-10-15-sundown.jpg)
