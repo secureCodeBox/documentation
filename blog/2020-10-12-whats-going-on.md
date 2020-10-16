@@ -12,7 +12,7 @@ description: This post gives a brief outline about what's going on in the secure
 image: /img/blog/2020-10-12-javier-allegue-barros-unsplash.jpg
 ---
 
-![Cat](/img/blog/2020-10-12-javier-allegue-barros-unsplash.jpg)
+![Fingerpost](/img/blog/2020-10-12-Fingerpost.jpg)
 
 Photo by [Javier Allegue Barros](https://unsplash.com/@soymeraki) on [Unsplash](https://unsplash.com/).
 
