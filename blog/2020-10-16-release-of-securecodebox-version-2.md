@@ -9,7 +9,7 @@ tags:
   - release
   - v2
 description: Here we announce the release of secureCodeBox version 2.0!
-image:
+image: /img/blog/2020-10-16-firework.jpg
 ---
 
 ![Firework](/img/blog/2020-10-16-firework.jpg)
