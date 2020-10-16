@@ -37,7 +37,7 @@ The big changes we did in the architecture of _secureCodeBox_ we we will discuss
 - **Kubernetes bases orchestration of scans**: This means that we do not need the whole engine known from version 1.
 - **No UI anymore**: In consequence this means without the engine there is also no web UI anymore.
 - **Cascading scans**: Now it is possible to feed the result of a scan into subsequent scans.
-- **Resource consumption**: Massive reduction of consumed CPU and RAM because scanners only run when tehy scan.
+- **Resource consumption**: Massive reduction of consumed CPU and RAM because scanners only run when they scan.
 - **Stability and scalability**: At [iteratec](https://www.iteratec.com) we run approximately thousand scans in parallel against our infrastructure 😍
 
 ## What about secureCodeBox v1
