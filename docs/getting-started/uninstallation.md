@@ -4,8 +4,6 @@ sidebar_label: Uninstallation
 path: "docs/getting-started/unstallation"
 ---
 
-# Uninstall Scanners and Hooks
-
 ## Uninstall Scanner / Hook
 
 If you want to uninstall every scanner and every hook you can simply delete the namespace in which they were installed (if you did not install any resources you still need in the same namespace).
