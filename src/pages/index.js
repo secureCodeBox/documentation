@@ -183,15 +183,6 @@ function Home() {
             >
               Starting Scans
             </Link>
-            <Link
-              className={clsx(
-                'button button--outline button--secondary button--lg',
-                styles.getStarted
-              )}
-              to={useBaseUrl('docs/getting-started/uninstallation')}
-            >
-              Uninstallation
-            </Link>
           </div>
         </div>
       </header>
