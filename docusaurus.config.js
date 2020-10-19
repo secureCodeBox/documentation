@@ -68,11 +68,11 @@ module.exports = {
           items: [
             {
               label: 'Imprint',
-              href: 'https://www.iteratec.de/impressum/',
+              href: 'https://www.iteratec.com/en/legal-notice/',
             },
             {
               label: 'Data Protection',
-              to: 'https://www.iteratec.com/data-protection/',
+              to: 'https://www.iteratec.com/en/data-protection/',
             },
           ],
         },
