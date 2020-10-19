@@ -114,5 +114,5 @@ pvc-6002bffb-51ac-4767-a5a8-9f8834ffa7ec   30Gi       RWO            Delete     
 To delete a persistent volume you can execute:
 
 ```bash
-kubectl delete pv pvc-6002bffb-51ac-4767-a5a8-9f8834ffa7ec 
+kubectl delete pvc pvc-6002bffb-51ac-4767-a5a8-9f8834ffa7ec 
 ```
