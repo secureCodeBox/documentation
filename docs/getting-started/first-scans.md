@@ -86,7 +86,7 @@ scan-nmap-scanme.nmap.org-w66rp    1/1           10s        25s
 ```
 
 :::note
-Your job names will be slightly different. Kubernetes generates a random suffix for each jobname to make them unique. In our case the suffix fir the scan job is `-w66rp` and forthe parse job is `-h8thd`.
+Your job names will be slightly different. Kubernetes generates a random suffix for each job name to make them unique. In our case the suffix fir the scan job is `-w66rp` and for the parse job is `-h8thd`.
 :::
 
 You can also view the logs of the container by running:
