@@ -30,7 +30,7 @@ nmap   securecodebox/nmap:7.80
 
 ## Starting a Scan
 
-Now that we have the ScanType nmap installed, we are ready to start our first scan. A scanner like this Nmap ScanType is a namespaced CRD. That means you can install them in our own namespace and you're notrequired to have privileged access to the cluster. Also they are defined via YAML and so you can easily create your own ones.
+Now that we have the ScanType nmap installed, we are ready to start our first scan. A scanner, like this Nmap ScanType, is a namespaced CRD. That means you can install them in our own namespace and you're not required to have privileged access to the cluster. Also they are defined via YAML and so you can easily create your own ones.
 
 This example creates a Nmap scan which probes the [scanme.nmap.org](http://scanme.nmap.org) host. This scan is equivalent to running `nmap scanme.nmap.org` locally.
 
