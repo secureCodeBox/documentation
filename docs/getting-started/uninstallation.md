@@ -102,7 +102,7 @@ scheduledscans.execution.securecodebox.io
 
 ### Delete Volumes
 
-Some Resources like the ELK-Stack require a persistent volume.
+Some Resources like the elastic stack require a persistent volume.
 To list all persistent volumes in the default namespace you can execute:
 
 ```bash {1}
