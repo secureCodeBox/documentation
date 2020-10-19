@@ -69,22 +69,33 @@ NAME                   TYPE   STATE      FINDINGS
 nmap-scanme.nmap.org   nmap   Scanning
 ```
 
-## Monitoring the Scans Execution
+## Monitoring the Scan Execution
 
-When you create the Scan, the secureCodeBox Operator will create a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/) in your namespace in which the scanner, in this case, Nmap gets executed inside a container. Once the scan has completed the container will terminate and no compute resources will be consumed anymore. You can view the status of this job by running:
+When you apply a scan, the secureCodeBox Operator will create a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/) in your namespace. In this namespace scanner (in ourexample the Nmap scanner) will be executed inside a container. Once the scan has completed the container will terminate and no compute resources will be consumed anymore. You can view the status of this job by running:
 
 ```bash
 kubectl get jobs
 ```
 
-This should give you an output like this:
+This should give you an output like this
 
 ``` text
 NAME                               COMPLETIONS   DURATION   AGE
+parse-nmap-scanme.nmap.org-h8thd   1/1           30s        43m
 scan-nmap-scanme.nmap.org-w66rp    1/1           10s        25s
 ```
 
-You can also view the logs of the container by running, note that your job name will be slightly different, containing a different generated suffix. If your job is still running, the command will stream the logs of the scan until it has completed:
+:::note
+Your job names will be slightly different. Kubernetes generates a random suffix for each jobname to make them unique. In our case the suffix fir the scan job is `-w66rp` and forthe parse job is `-h8thd`.
+:::
+
+You can also view the logs of the container by running:
+
+```bash
+kubectl logs job/scan-nmap-scanme.nmap.org-w66rp nmap
+```
+
+If your job is still running you can stream the logs of the scan until it has completed:
 
 ```bash
 kubectl logs job/scan-nmap-scanme.nmap.org-w66rp nmap --follow
