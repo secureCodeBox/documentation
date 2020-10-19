@@ -8,7 +8,7 @@ path: "docs/getting-started/unstallation"
 
 ## Uninstall Scanner / Hook
 
-If you want to uninstall every scanner and every hook you can simply delete the namespace in which they were installed (if you did not install any resources you still need in the same namespace)
+If you want to uninstall every scanner and every hook you can simply delete the namespace in which they were installed (if you did not install any resources you still need in the same namespace).
 
 If you want to uninstall specific scanners or hooks you can delete them via `helm`. For example if you installed nmap using `helm install nmap secureCodeBox/nmap --version v2.0.0-rc.11` you can delete nmap like this:
 
@@ -16,44 +16,27 @@ If you want to uninstall specific scanners or hooks you can delete them via `hel
 helm delete nmap
 ```
 
-## Delete Volumes
+## Uninstall CascadingRules
 
-Some Resources like the ELK-Stack require a persistent volume.
-To list all persistent volumes in the default namespace you can execute:
-
-```bash{1}
-kubectl get pv
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                                 STORAGECLASS   REASON   AGE
-pvc-6002bffb-51ac-4767-a5a8-9f8834ffa7ec   30Gi       RWO            Delete           Bound    default/elasticsearch-master-elasticsearch-master-0   standard                3h30m
-```
-
-To delete a persistent volume you can execute:
-
-```bash
-kubectl delete pv pvc-6002bffb-51ac-4767-a5a8-9f8834ffa7ec 
-```
-
-# Uninstall CascadingRules
-
-If you want to delete some CascadingRules you can do so using `kubectl`
+If you want to delete some CascadingRules you can do so using `kubectl`.
 For example if you want to uninstall a Cascading Rule for nmap:
 
 ```bash
 kubectl delete cascadingrules.cascading.securecodebox.io nmap-hostscan 
 ```
 
-# Uninstall the Operator and Its Roles, ServiceAccounts and RoleBindings
+## Uninstall the Operator and Its Roles, ServiceAccounts and RoleBindings
 
-To uninstall the operator it is not enough to delete the operator via `helm` because the operator creates Roles, ServiceAccounts  and RoleBindings used by parsers, lurcher and hooks in every namespace where scanners and hooks are executed. These cannot be uninstalled via helm because they cannot be referenced via Kubernetes OwnReferences.
+To uninstall the operator it is not enough to delete the operator via `helm` because the operator creates Roles, ServiceAccounts  and RoleBindings used by parsers, lurchers and hooks in every namespace where scanners and hooks are executed. These cannot be uninstalled via helm because they cannot be referenced via Kubernetes OwnerReferences.
 
 Make sure you delete all scans and uninstall all scanners/hooks before uninstalling the operator to avoid problems.
-First delete the namespace for the operator
+First delete the namespace for the operator:
 
 ```bash
 kubectl delete namespace securecodebox-system
 ```
 
-## Delete Roles, RoleBindings and ServiceAccounts
+### Delete Roles, RoleBindings and ServiceAccounts
 
 The operator creates ServiceAccounts, Roles and RoleBindings in *every namespace* where scans / hooks are executed. You will have to delete these manually for each namespace where scans were scheduled.
 The given examples are valid only for scanners that were executed in the default namespace.
@@ -93,7 +76,7 @@ To delete the ServiceAccounts for lurcher and parser you can execute:
 kubectl delete serviceaccounts lurcher parser
 ```
 
-## Delete CRDs
+### Delete CRDs
 
 Deleting the namespace of the operator will not delete the Custom Resource Definitions (CRDs) that were defined. To list all CRDs you can execute the following command:
 
@@ -107,6 +90,7 @@ scans.execution.securecodebox.io                 2020-10-14T09:32:19Z
 scantypes.execution.securecodebox.io             2020-10-14T09:32:19Z
 scheduledscans.execution.securecodebox.io        2020-10-14T09:32:19Z
 ```
+
 To delete these CRDs you can execute the following command:
 
 ```bash
@@ -118,13 +102,13 @@ scantypes.execution.securecodebox.io \
 scheduledscans.execution.securecodebox.io
 ```
 
-## Delete Volumes
+### Delete Volumes
 
 Some Resources like the ELK-Stack require a persistent volume.
 To list all persistent volumes in the default namespace you can execute:
 
 ```bash {1}
-kubectl get pv
+kubectl get pvc
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                                 STORAGECLASS   REASON   AGE
 pvc-6002bffb-51ac-4767-a5a8-9f8834ffa7ec   30Gi       RWO            Delete           Bound    default/elasticsearch-master-elasticsearch-master-0   standard                3h30m
 ```
