@@ -30,7 +30,9 @@ nmap   securecodebox/nmap:7.80
 
 ## Starting a Scan
 
-Now that we have the ScanType installed, we are ready to start our first scan. `Scan` like ScanTypes are also Namespaced CRD's which let you define your own Scans in YAML. This example creates a Nmap Scan which scans the [scanme.nmap.org](http://scanme.nmap.org) host. This scan is equivalent to running `nmap scanme.nmap.org` locally.
+Now that we have the ScanType nmap installed, we are ready to start our first scan. A scanner like this Nmap ScanType is a namespaced CRD. That means you can install them in our own namespace and you're notrequired to have privileged access to the cluster. Also they are defined via YAML and so you can easily create your own ones.
+
+This example creates a Nmap scan which probes the [scanme.nmap.org](http://scanme.nmap.org) host. This scan is equivalent to running `nmap scanme.nmap.org` locally.
 
 :::caution
 Please note the terms of usage for the [http://scanme.nmap.org/](http://scanme.nmap.org/) website.
@@ -48,7 +50,7 @@ spec:
     - scanme.nmap.org
 ```
 
-You can save the file locally and then run the scan via kubectl:
+To run this example save the YAML above to a local file named `nmap-scan.yaml` and then start the scan via kubectl:
 
 ```bash
 kubectl apply -f nmap-scan.yaml
