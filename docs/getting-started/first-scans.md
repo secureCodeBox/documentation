@@ -9,17 +9,21 @@ Before we can start scans, we need to install their `ScanTypes`, these tell the 
 
 ## Installing the Nmap ScanType
 
-In this guide, we'll use the [Nmap Port & Network Scanner](https://nmap.org), as it is fast and relatively easy to use. We can install the Nmap ScanType via Helm:
+In this guide, we'll use the [Nmap Port & Network Scanner](https://nmap.org), as it is fast and relatively easy to use. We can install the Nmap ScanType via Helm (Make sure to add the helm repo first. See [Installation](/docs/getting-started/installation)):
 
 ```bash
-# Make sure to add the helm repo first. See "Installation"
 helm install nmap secureCodeBox/nmap
 ```
 
 To verify or to see which ScanTypes are installed in your current Namespace you can run:
 
-```bash {1}
-$ kubectl get scantypes
+```bash
+kubectl get scantypes
+```
+
+This should print an output like this (maybe theversion differs):
+
+```text
 NAME   IMAGE
 nmap   securecodebox/nmap:7.80
 ```
@@ -52,8 +56,13 @@ kubectl apply -f nmap-scan.yaml
 
 The scan is now starting up, you can track its progress using kubectl:
 
-```bash {1}
-$ kubectl get scans
+```bash
+kubectl get scans
+```
+
+This should print an output like this:
+
+```text
 NAME                   TYPE   STATE      FINDINGS
 nmap-scanme.nmap.org   nmap   Scanning
 ```
@@ -62,17 +71,26 @@ nmap-scanme.nmap.org   nmap   Scanning
 
 When you create the Scan, the secureCodeBox Operator will create a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/) in your namespace in which the scanner, in this case, Nmap gets executed inside a container. Once the scan has completed the container will terminate and no compute resources will be consumed anymore. You can view the status of this job by running:
 
-```bash {1}
-$ kubectl get jobs
+```bash
+kubectl get jobs
+```
+
+This should give you an output like this:
+
+``` text
 NAME                               COMPLETIONS   DURATION   AGE
 scan-nmap-scanme.nmap.org-w66rp    1/1           10s        25s
 ```
 
 You can also view the logs of the container by running, note that your job name will be slightly different, containing a different generated suffix. If your job is still running, the command will stream the logs of the scan until it has completed:
 
-```bash {1}
-$ kubectl logs job/scan-nmap-scanme.nmap.org-w66rp nmap --follow
+```bash
+kubectl logs job/scan-nmap-scanme.nmap.org-w66rp nmap --follow
+```
 
+This should print an output like this:
+
+```text
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-09-25 10:50 UTC
 Nmap scan report for scanme.nmap.org (45.33.32.156)
 Host is up (0.19s latency).
@@ -88,13 +106,17 @@ PORT      STATE    SERVICE
 31337/tcp open     Elite
 
 Nmap done: 1 IP address (1 host up) scanned in 5.44 seconds
-
 ```
 
 Unless you are really quick or your scan took a long time you'll likely also seen that a second job was started:
 
-```bash {1}
-$ kubectl get jobs
+```bash
+kubectl get jobs
+```
+
+This should print an output like this:
+
+```text
 NAME                               COMPLETIONS   DURATION   AGE
 parse-nmap-scanme.nmap.org-sl56z   1/1           14s        15s
 scan-nmap-scanme.nmap.org-w66rp    1/1           10s        25s
@@ -106,16 +128,26 @@ This second job takes the result of the Nmap Scan and transforms them into a sec
 
 Once this second job has completed you can get an overview of the results by taking another look at the scan:
 
-```bash {1}
-$ kubectl get scans
+```bash
+kubectl get scans
+```
+
+This should print an output like this:
+
+```text
 NAME                   TYPE   STATE   FINDINGS
 nmap-scanme.nmap.org   nmap   Done    8
 ```
 
-This scan listing already shows us the total count of findings identified by the scan. You can get a deeper overview by running:
+This list shows us the total count of findings identified by the scan. You can get a deeper overview by running:
 
-```bash {1,20-26}
-$ kubectl describe scan nmap-scanme.nmap.org
+```bash
+kubectl describe scan nmap-scanme.nmap.org
+```
+
+This should print an output like this:
+
+```yaml {19-25}
 Name:         nmap-scanme.nmap.org
 Namespace:    default
 Labels:       <none>
@@ -151,7 +183,7 @@ Events:                      <none>
 ```
 
 This gives us an overview of the results of the scan.
-To view the actual findings produced by the scan you can use the download link to download the findings as JSON from Minio / S3.
+To view the actual findings produced by the scan you can use the download link to download the findings as JSON from Minio/S3.
 
 ## Next Steps
 
