@@ -21,7 +21,7 @@ To verify or to see which ScanTypes are installed in your current Namespace you 
 kubectl get scantypes
 ```
 
-This should print an output like this (maybe theversion differs):
+This should print an output like this (your version might differ):
 
 ```text
 NAME   IMAGE
