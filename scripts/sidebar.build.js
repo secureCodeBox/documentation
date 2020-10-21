@@ -35,6 +35,9 @@ for (const category of categories) {
   const cat = capitalizeEach(category.replace("-", " "));
   const sidebarEntry = createObjectFromDir(`docs/${category}`);
 
+  //This will add a base Path for each category e.g. /scanners
+  sidebarEntry.unshift(cat.toLowerCase())
+
   console.log(
     `SUCCESS: Added ${category.help} to ${sidebarConfig.sidebarName.info}.`
       .success
