@@ -23,6 +23,7 @@ const docsConfig = {
         "getting-started/uninstallation",
       ],
       "How To's": [
+        "how-tos",
         "how-tos/automatically-repeating-scans",
         "how-tos/scanning-networks",
         "how-tos/scanning-web-applications",
