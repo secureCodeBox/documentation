@@ -139,7 +139,11 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
       }
     );
 
-    const fileName = frontmatter.title ? frontmatter.title : dirName;
+    let  fileName = frontmatter.title ? frontmatter.title : dirName;
+
+    //Replace Spaces in the FileName with "-" and convert to lower case to avoid URL issues
+    fileName = fileName.replace(/ /g, "-").toLowerCase();
+
     const filePath = `${targetPath}/${fileName}.md`;
     fs.writeFileSync(filePath, integrationPage);
 
