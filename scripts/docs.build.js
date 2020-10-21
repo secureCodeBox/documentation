@@ -62,7 +62,7 @@ async function main() {
     }
 
     fs.mkdirSync(trgDir);
-    createDocFilesFromDir(
+    await createDocFilesFromDir(
       `${config.temp}/${dir}`,
       trgDir,
       dataArray[config.srcDirs.indexOf(dir)]
