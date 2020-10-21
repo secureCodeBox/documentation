@@ -4,11 +4,11 @@ hide: true
 id: "hooks"
 ---
 
-1. [Cascading Scans](./hooks/Cascading%20Scans)
-2. [DefectDojo](./hooks/DefectDojo)
-3. [Elasticsearch](./hooks/Elasticsearch)
-4. [Generic Webhook](./hooks/Generic%20WebHook)
-5. [MS Teams WebHook](./hooks/MS%20Teams%20WebHook)
-6. [Slack WebHook](./hooks/Slack%20WebHook)
-7. [Static Report](./hooks/Static%20Report)
-8. [Update Field](./hooks/Update%20Field)
+1. [Cascading Scans](/docs/hooks/cascading-scans)
+2. [DefectDojo](/docs/hooks/defectdojo)
+3. [Elasticsearch](/docs/hooks/elasticsearch)
+4. [Generic Webhook](/docs/hooks/generic-webhook)
+5. [MS Teams WebHook](/docs/hooks/ms-teams-webhook)
+6. [Slack WebHook](/docs/hooks/slack-webhook)
+7. [Static Report](/docs/hooks/static-report)
+8. [Update Field](/docs/hooks/update-field)
