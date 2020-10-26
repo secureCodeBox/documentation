@@ -35,6 +35,7 @@ const docsConfig = {
           type: "category",
           label: "Custom Resource Definitions",
           items: [
+            "api/crds",
             "api/crds/scan",
             "api/crds/scheduled-scan",
             "api/crds/scan-type",
