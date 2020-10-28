@@ -268,7 +268,7 @@ Optional additional Containers started with each scanJob (see: [Init Containers 
 
 Optional securityContext set on scanner container (see: [Configure a Security Context for a Pod or Container | Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)).
 
-## templates
+## templates (Directory)
 
 The `templates` direcory contains multiple files and dirs per default.
 Those are not needed and should be deleted.
@@ -289,13 +289,106 @@ Please take a look at [ParseDefinitino | secureCodeBox](/docs/api/crds/parse-def
 
 The `CascadingRules` define under which conditions your scanner will be run after other scanners.
 Please take a look at [CascadingRule | secureCodeBox](/docs/api/crds/cascading-rule) on how to configure your `CascadingRules`.
+The CascadingRules are not directly in the /templates directory as their curly bracket syntax clashes with helms templates.
+We import them as raw files to avoid these clashes as escaping them is even more messy.
+Your `cascading-rules.yaml` should look like the following:
 
-> ✍ **Following...**
+```yaml
+{{ range $path, $_ :=  .Files.Glob  "cascading-rules/*" }}
+# Include File
+{{ $.Files.Get $path }}
+# Separate multiple files
+---
+{{ end }}
+```
 
-## Parsing SDK
+## cascading-rules (Directory)
 
-1. Install the dependencies `npm install`
-2. Update the parser function here: `./parser/parser.js`
-3. Update the parser tests here: `./parser/parser.test.js`
-4. Run the test suite: `npm test`
+The `cascading-rules` directory contains all your `CascadingRules` (see: [CascadingRule | secureCodeBox](/docs/api/crds/cascading-rule)).
+
+## scanner (Directory)
+
+If it is not possible to use the official Docker Image of your scanner (e.g. there is no official repository) you will need to create a `scanner` directory containing a Dockerfile and maybe a `wrapper.sh`.
+
+### Dockerfile
+
+The Dockerfile should be minimal and based on the official *alpine* baseimage. 
+Please make sure to add a new user for your scanner.
+Please change the user using `GID`. This enables our CI/CD to ensure that Docker Images do not use root.
+A Dockerimage for nmap would look the following:
+
+```dockerfile
+FROM alpine:3.12
+RUN apk add --no-cache nmap=7.80-r2 nmap-scripts=7.80-r2
+RUN addgroup --system --gid 1001 nmap && adduser nmap --system --uid 1001 --ingroup nmap
+USER 1001
+CMD [nmap]
+```
+
+### wrapper.sh
+
+Sometimes it will be necessary to wrap the scanner e.g. the scanner returns bad exit codes.
+Please provide this script as `wrapper.sh` and use it as `CMD` value in your Dockerfile.
+
+## parser (Directory)
+
+This directory contains the parser for your scanner to transform the results of your scanner to *Findings* (see: [Finding | secureCodeBox](/docs/api/finding)).
+
+### Dockerfile
+
+For the parser we use multi-stage builds (see: [Multi-Stage Builds](https://www.docker.com/blog/multi-stage-builds/))
+For our JavaScript Parser SDK the Dockerfile should look like this:
+
+```dockerfile
+ARG baseImageTag
+FROM node:12-alpine as build
+RUN mkdir -p /home/app
+WORKDIR /home/app
+COPY package.json package-lock.json ./
+RUN npm ci --production
+
+FROM securecodebox/parser-sdk-nodejs:${baseImageTag:-latest}
+WORKDIR /home/app/parser-wrapper/parser/
+COPY --from=build --chown=app:app /home/app/node_modules/ ./node_modules/
+COPY --chown=app:app ./parser.js ./parser.js
+```
+
+### Parsing SDK
+
+To create a parser for your scanner you will have to execute the following steps in the parser directory:
+
+#### Create a new package.json (using `npm init`)
+
+Your `package.json` should look something like this:
+
+```json
+{
+  "name": "nmap-parser",
+  "version": "1.0.0",
+  "description": "Parses result files for the type: 'nmap-xml'",
+  "main": "",
+  "scripts": {},
+  "keywords": [],
+  "author": "iteratec GmbH",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {}
+}
+```
+
+#### Install The Dependencies
+
+If you need additional dependencies you can install them via `npm install`
+
+#### Write Your Parser
+
+Create a `parser.js` file and update the parser function of the Parser SDK.
+
+#### Write Tests for Your Parser
+
+Please provide some tests for your parser in the `parser.test.js` file.
+If you need additional files for your test please save these in the `__testFiles__` directory.
 
