@@ -1,0 +1,45 @@
+@startuml 2020-11-04-architecture-v2
+!include ../_theme.ipuml
+!include ../_copyright.ipuml
+
+skinparam shadowing false
+skinparam componentStyle uml2
+
+node "Kubernetes" {
+  [secureCodeBox Engine] as engine <<Operator>>
+
+  [Elastic] as elastic <<Container>>
+  engine <.right.> elastic : read/write
+
+  [Kibana] as kibana <<Container>>
+  kibana .left.> elastic : read
+
+  package "Scanners" {
+    [ZAP] as zap <<Container>>
+    engine .up.> zap : start
+
+    [Nmap] as nmap <<Container>>
+    engine .up.> nmap : start
+
+    [SSLyze] as sslyze <<Container>>
+    engine .up.> sslyze : start
+
+    [Nikto] as nikto <<Container>>
+    engine .up.> nikto : start
+
+    [AMASS] as amass <<Container>>
+    engine .up.> amass : start
+  }
+}
+
+[Subject Under Test] as sut #White
+zap .up.> sut : scan
+nmap .up.> sut : scan
+sslyze .up.> sut : scan
+nikto .up.> sut : scan
+amass .up.> sut : scan
+
+actor User as user #White
+user .up.> engine : kubectl
+
+@enduml
