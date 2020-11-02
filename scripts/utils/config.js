@@ -57,6 +57,7 @@ const docsConfig = {
             "contributing/integrating-a-scanner/cascading-rules-dir",
             "contributing/integrating-a-scanner/scanner-dir",
             "contributing/integrating-a-scanner/parser-dir",
+            "contributing/integrating-a-scanner/examples-dir",
             "contributing/integrating-a-scanner/readme",
           ]
         },
