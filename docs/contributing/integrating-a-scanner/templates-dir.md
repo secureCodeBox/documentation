@@ -2,7 +2,7 @@
 title: templates (Directory)
 ---
 
-The `templates` direcory contains multiple files and dirs per default.
+The `templates` direcory contains multiple files and dirs per default (using `helm create`).
 Those are not needed and should be deleted.
 For the *secureCodeBox* we will need files for the `ScanType`, `ParseDefinition` and `CascadingRule`.
 Please replace *new-scanner* with the name of your scanner for the following files.
