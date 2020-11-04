@@ -21,7 +21,8 @@ CMD [nmap]
 
 ## wrapper.sh
 
-Sometimes it will be necessary to wrap the scanner e.g. the scanner returns bad exit codes.
+Sometimes it will be necessary to wrap the scanner e.g. the scanner returns bad exit codes when they identify findings.
+This would cause the Kubernetes jobs to fail even thought the scanner has actually run successfully, after all it's "their job" to identify findings.
 Please provide this script as `wrapper.sh` and use it as `CMD` value in your Dockerfile.
 
 
