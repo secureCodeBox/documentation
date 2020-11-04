@@ -35,6 +35,7 @@ const docsConfig = {
           type: "category",
           label: "Custom Resource Definitions",
           items: [
+            "api/crds",
             "api/crds/scan",
             "api/crds/scheduled-scan",
             "api/crds/scan-type",
@@ -46,7 +47,21 @@ const docsConfig = {
         "api/finding",
       ],
       Contributing: [
-        "contributing/integrating-a-scanner",
+        {
+          type: "category",
+          label: "Integrating a Scanner",
+          items: [
+            "contributing/integrating-a-scanner",
+            "contributing/integrating-a-scanner/chart.yaml",
+            "contributing/integrating-a-scanner/values.yaml",
+            "contributing/integrating-a-scanner/cascading-rules-dir",
+            "contributing/integrating-a-scanner/scanner-dir",
+            "contributing/integrating-a-scanner/parser-dir",
+            "contributing/integrating-a-scanner/templates-dir",
+            "contributing/integrating-a-scanner/examples-dir",
+            "contributing/integrating-a-scanner/readme",
+          ]
+        },
         "contributing/integrating-a-hook",
         "contributing/operator",
         "contributing/conventions",

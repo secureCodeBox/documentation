@@ -1,20 +1,49 @@
 ---
-title: "Integrating a new Scanner"
+title: "Overview"
 ---
 
-> 🔧 Documentation Coming Soon
+In the *secureCodeBox* we created new *Custom Resource Definitions* (CRD) for Kubernetes to manage scanners (*ScanType*) and hooks (see [Custom Resource Definitions](/docs/api/crds)).
+To add a new Scanner you need to add a new *ScanType* (see [ScanType](/docs/api/crds/scan-type)) and a parser for its results.
 
-# Extending secureCodeBox
+The directory structe of a scanner Helm Chart will look something like this:
 
-## How to add a New Security Scanner
+```bash
+scanners/nmap
+├── cascading-rules
+│   └── ...
+├── Chart.yaml
+├── examples
+│   ├── demo-app-ssh
+│   │   ├── findings.yaml
+│   │   ├── nmap-results.xml
+│   │   └── scan.yaml
+│   └── ...
+├── parser
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── parser.js
+│   ├── parser.test.js
+│   └── __testFiles__
+│       └── ...
+├── README.md
+├── README.md.gotmpl
+├── scanner
+│   ├── wrapper.sh
+│   └── Dockerfile
+├── templates
+│   ├── cascading-rules.yaml
+│   ├── nmap-parse-definition.yaml
+│   └── nmap-scan-type.yaml
+└── values.yaml
+```
 
-### ScanType Definition
+To create a new Helm Chart for your scanner you can use the following command (replace *new-scanner* with the name of the scanner):
 
-> ✍ **Following...**
+```bash
+helm create new-scanner
+```
 
-### Parsing SDK
+This command will create a new directory named *new-scanner* and some template files provided by `helm` to simplify the creation of Helm Charts (see [Helm | Getting Started](https://helm.sh/docs/chart_template_guide/getting_started/)).
 
-1. Install the dependencies `npm install`
-2. Update the parser function here: `./parser/parser.js`
-3. Update the parser tests here: `./parser/parser.test.js`
-4. Run the test suite: `npm test`
+The following pages describe the purpose of all files and how to configure them.
