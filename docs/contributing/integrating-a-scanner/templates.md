@@ -14,7 +14,7 @@ Please take a look at [ScanType | secureCodeBox](/docs/api/crds/scan-type) on ho
 
 ### new-scanner-parse-definition.yaml
 
-this file contains the ParseDefinition of your scanner.
+This file contains the ParseDefinition of your scanner.
 Please take a look at [ParseDefinitino | secureCodeBox](/docs/api/crds/parse-definition) on how to configure your `ParseDefinition`.
 
 ### cascading-rules.yaml

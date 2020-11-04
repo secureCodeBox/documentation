@@ -48,9 +48,9 @@ scannerJob:
 
 ## image
 
-The `image` field contains the Docker Image and Tag used for the scanner.
-This could be the official Image of the scanner but in some cases a custom Image is needed.
-Usually the `tag` of the Image is `null` and will default to the charts `appVersion`.
+The `image` field contains the container image and tag used for the scanner.
+This could be the official image of the scanner but in some cases a custom image is needed.
+Usually the `tag` of the image is `null` and will default to the charts `appVersion`.
 For WPScan the official image can be used so the `image` field looks like this:
 
 ```yaml
@@ -61,8 +61,8 @@ image:
 
 ## parserImage
 
-The `parserImage` field specifies the Docker Image with the parser for the scanner.
-This will always be a custom Image containing the Parser SDK and the parser (see Parser SDK).
+The `parserImage` field specifies the container image with the parser for the scanner.
+This will always be a custom image containing the Parser SDK and the parser (see Parser SDK).
 Like in `image` the `tag` will default to the charts `appVersion` and should be `null` in `values.yaml`.
 For WPScan `parserImage` looks like this:
 
