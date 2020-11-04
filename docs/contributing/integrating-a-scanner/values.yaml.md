@@ -3,54 +3,48 @@ title: values.yaml
 ---
 
 The `values.yaml` is also created by `helm create new-scanner`.
-It should look something like this:
+Most of these generated fields are not necessary for the *secureCodeBox*.
+In the following we will describe the important fields.
+The final `values.yaml` will look something like this:
 
 ```yaml
+image:
+  repository: docker.io/securecodebox/scanner-nmap
+  tag: null
 
-service:
-  type: ClusterIP
-  port: 80
+parserImage:
+  repository: docker.io/securecodebox/parser-nmap
+  tag: null
 
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths: []
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+scannerJob:
+  ttlSecondsAfterFinished: null
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  resources: {}
+     resources:
+       requests:
+         memory: "256Mi"
+         cpu: "250m"
+       limits:
+         memory: "512Mi"
+         cpu: "500m"
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  env: []
 
-nodeSelector: {}
+  extraVolumes: []
 
-tolerations: []
+  extraVolumeMounts: []
 
-affinity: {}
+  extraContainers: []
+
+  securityContext:
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    privileged: false
+    capabilities:
+      drop:
+        - all
 ```
-
-Most of these generated fields are not necessary for the *secureCodeBox*. In the following we will describe the important fields.
 
 ## image
 
