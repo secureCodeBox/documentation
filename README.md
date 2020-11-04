@@ -20,12 +20,12 @@ We do not use the terms "guide" nor "tutorial" at the moment.
 
 ## Build and Run
 
-In order to build and run this website you need to install [Node.js and NPM] for your platform.
-Finally you download/clone this repository and install all required Node modules:
+In order to build and run this website you need to install [Node.js and NPM] for your platform. We recommend to use [nvm] to manage your Node.js versions. Finally you download/clone this repository and install all required Node modules:
 
 ```bash
 git clone https://github.com/secureCodeBox/documentation.git
 cd documentation
+nvm use
 npm install
 ```
 
@@ -261,8 +261,9 @@ defaultIcon: string, // Default Icon when no imageUrl provided or could not reso
 All changes pushed to the `master` branch get automatically build by [Netlify]. This also means that the `npm run build` command is executed, thus executing our custom build scripts through a pre-hook.
 
 [securecodebox.io]: https://securecodebox.github.io
-[securecodebox]: https://github.com/secureCodeBox/secureCodeBox
-[docusaurus]: https://v2.docusaurus.io/
-[netlify]: https://www.netlify.com/
-[node.js and npm]: https://nodejs.org/en/download/
-[frontmatter]: https://v2.docusaurus.io/docs/markdown-features/#markdown-headers
+[securecodebox]:    https://github.com/secureCodeBox/secureCodeBox
+[docusaurus]:       https://v2.docusaurus.io/
+[netlify]:          https://www.netlify.com/
+[node.js and npm]:  https://nodejs.org/en/download/
+[nvm]:              https://github.com/nvm-sh/nvm
+[frontmatter]:      https://v2.docusaurus.io/docs/markdown-features/#markdown-headers
