@@ -1,5 +1,5 @@
 ---
-title: "secureCodeBox Installation"
+title: "Installation"
 sidebar_label: Installation
 path: "docs/getting-started/installation"
 ---
