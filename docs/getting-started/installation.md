@@ -4,7 +4,7 @@ sidebar_label: Installation
 path: "docs/getting-started/installation"
 ---
 
-The secureCodeBox is running on Kubernetes. To install it you need to use [Helm](https://helm.sh), a package manager for Kubernetes.
+The secureCodeBox is running on [Kubernetes](https://kubernetes.io/). To install it you need [Helm](https://helm.sh), a package manager for Kubernetes. For your first steps Kubernetes from [Docker Desktop](https://www.docker.com/products/docker-desktop), [Minikube](https://minikube.sigs.k8s.io/docs/) or [KIND](https://kind.sigs.k8s.io/) is sufficient. We also provide a [Vargant](https://www.vagrantup.com/) based all-in-one installation (see [below](#vagrant-all-in-one-installation)).
 
 First of all you need to install the secureCodeBox Operator which is responsible for starting all security scans.
 
@@ -125,6 +125,24 @@ helm upgrade --install juice-shop secureCodeBox/juice-shop
 helm upgrade --install old-wordpress secureCodeBox/old-wordpress
 helm upgrade --install swagger-petstore secureCodeBox/swagger-petstore
 ```
+
+## Vagrant All-in-one Installation
+
+We provide a [Vagrant](https://www.vagrantup.com/) setupt with everything installed (Kubernetes cluster, operator, scanners, hooks, demo applications, etc.). You only need [Vagrant installed](https://www.vagrantup.com/docs/installation) and our main repository to play around with secureCodeBox:
+
+```bash
+git clone https://github.com/secureCodeBox/secureCodeBox.git
+cd secureCodeBox
+vagrant up
+```
+
+After this setup has finished just ssh into the vagrant box:
+
+```bash
+vagrant ssh
+```
+
+Now you can [start with your first scan](/docs/getting-started/first-scans).
 
 ## Common Operator Issues
 
