@@ -117,14 +117,16 @@ Otherwise you could be targeted by someone else really fast 😈
 :::
 
 ```bash
-# The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by
-# adding `--namespace YOURNAMESPACE` to each line
 helm upgrade --install dummy-ssh secureCodeBox/dummy-ssh
 helm upgrade --install bodgeit secureCodeBox/bodgeit
 helm upgrade --install juice-shop secureCodeBox/juice-shop
 helm upgrade --install old-wordpress secureCodeBox/old-wordpress
 helm upgrade --install swagger-petstore secureCodeBox/swagger-petstore
 ```
+
+:::note
+These charts will be installed in the `default` namespace, but you can choose the namespace of your choice by adding `--namespace YOURNAMESPACE` to each helm command.
+:::
 
 ## Vagrant All-in-one Installation
 
