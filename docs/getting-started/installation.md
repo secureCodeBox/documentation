@@ -29,7 +29,7 @@ The secureCodeBox supports the 4 latest Kubernetes releases (`v1.19`, `v1.18`, `
 
 To install the secureCodeBox we recommend using Helm at version 3.
 
-## Accessing the included Minio Instance:
+## Accessing the included Minio Instance
 
 The default secureCodeBox Operator included a [Minio](https://min.io/) instance, which acts as a local S3 filestorage api used by the secureCodeBox to store the results files of its scans. You can switch it out with a S3 compatible api provided by most cloud providers.
 
