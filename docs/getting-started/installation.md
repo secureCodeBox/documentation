@@ -1,10 +1,10 @@
 ---
-title: "secureCodeBox Installation"
+title: "Installation"
 sidebar_label: Installation
 path: "docs/getting-started/installation"
 ---
 
-The secureCodeBox is running on Kubernetes. To install it you need to use [Helm](https://helm.sh), a package manager for Kubernetes.
+The secureCodeBox is running on [Kubernetes](https://kubernetes.io/). To install it you need [Helm](https://helm.sh), a package manager for Kubernetes. For your first steps Kubernetes from [Docker Desktop](https://www.docker.com/products/docker-desktop), [Minikube](https://minikube.sigs.k8s.io/docs/) or [KIND](https://kind.sigs.k8s.io/) is sufficient. We also provide a [Vargant](https://www.vagrantup.com/) based all-in-one installation (see [below](#vagrant-all-in-one-installation)).
 
 First of all you need to install the secureCodeBox Operator which is responsible for starting all security scans.
 
@@ -29,7 +29,7 @@ The secureCodeBox supports the 4 latest Kubernetes releases (`v1.19`, `v1.18`, `
 
 To install the secureCodeBox we recommend using Helm at version 3.
 
-## Accessing the included Minio Instance:
+## Accessing the included Minio Instance
 
 The default secureCodeBox Operator included a [Minio](https://min.io/) instance, which acts as a local S3 filestorage api used by the secureCodeBox to store the results files of its scans. You can switch it out with a S3 compatible api provided by most cloud providers.
 
@@ -117,14 +117,34 @@ Otherwise you could be targeted by someone else really fast 😈
 :::
 
 ```bash
-# The following chart will be installed in the `default` namespace by you can choose the namespace of your choice by
-# adding `--namespace YOURNAMESPACE` to each line
 helm upgrade --install dummy-ssh secureCodeBox/dummy-ssh
 helm upgrade --install bodgeit secureCodeBox/bodgeit
 helm upgrade --install juice-shop secureCodeBox/juice-shop
 helm upgrade --install old-wordpress secureCodeBox/old-wordpress
 helm upgrade --install swagger-petstore secureCodeBox/swagger-petstore
 ```
+
+:::note
+These charts will be installed in the `default` namespace, but you can choose the namespace of your choice by adding `--namespace YOURNAMESPACE` to each helm command.
+:::
+
+## Vagrant All-in-one Installation
+
+We provide a [Vagrant](https://www.vagrantup.com/) setupt with everything installed (Kubernetes cluster, operator, scanners, hooks, demo applications, etc.). You only need [Vagrant installed](https://www.vagrantup.com/docs/installation) and our main repository to play around with secureCodeBox:
+
+```bash
+git clone https://github.com/secureCodeBox/secureCodeBox.git
+cd secureCodeBox
+vagrant up
+```
+
+After this setup has finished just ssh into the vagrant box:
+
+```bash
+vagrant ssh
+```
+
+Now you can [start with your first scan](/docs/getting-started/first-scans).
 
 ## Common Operator Issues
 
