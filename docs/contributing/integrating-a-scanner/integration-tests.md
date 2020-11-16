@@ -50,7 +50,7 @@ The last parameter is a test timeout in seconds. This timeout should be lower th
 to provide us with better information in case that the test fails.
 
 Upon finishing successfully, the scan will give us back categories, severities and a number of findings (count). 
-We can then use them to create out test assertions. If you use snapshots, you don't need to copy your findings manually,
+We can then use them to create our test assertions. If you use snapshots, you don't need to copy your findings manually,
 you can rather automatically update them via `npx jest --update-snapshot` (see below).
 
 The last parameter would be the test timeout for jest in milliseconds, make sure it is high enough and 
