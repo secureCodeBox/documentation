@@ -10,7 +10,7 @@ for your scanner to check if everything is running smoothly together.
 In most cases, the simplest and most effective way
 to test your scanner is by running it against a demo-app. You can also re-use one of the examples you provided. 
 
-Let's have a look at the ssh-scan test to understand all the steps required:
+Let's have a look at the [ssh-scan](https://github.com/secureCodeBox/secureCodeBox/blob/main/tests/integration/scanner/ssh-scan.test.js) test to understand all the steps required:
 
 ```javascript
 test(
