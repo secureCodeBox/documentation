@@ -96,7 +96,7 @@ Or you can start an interactive mode via
 
 ## Integrate in ci.yaml
 
-If your tests are successful, you can eventually integrate them in the ci workflow. Here you have to go through the
+If your tests are successful, you can eventually integrate them in the [ci workflow](https://github.com/secureCodeBox/secureCodeBox/blob/main/.github/workflows/ci.yaml#L414). Here you have to go through the
 same steps as above to install all the resources in the cluster. Please make sure to stick to the conventions 
 already used in the yaml file and please do not install any resources for your tests that have already been installed
 or are not used in the tests.   
