@@ -79,10 +79,23 @@ Very early we stumbled upon [Camunda](https://www.camunda.com) which is a [BPMN]
 
 ### Problems with This Design
 
-- Lot of repos to release.
-- Scanner run all the time.
-- Boilerplateing of scanner glue code.
-- Heavy engine w/ SpringBoot and Camunda
+We used *secureCodeBox* v1 heavily in the last couple of years and encountered that some of our decissions were not the best ones.
+
+#### Lot of Repositories to Release
+
+Due to the fact that we decided to use a microservice architecture we wanted to enforce this by separating the components as much as possible to reduce risk of tight coupling. This resulted in a pattern where we use own repository for each component. This led to the vast number of roundabout a dozen repositories at [GitHub](https://github.com/secureCodeBox). All these repositories needed to be coordinated and aligned for a release which results in a lot of tedious work. Also we now had lot of different places to look for issues and documenting things.
+
+#### Scanners Run All the Time
+
+Abobe I mentioned that we decided to use polling for the coordination of scanners. Firstly it looks reasonable to choose this approach because such a resource handling is hard to implement. But as we used the *securecodeBox* more and more in our projects we realized that cloud is not always that cheap as one would expect: If your containers run all over the time cost may explode. In our case we used the *secureCodeBox* to scan all our company's infrastructure and hence we had hundreds of running scanner containers to spread the load. Due to the fact that they're running all the time and not only when they had work our operational costs rised to much. So in retrospective this architectural choice was not that good.
+
+#### Boilerplateing for Scanner Integration
+
+The integration of new scnaners were not that easy as we assumed. First problem was you have to write lot of boilerplate code to translate from the scan task coming from the eninges API – Remember, above I said that a scanner polls for these tasks by requesting an API endpoint of the engine. - into the approbriate forma tof the scanners CLI. Also you needed to write the translation back from the scanners CLI output to the format the engine can deal with. As if this was not enough you also have to write a BPMN process model which describes the scan and makes it possiblke to integrate it into the BPMN based engine. Turns out: That's to much tedious work. Nobody in the community contributed own scanners. In fact only one of our core commiters did this extra mile and contributed new scanners (thnaks Robert).
+
+#### Heavy Engine with SpringBoot and Camunda
+
+As mentioned above we decided to use the Camunda BPMN engine as core for our engine. We used the ready packaged dependency with Spring Boot because we wanted to provie a REST API for the engine and also add some nice web UI. All of this turned out as a big legacy. First it was a very large code base. If you ever seen a Java based web appliction you know what I mean. Of course reduces Spring Boot a lot of the typical Java boiler plate, but this is also part of the problem: it hides a lot of stuff behind some magic. If you're not familar with Spring Boot you have no clue how all this works. This made it very hard for contributors to fix or extend the engine. And as site note: We discovered that nobody really used the fency web UI. Merely it was only used for convincing business people in meetings.
 
 ## Architecture of the Version 2
 
