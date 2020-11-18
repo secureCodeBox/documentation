@@ -60,6 +60,7 @@ const docsConfig = {
             "contributing/integrating-a-scanner/templates-dir",
             "contributing/integrating-a-scanner/examples-dir",
             "contributing/integrating-a-scanner/readme",
+            "contributing/integrating-a-scanner/integration-tests",
           ]
         },
         "contributing/integrating-a-hook",
