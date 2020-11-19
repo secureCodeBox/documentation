@@ -35,6 +35,11 @@ Should only be used if your hook needs specific RBAC Access. Otherwise the hook 
 
 The service account should have at least `get` rights on `scans.execution.securecodebox.io`, and `get` & `patch` on `scans.execution.securecodebox.io/status` so that the hooks can work correctly.
 
+### TTLSecondsAfterFinished (Optional)
+
+`ttlSecondsAfterFinished` can be used to automatically delete the completed Kubernetes job used to run the hook.
+This sets the `ttlSecondsAfterFinished` field on the created job. This requires your cluster to have the [TTLAfterFinished](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/) feature gate enabled in your cluster.
+
 ## Example
 
 ```yaml
@@ -61,4 +66,5 @@ spec:
       secretKeyRef:
         key: password
         name: elastic-persistence-credentials
+  ttlSecondsAfterFinished: 60
 ```
