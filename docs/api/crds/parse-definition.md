@@ -18,6 +18,7 @@ To see how to write parsers and package them into images, checkout the [document
 ### ImagePullSecrets (Optional)
 
 `imagePullSecrets` can be used to integrate private parser images.
+This uses the kubernetes default [imagePullSecrets structure](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
 
 ## Example
 
@@ -28,4 +29,6 @@ metadata:
   name: zap-json
 spec:
   image: docker.io/securecodebox/parser-zap
+  imagePullSecrets:
+  - name: dockerhub-token
 ```
