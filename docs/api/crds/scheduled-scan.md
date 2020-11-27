@@ -29,11 +29,11 @@ The `successfulJobsHistoryLimit` controls how many completed scans are supposed 
 
 Defaults to 3 if not set. When set to `0`, scans will be deleted directly after their completion.
 
-:::info 
-The `successfulJobsHistoryLimit` applies only to "successful" scans.
-Failed jobs currently need to be manually deleted.
-We plan to add a `failedJobsHistoryLimit` field in a future release.
-:::
+### FailedJobsHistoryLimit (Optional)
+
+The `failedJobsHistoryLimit` controls how many failed scans are supposed to be kept until the oldest one will be deleted. 
+
+Defaults to 1 if not set. When set to `0`, scans will be deleted directly after failure.
 
 ## Example
 
@@ -50,5 +50,6 @@ spec:
         # Use nmaps service detection feature
         - "-sV"
         - scanme.nmap.org
-  historyLimit: 3
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 5
 ```
