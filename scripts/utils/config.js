@@ -68,6 +68,8 @@ const docsConfig = {
           label: "Integrating a Hook",
           items: [
             "contributing/integrating-a-hook",
+            "contributing/integrating-a-hook/chart.yaml",
+            "contributing/integrating-a-hook/dockerfile",
           ]
         },
         "contributing/operator",
