@@ -71,6 +71,7 @@ const docsConfig = {
             "contributing/integrating-a-hook/chart.yaml",
             "contributing/integrating-a-hook/dockerfile",
             "contributing/integrating-a-hook/hook",
+            "contributing/integrating-a-hook/templates-dir",
           ]
         },
         "contributing/operator",
