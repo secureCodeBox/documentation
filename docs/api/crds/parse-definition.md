@@ -18,6 +18,12 @@ To see how to write parsers and package them into images, checkout the [document
 ### ImagePullSecrets (Optional)
 
 `imagePullSecrets` can be used to integrate private parser images.
+This uses the kubernetes default [imagePullSecrets structure](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
+
+### TTLSecondsAfterFinished (Optional)
+
+`ttlSecondsAfterFinished` can be used to automatically delete the completed Kubernetes job used to run the parser.
+This sets the `ttlSecondsAfterFinished` field on the created job. This requires your cluster to have the [TTLAfterFinished](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/) feature gate enabled in your cluster.
 
 ## Example
 
@@ -28,4 +34,7 @@ metadata:
   name: zap-json
 spec:
   image: docker.io/securecodebox/parser-zap
+  imagePullSecrets:
+  - name: dockerhub-token
+  ttlSecondsAfterFinished: 60
 ```
