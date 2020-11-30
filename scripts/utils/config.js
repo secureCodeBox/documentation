@@ -69,6 +69,7 @@ const docsConfig = {
           items: [
             "contributing/integrating-a-hook",
             "contributing/integrating-a-hook/chart.yaml",
+            "contributing/integrating-a-hook/values.yaml",
             "contributing/integrating-a-hook/dockerfile",
             "contributing/integrating-a-hook/hook",
             "contributing/integrating-a-hook/templates-dir",
