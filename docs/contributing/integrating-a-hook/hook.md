@@ -1,6 +1,8 @@
 ---
-title: hook.js
+title: hook.js and hook.test.js
 ---
+
+## hook.js
 
 This File will contain the actual code of your hook.
 For JavaScript, we provide a *hook-sdk*.
@@ -15,15 +17,15 @@ As parameters for `handle()` the *hook-sdk* provides the following:
 - [updateFindings()](#updatefindings)
 - [scan](#scan)
 
-## getRawResults()
+### getRawResults()
 
 This callback function will provide all raw results to the hook.
 
-## getFindings()
+### getFindings()
 
 This callback function will provide all findings to the hook as array of findings.
 
-## updateRawResults()
+### updateRawResults()
 
 This callback function will enable you to publish desired changes to raw results.
 
@@ -31,7 +33,7 @@ This callback function will enable you to publish desired changes to raw results
 If you make changes to some findings you will have to call `updateFindings()` with ***ALL*** findings not just with the ones that have changed or unchanged findings will get lost!
 :::
 
-## updateFindings()
+### updateFindings()
 
 This callback function will enable you to publish desired updates to the findings.
 
@@ -39,15 +41,22 @@ This callback function will enable you to publish desired updates to the finding
 If you make changes to some findings you will have to call `updateFindings()` with ***ALL*** findings not just with the ones that have changed or unchanged findings will get lost!
 :::
 
-## scan
+### scan
 
-## Example
+### Example
 
 This is a basic example for the *generic-webhook*
 As you can see this hook defines the `handle()` function but only uses `getFindings()` and `scan` provided by the *hook-sdk*.
 This is fine because the other parameters are not needed.
 
+:::info
+Maybe you notice that in line 5 ENVs are used.
+If you also need ENVs or Volumes see INSERT-LINK-HERE.
+:::
+
+:::info
 Notice that the `handle()` function has to be exported to use in the *hook-sdk*
+:::
 
 ```js
 const axios = require("axios");
@@ -65,3 +74,7 @@ async function handle({
 }
 module.exports.handle = handle;
 ```
+
+## hook.test.js
+
+This file should contain some unit test to run against your hook.
