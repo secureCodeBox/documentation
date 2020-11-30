@@ -74,6 +74,7 @@ const docsConfig = {
             "contributing/integrating-a-hook/hook",
             "contributing/integrating-a-hook/templates-dir",
             "contributing/integrating-a-hook/readme",
+            "contributing/integrating-a-hook/integration-tests",
           ]
         },
         "contributing/operator",
