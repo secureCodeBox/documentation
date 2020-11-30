@@ -1,17 +1,35 @@
 ---
-title: "Integrating a new Hook"
+title: "Overview"
 ---
 
-> 🔧 Documentation Coming Soon
+In the *secureCodeBox* we created new *Custom Resource Definitions* (CRD) for Kubernetes to manage scanners (*ScanType*) and hooks (see [Custom Resource Definitions](/docs/api/crds)).
+To add a new Hook you need to add a new *ScanCompletionHook* (see [ScanCompletionHook](/docs/api/crds/scan-completion-hook)) and a parser for its results.
 
-## How to Integrate a New Hook
+The directory structe of a hook Helm Chart will look something like this:
 
-> ✍ **Following...**
+```bash
+├── Chart.yaml
+├── Dockerfile
+├── hook.js
+├── hook.test.js
+├── package.json
+├── package-lock.json
+├── README.md
+├── README.md.gotmpl
+├── templates
+│   ├── finding-post-processing-hook.yaml
+│   ├── _helpers.tpl
+│   └── NOTES.txt
+└── values.yaml
+```
 
-### HookType Definition
+To create a new Helm Chart for your hook you can use the following command (replace *new-hook* with the name of the hook):
 
-> ✍ **Following...**
+```bash
+helm create new-hook
+```
 
-### Hook SDK
+This command will create a new directory named *new-hook* and some template files provided by `helm` to simplify the creation of Helm Charts (see [Helm | Getting Started](https://helm.sh/docs/chart_template_guide/getting_started/)).
 
-> ✍ **Following...**
+The following pages describe the purpose of all files and how to configure them.
+
