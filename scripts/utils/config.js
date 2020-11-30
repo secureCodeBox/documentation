@@ -63,7 +63,13 @@ const docsConfig = {
             "contributing/integrating-a-scanner/integration-tests",
           ]
         },
-        "contributing/integrating-a-hook",
+        {
+          type: "category",
+          label: "Integrating a Hook",
+          items: [
+            "contributing/integrating-a-hook",
+          ]
+        },
         "contributing/operator",
         "contributing/conventions",
       ],
