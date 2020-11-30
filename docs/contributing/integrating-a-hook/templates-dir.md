@@ -4,7 +4,7 @@ title: templates (Directory)
 
 ## new-hook.yaml
 
-This file contains the specification of your new hook. Please take a look at [ScanCompletionHook | secureCodeBox](/api/crds/scan-completion-hook) on how to configure your `ScanCompletionHook`
+This file contains the specification of your new hook. Please take a look at [ScanCompletionHook | secureCodeBox](/docs/api/crds/scan-completion-hook) on how to configure your `ScanCompletionHook`
 
 ## Example
 
