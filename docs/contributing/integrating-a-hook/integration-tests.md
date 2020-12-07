@@ -8,7 +8,7 @@ for your hook to check if everything is running smoothly together.
 ## Write your tests
 
 In most cases, the simplest and most effective way
-to test your hook is by running it against a demo-app. You can also re-use one of the examples you provided.
+to test your hook is by running it after test-scan or against a scan of a demo-app. You can also re-use one of the examples you provided.
 
 Let's have a look at the [read-write-hook](https://github.com/secureCodeBox/secureCodeBox/blob/main/tests/integration/generic/read-write-hook.test.js) test to understand all the steps required:
 
