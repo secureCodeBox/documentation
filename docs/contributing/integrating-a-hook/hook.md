@@ -11,11 +11,14 @@ This *hook-sdk* serves as helper for retrieving findings and as entrypoint for t
 The only function required to be created is the `handle()` function.
 This function is called by the *hook-sdk* after scans are finished.
 As parameters for `handle()` the *hook-sdk* provides the following:
-- [getRawResults()](#getrawresults)
-- [getFindings()](#getfindings)
-- [updateRawResults()](#updaterawresults)
-- [updateFindings()](#updatefindings)
-- [scan](#scan)
+- [hook.js](#hookjs)
+  - [getRawResults()](#getrawresults)
+  - [getFindings()](#getfindings)
+  - [updateRawResults()](#updaterawresults)
+  - [updateFindings()](#updatefindings)
+  - [scan](#scan)
+  - [Example](#example)
+- [hook.test.js](#hooktestjs)
 
 ### getRawResults()
 
