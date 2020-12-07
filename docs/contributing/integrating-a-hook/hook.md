@@ -44,6 +44,19 @@ module.exports.handle = handle;
 
 This callback function will provide all findings to the hook as an array of findings wrapped in a promise.
 
+Example:
+
+```js
+async function handle({
+  getFindings,
+}) {
+    const findings = await getFindings();
+    // logs the findings returned by the parser of the scantype
+    console.log(findings);
+}
+module.exports.handle = handle;
+```
+
 ### updateRawResults()
 
 This callback function will enable you to publish desired changes to raw results.
