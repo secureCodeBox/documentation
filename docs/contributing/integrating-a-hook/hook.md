@@ -4,7 +4,7 @@ title: hook.js and hook.test.js
 
 ## hook.js
 
-This File will contain the actual code of your hook.
+This file will contain the actual code of your hook.
 For JavaScript, we provide a *hook-sdk*.
 This *hook-sdk* serves as helper for retrieving findings and as entrypoint for the Dockerfile.
 
@@ -19,18 +19,24 @@ As parameters for `handle()` the *hook-sdk* provides the following:
 
 ### getRawResults()
 
-This callback function will provide all raw results to the hook.
+This callback function will provide all raw results to the hook as a promise.
 
 ### getFindings()
 
-This callback function will provide all findings to the hook as array of findings.
+This callback function will provide all findings to the hook as an array of findings wrapped in a promise.
 
 ### updateRawResults()
 
 This callback function will enable you to publish desired changes to raw results.
 
+:::note
+`updateRawResults` is only available in ReadAndWrite hooks.
+:::
+
 :::caution
-If you make changes to some findings you will have to call `updateFindings()` with ***ALL*** findings not just with the ones that have changed or unchanged findings will get lost!
+`updateRawResults` operates on the raw results of the scans, this means that the implementation has to be tied to the specific output format of a singular scanner. The updated raw results are also not parsed again by the parsers integrated into the secureCodeBox, making this method only viable if you are using a ReadOnly hook exporting the results into a external system like DefectDojo.
+
+If you want to perform actions on all findings consider using the `updateFindings` hook.
 :::
 
 ### updateFindings()
