@@ -4,7 +4,7 @@ title: hook.js and hook.test.js
 
 ## hook.js
 
-This File will contain the actual code of your hook.
+This file will contain the actual code of your hook.
 For JavaScript, we provide a *hook-sdk*.
 This *hook-sdk* serves as helper for retrieving findings and as entrypoint for the Dockerfile.
 
