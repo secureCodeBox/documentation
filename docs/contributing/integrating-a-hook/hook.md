@@ -23,7 +23,7 @@ This callback function will provide all raw results to the hook.
 
 ### getFindings()
 
-This callback function will provide all findings to the hook as array of findings.
+This callback function will provide all findings to the hook as an array of findings wrapped in a promise.
 
 ### updateRawResults()
 
