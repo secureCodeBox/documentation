@@ -71,6 +71,32 @@ This callback function will enable you to publish desired changes to raw results
 If you want to perform actions on all findings consider using the `updateFindings` hook.
 :::
 
+Example
+
+```js
+async function handle({
+  updateRawResults,
+}) {
+    // Overrides the raw results with a fixed nmap report
+    await updateRawResults(`
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/local/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.91 scan initiated Mon Dec  7 12:29:59 2020 as: nmap -oX - -p 443 fooobar.example.com -->
+<nmaprun scanner="nmap" args="nmap -oX - -p 443 fooobar.example.com" start="1607340599" startstr="Mon Dec  7 12:29:59 2020" version="7.91" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="1" services="443"/>
+<verbose level="0"/>
+<debugging level="0"/>
+Failed to resolve "fooobar.example.com".
+WARNING: No targets were specified, so 0 hosts scanned.
+<runstats><finished time="1607340599" timestr="Mon Dec  7 12:29:59 2020" summary="Nmap done at Mon Dec  7 12:29:59 2020; 0 IP addresses (0 hosts up) scanned in 0.03 seconds" elapsed="0.03" exit="success"/><hosts up="0" down="0" total="0"/>
+</runstats>
+</nmaprun>
+`);
+}
+module.exports.handle = handle;
+```
+
 ### updateFindings()
 
 This callback function will enable you to publish desired updates to the findings.
