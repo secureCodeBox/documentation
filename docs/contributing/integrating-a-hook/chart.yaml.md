@@ -19,6 +19,8 @@ kubeVersion: ">=v1.11.0-0"
 dependencies: []
 ```
 
+The full documentation for helms `Chart.yaml` file can be found [here in the helm docs](https://helm.sh/docs/topics/charts/#the-chartyaml-file).
+
 ## apiVersion
 
 The `apiVersion` sets the used Chart API version of Helm.
@@ -56,4 +58,3 @@ Please add `kubeVersion` with the value `">=v1.11.0-0"`
 ```yaml
 kubeVersion: ">=v1.11.0-0"
 ```
-
