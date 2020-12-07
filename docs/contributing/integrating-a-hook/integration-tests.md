@@ -43,8 +43,7 @@ test(
 );
 ```
 
-At first, we start our scan function, and we feed it with a scan name, the specific scan command and a list of parameters
-for the scan. Likely, you can copy them from an example. Note that you must refer to your targeted demo-app via 
+At first, we start our scan function, and we feed it with a scan name (`test-scan-read-write-hook`), the specific scan command (`test-scan`) and a list of parameters (`[]`) for the scan. Likely, you can copy them from an example. Note that you must refer to your targeted demo-app via 
 `name.demp-apps.svc` if it is installed in the "demo-apps" namespace. 
 **Please don't use any external websites (like google.com) in your integration tests!** 
 
