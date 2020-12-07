@@ -24,6 +24,22 @@ As parameters for `handle()` the *hook-sdk* provides the following:
 
 This callback function will provide all raw results to the hook as a promise.
 
+:::caution
+When the rawResults are in form of a json file, getRawResults will return the parsed representation of the data, not the json string.
+:::
+
+```js
+async function handle({
+  getRawResults,
+}) {
+    const result = await getRawResults();
+    // outputs string representation of the scan result file
+    // e.g. the nmap xml output
+    console.log(result);
+}
+module.exports.handle = handle;
+```
+
 ### getFindings()
 
 This callback function will provide all findings to the hook as an array of findings wrapped in a promise.
