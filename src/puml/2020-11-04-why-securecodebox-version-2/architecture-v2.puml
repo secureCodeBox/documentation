@@ -5,41 +5,43 @@
 skinparam shadowing false
 skinparam componentStyle uml2
 
+[Subject Under Test] as sut #White
+actor User as user #White
+[Elastic] as elastic #white
+[DefectDojo] as dojo #white
+
 node "Kubernetes" {
-  [secureCodeBox Engine] as engine <<Operator>>
+  [Engine] as engine <<Operator>>
+  user .right.> engine : kubectl/k8s API
+  [S3] <<Pod>>
 
-  [Elastic] as elastic <<Container>>
-  engine <.right.> elastic : read/write
-
-  [Kibana] as kibana <<Container>>
-  kibana .left.> elastic : read
-
-  package "Scanners" {
+  package "Job" as zap_scan {
     [ZAP] as zap <<Container>>
-    engine .up.> zap : start
-
-    [Nmap] as nmap <<Container>>
-    engine .up.> nmap : start
-
-    [SSLyze] as sslyze <<Container>>
-    engine .up.> sslyze : start
-
-    [Nikto] as nikto <<Container>>
-    engine .up.> nikto : start
-
-    [AMASS] as amass <<Container>>
-    engine .up.> amass : start
+    [Lurcher] as zap_lurcher <<Sidecar>>
+    zap -left-> zap_lurcher : output
+    zap_lurcher -down-> S3 : store raw
   }
+
+  zap .up.> sut : scan
+
+  engine .up.> zap : 1. scan
+
+  [Parser] as zap_parser <<Job>>
+  S3 <-right-> zap_parser : read raw/store parsed
+
+  engine .up.> zap_parser : 2. parse
+
+  [ReadWriteHook] as rw_hooks <<job>>
+  S3 <-down-> rw_hooks : modify finding
+  engine .down.> rw_hooks : 3. r/w hooks
+
+  [ReadHook] as r_hooks <<Job>>
+  S3 -down-> r_hooks : read finding
+  engine .down.> r_hooks : 4. r hooks
 }
 
-[Subject Under Test] as sut #White
-zap .up.> sut : scan
-nmap .up.> sut : scan
-sslyze .up.> sut : scan
-nikto .up.> sut : scan
-amass .up.> sut : scan
 
-actor User as user #White
-user .up.> engine : kubectl
+r_hooks -down-> elastic
+r_hooks -down-> dojo
 
 @enduml
