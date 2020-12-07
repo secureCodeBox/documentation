@@ -19,7 +19,7 @@ As parameters for `handle()` the *hook-sdk* provides the following:
 
 ### getRawResults()
 
-This callback function will provide all raw results to the hook.
+This callback function will provide all raw results to the hook as a promise.
 
 ### getFindings()
 
