@@ -105,6 +105,41 @@ This callback function will enable you to publish desired updates to the finding
 If you make changes to some findings you will have to call `updateFindings()` with ***ALL*** findings not just with the ones that have changed or unchanged findings will get lost!
 :::
 
+Example:
+
+```js
+async function handle({
+  updateFindings,
+}) {
+    // Overrides the findings with a fixed nmap finding
+    await updateFindings([
+        {
+            "id": "7475b620-0527-4679-b738-b2c69fad025f"
+            "name": "ssh",
+            "description": "Port 22 is open using tcp protocol.",
+            "category": "Open Port",
+            "location": "tcp://45.33.32.156:22",
+            "osi_layer": "NETWORK",
+            "severity": "INFORMATIONAL",
+            "attributes": {
+                "port": 22,
+                "state": "open",
+                "ip_address": "45.33.32.156",
+                "mac_address": null,
+                "protocol": "tcp",
+                "hostname": "scanme.nmap.org",
+                "method": "table",
+                "operating_system": null,
+                "service": "ssh",
+                "serviceProduct": null,
+                "serviceVersion": null,
+                "scripts": null
+            },
+        }
+    ]);
+}
+```
+
 ### scan
 
 ### Example
