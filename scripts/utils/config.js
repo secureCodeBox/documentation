@@ -63,7 +63,20 @@ const docsConfig = {
             "contributing/integrating-a-scanner/integration-tests",
           ]
         },
-        "contributing/integrating-a-hook",
+        {
+          type: "category",
+          label: "Integrating a Hook",
+          items: [
+            "contributing/integrating-a-hook",
+            "contributing/integrating-a-hook/chart.yaml",
+            "contributing/integrating-a-hook/values.yaml",
+            "contributing/integrating-a-hook/dockerfile",
+            "contributing/integrating-a-hook/hook",
+            "contributing/integrating-a-hook/templates-dir",
+            "contributing/integrating-a-hook/readme",
+            "contributing/integrating-a-hook/integration-tests",
+          ]
+        },
         "contributing/operator",
         "contributing/conventions",
       ],
