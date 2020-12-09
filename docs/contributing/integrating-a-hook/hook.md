@@ -101,6 +101,10 @@ module.exports.handle = handle;
 
 This callback function will enable you to publish desired updates to the findings.
 
+:::note
+`updateFindings` is only available in ReadAndWrite hooks.
+:::
+
 :::caution
 If you make changes to some findings you will have to call `updateFindings()` with ***ALL*** findings not just with the ones that have changed or unchanged findings will get lost!
 :::
