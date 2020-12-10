@@ -25,7 +25,7 @@ Your now ready to install your [first scan types and start your first scans](/do
 
 ## Version Support
 
-The secureCodeBox supports the 4 latest Kubernetes releases (`v1.19`, `v1.18`, `v1.17` & `v1.16`). Older version might also work but are not officially supported or tested.
+The secureCodeBox supports the 4 latest Kubernetes releases (`v1.20`, `v1.19`, `v1.18` & `v1.17`). Older version might also work but are not officially supported or tested.
 
 To install the secureCodeBox we recommend using Helm at version 3.
 
