@@ -50,13 +50,12 @@ Because scanners define different attributes for their findings we need to speci
 ### How The Hash Is calculated
 
 The hash is calculated using the *sha256* algorithm.
-For the calculation of the hash the following properties of all findings have to be included:
+For the calculation of the hash the following properties of all findings are included by default using the *scb-sdk*:
 - name
 - description
 - category
 - osi_layer
 - severity
-- attributes
 - location
 
 :::info
