@@ -9,10 +9,10 @@ tags:
   - v1
   - v2
 description: This post gives a brief outline about what's going on in the secureCodeBox project.
-image: /img/blog/2020-10-12-Fingerpost.jpg
+image: /img/blog/2020-10-12-fingerpost.jpg
 ---
 
-![Fingerpost](/img/blog/2020-10-12-Fingerpost.jpg)
+![Fingerpost](/img/blog/2020-10-12-fingerpost.jpg)
 
 Photo by [Javier Allegue Barros](https://unsplash.com/@soymeraki) on [Unsplash](https://unsplash.com/).
 
