@@ -10,7 +10,6 @@ tags:
   - kubernetes
 description: We no longer support Kubernetes v1.16 in secureCodeBox v2.
 image: /img/blog/2021-01-27-drop.jpg
-draft: true
 ---
 
 ![Fingerpost](/img/blog/2021-01-27-drop.jpg)
