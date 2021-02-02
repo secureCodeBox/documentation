@@ -90,7 +90,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.json'),
-          editUrl: 'https://github.com/securecodebox/docusaurus/edit/master/',
+          editUrl: 'https://github.com/securecodebox/docusaurus/edit/main/',
           lastVersion: 'current', 
           versions: {
             current: {
@@ -101,7 +101,7 @@ module.exports = {
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/securecodebox/docusaurus/edit/master/',
+          editUrl: 'https://github.com/securecodebox/docusaurus/edit/main/',
           feedOptions: {
             type: 'all',
             title: 'The secureCodeBox Developer Blog',
