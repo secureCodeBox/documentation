@@ -61,7 +61,7 @@ s3:
   bucket: "your-own-securecodebox-bucket-name"
   # Name to a k8s secret with 'accesskey' and 'secretkey' as attributes in the same namespace as this release
   # Example creation via kubectl:
-  # kubectl create secret generic my-secret --from-literal=accessKey="******" --from-literal=secretKey="******"
+  # kubectl create secret generic securecodebox-s3-credentials --from-literal=accessKey="******" --from-literal=secretKey="******"
   keySecret: securecodebox-s3-credentials
 ```
 
@@ -77,7 +77,7 @@ s3:
   endpoint: storage.googleapis.com
   # Name to a k8s secret with 'accesskey' and 'secretkey' as attributes in the same namespace as this release
   # Example creation via kubectl:
-  # kubectl create secret generic my-secret --from-literal=accessKey="******" --from-literal=secretKey="******"
+  # kubectl create secret generic gcs-bucket-credentials --from-literal=accessKey="******" --from-literal=secretKey="******"
   keySecret: gcs-bucket-credentials
 ```
 
