@@ -102,4 +102,51 @@ We decided to use the Camunda BPMN as core for our *engine*. We used the ready p
 
 ## Architecture of the Version 2
 
+In [Kubernetes 1.17 a new concept of custom resources was introduces](https://medium.com/velotio-perspectives/extending-kubernetes-apis-with-custom-resource-definitions-crds-139c99ed3477). The short idea is, that you may extend Kubernetes with your own resources additionally to the default ones shipped with Kubernetes. Why should you do this? The intresting part of Kubernetes is that it is a great tool for resource management. Solely it is the the most important part of Kubernetes. In *version 1* we "abused" a BPMN engine for this work. But since the most important parts of the *secureCodeBox* (the *scanners*) are containers anyway, it makes sence to use a tool which is desigend for handling such resources. So we came up with the idea to define the *scanners* as custom resources and replace the heavy *engine* from *version 1* with a custom [operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) for Kubernetes. This idea is based upon the master thesis our core maintainer [Jannik](https://github.com/J12934) has written about [Automatic Assessment of Applications Security Aspects running in Cloud Environments](https://files.hollenbach.dev/master-thesis-jannik-hollenbach.pdf). The following diagram shows the new architecture of *secureCodeBox version 2*.
+
 ![Architecture Overview of secureCodeBox version 2](/img/blog/2020-11-04-architecture-v2.png)
+
+### Basic Idea 
+
+- use k8s to schedule scans as custom resources in jobs
+
+### Design Goals
+
+What about the design goals from the *version 1* architecture? Let's go through each of them:
+
+>  It should be possible to easily integrate new scanners.
+
+- Container as in v1
+- but way simpler image because CLI args andparsing stuff is outside
+- args must be provided "from outside"
+- lurcher sidecar to collect data foranykind of scanner
+- simpler parser hooks as k8s jobs
+
+>  All components should be loosly coupled to easily swap them.
+
+- same decoupling as in version 1
+- if a scanner changes only the according parser must be changed
+- but total hard-coupling  to k8s
+
+> The whole deployment should run anywhere (local, VMs, Cloud, etc.) and scale.
+
+- does not hold anymore!
+- k8s cluster is necessary
+- but k8s is ubiquitious
+
+> The definition and implementation of a scan process should be easy.
+
+- own YAML resource syntax
+- way easier than generating a BPMN model in Camunda
+- it's just writing some YAML
+
+New Design goals:
+
+- scanner container does not run all the time idling
+- easy use of scanners in  cloud based projects 
+  - central operator
+  - scanners in namespaces
+- no need of central CI/CD
+  - can run out of the box
+- CLI first -> complete controlleable via kubectl
+- cascading scans
