@@ -45,8 +45,8 @@ docker container run \
 In the Minio management GUI you will need to add a new bucket for the operator. The default credentials for your minio instance are `minioadmin:minioadmin`. You might change those. Go to the management UI at <http://localhost:9000/> and add a new bucket. After creating your bucket you will need to specify some environment variables to enable the operator to use the bucket. For that export these variables:
 
 ```bash
-export S3_ACCESS_KEY="your-minio-access-key"
-export S3_SECRET_KEY="your-minio-secret-key"
+export MINIO_ACCESS_KEY="your-minio-access-key"
+export MINIO_SECRET_KEY="your-minio-secret-key"
 export S3_BUCKET="name-of-your-bucket"
 export S3_USE_SSL="false" # This ensures that the operator will connect even without HTTPS
 export S3_ENDPOINT="127.0.0.1:9000"
