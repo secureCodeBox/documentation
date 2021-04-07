@@ -5,6 +5,25 @@ title: "Scan"
 The Scan Custom Resource Definition (CRD) lets you define how a specific scan should be configured.
 The secureCodeBox Operator will then use this specification the execute the scan.
 
+## metadata
+
+Standard Kubernetes Object (See [Annotations | Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)) containing for example a `creationTimestamp`
+
+## status
+
+Defines the observed state of a Scan. This will be filled by Kubernetes.
+It contains (see: [Go Type ScanStatus](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/apis/execution/v1/scan_types.go#L49))
+
+* `State`: state of the scan
+* `FinishedAt`: time when scan, parsers and hooks for this scan are marked as 'Done'
+* `ErrorDescription`: Description of an Error (if there is one)
+* `RawResultType`: determines which kind of ParseDefinition will be used to turn the raw results of the scanner into findings
+* `RawResultFile`: Filename of the result file of the scanner. e.g. `nmap-result.xml`
+* `FindingDownloadLink`: link to download the finding json file from. Valid for 7 days
+* `RawResultDownloadLink`: RawResultDownloadLink link to download the raw result file from. Valid for 7 days
+* `Findings`: FindingStats (See [Go Type FindingStats](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/apis/execution/v1/scan_types.go#L89))
+* `ReadAndWriteHookStatus`: Status of the Read and Write Hooks
+
 ## Specification (Spec)
 
 ### ScanType (Required)
@@ -43,6 +62,7 @@ For an example on how they can be used see the [Scanning Networks HowTo](https:/
 ```yaml
 apiVersion: "execution.securecodebox.io/v1"
 kind: Scan
+status: null
 metadata:
   name: "nmap-scanme.nmap.org"
 spec:
