@@ -40,7 +40,7 @@ For an example on how they can be used see the [Scanning Networks HowTo](https:/
 
 ## Metadata
 
-Standard Kubernetes Object (See [Kubernetes Objects | Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) and [Understanding Kubernetes Objects](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#objectmeta-v1-meta)) containing for example a `creationTimestamp`
+Metadata is a standard field on Kubernetes resources. It contains multiple relevant fields, e.g. the name of the resource, its namespace and a `creationTimestamp` of the resource. See more on the [Kubernetes Docs]https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) and the [Kubernetes API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#objectmeta-v1-meta))
 
 ## Status
 
