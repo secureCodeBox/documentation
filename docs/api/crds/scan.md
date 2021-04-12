@@ -47,12 +47,12 @@ Metadata is a standard field on Kubernetes resources. It contains multiple relev
 Defines the observed state of a Scan. This will be filled by Kubernetes.
 It contains (see: [Go Type ScanStatus](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/apis/execution/v1/scan_types.go#L49))
 
-* `State`: state of the scan
-* `FinishedAt`: time when scan, parsers and hooks for this scan are marked as 'Done'
+* `State`: State of the scan (See: [secureCodeBox | ScanControler](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/controllers/execution/scans/scan_controller.go#L105))
+* `FinishedAt`: Time when scan, parsers and hooks for this scan are marked as 'Done'
 * `ErrorDescription`: Description of an Error (if there is one)
-* `RawResultType`: determines which kind of ParseDefinition will be used to turn the raw results of the scanner into findings
+* `RawResultType`: Determines which kind of ParseDefinition will be used to turn the raw results of the scanner into findings
 * `RawResultFile`: Filename of the result file of the scanner. e.g. `nmap-result.xml`
-* `FindingDownloadLink`: link to download the finding json file from. Valid for 7 days
+* `FindingDownloadLink`: Link to download the finding json file from. Valid for 7 days
 * `RawResultDownloadLink`: RawResultDownloadLink link to download the raw result file from. Valid for 7 days
 * `Findings`: FindingStats (See [Go Type FindingStats](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/apis/execution/v1/scan_types.go#L89))
 * `ReadAndWriteHookStatus`: Status of the Read and Write Hooks
