@@ -76,6 +76,21 @@ If not yet installed, install the targeted demo-app.
 
 Of course, you can also install other resources, if needed.
 
+:::tip You can also install and test all ressources at once
+
+  If you want to run all end-2-end tests at once you can
+
+  ```bash
+  # start in the secureCodeBox project directory
+  # install all ressources at once
+  ./bin/install.sh --all -n integration-tests
+  # run all tests (incl. end-2-end tests)
+  npm test -- --ci --colors --coverage
+  ```
+
+:::
+
+
 ### Install The Dependencies
 
 Go to tests directory: 
