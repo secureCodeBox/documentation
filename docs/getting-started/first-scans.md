@@ -216,4 +216,4 @@ To get started you can also take a look at our more detailed guides:
 
 ### Persistence Providers
 
-You can also integrate the secureCodeBox to automatically push the scan results into a external system like [Elasticsearch](/docs/hooks/Elasticsearch) or [DefectDojo (Coming soon)](/docs/hooks/DefectDojo) to better analyse your findings.
+You can also integrate the secureCodeBox to automatically push the scan results into an external system like [Elasticsearch](/docs/hooks/Elasticsearch) or [DefectDojo (Coming soon)](/docs/hooks/DefectDojo) to better analyse your findings.

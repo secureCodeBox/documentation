@@ -5,7 +5,7 @@ title: "Overview"
 In the *secureCodeBox* we created new *Custom Resource Definitions* (CRD) for Kubernetes to manage scanners (*ScanType*) and hooks (see [Custom Resource Definitions](/docs/api/crds)).
 To add a new Scanner you need to add a new *ScanType* (see [ScanType](/docs/api/crds/scan-type)) and a parser for its results.
 
-The directory structe of a scanner Helm Chart will look something like this:
+The directory structure of a scanner Helm Chart will look something like this:
 
 ```bash
 scanners/nmap

@@ -1,7 +1,7 @@
 ---
 title: "secureCodeBox Uninstallation"
 sidebar_label: Uninstallation
-path: "docs/getting-started/unstallation"
+path: "docs/getting-started/uninstallation"
 ---
 
 ## Uninstall Scanner / Hook
@@ -39,7 +39,7 @@ kubectl delete namespace securecodebox-system
 The operator creates ServiceAccounts, Roles and RoleBindings in *every namespace* where scans / hooks are executed. You will have to delete these manually for each namespace where scans were scheduled.
 The given examples are valid only for scanners that were executed in the default namespace.
 
-To list the ServiceAccounts, Roles and RoleBings that were created by the operator you can execute the follwing command:
+To list the ServiceAccounts, Roles and RoleBings that were created by the operator you can execute the flowing command:
 
 ```bash {1}
 kubectl get roles,rolebindings,serviceaccounts lurcher parser

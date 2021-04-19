@@ -4,7 +4,7 @@ title: examples (Directory)
 
 The `examples` directory should contain some basic examples using your scanner.
 For each example use-case you need to provide three files: `findings.yaml`, `scan.yaml` and the raw results of your scanner.
-Please make sure that these examples can be run localy if possible.
+Please make sure that these examples can be run locally if possible.
 
 ## scan.yaml
 

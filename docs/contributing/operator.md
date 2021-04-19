@@ -8,7 +8,7 @@ title: "Modifying the Operator"
 
 The operator is written in Golang. To build the operator you will need to install [Go](https://golang.org/).
 
-### Local Kubernetes Environnement
+### Local Kubernetes Environment
 
 For local development we recommend to use [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) or [kind](https://github.com/kubernetes-sigs/kind). If you are using MacOS or Windows you can also use the kubernetes cluster included within Docker for Mac/Windows. All of these tools will enable you to run a local kubernetes cluster on your development machine.
 
@@ -56,14 +56,14 @@ You can save time by using [direnv](https://direnv.net/) to export these variabl
 
 ### Build and Run the Operator
 
-To build an run the operator you can simply execute `make` in the `operator` directory of this repository:
+To build and run the operator you can simply execute `make` in the `operator` directory of this repository:
 
 ```bash
 cd operator
 make
 ```
 
-This will produce the operator as `bin/manager`. If you wonder why the operator is named _manager_ (the resulting binary). The reason for that is in Kubernetes a combination of more than one _controller_ is called _controller-manager_ or short _manager_. In contrast _operator_ is created by the community to name a _controller-manager_ which controls _custom resources_ and hence we use _custom resources_. (see <https://book.kubebuilder.io/> for further information)
+This will produce the operator as `bin/manager`. If you wonder why the operator is named _manager_ (the resulting binary). The reason for that is in Kubernetes a combination of more than one _controller_ is called _controller-manager_ or short _manager_. In contrast, _operator_ is created by the community to name a _controller-manager_ which controls _custom resources_ and hence we use _custom resources_. (see <https://book.kubebuilder.io/> for further information)
 
 To run the operator locally you can simply execute `make run` in the `operator` directory of this repository:
 

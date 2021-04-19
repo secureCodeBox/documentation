@@ -8,7 +8,7 @@ If it is not possible to use the official Docker Image of your scanner (e.g. the
 
 The Dockerfile should be minimal and based on the official *alpine* baseimage. 
 Please make sure to add a new user for your scanner.
-Please change the user using `UID`. This enables the Image to run in clusters which have a strict `runAsNonRoot` policy (See [Pod Security Policies | Kubernetes](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups).
+Please change the user using `UID`. This enables the Image to run in clusters which have a strict `runAsNonRoot` policy (See [Pod Security Policies | Kubernetes](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups)).
 A Dockerimage for nmap would look the following:
 
 ```dockerfile

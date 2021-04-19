@@ -3,7 +3,7 @@ title: "Scan"
 ---
 
 The Scan Custom Resource Definition (CRD) lets you define how a specific scan should be configured.
-The secureCodeBox Operator will then use this specification the execute the scan.
+The secureCodeBox Operator will then use this specification to execute the scan.
 
 ## Specification (Spec)
 
@@ -19,7 +19,7 @@ These usually contain scanner specific configurations and target specification.
 
 ### Env (Optional)
 
-`env` lets you pass in custom environnement variables to the scan container.
+`env` lets you pass in custom environment variables to the scan container.
 This can be useful to pass in secret values like login credentials scanner require without having to define them in plain text.
 
 Env has the same api as "env" property on Kubernetes Pods. 

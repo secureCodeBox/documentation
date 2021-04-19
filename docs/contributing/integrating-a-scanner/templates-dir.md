@@ -2,7 +2,7 @@
 title: templates (Directory)
 ---
 
-The `templates` direcory contains multiple files and dirs per default (using `helm create`).
+The `templates` directory contains multiple files and dirs per default (using `helm create`).
 Those are not needed and should be deleted.
 For the *secureCodeBox* we will need files for the `ScanType`, `ParseDefinition` and `CascadingRule`.
 Please replace *new-scanner* with the name of your scanner for the following files.
@@ -15,7 +15,7 @@ Please take a look at [ScanType | secureCodeBox](/docs/api/crds/scan-type) on ho
 ### new-scanner-parse-definition.yaml
 
 This file contains the ParseDefinition of your scanner.
-Please take a look at [ParseDefinitino | secureCodeBox](/docs/api/crds/parse-definition) on how to configure your `ParseDefinition`.
+Please take a look at [ParseDefinition | secureCodeBox](/docs/api/crds/parse-definition) on how to configure your `ParseDefinition`.
 
 ### cascading-rules.yaml
 
