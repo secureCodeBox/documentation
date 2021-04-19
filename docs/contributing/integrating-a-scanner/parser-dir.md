@@ -67,6 +67,4 @@ After your scanner has finished, the Parser SDK will retrieve the output results
 ### Write Tests for Your Parser
 
 Please provide some tests for your parser in the `parser.test.js` file.
-If you need additional files for your test please save these in the `__testFiles__` directory.
-
-
+If you need additional files for your test please save these in the `__testFiles__` directory. Please take a look at [Integration Tests | secureCodeBox](/docs/contributing/integrating-a-scanner/integration-tests) for more information.
