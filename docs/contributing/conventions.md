@@ -12,7 +12,7 @@ title: "Coding Conventions"
 
 #### JSON
 
-We're using snake_case (lower case) for json attributes. If an enum type is used as attribute its converted to lower case. If it's an value it's always used UPPERCASE. This is to hold the attribute api consistent, but make sure Enums are recognized as enums.
+We're using snake_case (lower case) for json attributes. If an enum type is used as attribute it's converted to lower case. If it's a value it's always used UPPERCASE. This is to hold the attribute api consistent, but make sure Enums are recognized as enums.
 
 ```json
 {

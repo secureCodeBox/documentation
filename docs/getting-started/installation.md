@@ -130,7 +130,7 @@ These charts will be installed in the `default` namespace, but you can choose th
 
 ## Vagrant All-in-one Installation
 
-We provide a [Vagrant](https://www.vagrantup.com/) setupt with everything installed (Kubernetes cluster, operator, scanners, hooks, demo applications, etc.). You only need [Vagrant installed](https://www.vagrantup.com/docs/installation) and our main repository to play around with secureCodeBox:
+We provide a [Vagrant](https://www.vagrantup.com/) setup with everything installed (Kubernetes cluster, operator, scanners, hooks, demo applications, etc.). You only need [Vagrant installed](https://www.vagrantup.com/docs/installation) and our main repository to play around with secureCodeBox:
 
 ```bash
 git clone https://github.com/secureCodeBox/secureCodeBox.git

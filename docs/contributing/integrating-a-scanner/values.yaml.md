@@ -74,7 +74,7 @@ parserImage:
 
 ## scannerJob
 
-`scannerJob` defines multiple properties for the Scan Job including resources, evironment variables, volumes and security context.
+`scannerJob` defines multiple properties for the Scan Job including resources, environment variables, volumes and security context.
 A basic `scannerJob` could look like the following.
 
 ```yaml
@@ -90,12 +90,12 @@ scannerJob:
 
 ### ttlSecondsAfterFinished
 
-Defines how long the scanner job after finishing will be available (see: [TTL Controller for Finished Resources | Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/)
+Defines how long the scanner job after finishing will be available (see: [TTL Controller for Finished Resources | Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/)).
 
 ### resources
 
-The `resources` field can limit or request resources for the scan job (see: [Managing Resources For Containers | Kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/))
-An basic example could be the following:
+The `resources` field can limit or request resources for the scan job (see: [Managing Resources For Containers | Kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)).
+A basic example could be the following:
 
 ```yaml
 resources:

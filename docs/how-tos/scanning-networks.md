@@ -182,7 +182,7 @@ nmap-ssh-howto                      nmap     Done    8
 ```
 
 Nice, our scan was triggered as expected!
-Your network liekly looks different. Depending on how many ssh hosts nmap was able to find you will see more ncrack scans started.
+Your network likely looks different. Depending on how many ssh hosts nmap was able to find you will see more ncrack scans started.
 
 Final hint: If you want to **create a cascading rule yourself**, you can create them like any resource in Kubernetes via:
 

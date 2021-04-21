@@ -66,7 +66,7 @@ This callback function will enable you to publish desired changes to raw results
 :::
 
 :::caution
-`updateRawResults` operates on the raw results of the scans, this means that the implementation has to be tied to the specific output format of a singular scanner. The updated raw results are also not parsed again by the parsers integrated into the secureCodeBox, making this method only viable if you are using a ReadOnly hook exporting the results into a external system like DefectDojo.
+`updateRawResults` operates on the raw results of the scans, this means that the implementation has to be tied to the specific output format of a singular scanner. The updated raw results are also not parsed again by the parsers integrated into the secureCodeBox, making this method only viable if you are using a ReadOnly hook exporting the results into an external system like DefectDojo.
 
 If you want to perform actions on all findings consider using the `updateFindings` hook.
 :::

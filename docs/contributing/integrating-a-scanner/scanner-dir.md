@@ -8,7 +8,7 @@ If it is not possible to use the official Docker Image of your scanner (e.g. the
 
 The Dockerfile should be minimal and based on the official *alpine* baseimage. 
 Please make sure to add a new user for your scanner.
-Please change the user using `UID`. This enables the Image to run in clusters which have a strict `runAsNonRoot` policy (See [Pod Security Policies | Kubernetes](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups).
+Please change the user using `UID`. This enables the Image to run in clusters which have a strict `runAsNonRoot` policy (See [Pod Security Policies | Kubernetes](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups)).
 A Dockerimage for nmap would look the following:
 
 ```dockerfile
@@ -25,4 +25,8 @@ Sometimes it will be necessary to wrap the scanner e.g. the scanner returns bad 
 This would cause the Kubernetes jobs to fail even thought the scanner has actually run successfully, after all it's "their job" to identify findings.
 Please provide this script as `wrapper.sh` and use it as `CMD` value in your Dockerfile.
 
+Furthermore, note that the scanner should output the findings to `/home/securecodebox/<your_scanner>.<filetype>`. This should be the same as in `ScanType` `Spec.ExtractResults.Location`. Please take a look at [ScanType | secureCodeBox](/docs/api/crds/scan-type) on how to configure your `ScanType`. Outputting results to a file is usually specified as a command line option to your scanner (e.g. `nmap -oX file.xml`), but in the case that the scanner does not provide such an options, you could write the wrapper as follows:
 
+```shell
+python scanner.py "$@" 1> /home/securecodebox/<your_scanner>.<filetype>
+```

@@ -6,7 +6,7 @@ In the *secureCodeBox* we created new *Custom Resource Definitions* (CRD) for Ku
 To add a new Hook you need to add a new *ScanCompletionHook* (see [ScanCompletionHook](/docs/api/crds/scan-completion-hook)).
 
 In the *secureCodeBox* we use Helm Charts for all our Resources to make the installation of new scanners/hooks as easy as possible and enable us to install only the scanners/hooks we actually need.
-The directory structe of a hook Helm Chart will look something like this:
+The directory structure of a hook Helm Chart will look something like this:
 
 ```bash
 ├── Chart.yaml
