@@ -27,5 +27,5 @@ helm install securecodebox-operator secureCodeBox/operator --set="telemetryEnabl
 
 The entire code for both the telemetry backend and frontend is open-source and linked below.
 
-- Telemetry Client used in secureCodeBox Operator: [telemetry client](https://github.com/secureCodeBox/secureCodeBox-v2/blob/master/operator/internal/telemetry/telemetry.go)
+- Telemetry Client used in secureCodeBox Operator: [telemetry client](https://github.com/secureCodeBox/secureCodeBox/blob/master/operator/internal/telemetry/telemetry.go)
 - Telemetry Backend: [telemetry backend](https://github.com/secureCodeBox/telemetry)
