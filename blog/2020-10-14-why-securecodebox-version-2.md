@@ -4,8 +4,8 @@ author:
 author_title:
 author_url:
 author_image_url:
-tags:
-description:
+tags: []
+description: TODO
 image:
 draft: true
 ---
