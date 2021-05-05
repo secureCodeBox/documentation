@@ -37,7 +37,7 @@ Your `cascading-rules.yaml` should look like the following:
 {{ end }}
 ```
 
-In addition, you should add the following to your `yalues.yaml` to allow that the inclusion of the default cascading rules of your scanner can be skipped:
+In addition, you should add the following to your `values.yaml` to allow that the inclusion of the default cascading rules of your scanner can be skipped:
 
 ```yaml
 cascadingRules:
