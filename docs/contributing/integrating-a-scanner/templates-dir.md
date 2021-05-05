@@ -26,11 +26,22 @@ We import them as raw files to avoid these clashes as escaping them is even more
 Your `cascading-rules.yaml` should look like the following:
 
 ```yaml
+# We only want to import the default cascading rules if they are enabled
+{{ if .Values.cascadingRules.enabled }}
 {{ range $path, $_ :=  .Files.Glob  "cascading-rules/*" }}
 # Include File
 {{ $.Files.Get $path }}
 # Separate multiple files
 ---
 {{ end }}
+{{ end }}
+```
+
+In addition, you should add the following to your `values.yaml` to allow that the inclusion of the default cascading rules of your scanner can be skipped:
+
+```yaml
+cascadingRules:
+  # cascadingRules.enabled -- Enables or disables the installation of the default cascading rules for this scanner
+  enabled: true
 ```
 
