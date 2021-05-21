@@ -18,6 +18,18 @@ These objects are compared using a partial deep comparison, meaning that all fie
 If multiple anyOf rules are specified at least one must match the finding. 
 If multiple rules are matching, the CascadingRule will still only create one scan.
 
+
+### ScanLabels & ScanAnnotations (Optional)
+
+Configures additional labels/annotations/ added to each subsequent scan (child). These labels/annotations overwrite any existing labels/annotations. You can use a simple templating scheme to gather details about the parent scan or finding (use `{{variable}}`, see example below). The following variables are available:
+
+- The parent [scan](docs/api/crds/scan) (e.g. `metadata.name`).
+- The related [finding](/docs/api/finding) (e.g. `category`, `attributes.hostname`).
+- Custom variables (prepended with `$.`):
+  - `hostOrIP`: `finding.hostname || finding.ip_address`
+
+If you need more custom variables, please don't hesitate to [create an issue](https://github.com/secureCodeBox/secureCodeBox/issues/new?assignees=&labels=enhancement&template=feature_request.md)!
+
 ### ScanSpec (Required)
 
 Contains the [spec of the scan](/docs/api/crds/scan#specification-spec) which is supposed to be started of the a finding matches the CascadingRule.
@@ -51,6 +63,13 @@ spec:
         attributes:
           service: https
           state: open
+  scanLabels:
+    mynewlabel: {{metadata.name}}
+  scanAnnotations:
+    defectdojo.securecodebox.io/product-name: "{{$.hostOrIP}}"
+    defectdojo.securecodebox.io/product-type-name: "{{metadata.labels.organization}}"
+    defectdojo.securecodebox.io/engagement-name: "{{metadata.name}}"
+    mynewannotation: "{{category}}"
   scanSpec:
     scanType: "zap-baseline"
     parameters: ["-t", "{{attributes.service}}://{{$.hostOrIP}}"]
