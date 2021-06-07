@@ -85,7 +85,7 @@ We used *secureCodeBox* v1 heavily in the last couple of years in various projec
 
 #### Lot of Repositories to Release
 
-Due to the fact that we decided to use a micro service architecture we wanted to enforce this by separating the components as much as possible to reduce risk of tight coupling. This resulted in a pattern where we use own repositories for each component. This led to the vast number of roundabout a dozen repositories at [GitHub](https://github.com/secureCodeBox). All these repositories needed to be coordinated and aligned for a release which results in a lot of tedious work. Also we now had lot of different places to look for issues and documenting things.
+Due to the fact that we decided to use a micro service architecture we wanted to enforce this by separating the components as much as possible to reduce risk of tight coupling. This resulted in a pattern where we use own repositories for each component. This led to the vast number of roundabout a dozen repositories at [GitHub](https://github.com/secureCodeBox). All these repositories needed to be coordinated and aligned for a release which results in a lot of tedious work. Also we now had a lot of different places to look for issues and documenting things.
 
 #### Scanners Running All the Time
 
