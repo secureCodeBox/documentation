@@ -55,7 +55,7 @@ So obviously we needed some glue code which translates from the *secureCodeBox e
 
 ### Loosely Coupling
 
-We don't wanted tight coupling between the *secureCodeBox* components, so we may easily swap one of them without touching everything else. With the approach of putting every scanner in its own container we did the first step. The second step was a REST API for the communication between *engine* and the *scanners*. So we ended in a so called [micro services architecture ](https://en.wikipedia.org/wiki/Microservices)   where each *scanner* and the *engine* are services.
+We didn't want tight coupling between the *secureCodeBox* components, so we may easily swap one of them without touching everything else. With the approach of putting every scanner in its own container, we did the first step. The second step was a REST API for the communication between *engine* and the *scanners*. So we ended in a so-called [microservices architecture ](https://en.wikipedia.org/wiki/Microservices)   where each *scanner* and the *engine* are services.
 
 At this point we had to choose between two approaches for integrating the *scanners* with the *engine*:
 
