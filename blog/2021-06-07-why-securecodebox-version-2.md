@@ -46,7 +46,7 @@ So, let's have a look how we tried to achieve the architectural design goals fro
 
 There are a lot of tools for security testing out there. Hence, it was necessary to make it possible to integrate them easily. We achieved this by encapsulating each scanner into its own [Docker](https://www.docker.com) container. The basic idea was: If there is a new scanner, just put it inside a Docker container and attach it to the *secureCodeBox* *engine*.
 
-Typically these scanners are Linux based command line tools and putting them inside a container is the easy part. On the other hand each of these tools have different user interfaces:
+Typically, these scanners are Linux based command line tools and putting them inside a container is the easy part. On the other hand, each of these tools have different user interfaces:
 
 - They use different options, arguments, and config file formats.
 - They vary in what they give as result (print to STDOUT or files) and how (XML, JSON, custom etc.).
