@@ -10,10 +10,12 @@ tags:
   - v1
   - v2
 description: This post tells why we made a major breaking rewrite of secureCodeBox.
-image: /img/blog/2020-11-04-orange-reflective-architecture.jpg
+image: /img/blog/2021-06-07-why.jpg
 ---
 
-Cover photo by [Alex wong](https://unsplash.com/@killerfvith) on [Unsplash](https://unsplash.com/s/photos/architecture).
+![Why?](/img/blog/2021-06-07-why.jpg)
+
+Cover photo by [Evan Dennis](https://unsplash.com/@evan__bray) on [Unsplash](https://unsplash.com/s/photos/why).
 
 In this article I will give you a deeper insight why we decided to make a major breaking rewrite of the *secureCodeBox*. First I'll give you an overview of the v1 architecture and the rationale behind. Also outline the problems we stumbled upon using *secureCodeBox* v1 for some years now. Afterwards I introduce you to the new *secureCodeBox* v2 architecture and the rationale behind.
 
@@ -30,7 +32,7 @@ Let's start with the design goals of v1:
 
 This is not an exhaustive list of requirements for the architecture, but the most important ones. This resulted in a design outlined in the next image:
 
-![Architecture Overview of secureCodeBox version 1](/img/blog/2020-11-04-architecture-v1.png)
+![Architecture Overview of secureCodeBox version 1](/img/blog/2021-06-07-architecture-v1.png)
 
 This is a simplified component diagram of the *secureCodeBox* v1. Unimportant components (like reverse proxy, vulnerability management system, etc.) are left out for brevity. So lets dig deeper into these goals and how they were achieved.
 
