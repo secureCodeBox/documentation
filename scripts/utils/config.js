@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 iteratec GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 const docsConfig = {
     temp: "githubRepo", // Name of temporary folder, will be deleted after build
     repository: "secureCodeBox/secureCodeBox#main", // The repository url without the github part of the link
