@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 iteratec GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 function capitalizeFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }

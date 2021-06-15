@@ -1,4 +1,8 @@
 ---
+# SPDX-FileCopyrightText: 2021 iteratec GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 title: Blinmaker
 author: Daniel Patanin
 author_title: Maintainer of securecodebox.io

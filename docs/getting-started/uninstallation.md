@@ -1,4 +1,8 @@
 ---
+# SPDX-FileCopyrightText: 2021 iteratec GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 title: "secureCodeBox Uninstallation"
 sidebar_label: Uninstallation
 path: "docs/getting-started/uninstallation"
