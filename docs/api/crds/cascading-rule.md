@@ -1,4 +1,8 @@
 ---
+# SPDX-FileCopyrightText: 2021 iteratec GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 title: "CascadingRule"
 ---
 
@@ -15,7 +19,7 @@ You can find a more concrete example on how this works in the [network scanning 
 The `matches.anyOf` fields consists of a list of objects / hashes.
 These objects are compared using a partial deep comparison, meaning that all field of the object must exactly match the finding.
 
-If multiple anyOf rules are specified at least one must match the finding. 
+If multiple anyOf rules are specified at least one must match the finding.
 If multiple rules are matching, the CascadingRule will still only create one scan.
 
 

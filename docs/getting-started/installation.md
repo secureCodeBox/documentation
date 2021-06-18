@@ -1,4 +1,8 @@
 ---
+# SPDX-FileCopyrightText: 2021 iteratec GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 title: "Installation"
 sidebar_label: Installation
 path: "docs/getting-started/installation"

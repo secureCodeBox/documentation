@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 iteratec GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Documentation secureCodeBox
 
 This repository sources the [securecodebox.io] website. Our webpage is meant to provide an extensive documentation about our [secureCodeBox] and many helpful guides on how to start and operate it. The website is build with the [Docusaurus] Framework and hosted through [Netlify]. All important decision about this website are documented in our `/adr` folder in the [secureCodeBox] repo. If you want to contribute to our website, please follow the Style Guide down below.
