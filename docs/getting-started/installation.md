@@ -104,7 +104,7 @@ helm upgrade --install gitleaks secureCodeBox/gitleaks
 helm upgrade --install kube-hunter secureCodeBox/kube-hunter
 helm upgrade --install nikto secureCodeBox/nikto
 helm upgrade --install nmap secureCodeBox/nmap
-helm upgrade --install ssh-scan secureCodeBox/ssh_scan
+helm upgrade --install ssh-scan secureCodeBox/ssh-scan
 helm upgrade --install sslyze secureCodeBox/sslyze
 helm upgrade --install trivy secureCodeBox/trivy
 helm upgrade --install wpscan secureCodeBox/wpscan
@@ -169,6 +169,8 @@ Suggested solutions:
 The secureCodeBox Operator Helm Chart contains Custom Resource Definitions and ClusterRoles which is usually reserved to administrators of production cluster (and rightfully so 😄). If you are just testing out the secureCodeBox consider using a local Kubernetes Cluster with tools like [kind](https://kind.sigs.k8s.io/), [minikube](https://minikube.sigs.k8s.io/docs/) or [Docker Desktops (Mac/Windows) Kubernetes cluster](https://www.docker.com/products/kubernetes).
 
 ### Running on Windows
+
 There are multiple ways to install Kubernetes and Helm to run secureCodeBox on Windows. One easy method is to install [Docker Desktop](https://www.docker.com/products/docker-desktop) then enable Kubernetes in the Settings. While installing a current version of Docker Desktop you will be prompted to install Linux Subsystem for Windows (WSL2). Now you can continue the installation on either Windows or the Linux Subsystem.
-- For Windows: Install [Helm](https://helm.sh) for Windows like instructed on the website. Usually installing from Binaries will be easy. 
-- For Linux Subsystem: Install the Linux Distribution of your choice from the Microsoft Store (Ubuntu 18.04 works fine). Now install [Helm](https://helm.sh) for the chosen Distribution (e.g. using Apt for Ubuntu). 
+
+- For Windows: Install [Helm](https://helm.sh) for Windows like instructed on the website. Usually installing from Binaries will be easy.
+- For Linux Subsystem: Install the Linux Distribution of your choice from the Microsoft Store (Ubuntu 18.04 works fine). Now install [Helm](https://helm.sh) for the chosen Distribution (e.g. using Apt for Ubuntu).
