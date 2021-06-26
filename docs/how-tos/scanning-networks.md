@@ -196,5 +196,5 @@ kubectl apply -f cascadingRule.yaml
 
 Have fun scanning and checking your networks!
 
-[Nmap Example Findings]: https://github.com/secureCodeBox/secureCodeBox/blob/master/scanners/nmap/examples/demo-app-ssh/findings.yaml
+[Nmap Example Findings]: https://github.com/secureCodeBox/secureCodeBox/blob/master/scanners/nmap/examples/demo-target-ssh/findings.yaml
 [predefined ncrack cascading rule]: https://github.com/secureCodeBox/secureCodeBox/blob/master/scanners/ncrack/cascading-rules/crackssh.yaml

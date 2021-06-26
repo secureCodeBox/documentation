@@ -12,7 +12,7 @@ for your scanner to check if everything is running smoothly together.
 ## Write your tests
 
 In most cases, the simplest and most effective way
-to test your scanner is by running it against a demo-app. You can also re-use one of the examples you provided. 
+to test your scanner is by running it against a `demo-target`. You can also re-use one of the examples you provided. 
 
 Let's have a look at the [ssh-scan](https://github.com/secureCodeBox/secureCodeBox/blob/main/tests/integration/scanner/ssh-scan.test.js) test to understand all the steps required:
 
@@ -23,7 +23,7 @@ test(
     const { categories, severities, count } = await scan(
       "ssh-scan-dummy-ssh", // Name of test
       "ssh-scan", // Name of scan command 
-      ["-t", "dummy-ssh.demo-apps.svc"], // Parameters
+      ["-t", "dummy-ssh.demo-targets.svc"], // Parameters
       90
     );
 
@@ -46,8 +46,8 @@ test(
 ```
 
 At first, we start our scan function, and we feed it with a scan name, the specific scan command and a list of parameters
-for the scan. Likely, you can copy them from an example. Note that you must refer to your targeted demo-app via 
-`name.demp-apps.svc` if it is installed in the "demo-apps" namespace. 
+for the scan. Likely, you can copy them from an example. Note that you must refer to your targeted demo-target via 
+`name.demp-apps.svc` if it is installed in the "demo-targets" namespace. 
 **Please don't use any external websites (like google.com) in your integration tests!** 
 
 The last parameter is a test timeout in seconds. This timeout should be lower than the general one for the jest test 
@@ -74,9 +74,9 @@ After that, install your created scanner:
 
 `helm -n integration-tests install your-scanner ./scanners/your-scanner`
 
-If not yet installed, install the targeted demo-app. 
+If not yet installed, install the targeted demo-target. 
 
-`helm -n demo-apps install targeted-app ./demo-apps/targeted-app`
+`helm -n demo-targets install targeted-app ./demo-targets/targeted-app`
 
 Of course, you can also install other resources, if needed.
 

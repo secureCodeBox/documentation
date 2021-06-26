@@ -12,7 +12,7 @@ for your hook to check if everything is running smoothly together.
 ## Write your tests
 
 In most cases, the simplest and most effective way
-to test your hook is by running it after test-scan or against a scan of a demo-app. You can also re-use one of the examples you provided.
+to test your hook is by running it after test-scan or against a scan of a `demo-target`. You can also re-use one of the examples you provided.
 
 Let's have a look at the [read-write-hook](https://github.com/secureCodeBox/secureCodeBox/blob/main/tests/integration/generic/read-write-hook.test.js) test to understand all the steps required:
 
@@ -47,8 +47,8 @@ test(
 );
 ```
 
-At first, we start our scan function, and we feed it with a scan name (`test-scan-read-write-hook`), the specific scan command (`test-scan`) and a list of parameters (`[]`) for the scan. Likely, you can copy them from an example. Note that you must refer to your targeted demo-app via
-`name.demp-apps.svc` if it is installed in the "demo-apps" namespace.
+At first, we start our scan function, and we feed it with a scan name (`test-scan-read-write-hook`), the specific scan command (`test-scan`) and a list of parameters (`[]`) for the scan. Likely, you can copy them from an example. Note that you must refer to your targeted demo-target via
+`name.demp-targets.svc` if it is installed in the "demo-targets" namespace.
 **Please don't use any external websites (like google.com) in your integration tests!**
 
 The last parameter is a test timeout in seconds. This timeout should be lower than the general one for the jest test
@@ -80,10 +80,10 @@ helm -n integration-tests install test-scan ./scanner/test-scan
 helm -n integration-tests install your-hook ./hooks/your-hook
 ```
 
-If not yet installed, install the targeted demo-app.
+If not yet installed, install the targeted `demo-target`.
 
 ```bash
-helm -n demo-apps install targeted-app ./demo-apps/targeted-app
+helm -n demo-targets install targeted-app ./demo-targets/targeted-app
 ```
 
 Of course, you can also install other resources, if needed.
