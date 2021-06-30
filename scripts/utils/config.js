@@ -10,6 +10,7 @@ const docsConfig = {
     sizeLimit: 500000, // Limit of file size, most importantly used for large findings.
     findingsDir: "public/findings", // Directory for large findings which exceeded sizeLimit
   },
+  // This is to configure what to show at the homepage tile-view.
   integrationsConfig = {
     targetFile: "src/integrations.js", // Name of the target file to (over-)write
     integrationDirs: ["hooks", "scanners"], // Names of the directories relative to the root level of the `/docs` folder
@@ -34,6 +35,9 @@ const docsConfig = {
       ],
     },
     sidebarEnd: {
+      "Architecture": [
+        "architecture/introduction"
+      ],
       "API Reference": [
         {
           type: "category",
