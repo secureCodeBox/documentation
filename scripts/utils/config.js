@@ -9,7 +9,23 @@ const docsConfig = {
     srcDirs: ["scanners", "hooks"], // Directory names, relative to the root directory of the github project, containing the subdirectories with documentation
     sizeLimit: 500000, // Limit of file size, most importantly used for large findings.
     findingsDir: "public/findings", // Directory for large findings which exceeded sizeLimit
+
+    // Configures files which will be copied from docsConfig.repository.
+    // This is an array of config maps. The map has the properties
+    // src: required source directory in main repository (docsConfig.repository)
+    // dst: required target directory in this repository relative to config.targetPath
+    // exclude: (optional) array of files to exclude from src, default is exclude nothing
+    //
+    // Example:
+    // filesFromRepository: [
+    //       {src: "foo", dst: "some/foo", exclude: ["snafu.md", "susfu.md"]},
+    //       {src: "bar", dst: "some/bar"},
+    //     ]
+    filesFromRepository: [
+      {src: "docs/adr", dst: "architecture/adr", exclude: ["adr_0000.md", "adr_README.md"]}
+    ]
   },
+
   // This is to configure what to show at the homepage tile-view.
   integrationsConfig = {
     targetFile: "src/integrations.js", // Name of the target file to (over-)write

@@ -73,6 +73,10 @@ async function main() {
     );
   }
 
+  for (const cfg of config.filesFromRepository) {
+    copyFilesFromMainRepository(cfg.src, cfg.dst, cfg.exclude);
+  }
+
   rimraf(config.temp, function (err) {
     err
       ? console.warn(`WARN: Could not remove ${config.temp.info}.`.warn)
