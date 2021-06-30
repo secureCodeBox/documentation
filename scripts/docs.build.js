@@ -7,9 +7,9 @@ const fs = require("fs"),
   downloadCallback = require("download-git-repo"),
   colors = require("colors"),
   matter = require("gray-matter"),
-  { promisify } = require("util"),
-  { docsConfig: config } = require("./utils/config"),
-  { removeWhitespaces } = require("./utils/capitalizer"),
+  {promisify} = require("util"),
+  {docsConfig: config} = require("./utils/config"),
+  {removeWhitespaces} = require("./utils/capitalizer"),
   Mustache = require("mustache");
 
 const download = promisify(downloadCallback);
@@ -73,6 +73,10 @@ async function main() {
     );
   }
 
+  for (const cfg of config.filesFromRepository) {
+    copyFilesFromMainRepository(cfg.src, cfg.dst, cfg.exclude);
+  }
+
   rimraf(config.temp, function (err) {
     err
       ? console.warn(`WARN: Could not remove ${config.temp.info}.`.warn)
@@ -87,7 +91,7 @@ main().catch((err) => {
 
 function readDirectory(dir) {
   return new Promise((res, rej) => {
-    fs.readdir(dir, { encoding: "utf8", withFileTypes: true }, function (
+    fs.readdir(dir, {encoding: "utf8", withFileTypes: true}, function (
       err,
       data
     ) {
@@ -115,12 +119,12 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     }
 
     // Read readme content of scanner / hook directory
-    const readmeContent = fs.readFileSync(readMe, { encoding: "utf8" });
+    const readmeContent = fs.readFileSync(readMe, {encoding: "utf8"});
 
     const examples = await getExamples(`${relPath}/${dirName}/examples`);
 
     // Add a custom editUrl to the frontMatter to ensure that it points to the correct repo
-    const { data: frontmatter, content } = matter(readmeContent);
+    const {data: frontmatter, content} = matter(readmeContent);
     const filePathInRepo = relPath.replace(/^githubRepo\//, "");
     const readmeWithEditUrl = matter.stringify(content, {
       ...frontmatter,
@@ -143,7 +147,7 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
       }
     );
 
-    let  fileName = frontmatter.title ? frontmatter.title : dirName;
+    let fileName = frontmatter.title ? frontmatter.title : dirName;
 
     //Replace Spaces in the FileName with "-" and convert to lower case to avoid URL issues
     fileName = fileName.replace(/ /g, "-").toLowerCase();
@@ -251,7 +255,7 @@ function clearDocsOnFailure() {
   for (const dir of config.srcDirs) {
     const trgDir = `${config.targetPath}/${dir}`;
     if (fs.existsSync(trgDir)) {
-      rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
+      rimraf(trgDir, {maxRetries: 3, recursive: true}, function (err) {
         if (err) {
           console.error(
             `ERROR: Could not remove ${trgDir.info} on failure.`.error
@@ -266,3 +270,43 @@ function clearDocsOnFailure() {
     }
   }
 }
+
+// Copy files from a given src directory from the main repo into the given dst directory
+//
+// Example: copyFilesFromMainRepository("docs/adr", "docs/architecture/adr");
+//          copyFilesFromMainRepository("docs/adr", "docs/architecture/adr", ["adr_0000.md", "adr_README.md"]);
+//
+// @param src     required source directory in main repository (docsConfig.repository)
+// @param dst     required target directory in this repository relative to config.targetPath
+// @param exclude optional array of files to exclude from src
+function copyFilesFromMainRepository(src, dst, exclude) {
+  const srcPath = `${config.temp}/${src}`
+  const dstPath = `${config.targetPath}/${dst}`
+  exclude = exclude || [];
+
+  if (!fs.existsSync(srcPath)) {
+    console.error(`${config.temp}/${src.info}.`.error
+    );
+  }
+
+  if (fs.existsSync(dstPath)) {
+    rimraf.sync(dstPath);
+
+    console.warn(
+      `WARN: ${dstPath.info} already existed and was overwritten.`.warn
+    );
+
+    fs.mkdirSync(dstPath);
+  }
+
+  fs.readdirSync(srcPath).map((fileName) => {
+    if(!exclude.includes(fileName)) {
+      fs.copyFileSync(`${srcPath}/${fileName}`, `${dstPath}/${fileName}`);
+
+      console.log(
+        `Copied ${fileName.help} at ${dstPath.info}`.success
+      );
+    }
+  });
+}
+
