@@ -266,3 +266,43 @@ function clearDocsOnFailure() {
     }
   }
 }
+
+// Copy files from a given src directory from the main repo into the given dst directory
+//
+// Example: copyFilesFromMainRepository("docs/adr", "docs/architecture/adr");
+//          copyFilesFromMainRepository("docs/adr", "docs/architecture/adr", ["adr_0000.md", "adr_README.md"]);
+//
+// @param src     required source directory in main repository (docsConfig.repository)
+// @param dst     required target directory in this repository relative to config.targetPath
+// @param exclude optional array of files to exclude from src
+function copyFilesFromMainRepository(src, dst, exclude) {
+  const srcPath = `${config.temp}/${src}`
+  const dstPath = `${config.targetPath}/${dst}`
+  exclude = exclude || [];
+
+  if (!fs.existsSync(srcPath)) {
+    console.error(`${config.temp}/${src.info}.`.error
+    );
+  }
+
+  if (fs.existsSync(dstPath)) {
+    rimraf.sync(dstPath);
+
+    console.warn(
+      `WARN: ${dstPath.info} already existed and was overwritten.`.warn
+    );
+
+    fs.mkdirSync(dstPath);
+  }
+
+  fs.readdirSync(srcPath).map((fileName) => {
+    if(!exclude.includes(fileName)) {
+      fs.copyFileSync(`${srcPath}/${fileName}`, `${dstPath}/${fileName}`);
+
+      console.log(
+        `Copied ${fileName.help} at ${dstPath.info}`.success
+      );
+    }
+  });
+}
+
