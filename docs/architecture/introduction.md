@@ -7,4 +7,4 @@ title: "Architecture Introduction"
 sidebar_label: "Introduction"
 ---
 
-Lorem ipsum dolor sit amet.
+> 🔧 Documentation Coming Soon
