@@ -7,9 +7,9 @@ const fs = require("fs"),
   downloadCallback = require("download-git-repo"),
   colors = require("colors"),
   matter = require("gray-matter"),
-  { promisify } = require("util"),
-  { docsConfig: config } = require("./utils/config"),
-  { removeWhitespaces } = require("./utils/capitalizer"),
+  {promisify} = require("util"),
+  {docsConfig: config} = require("./utils/config"),
+  {removeWhitespaces} = require("./utils/capitalizer"),
   Mustache = require("mustache");
 
 const download = promisify(downloadCallback);
@@ -87,7 +87,7 @@ main().catch((err) => {
 
 function readDirectory(dir) {
   return new Promise((res, rej) => {
-    fs.readdir(dir, { encoding: "utf8", withFileTypes: true }, function (
+    fs.readdir(dir, {encoding: "utf8", withFileTypes: true}, function (
       err,
       data
     ) {
@@ -115,12 +115,12 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     }
 
     // Read readme content of scanner / hook directory
-    const readmeContent = fs.readFileSync(readMe, { encoding: "utf8" });
+    const readmeContent = fs.readFileSync(readMe, {encoding: "utf8"});
 
     const examples = await getExamples(`${relPath}/${dirName}/examples`);
 
     // Add a custom editUrl to the frontMatter to ensure that it points to the correct repo
-    const { data: frontmatter, content } = matter(readmeContent);
+    const {data: frontmatter, content} = matter(readmeContent);
     const filePathInRepo = relPath.replace(/^githubRepo\//, "");
     const readmeWithEditUrl = matter.stringify(content, {
       ...frontmatter,
@@ -143,7 +143,7 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
       }
     );
 
-    let  fileName = frontmatter.title ? frontmatter.title : dirName;
+    let fileName = frontmatter.title ? frontmatter.title : dirName;
 
     //Replace Spaces in the FileName with "-" and convert to lower case to avoid URL issues
     fileName = fileName.replace(/ /g, "-").toLowerCase();
@@ -251,7 +251,7 @@ function clearDocsOnFailure() {
   for (const dir of config.srcDirs) {
     const trgDir = `${config.targetPath}/${dir}`;
     if (fs.existsSync(trgDir)) {
-      rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
+      rimraf(trgDir, {maxRetries: 3, recursive: true}, function (err) {
         if (err) {
           console.error(
             `ERROR: Could not remove ${trgDir.info} on failure.`.error
