@@ -65,3 +65,4 @@ docs/guides/
 # Used by bin/create_post.sh
 .author_meta
 public/
+docs/architecture/adr/
