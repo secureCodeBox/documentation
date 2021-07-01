@@ -295,18 +295,21 @@ function copyFilesFromMainRepository(src, dst, exclude) {
     console.warn(
       `WARN: ${dstPath.info} already existed and was overwritten.`.warn
     );
-
-    fs.mkdirSync(dstPath);
   }
+
+  console.info(
+    `Create target directory ${dstPath.info}...`.success
+  )
+
+  fs.mkdirSync(dstPath);
 
   fs.readdirSync(srcPath).map((fileName) => {
     if(!exclude.includes(fileName)) {
-      fs.copyFileSync(`${srcPath}/${fileName}`, `${dstPath}/${fileName}`);
-
       console.log(
-        `Copied ${fileName.help} at ${dstPath.info}`.success
+        `Copy ${fileName.info} to ${dstPath.info}...`.success
       );
+
+      fs.copyFileSync(`${srcPath}/${fileName}`, `${dstPath}/${fileName}`);
     }
   });
 }
-
