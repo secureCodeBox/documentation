@@ -17,7 +17,7 @@ scanners/nmap
 │   └── ...
 ├── Chart.yaml
 ├── examples
-│   ├── demo-app-ssh
+│   ├── demo-target-ssh
 │   │   ├── findings.yaml
 │   │   ├── nmap-results.xml
 │   │   └── scan.yaml
