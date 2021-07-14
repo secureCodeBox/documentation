@@ -86,7 +86,7 @@ In v1 you needed a system which triggers a scan. Typically this was a CI/CD syst
 
 Since we learned that the full bloated web UI of *secureCodeBox* v1 was only a nice feature for management slides, we completely abandoned such a UI. Our main target audience are developers which are used to command line interfaces and embrace DevSecOps where you want to automate as much as possible. A CLI is obviously way more convenient to automate than a web UI.
 
-But anyway you may want some web UI to manage your findings. At the moment we provide simply Grafana and Elastic to visualize them. But we're working hard on better solutions. Additionally you can import all the findings in any system you want with a [custom *read hook*](/docs/architecture/adr/adr_0002).
+But anyway you may want some web UI to manage your findings. At the moment we provide simply Kibana and Elasticsearch to visualize them. But we're working hard on better solutions. Additionally you can import all the findings in any system you want with a [custom *read hook*](/docs/architecture/adr/adr_0002).
 
 #### Cascading Scans
 
