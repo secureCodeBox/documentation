@@ -61,18 +61,6 @@ In secureCodeBox v3 the Findings comply with the following JSON Schema (Draft-04
             "APPLICATION"
           ]
         },
-        "osi_layer": {
-          "description": "OSI Layer the finding fits into. This will be replaced by the field tcp_ip_stack_layer in secureCodeBox v3.",
-          "type": "string",
-          "enum": [
-            "NETWORK_INTERFACE",
-            "NETWORK",
-            "TRANSPORT",
-            "APPLICATION",
-            "NOT_APPLICABLE",
-            "PRESENTATION"
-          ]
-        },
         "severity": {
           "description": "Indicates the severity of the finding.",
           "type": "string",
@@ -108,19 +96,14 @@ An example findings object is shown below:
 
 ```yaml
 {
-  # Unique uuid4 for the finding
   "id": "e18cdc5e-6b49-4346-b623-28a4e878e154",
-  # name contains a short description of the finding
   "name": "Open mysql Port",
-  # In depth description, can span multiple paragraphs
   "description": "Port 3306 is open using tcp protocol.",
-  # The category is often used to group finding based on their types
   "category": "Open Port",
-  # OSI network layer the finding fits into
-  "osi_layer": "NETWORK",
-  # One of "INFORMATIONAL", "LOW", "MEDIUM", "HIGH"
+  "tcp_ip_stack_layer": "INTERNET",
+  "parsed_at": "2021-06-22T12:27:28.153Z",
+  "identified_at": "2021-06-22T12:26:54.378Z",
   "severity": "INFORMATIONAL",
-  # Attributes are not standardized. They differ from scanner to scanner
   "attributes": {
     "port": 3306,
     "state": "open",
@@ -135,7 +118,6 @@ An example findings object is shown below:
     "serviceVersion": null,
     "scripts": null
   },
-  # Full url with protocol, port, and path if existing
   "location": "tcp://127.0.0.1:3306"
 }
 ```
