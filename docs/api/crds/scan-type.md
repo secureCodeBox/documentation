@@ -26,7 +26,7 @@ The type is used to determine which parser would be used to handle this result f
 The `location` field describes from where the result file can be extracted.
 Absolute path on the containers file system.
 
-Must be located in `/home/securecodebox/` so that the result is reachable by the secureCodeBox Lurcher sidecar which performs the actual extraction of the result.
+Must be located in `/home/securecodebox/` so that the result is reachable by the secureCodeBox Lurker sidecar which performs the actual extraction of the result.
 E.g. `/home/securecodebox/nmap-results.xml`
 
 ### JobTemplate (Required)
