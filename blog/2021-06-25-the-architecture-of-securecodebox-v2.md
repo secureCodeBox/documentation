@@ -52,11 +52,17 @@ What about the design goals from the v1 architecture? Let's go through each of t
 
 > It should be possible to easily integrate new scanners.
 
-The scanners are containers as in v1, but way more simpler: There is no need to jam the CLI tool into some glue code which transforms the incoming arguments and the outgoing results from the tool. You just simply create an image with the tool expecting its arguments and spitting out its result as is. The parsing of the result is done in a separate container. So you simply write a companion *parser* image for your *scanner* image which transforms the stored result into the generic [findings format](/docs/api/finding). Writing such a parser is quite simple because we provide an SDK for that. If you are curious about this topic you can read our documentation about [integrating a new scanner](/docs/contributing/integrating-a-scanner).
+The scanners are containers as in v1, but way more simpler: There is no need to jam the CLI tool into some glue code which transforms the incoming arguments and the outgoing results from the tool. You just simply create an image with the tool expecting its arguments and spitting out its result as is. The parsing of the result is done in a separate container. So you simply write a companion *parser* image for your *scanner* image which transforms the stored raw result into a generic [findings format](/docs/api/finding). 
+
+Writing such a companion *parser* is quite simple because we provide an SDK to help you with that. If you are curious about this topic you can read our documentation about [integrating a new scanner](/docs/contributing/integrating-a-scanner).
 
 > All components should be loosely coupled to easily swap them.
 
-The loosely coupling is nearly the same as in v1: Most of the components are individual containers communicating via well defined APIs (Kubernetes API instead of own REST API) to each other. But this architecture is tightly coupled to Kubernetes. So it is not possible to run *secureCodeBox* without Kubernetes or a future system which provides the same API.
+The basic idea oft loosely coupling all components is nearly the same as in v1. We separate all components into individual services. Certainly more lightweight than in v1 because we drastically reduced the complexity of the individual *scanner* images. Most of the components are individual containers communicating via well defined APIs (Kubernetes API instead of own REST API) to each other. 
+
+But there is also a major improvement over the v1 architecture. As mentioned in the [previous articles](/blog/2021/06/07/why-securecodebox-version-2) we had a web UI in v1. This introduced accidentally a tight coupling between the *scanners* and the *engine* because for each new *scanner* or feature of one it was mandatory to adapt the UI. We introduced a tight coupling through the backdoor. This was a major pain in the ass when it came to releases because we had to release everything at once. All the *scanners* and the *engine* which were located in individual repositories. This resulted in a complete day job to make a release.
+
+With the new architecture we strictly decoupled *scanners* and *engine*. The *scanners* are *custom resources* and the *engine* is an *operator*. Both well known concepts of Kubernetes decoupled by the API provided by Kubernetes. If you now add a new *scanner* there is no need to touch the *operator*. This architecture has one downside. It is tightly coupled to Kubernetes. So it is not possible to run *secureCodeBox* without Kubernetes or a future system which provides the same API. But we are willing to accept this tradeoff due to all the benefits we receive.
 
 > The whole deployment should run anywhere (local, VMs, Cloud, etc.) and scale.
 
