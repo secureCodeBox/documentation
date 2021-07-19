@@ -9,11 +9,10 @@ tags:
   - architecture
   - v2
 description: This post describes the architecture of the secureCodeBox v2.
-image: /img/blog/2021-06-12-orange-reflective-architecture.jpg
-draft: true
+image: /img/blog/2021-07-20-orange-reflective-architecture.jpg
 ---
 
-![Orange Reflective Architecture](/img/blog/2021-06-25-orange-reflective-architecture.jpg)
+![Orange Reflective Architecture](/img/blog/2021-07-20-orange-reflective-architecture.jpg)
 
 Cover photo by [Alex Wong](https://unsplash.com/@killerfvith) on [Unsplash](https://unsplash.com/s/photos/architecture).
 
@@ -25,7 +24,7 @@ In a [previous post](/blog/2021/06/07/why-securecodebox-version-2) I described t
 
 In [Kubernetes 1.17 they introduced a new concept of custom resources](https://medium.com/velotio-perspectives/extending-kubernetes-apis-with-custom-resource-definitions-crds-139c99ed3477). The short idea is, that you may extend Kubernetes with your own resources additionally to the default ones shipped with Kubernetes. Why should you do this? The interesting part of Kubernetes is that it is a great tool for resource management. Solely it is the most important part of Kubernetes to automate the management of datacenter resources. In v1 we "abused" a [BPMN](https://en.wikipedia.org/wiki/Business_Process_Model_and_Notation) engine for managing the *scans* and the associated resources were allocated all the time. But since the most important parts of the *secureCodeBox* (the *scanners*) are containers anyway, it makes sense to use a tool which is designed for managing such resources. So we came up with the idea to define the *scanners* as custom resources and replace the heavy Java based *engine* from v1 with a custom [operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) for Kubernetes. The whole idea to use Kubernetes as orchestrator for the *scans* is based upon a master thesis our core maintainer [Jannik](https://github.com/J12934) has written about [Automatic Assessment of Applications Security Aspects running in Cloud Environments](https://files.hollenbach.dev/master-thesis-jannik-hollenbach.pdf). The following diagram shows the new architecture of *secureCodeBox* v2.
 
-![Architecture Overview of secureCodeBox version 2](/img/blog/2021-06-25-architecture-v2.png)
+![Architecture Overview of secureCodeBox version 2](/img/blog/2021-07-20-architecture-v2.png)
 
 *Legend*:
 
@@ -52,13 +51,13 @@ What about the design goals from the v1 architecture? Let's go through each of t
 
 > It should be possible to easily integrate new scanners.
 
-The scanners are containers as in v1, but way more simpler: There is no need to jam the CLI tool into some glue code which transforms the incoming arguments and the outgoing results from the tool. You just simply create an image with the tool expecting its arguments and spitting out its result as is. The parsing of the result is done in a separate container. So you simply write a companion *parser* image for your *scanner* image which transforms the stored raw result into a generic [findings format](/docs/api/finding). 
+The scanners are containers as in v1, but way more simpler: There is no need to jam the CLI tool into some glue code which transforms the incoming arguments and the outgoing results from the tool. You just simply create an image with the tool expecting its arguments and spitting out its result as is. The parsing of the result is done in a separate container. So you simply write a companion *parser* image for your *scanner* image which transforms the stored raw result into a generic [findings format](/docs/api/finding).
 
 Writing such a companion *parser* is quite simple because we provide an SDK to help you with that. If you are curious about this topic you can read our documentation about [integrating a new scanner](/docs/contributing/integrating-a-scanner).
 
 > All components should be loosely coupled to easily swap them.
 
-The basic idea oft loosely coupling all components is nearly the same as in v1. We separate all components into individual services. Certainly more lightweight than in v1 because we drastically reduced the complexity of the individual *scanner* images. Most of the components are individual containers communicating via well defined APIs (Kubernetes API instead of own REST API) to each other. 
+The basic idea oft loosely coupling all components is nearly the same as in v1. We separate all components into individual services. Certainly more lightweight than in v1 because we drastically reduced the complexity of the individual *scanner* images. Most of the components are individual containers communicating via well defined APIs (Kubernetes API instead of own REST API) to each other.
 
 But there is also a major improvement over the v1 architecture. As mentioned in the [previous articles](/blog/2021/06/07/why-securecodebox-version-2) we had a web UI in v1. This introduced accidentally a tight coupling between the *scanners* and the *engine* because for each new *scanner* or feature of one it was mandatory to adapt the UI. We introduced a tight coupling through the backdoor. This was a major pain in the ass when it came to releases because we had to release everything at once. All the *scanners* and the *engine* which were located in individual repositories. This resulted in a complete day job to make a release.
 
