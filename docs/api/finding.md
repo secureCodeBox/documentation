@@ -6,8 +6,8 @@
 title: "Finding"
 ---
 
-All scanners integrated in the secureCodeBox create findings objects.
-In secureCodeBox v3 the Findings comply with the following JSON Schema (Draft-04).
+All scanners integrated in the secureCodeBox create a JSON-Array of Findings objects.
+The 'findings.json' file that contains these Findings complies with the following JSON Schema (Draft-04).
 
 ```yaml
 {
@@ -50,17 +50,6 @@ In secureCodeBox v3 the Findings comply with the following JSON Schema (Draft-04
           "description": "Is often used to group finding based on their types.",
           "type": "string"
         },
-        "tcp_ip_stack_layer":{
-          "type": "string",
-          "description": "TCP/IP Reference Model Layer that the Finding fits into.",
-          "nullable": true,
-          "enum": [
-            "LINK",
-            "INTERNET",
-            "TRANSPORT",
-            "APPLICATION"
-          ]
-        },
         "severity": {
           "description": "Indicates the severity of the finding.",
           "type": "string",
@@ -100,24 +89,23 @@ An example findings object is shown below:
   "name": "Open mysql Port",
   "description": "Port 3306 is open using tcp protocol.",
   "category": "Open Port",
-  "tcp_ip_stack_layer": "INTERNET",
   "parsed_at": "2021-06-22T12:27:28.153Z",
   "identified_at": "2021-06-22T12:26:54.378Z",
   "severity": "INFORMATIONAL",
   "attributes": {
-    "port": 3306,
-    "state": "open",
-    "ip_address": "198.51.100.42",
-    "mac_address": null,
-    "protocol": "tcp",
-    "hostname": "example.com",
-    "method": "table",
-    "operating_system": null,
-    "service": "mysql",
-    "serviceProduct": null,
-    "serviceVersion": null,
-    "scripts": null
-  },
+      "port": 3306,
+      "state": "open",
+      "ip_address": "198.51.100.42",
+      "mac_address": null,
+      "protocol": "tcp",
+      "hostname": "example.com",
+      "method": "table",
+      "operating_system": null,
+      "service": "mysql",
+      "serviceProduct": null,
+      "serviceVersion": null,
+      "scripts": null
+    },
   "location": "tcp://127.0.0.1:3306"
 }
 ```
