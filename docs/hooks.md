@@ -13,6 +13,6 @@ id: "hooks"
 3. [Elasticsearch](/docs/hooks/elasticsearch)
 4. [Generic Webhook](/docs/hooks/generic-webhook)
 5. [MS Teams WebHook](/docs/hooks/ms-teams-webhook)
-6. [Slack WebHook](/docs/hooks/slack-webhook)
-7. [Static Report](/docs/hooks/static-report)
+6. [Notification WebHook](/docs/hooks/notification-hook)
+7. [Static Report](/docs/hooks/persistence-static-report)
 8. [Update Field](/docs/hooks/update-field)
