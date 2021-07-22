@@ -25,14 +25,15 @@ colors.setTheme({
 // For the documentation on this script look at the README.md of this repository
 
 async function main() {
-  console.log(`Downloading ${config.repository} into ${config.temp}...`.info);
+  const fullRepoName = config.repository+`#`+config.branch;
+  console.log(`Downloading ${fullRepoName} into ${config.temp}...`.info);
 
-  await download(config.repository, config.temp).catch((err) => {
+  await download(fullRepoName, config.temp).catch((err) => {
     console.error("ERROR: Download failed.".error);
     throw err;
   });
 
-  console.log(`SUCCESS: ${config.repository} downloaded.`.success);
+  console.log(`SUCCESS: ${fullRepoName} downloaded.`.success);
 
   const promises = config.srcDirs.map((dir) =>
     readDirectory(`${config.temp}/${dir}`).catch((err) =>
@@ -128,7 +129,7 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     const filePathInRepo = relPath.replace(/^githubRepo\//, "");
     const readmeWithEditUrl = matter.stringify(content, {
       ...frontmatter,
-      custom_edit_url: `https://github.com/${config.repository}/edit/main/${filePathInRepo}/${dirName}/README.md.gotmpl`,
+      custom_edit_url: `https://github.com/${config.repository}/edit/${config.branch}/${filePathInRepo}/${dirName}/README.md.gotmpl`,
     });
 
     // Skip File if its marked as "hidden" in its frontmatter
