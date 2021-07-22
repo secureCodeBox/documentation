@@ -74,7 +74,7 @@ We decided to choose the second approach because this simplified the implementat
 
 This design goal is connected with the first one. As we decided to put each security scanner into its own container, it was not far to seek to put all components into containers and deploy them with [Docker Compose](https://docs.docker.com/compose/). So it was possible to run the *secureCodeBox* local on your machine, on virtual machines or even in any cloud environment. We ran our first production deployment with an early version of [Rancher](https://rancher.com/) on a virtual machine. Later we scaled out on multiple VMs and Google Cloud Platform.
 
-### Implementation oft the Scan Process Workflows
+### Implementation of the Scan Process Workflows
 
 We needed a way to define our typical *scan processes*. For example such a process may look like:
 
