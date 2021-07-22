@@ -21,9 +21,9 @@ node "Kubernetes" {
 
   package "Job" as zap_scan {
     [ZAP] as zap <<Container>>
-    [Lurker] as zap_lurker <<Sidecar>>
-    zap -left-> zap_lurker : output
-    zap_lurker -down-> S3 : store raw
+    [Lurcher] as zap_lurcher <<Sidecar>>
+    zap -left-> zap_lurcher : output
+    zap_lurcher -down-> S3 : store raw
   }
 
   zap .up.> sut : scan

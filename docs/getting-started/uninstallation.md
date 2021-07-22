@@ -29,7 +29,7 @@ kubectl delete cascadingrules.cascading.securecodebox.io nmap-hostscan
 
 ## Uninstall the Operator and Its Roles, ServiceAccounts and RoleBindings
 
-To uninstall the operator it is not enough to delete the operator via `helm` because the operator creates Roles, ServiceAccounts  and RoleBindings used by parsers, lurkers and hooks in every namespace where scanners and hooks are executed. These cannot be uninstalled via helm because they cannot be referenced via Kubernetes OwnerReferences.
+To uninstall the operator it is not enough to delete the operator via `helm` because the operator creates Roles, ServiceAccounts  and RoleBindings used by parsers, lurchers and hooks in every namespace where scanners and hooks are executed. These cannot be uninstalled via helm because they cannot be referenced via Kubernetes OwnerReferences.
 
 Make sure you delete all scans and uninstall all scanners/hooks before uninstalling the operator to avoid problems.
 First delete the namespace for the operator:
@@ -46,36 +46,36 @@ The given examples are valid only for scanners that were executed in the default
 To list the ServiceAccounts, Roles and RoleBings that were created by the operator you can execute the flowing command:
 
 ```bash {1}
-kubectl get roles,rolebindings,serviceaccounts lurker parser
+kubectl get roles,rolebindings,serviceaccounts lurcher parser
 NAME                                     CREATED AT
-role.rbac.authorization.k8s.io/lurker   2020-10-14T11:15:38Z
+role.rbac.authorization.k8s.io/lurcher   2020-10-14T11:15:38Z
 role.rbac.authorization.k8s.io/parser    2020-10-14T11:17:54Z
 
 NAME                                            ROLE           AGE
-rolebinding.rbac.authorization.k8s.io/lurker   Role/lurker   85m
+rolebinding.rbac.authorization.k8s.io/lurcher   Role/lurcher   85m
 rolebinding.rbac.authorization.k8s.io/parser    Role/parser    83m
 
 NAME                     SECRETS   AGE
-serviceaccount/lurker   1         85m
+serviceaccount/lurcher   1         85m
 serviceaccount/parser    1         83m
 ```
 
-To delete the Roles for lurker and parser you can execute the following command:
+To delete the Roles for lurcher and parser you can execute the following command:
 
 ```bash
-kubectl delete roles lurker parser
+kubectl delete roles lurcher parser
 ```
 
-To delete the RoleBindings for lurker and parser you can execute:
+To delete the RoleBindings for lurcher and parser you can execute:
 
 ```bash
-kubectl delete rolebindings lurker parser
+kubectl delete rolebindings lurcher parser
 ```
 
-To delete the ServiceAccounts for lurker and parser you can execute:
+To delete the ServiceAccounts for lurcher and parser you can execute:
 
 ```bash
-kubectl delete serviceaccounts lurker parser
+kubectl delete serviceaccounts lurcher parser
 ```
 
 ### Delete CRDs
