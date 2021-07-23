@@ -236,16 +236,16 @@ function copyFindingsForDownload(filePath) {
       dirNames[dirNames.indexOf("examples") - 1] +
       "-" +
       dirNames[dirNames.indexOf("examples") + 1],
-    targetPath = `public/findings/${name}-findings.yaml`;
+    targetPath = `/${config.findingsDir}/${name}-findings.yaml`;
 
-  if (!fs.existsSync("public")) {
-    fs.mkdirSync("public/");
+  if (!fs.existsSync("static")) {
+    fs.mkdirSync("static/");
   }
-  if (!fs.existsSync("public/findings")) {
-    fs.mkdirSync("public/findings/");
+  if (!fs.existsSync(`static/${config.findingsDir}`)) {
+    fs.mkdirSync(`static/${config.findingsDir}`);
   }
 
-  fs.copyFileSync(filePath, targetPath);
+  fs.copyFileSync(filePath, "static"+targetPath);
   console.log(`SUCCESS: Created download link for ${name.info}.`.success);
 
   return targetPath;
