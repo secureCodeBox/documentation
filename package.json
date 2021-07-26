@@ -20,13 +20,13 @@
     "serve": "docusaurus serve"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.75",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.75",
-    "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.75",
+    "@docusaurus/core": "^2.0.0-beta.3",
+    "@docusaurus/preset-classic": "^2.0.0-beta.3",
+    "@docusaurus/theme-live-codeblock": "^2.0.0-beta.3",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
     "colors": "^1.4.0",
-    "docusaurus-plugin-sass": "^0.1.14",
+    "docusaurus-plugin-sass": "^0.2.1",
     "download-git-repo": "^3.0.2",
     "gray-matter": "^4.0.3",
     "mustache": "^4.2.0",
