@@ -23,6 +23,14 @@
   --ifm-code-font-size: 95%;
 }
 
+body {
+  /* Overwrite search bar styling
+  See https://www.algolia.com/doc/ui-libraries/autocomplete/api-reference/autocomplete-theme-classic/
+  */
+  --aa-primary-color-rgb: 28, 106, 161; /* = color-primary */
+  --aa-input-border-color-rgb: 119, 185, 232; /* = color-primary-lightest */
+}
+
 .docusaurus-highlight-code-line {
   background-color: rgb(72, 77, 91);
   display: block;
