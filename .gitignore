@@ -61,6 +61,7 @@ src/integrations.js
 docs/scanners/
 docs/hooks/
 docs/guides/
+static/findings
 
 # Used by bin/create_post.sh
 .author_meta
