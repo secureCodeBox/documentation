@@ -93,19 +93,19 @@ An example findings object is shown below:
   "identified_at": "2021-06-22T12:26:54.378Z",
   "severity": "INFORMATIONAL",
   "attributes": {
-      "port": 3306,
-      "state": "open",
-      "ip_address": "198.51.100.42",
-      "mac_address": null,
-      "protocol": "tcp",
-      "hostname": "example.com",
-      "method": "table",
-      "operating_system": null,
-      "service": "mysql",
-      "serviceProduct": null,
-      "serviceVersion": null,
-      "scripts": null
-    },
+    "port": 3306,
+    "state": "open",
+    "ip_address": "198.51.100.42",
+    "mac_address": null,
+    "protocol": "tcp",
+    "hostname": "example.com",
+    "method": "table",
+    "operating_system": null,
+    "service": "mysql",
+    "serviceProduct": null,
+    "serviceVersion": null,
+    "scripts": null
+  },
   "location": "tcp://127.0.0.1:3306"
 }
 ```
