@@ -5,7 +5,7 @@
 
 title: parser (Directory)
 ---
- 
+
 This directory contains the parser for your scanner to transform the results of your scanner to *Findings* (see: [Finding | secureCodeBox](/docs/api/finding)).
 
 ## Dockerfile
@@ -63,14 +63,25 @@ Create a `parser.js` file and update the parser function of the Parser SDK. A st
 
 ```javascript
 async function parse(fileContent) {
-    return [];
+  return [];
 }
 
 module.exports.parse = parse;
 ```
-After your scanner has finished, the Parser SDK will retrieve the output results and call your custom parse function `parse`. The SDK expects a finding object as specified in [Finding | secureCodeBox](/docs/api/finding). The `id` field can be omitted, as it will be added by the Parser SDK.
+
+After your scanner has finished, the Parser SDK will retrieve the output results and call your custom parse function `parse`. The SDK expects a finding object as specified in [Finding | secureCodeBox](/docs/api/finding). The `id`, `parsed_at` and `identified_at` fields can be omitted, as they will be added by the Parser SDK.
 
 ### Write Tests for Your Parser
 
-Please provide some tests for your parser in the `parser.test.js` file.
+Please provide some tests for your parser in the `parser.test.js` file. To make sure that the output complies with the format specified in [Finding | secureCodeBox](/docs/api/finding) you should call the method `validateParser(parseResult)` from the ParserSDK and assert that it must resolve (not throw errors). You can do so e.g. by calling the following code. See the already existing parsers for reference.
+
+```javascript
+const {
+  validateParser,
+} = require("@securecodebox/parser-sdk-nodejs/parser-utils");
+
+const findings = await parse(fileContent);
+await expect(validateParser(findings)).resolves.toBeUndefined();
+```
+
 If you need additional files for your test please save these in the `__testFiles__` directory. Please take a look at [Integration Tests | secureCodeBox](/docs/contributing/integrating-a-scanner/integration-tests) for more information.
