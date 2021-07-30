@@ -24,7 +24,7 @@ module.exports = {
           label: 'Docs',
           position: 'left',
         },
-        { to: 'blog', label: 'Blog', position: 'left' },
+        {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/secureCodeBox/',
           position: 'right',
@@ -95,7 +95,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.json'),
           editUrl: 'https://github.com/securecodebox/docusaurus/edit/main/',
-          lastVersion: 'current', 
+          lastVersion: 'current',
           versions: {
             current: {
               label: 'Current',
@@ -122,5 +122,8 @@ module.exports = {
     ],
   ],
   themes: ['@docusaurus/theme-live-codeblock'],
-  plugins: ['docusaurus-plugin-sass'],
+  plugins: [
+    'docusaurus-plugin-sass',
+    '@cmfcmf/docusaurus-search-local'
+  ],
 };
