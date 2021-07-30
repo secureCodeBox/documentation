@@ -74,7 +74,10 @@ The 'findings.json' file that contains these Findings complies with the followin
       },
       "required": [
         "id",
-        "parsed_at"
+        "parsed_at",
+        "severity",
+        "category",
+        "name"
       ]
     }
   }
