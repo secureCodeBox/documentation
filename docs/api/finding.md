@@ -57,9 +57,7 @@ The 'findings.json' file that contains these Findings complies with the followin
             "INFORMATIONAL",
             "LOW",
             "MEDIUM",
-            "HIGH",
-            "CRITICAL",
-            "UNKNOWN"
+            "HIGH"
           ]
         },
         "attributes": {
