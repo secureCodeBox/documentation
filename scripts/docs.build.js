@@ -129,7 +129,7 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     const filePathInRepo = relPath.replace(/^githubRepo\//, "");
     const readmeWithEditUrl = matter.stringify(content, {
       ...frontmatter,
-      custom_edit_url: `https://github.com/${config.repository}/edit/${config.branch}/${filePathInRepo}/${dirName}/README.md.gotmpl`,
+      custom_edit_url: `https://github.com/${config.repository}/edit/${config.branch}/${filePathInRepo}/${dirName}/.helm-docs.gotmpl`,
     });
 
     // Skip File if its marked as "hidden" in its frontmatter
