@@ -28,8 +28,8 @@ Get some insights into the fascinating and exhausting world of integrating windo
 ## Windows Security
 
 To date, Microsoft Windows is still the most popular operating system, especially in office or work related areas.
-Unsurprisingly, [most of the malware](https://www.statista.com/statistics/680943/malware-os-distribution/) is also created for windows.
-While most of the scanners already implemented in the secureCodeBox can target and run on any operating system,
+Unsurprisingly, [the majority of malware](https://www.statista.com/statistics/680943/malware-os-distribution/) is also created for windows.
+While most of the scanners already implemented in the secureCodeBox can target and be run on any operating system,
 the need for Windows-specific security measures is blatant.
 There exist several security scanners that target specific Windows-related security aspects, such as 
 [Mandiant](https://www.fireeye.com/mandiant.html) or [PingCastle](https://pingcastle.com/).
@@ -58,8 +58,8 @@ stable solution that could probably be applied for a lot of Windows scanners. Un
 and execute in our Wine environment, but failed to execute any scans against our AD. After trying a lot of stuff
 with adding our computers to the domain and using VPN connections, we had to give up. Probably, PingCastle in the
 Wine environment does not have the required access to some DLLs needed for the scan or PingCastle itself is just a 
-little bittle picky as we will see later.. 
-However, maybe we will come back to Wine in the future regarding other Windows scanners.
+little picky as we will see later.. 
+However, maybe we will come back to Wine in the future for other Windows scanners.
 
 ## Starting the inception
 
@@ -71,22 +71,22 @@ actually does not run in the container but rather on the host OS, the inception 
 
 After that we prepared the Windows 10 virtual machine image by adding it to the domain, linking it to our VPN and 
 finally installing PingCastle. We could confirm that the scans inside the VM ran properly, but surprisingly a major
-issues with the VPN arose. Of course, one has to connect to the VPN automatically on start-up in order to run the scans
-from outside the machine. It turned out, however, that PingCastle is indeed very picky and always refused to work
-while the machine was connected automatically to the VPN (using e.g. rasdial), while it would perfectly do its job 
-when being connected manually to the VPN! We tried a lot here, and you can read all about our final dirty workaround
-in our related extensive [Tutorial](https://github.com/secureCodeBox/secureCodeBox/blob/pingcastle/scanners/pingcastle/scanner/Tutorial.md).
+issue with the VPN arose. Of course, one has to connect to the VPN automatically on start-up in order to run the scans
+from outside the machine. It turned out, however, that PingCastle is indeed very picky. It always refused to work
+while the machine was connected automatically to the VPN (e.g. using *rasdial*), while it would perfectly do its job 
+when being connected manually to the VPN! We tried a lot here, and you can read all about our dirty workaround to finally
+make it work in our related extensive
+[Tutorial](https://github.com/secureCodeBox/secureCodeBox/blob/pingcastle/scanners/pingcastle/scanner/Tutorial.md).
 
-## Final words
+## Conclusion
 
 With this tutorial you should be able to reproduce our attempt and set up a working container that is actually 
 capable to be integrated into the secureCodeBox. We already provide you with all other necessary files, especially
-the parser that automatically converts the PingCastle scan xml to our secureCodeBox findings format.
+the parser that automatically converts the PingCastle scan *xml* to our secureCodeBox findings format.
 Be aware, however, that the solution is not yet stable for production and that you could still face some major issues 
 with it. For example, it is not yet clear to us how the container will behave when being deployed over a long period
 of time. Maybe the VM will shut down unexpectedly, and we all know and love the blue welcome screen when Windows
 refuses to start normally. This, of course, would also hinder any automatic scans from being executed.
 
 That is why we are thankful for any comments, experience reports or even suggestions, how to improve our chosen
-setup. In addition, if you have any questions or face any issues, please also let us know! 
-
+setup. In addition, if you have any questions or face any issues, please also let us know!
