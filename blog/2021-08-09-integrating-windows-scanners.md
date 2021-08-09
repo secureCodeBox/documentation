@@ -1,0 +1,92 @@
+---
+# SPDX-FileCopyrightText: 2021 iteratec GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
+title: Why secureCodeBox Version 2
+author: Sebastian Franz
+author_title: Contributor
+author_url: https://github.com/SebieF
+author_image_url: https://avatars.githubusercontent.com/u/32578476?v=4
+tags:
+- secureCodeBox
+- windows
+- scanners
+- pingcastle
+  description: This .
+  image: /img/blog/2021-06-07-why.jpg
+---
+
+![Why?](/img/blog/2021-08-09-windows.jpg)
+
+Cover photo by [Tadas Sar](https://unsplash.com/@stadsa) on [Unsplash](https://unsplash.com/photos/T01GZhBSyMQ).
+
+Get some insights into the fascinating and exhausting world of integrating windows scanners into the secureCodeBox.
+
+<!--truncate-->
+
+## Windows Security
+
+To date, Microsoft Windows is still the most popular operating system, especially in office or work related areas.
+Unsurprisingly, [most of the malware](https://www.statista.com/statistics/680943/malware-os-distribution/) is also created for windows.
+While most of the scanners already implemented in the secureCodeBox can target and run on any operating system,
+the need for Windows-specific security measures is blatant.
+There exist several security scanners that target specific Windows-related security aspects, such as 
+[Mandiant](https://www.fireeye.com/mandiant.html) or [PingCastle](https://pingcastle.com/).
+PingCastle scans a domain with an Active Directory, reporting any risks that can result from disproportionately 
+privileged accounts or weak password policies for example. 
+It is the first scanner that we went for integrating in the secureCodeBox, and what a journey it was!
+Join us on our path to automated Windows security, including a lot of inception, dirty workarounds and a sour taste of
+Wine..
+
+## Integrating PingCastle into the secureCodeBox - First Attempts
+
+So here was our starting point: We already ran some successful scans of PingCastle against our own AD. So it would
+be nice to automate the scans and get informed if some critical issues arise. As this is the whole point of our
+secureCodeBox, we wanted to add PingCastle as a scanner and eventually provide the community (you) with a possibility
+to do the same. 
+As all of our scanners run on Linux distributions to date, it would not be feasible to simply add a Windows Docker
+container to our Kubernetes cluster, as Linux and Windows Docker environments are not easily interchangeable.
+So the idea was simply to run PingCastle in a Linux container. Spoiler alert: It didn't turn out to be so simple..
+
+As [PingCastle is open source](https://github.com/vletoux/pingcastle), our first attempt was to compile it ourselves
+with Mono or .NET for Linux. We tried it to no avail. After some talks with professional .NET developers, we decided
+that it will exceed both our time and knowledge capabilities. 
+
+So the next idea was to run it with [Wine](https://wiki.ubuntuusers.de/Wine/). If this worked, we would have had a pretty
+stable solution that could probably be applied for a lot of Windows scanners. Unfortunately, PingCastle did start
+and execute in our Wine environment, but failed to execute any scans against our AD. After trying a lot of stuff
+with hanging our computers into the domain and using VPN connections, we had to give up. Probably, PingCastle in the
+Wine environment does not have the required access to some DLLs needed for the scan or PingCastle itself is just a 
+little bittle picky as we will see later.. 
+However, maybe we will come back to Wine in the future regarding other Windows scanners.
+
+## Starting the inception
+
+So we finally came up with a rather "brute-force" method: If PingCastle solely runs on Windows - why not put Windows
+into a Linux container? Virtual machines have become a well-known tool to achieve stuff like this. After solving some
+problems setting it up, we could confirm that it actually works to run a Windows VM in a Linux Docker Container!
+(Running on our Ubuntu main OS, providing the [Virtual Box](https://www.virtualbox.org/) driver, so that the VM 
+actually does not run in the container but rather on the host OS, the inception took off!)
+
+After that we prepared the Windows 10 virtual machine image by adding it to the domain, linking it to our VPN and 
+finally installing PingCastle. We could confirm that the scans inside the VM ran properly, but surprisingly a major
+issues with the VPN arose. Of course, you have to connect to the VPN automatically on start-up in order to run the scans
+from outside the machine. It turned out, however, that PingCastle is indeed very picky and always refused to work
+while the machine was connected automatically to the VPN (using e.g. rasdial), while it would perfectly do its job 
+when being connected manually to the VPN! We tried a lot here, and you can read all about our final dirty workaround
+in our related extensive [Tutorial](https://github.com/secureCodeBox/secureCodeBox/blob/pingcastle/scanners/pingcastle/scanner/Tutorial.md).
+
+## Final words
+
+With this tutorial you should be able to reproduce our attempt and set up a working container that is actually 
+capable to be integrated into the secureCodeBox. We already provide you with all other necessary files, especially
+the parser that automatically converts the PingCastle scan xml to our secureCodeBox findings format.
+Be aware, however, that the solution is not yet stable for production and that you could still face some major issues 
+with it. For example, it is not yet clear to us how the container will behave when being deployed over a long period
+of time. Maybe the VM will shut down unexpectedly, and we all know and love the blue welcome screen when Windows
+refuses to start normally. This, of course, would also hinder any automatic scans from being executed.
+
+That is why we are thankful for any comments, experience reports or even suggestions, how to improve our chosen
+setup. In addition, if you have any questions or face any issues, also let us know! 
+
