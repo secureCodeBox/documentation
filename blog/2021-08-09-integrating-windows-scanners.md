@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-title: Why secureCodeBox Version 2
+title: Windows Scanners and the secureCodeBox
 author: Sebastian Franz
 author_title: Contributor
 author_url: https://github.com/SebieF
@@ -13,11 +13,11 @@ tags:
 - windows
 - scanners
 - pingcastle
-  description: This .
-  image: /img/blog/2021-06-07-why.jpg
+  description: This post describes our journey to integrate a Windows scanner into the scb.
+  image: /img/blog/2021-08-09-windows.jpg
 ---
 
-![Why?](/img/blog/2021-08-09-windows.jpg)
+![Windows](/img/blog/2021-08-09-windows.jpg)
 
 Cover photo by [Tadas Sar](https://unsplash.com/@stadsa) on [Unsplash](https://unsplash.com/photos/T01GZhBSyMQ).
 
@@ -33,7 +33,7 @@ While most of the scanners already implemented in the secureCodeBox can target a
 the need for Windows-specific security measures is blatant.
 There exist several security scanners that target specific Windows-related security aspects, such as 
 [Mandiant](https://www.fireeye.com/mandiant.html) or [PingCastle](https://pingcastle.com/).
-PingCastle scans a domain with an Active Directory, reporting any risks that can result from disproportionately 
+PingCastle scans a domain with an Active Directory (AD), reporting any risks that can result from disproportionately 
 privileged accounts or weak password policies for example. 
 It is the first scanner that we went for integrating in the secureCodeBox, and what a journey it was!
 Join us on our path to automated Windows security, including a lot of inception, dirty workarounds and a sour taste of
@@ -47,16 +47,16 @@ secureCodeBox, we wanted to add PingCastle as a scanner and eventually provide t
 to do the same. 
 As all of our scanners run on Linux distributions to date, it would not be feasible to simply add a Windows Docker
 container to our Kubernetes cluster, as Linux and Windows Docker environments are not easily interchangeable.
-So the idea was simply to run PingCastle in a Linux container. Spoiler alert: It didn't turn out to be so simple..
+So the idea was simply to run PingCastle in a Linux container. Well, it didn't turn out to be that simple..
 
 As [PingCastle is open source](https://github.com/vletoux/pingcastle), our first attempt was to compile it ourselves
 with Mono or .NET for Linux. We tried it to no avail. After some talks with professional .NET developers, we decided
-that it will exceed both our time and knowledge capabilities. 
+that this approach will exceed both our time and knowledge capabilities. 
 
 So the next idea was to run it with [Wine](https://wiki.ubuntuusers.de/Wine/). If this worked, we would have had a pretty
 stable solution that could probably be applied for a lot of Windows scanners. Unfortunately, PingCastle did start
 and execute in our Wine environment, but failed to execute any scans against our AD. After trying a lot of stuff
-with hanging our computers into the domain and using VPN connections, we had to give up. Probably, PingCastle in the
+with adding our computers to the domain and using VPN connections, we had to give up. Probably, PingCastle in the
 Wine environment does not have the required access to some DLLs needed for the scan or PingCastle itself is just a 
 little bittle picky as we will see later.. 
 However, maybe we will come back to Wine in the future regarding other Windows scanners.
@@ -64,14 +64,14 @@ However, maybe we will come back to Wine in the future regarding other Windows s
 ## Starting the inception
 
 So we finally came up with a rather "brute-force" method: If PingCastle solely runs on Windows - why not put Windows
-into a Linux container? Virtual machines have become a well-known tool to achieve stuff like this. After solving some
-problems setting it up, we could confirm that it actually works to run a Windows VM in a Linux Docker Container!
+into a Linux container? Virtual machines (VMs) have become a well-known tool to achieve stuff like this. After solving some
+problems setting it up, we could confirm that it actually worked to run a Windows VM in a Linux Docker Container!
 (Running on our Ubuntu main OS, providing the [Virtual Box](https://www.virtualbox.org/) driver, so that the VM 
 actually does not run in the container but rather on the host OS, the inception took off!)
 
 After that we prepared the Windows 10 virtual machine image by adding it to the domain, linking it to our VPN and 
 finally installing PingCastle. We could confirm that the scans inside the VM ran properly, but surprisingly a major
-issues with the VPN arose. Of course, you have to connect to the VPN automatically on start-up in order to run the scans
+issues with the VPN arose. Of course, one has to connect to the VPN automatically on start-up in order to run the scans
 from outside the machine. It turned out, however, that PingCastle is indeed very picky and always refused to work
 while the machine was connected automatically to the VPN (using e.g. rasdial), while it would perfectly do its job 
 when being connected manually to the VPN! We tried a lot here, and you can read all about our final dirty workaround
@@ -88,5 +88,5 @@ of time. Maybe the VM will shut down unexpectedly, and we all know and love the 
 refuses to start normally. This, of course, would also hinder any automatic scans from being executed.
 
 That is why we are thankful for any comments, experience reports or even suggestions, how to improve our chosen
-setup. In addition, if you have any questions or face any issues, also let us know! 
+setup. In addition, if you have any questions or face any issues, please also let us know! 
 
