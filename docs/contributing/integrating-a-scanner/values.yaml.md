@@ -55,6 +55,7 @@ scannerJob:
 The `image` field contains the container image and tag used for the scanner.
 This could be the official image of the scanner but in some cases a custom image is needed.
 Usually the `tag` of the image is `null` and will default to the charts `appVersion`.
+See below how to use a local docker image.
 For WPScan the official image can be used so the `image` field looks like this:
 
 ```yaml
@@ -132,3 +133,44 @@ Optional additional Containers started with each scanJob (see: [Init Containers 
 Optional securityContext set on scanner container (see: [Configure a Security Context for a Pod or Container | Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)).
 
 
+### Using local images
+
+If you are integrating a new scanner and want to test your scanner and parser image from a local build, you can use
+the following steps:
+
+1. Create your parser and scanner Dockerfiles
+2. Change the values.yaml file like this:
+```yaml
+   parser:
+     image:
+      repository: your-custom-parser
+      pullPolicy: IfNotPresent
+  scanner:
+     image:
+      repository: your-custom-scanner
+      pullPolicy: IfNotPresent
+```
+3. Build your parser, using the **version** from Chart.yaml (e.g. v3.1.0-alpha1):
+```bash
+cd your-custom-scanner/parser/
+docker build --tag your-custom-parser:(version) . 
+```
+4. Build your scanner, using the **appVersion** from Chart.yaml (e.g. 1.0.0):
+```bash
+cd your-custom-scanner/scanner/
+docker build --tag your-custom-scanner:(appVersion) . 
+```
+5. Load both images into your cluster, e.g. using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#loading-an-image-into-your-cluster):
+```bash
+kind load docker-image your-custom-parser:(version)
+kind load docker-image your-custom-scanner:(appVersion)
+```
+Check images in cluster:
+```bash
+docker exec -it kind-control-plane crictl images
+```
+6. When all files are ready, install via helm:
+```bash
+cd securecodebox/
+helm upgrade --install your-custom-scanner scanners/your-custom-scanner
+```
