@@ -133,13 +133,13 @@ Optional additional Containers started with each scanJob (see: [Init Containers 
 Optional securityContext set on scanner container (see: [Configure a Security Context for a Pod or Container | Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)).
 
 
-### Using local images
+## Using local images
 
-If you are integrating a new scanner and want to test your scanner and parser image from a local build, you can use
-the following steps:
+If you are integrating a new scanner and want to test your scanner and parser image from a local build, you can follow
+these steps:
 
 1. Create your parser and scanner Dockerfiles
-2. Change the values.yaml file like this:
+2. Change the tags in values.yaml file like this:
 ```yaml
    parser:
      image:
