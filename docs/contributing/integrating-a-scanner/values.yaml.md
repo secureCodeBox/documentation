@@ -141,14 +141,14 @@ these steps:
 1. Create your parser and scanner Dockerfiles
 2. Change the tags in values.yaml file like this:
 ```yaml
-   parser:
-     image:
-      repository: your-custom-parser
-      pullPolicy: IfNotPresent
-  scanner:
-     image:
-      repository: your-custom-scanner
-      pullPolicy: IfNotPresent
+ parser:
+  image:
+    repository: your-custom-parser
+    pullPolicy: IfNotPresent
+scanner:
+  image:
+    repository: your-custom-scanner
+    pullPolicy: IfNotPresent
 ```
 3. Build your parser, using the **version** from Chart.yaml (e.g. v3.1.0-alpha1):
 ```bash
