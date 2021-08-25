@@ -141,7 +141,7 @@ these steps:
 1. Create your parser and scanner Dockerfiles
 2. Change the tags in values.yaml file like this:
 ```yaml
- parser:
+parser:
   image:
     repository: your-custom-parser
     pullPolicy: IfNotPresent
