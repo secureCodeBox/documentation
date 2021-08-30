@@ -6,7 +6,7 @@
 title: "ScanType"
 ---
 
-The ScanType Custom Resource Definition (CRD) is used to define to the secureCodeBox how a specific scanner can be executed in Kubernetes. The main part of the ScanType is the [JobTemplate](#jobtemplate-required), which contains a Kubernetes Job definition which will be used to construct the scans Job.
+The ScanType Custom Resource Definition (CRD) is used to define to the secureCodeBox how a specific scanner can be executed in Kubernetes. The main part of the ScanType is the [JobTemplate](#jobtemplate-required), which contains a Kubernetes Job definition that will be used to construct the scans Job.
 
 ## Specification (Spec)
 
@@ -24,16 +24,17 @@ The type is used to determine which parser would be used to handle this result f
 #### ExtractResults.Location (Required)
 
 The `location` field describes from where the result file can be extracted.
-Absolute path on the containers file system.
+The absolute path on the containers file system.
 
 Must be located in `/home/securecodebox/` so that the result is reachable by the secureCodeBox Lurker sidecar which performs the actual extraction of the result.
 E.g. `/home/securecodebox/nmap-results.xml`
 
 ### JobTemplate (Required)
 
-Template of the kubernetes job to create when running the scan.
+Template of the Kubernetes job to create when running the scan.
 
-See: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#job-v1-batch
+For info about the JobTemplate generic parameters, see here: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#job-v1-batch
+When specified, as with the `ttlSecondsAfterFinished` parameter, the values from `values.yaml` will be used in the JobTemplate.
 
 ## Example
 
@@ -41,26 +42,41 @@ See: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#job-v1
 apiVersion: "execution.securecodebox.io/v1"
 kind: ScanType
 metadata:
-  name: "zap-baseline"
+  name: "typo3scan"
 spec:
   extractResults:
-    type: zap-json
-    location: "/home/securecodebox/zap-results.json"
+    type: typo3scan-json
+    location: "/home/securecodebox/typo3scan.json"
   jobTemplate:
     spec:
-      ttlSecondsAfterFinished: 10
+      {{- if .Values.scanner.ttlSecondsAfterFinished }}
+      ttlSecondsAfterFinished: {{ .Values.scanner.ttlSecondsAfterFinished }}
+      {{- end }}
+      backoffLimit: {{ .Values.scanner.backoffLimit }}
       template:
         spec:
           restartPolicy: Never
           containers:
-            - name: zap-baseline
-              image: owasp/zap2docker-stable:2.9.0
+            - name: typo3scan
+              image: "{{ .Values.scanner.image.repository }}:{{ .Values.scanner.image.tag | default .Chart.AppVersion }}"
               command:
-                - "zap-baseline.py"
-                # Force Zap to always return a zero exit code. k8s would otherwise try to restart zap.
-                - "-I"
-                - "-J"
-                # ZAP Baseline Script doesn't allow absolute paths...
-                # Hacky workaround: specify a relative path to the `/zap/wrk` base dir.
-                - "../../home/securecodebox/zap-results.json"
+                - "python3"
+                - "/home/typo3scan/typo3scan.py" 
+                # Remove any user-interation
+                - "--no-interaction"
+                # Output in json format
+                - "--json"
+              resources:
+                {{- toYaml .Values.scanner.resources | nindent 16 }}
+              securityContext:
+                {{- toYaml .Values.scanner.securityContext | nindent 16 }}
+              env:
+                {{- toYaml .Values.scanner.env | nindent 16 }}
+              volumeMounts:
+                {{- toYaml .Values.scanner.extraVolumeMounts | nindent 16 }}
+            {{- if .Values.scanner.extraContainers }}
+            {{- toYaml .Values.scanner.extraContainers | nindent 12 }}
+            {{- end }}
+          volumes:
+            {{- toYaml .Values.scanner.extraVolumes | nindent 12 }}
 ```
