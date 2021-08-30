@@ -17,7 +17,7 @@ A scanType will reference the **name** of a *ParseDefinition* via the [extractRe
 
 `image` is the reference to the parser container image which can transform the raw scan report into findings.
 
-To see how to write parsers and package them into images, checkout the [documentation page on integrating new scanners](docs/contributing/integrating-a-scanner).
+To see how to write parsers and package them into images, check out the [documentation page on integrating new scanners](docs/contributing/integrating-a-scanner).
 
 ### ImagePullSecrets (Optional)
 
@@ -37,8 +37,8 @@ kind: ParseDefinition
 metadata:
   name: zap-json
 spec:
-  image: docker.io/securecodebox/parser-zap
-  imagePullSecrets:
-  - name: dockerhub-token
-  ttlSecondsAfterFinished: 60
+  image: "{{ .Values.parser.image.repository }}:{{ .Values.parser.image.tag | default .Chart.Version }}"
+  ttlSecondsAfterFinished: {{ .Values.parser.ttlSecondsAfterFinished }}
+  env: 
+    {{- toYaml .Values.parser.env | nindent 4 }}
 ```
