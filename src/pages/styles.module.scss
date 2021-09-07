@@ -11,66 +11,34 @@
  * and scoped locally.
  */
 
+@import "../css/_mixins.scss";
+@import "../css/custom.css";
+
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
+  padding: 2rem;
   position: relative;
   overflow: hidden;
-}
-
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-  .buttons {
-    flex-direction: column;
-    height: 120px;
-  }
-  .integrations {
-    grid-template-columns: auto !important;
-  }
-  .integration {
-    width: auto !important;
-    height: min-content !important;
+  background-color: black;
+  @include lg {
+    padding: 4rem 0;
   }
 }
 
-.hero__subtitle {
-  width: 200px !important;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 600px;
-  margin: auto;
+.description {
+  color: var(--accent-color-main);
 }
 
 .integrations {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto;
   padding: 2rem 0;
+  @include lg {
+    grid-template-columns: auto auto auto;
+  }
   a {
     text-decoration: none !important;
     color: unset;
   }
-}
-
-.integrationImage {
-  height: 40px;
-  width: 40px;
-}
-
-.integration {
-  padding: 1em;
-  margin: 0 2em 2em;
-  border: 1px solid gray;
-  border-radius: 5px;
-  text-align: center;
-  width: 300px;
-  min-height: 180px;
-  cursor: pointer;
 }
 
 .light:hover {
@@ -83,6 +51,10 @@ h3 {
 
 h2 {
   margin: 20px 0 0;
+}
+
+h1 {
+  color: white
 }
 
 .dark {
@@ -101,15 +73,9 @@ main {
   }
 }
 
-.description {
-  width: 45%;
-  padding: 0 1em 2em;
-  font-size: large;
-  display: flex;
-  max-width: 600px;
-  margin: auto;
-  @media screen and (max-width: 966px) {
-    display: none;
-    width: auto;
+.getStarted {
+  color: white !important;
+  &:hover {
+    color: black !important;
   }
 }
