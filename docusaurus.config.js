@@ -15,7 +15,8 @@ module.exports = {
     navbar: {
       logo: {
         alt: 'secureCodeBox Logo',
-        src: 'img/Logo_Color.svg',
+        src: 'img/Logo_Black.svg',
+        srcDark: 'img/Logo_White.svg'
       },
       items: [
         {
