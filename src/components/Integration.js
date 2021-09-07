@@ -8,7 +8,8 @@ import useThemeContext from "@theme/hooks/useThemeContext";
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import React from "react";
-import styles from "./styles.module.scss";
+import igStyles from "../css/integration.module.scss";
+import styles from "../pages/styles.module.scss";
 
 export default function Integration({ imageUrl, title, usecase, type, path }) {
   const { isDarkTheme } = useThemeContext();
@@ -18,14 +19,14 @@ export default function Integration({ imageUrl, title, usecase, type, path }) {
   return (
     <Link
       className={clsx(
-        styles.integration,
+        igStyles.integration,
         isDarkTheme ? styles.dark : styles.light
       )}
       to={path}
     >
       {imgUrl && (
         <div className="text--center">
-          <img className={styles.integrationImage} src={imgUrl} alt={title} />
+          <img className={igStyles.integrationImage} src={imgUrl} alt={title} />
         </div>
       )}
       <h3>
