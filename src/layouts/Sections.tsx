@@ -9,7 +9,7 @@ const Sections = ({ children }: { children: React.ReactNode }) => (
     {React.Children.map(children, (child, idx) => (
       <div
         style={{
-          backgroundColor: idx % 2 == 0 ? "#E2E2E2" : "white",
+          backgroundColor: idx % 2 == 1 ? "#E2E2E2" : "white",
           padding: "0.5em 3em",
         }}
       >
