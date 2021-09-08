@@ -26,7 +26,16 @@ WORKDIR /home/app/parser-wrapper/parser/
 COPY --from=build --chown=app:app /home/app/node_modules/ ./node_modules/
 COPY --chown=app:app ./parser.js ./parser.js
 ```
+If your parser does not require any external dependencies, A multi-stage build is not needed.  
+Instead, A simpler Dockerfile can be used.
 
+```dockerfile
+ARG namespace
+ARG baseImageTag
+FROM securecodebox/parser-sdk-nodejs:${baseImageTag:-latest}
+WORKDIR /home/app/parser-wrapper/parser/
+COPY --chown=app:app ./parser.js ./parser.js
+```
 ## Parsing SDK
 
 To create a parser for your scanner you will have to execute the following steps in the parser directory:
