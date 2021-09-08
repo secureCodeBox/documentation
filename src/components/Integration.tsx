@@ -8,8 +8,8 @@ import useThemeContext from "@theme/hooks/useThemeContext";
 import clsx from "clsx";
 import React from "react";
 
-const igStyles = require("../css/integration.module.scss");
-const styles = require("../pages/styles.module.scss");
+import igStyles from "../css/integration.module.scss";
+import styles from "../pages/styles.module.scss";
 
 export default function Integration({
   imageUrl,
