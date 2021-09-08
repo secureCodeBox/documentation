@@ -7,9 +7,8 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import useThemeContext from "@theme/hooks/useThemeContext";
 import clsx from "clsx";
 import React from "react";
-
 import igStyles from "../css/integration.module.scss";
-import styles from "../pages/styles.module.scss";
+import styles from "../css/styles.module.scss";
 
 export default function Integration({
   imageUrl,

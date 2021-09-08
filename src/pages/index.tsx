@@ -8,12 +8,12 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React from "react";
+import FlipCard from "../components/FlipCard";
 import Integration from "../components/Integration";
 import Section from "../components/Section";
+import styles from "../css/styles.module.scss";
 import { Hooks, Scanners } from "../integrations";
 import Sections from "../layouts/Sections";
-
-import styles from "./styles.module.scss";
 
 const ScannerIntegrations = () => {
   return (
@@ -79,7 +79,7 @@ function Home() {
             subtitle="Use the power of leading open-source security testing tools to run routine scans continuously and automatically on your network or application."
             alignment="center"
           >
-            <div />
+            <FlipCard />
           </Section>
           <Section
             title="Security Use Cases"
