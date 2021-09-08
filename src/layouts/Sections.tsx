@@ -1,10 +1,10 @@
+// SPDX-FileCopyrightText: 2021 iteratec GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import React from "react";
 
-const Sections = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => (
+const Sections = ({ children }: { children: React.ReactNode }) => (
   <div>
     {React.Children.map(children, (child, idx) => (
       <div

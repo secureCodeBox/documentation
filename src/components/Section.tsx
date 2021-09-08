@@ -1,10 +1,14 @@
+// SPDX-FileCopyrightText: 2021 iteratec GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import React from "react";
 
 const Section = ({
   children,
   title,
   subtitle,
-  alignment  = "left",
+  alignment = "left",
 }: {
   children: React.ReactNode;
   title?: string;
