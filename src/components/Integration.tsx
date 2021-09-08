@@ -6,12 +6,24 @@ import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useThemeContext from "@theme/hooks/useThemeContext";
 import clsx from "clsx";
-import PropTypes from "prop-types";
 import React from "react";
-import igStyles from "../css/integration.module.scss";
-import styles from "../pages/styles.module.scss";
 
-export default function Integration({ imageUrl, title, usecase, type, path }) {
+const igStyles = require("../css/integration.module.scss");
+const styles = require("../pages/styles.module.scss");
+
+export default function Integration({
+  imageUrl,
+  title,
+  usecase,
+  type,
+  path,
+}: {
+  imageUrl?: string;
+  title: string;
+  usecase: string;
+  type?: string;
+  path: string;
+}) {
   const { isDarkTheme } = useThemeContext();
 
   const imgUrl = useBaseUrl(imageUrl);
@@ -36,11 +48,3 @@ export default function Integration({ imageUrl, title, usecase, type, path }) {
     </Link>
   );
 }
-
-Integration.propTypes = {
-  imageUrl: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  usecase: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  path: PropTypes.string.isRequired,
-};

@@ -9,10 +9,11 @@ import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React from "react";
 import Integration from "../components/Integration";
+import Section from "../components/Section";
 import { Hooks, Scanners } from "../integrations";
 import Sections from "../layouts/Sections";
-import styles from "./styles.module.scss";
-import Section from "../components/Section";
+
+const styles = require("./styles.module.scss");
 
 const ScannerIntegrations = () => {
   return (
@@ -42,7 +43,7 @@ const HookIntegrations = () => {
 
 function Home() {
   const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
+  const { siteConfig } = context;
 
   return (
     <Layout
@@ -80,25 +81,37 @@ function Home() {
           title="Automated Security Testing"
           subtitle="Use the power of leading open-source security testing tools to run routine scans continuously and automatically on your network or application."
           alignment="center"
-        ></Section>
+        >
+          <div />
+        </Section>
         <Section
           title="Security Use Cases"
           subtitle="Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:"
-        ></Section>
+        >
+          <div />
+        </Section>
         <Section
           title="Your Go-to Solution for easy Security Scanning"
           subtitle="Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:"
-        ></Section>
+        >
+          <div />
+        </Section>
         <Section
           title="Multi Scanner Security Platform"
           subtitle="Combining more than 15 leading Open-Source Scanning Tools secureCodeBox covers a broad spectrum of possible threats and vulnerabilities for your network and applications; ranging from Kubernetes vulnerabilities, over SSL misconfigurations, to network authentication bruteforcing and many more:"
           alignment="center"
-        ></Section>
+        >
+          <div />
+        </Section>
         <Section
           title="About us"
           subtitle="secureCodeBox is an Open-Source project in cooperation with OWASP and with friendly support from iteratec."
-        ></Section>
-        <Section title="Partners" alignment="center"></Section>
+        >
+          <div />
+        </Section>
+        <Section title="Partners" alignment="center">
+          <div />
+        </Section>
       </Sections>
     </Layout>
   );
