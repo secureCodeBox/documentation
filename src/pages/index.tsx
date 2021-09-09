@@ -14,6 +14,13 @@ import Section from "../components/Section";
 import styles from "../css/styles.module.scss";
 import { Hooks, Scanners } from "../integrations";
 import Sections from "../layouts/Sections";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from "react-accessible-accordion";
 
 const ScannerIntegrations = () => {
   return (
@@ -85,7 +92,42 @@ function Home() {
             title="Security Use Cases"
             subtitle="Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:"
           >
-            <div />
+            <Accordion
+              allowZeroExpanded={true}
+              allowMultipleExpanded={false}
+              className={styles.accordion}
+            >
+              <AccordionItem className={styles.accordionItem}>
+                <AccordionItemHeading>
+                  <AccordionItemButton className={styles.accordionButton}>
+                    For Dev-Teams
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>
+                  <p>...</p>
+                </AccordionItemPanel>
+              </AccordionItem>
+              <AccordionItem className={styles.accordionItem}>
+                <AccordionItemHeading>
+                  <AccordionItemButton className={styles.accordionButton}>
+                    For Ops-Teams
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>
+                  <p>...</p>
+                </AccordionItemPanel>
+              </AccordionItem>
+              <AccordionItem className={styles.accordionItem}>
+                <AccordionItemHeading>
+                  <AccordionItemButton className={styles.accordionButton}>
+                    For Sec-Teams
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>
+                  <p>...</p>
+                </AccordionItemPanel>
+              </AccordionItem>
+            </Accordion>
           </Section>
           <Section
             title="Your Go-to Solution for easy Security Scanning"
