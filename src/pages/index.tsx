@@ -9,7 +9,6 @@ import useThemeContext from "@theme/hooks/useThemeContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React from "react";
-import FlipCard from "../components/FlipCard";
 import Integration from "../components/Integration";
 import Section from "../components/Section";
 import styles from "../css/styles.module.scss";
@@ -91,9 +90,7 @@ function Home() {
             title="Automated Security Testing"
             subtitle="Use the power of leading open-source security testing tools to run routine scans continuously and automatically on your network or application."
             alignment="center"
-          >
-            <FlipCard />
-          </Section>
+          ><div /></Section>
           <Section
             title="Security Use Cases"
             subtitle="Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:"
