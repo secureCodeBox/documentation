@@ -21,7 +21,13 @@ const Section = ({
         textAlign: alignment,
       }}
     >
-      <h2>{title}</h2>
+      <h2
+        style={{
+          margin: "20px 0px",
+        }}
+      >
+        {title}
+      </h2>
       <div>{subtitle}</div>
     </div>
     {children}

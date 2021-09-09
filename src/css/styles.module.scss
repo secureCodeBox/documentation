@@ -80,6 +80,11 @@ main {
   }
 }
 
+.partners {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .accordion {
   margin: 20px auto;
   max-width: 50rem;

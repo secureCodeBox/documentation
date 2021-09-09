@@ -10,7 +10,7 @@ const Sections = ({ children }: { children: React.ReactNode }) => (
       <div
         style={{
           backgroundColor: idx % 2 == 1 ? "#E2E2E2" : "white",
-          padding: "0.5em 3em",
+          padding: "2rem 4rem",
         }}
       >
         {child}

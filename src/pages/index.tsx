@@ -5,6 +5,7 @@
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useThemeContext from "@theme/hooks/useThemeContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React from "react";
@@ -46,6 +47,11 @@ const HookIntegrations = () => {
       </section>
     </div>
   );
+};
+
+const ThemedImage = ({ lightImgSrc, darkImgSrc }) => {
+  const { isDarkTheme } = useThemeContext();
+  return <img src={isDarkTheme ? darkImgSrc : lightImgSrc} />;
 };
 
 function Home() {
@@ -150,7 +156,20 @@ function Home() {
             <div />
           </Section>
           <Section title="Partners" alignment="center">
-            <div />
+            <div className={styles.partners}>
+              <ThemedImage
+                lightImgSrc="static/img/Logo_Black.svg"
+                darkImgSrc="static/img/Logo_White.svg"
+              />
+              <ThemedImage
+                lightImgSrc="static/img/Logo_Black.svg"
+                darkImgSrc="static/img/Logo_White.svg"
+              />
+              <ThemedImage
+                lightImgSrc="static/img/Logo_Black.svg"
+                darkImgSrc="static/img/Logo_White.svg"
+              />
+            </div>
           </Section>
         </Sections>
       </main>
