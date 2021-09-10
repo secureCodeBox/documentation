@@ -20,10 +20,10 @@ If not done yet, **install the nmap scanner:**
 helm upgrade --install nmap secureCodeBox/nmap
 ```
 
-Now we also need the **declarative subsequent scan hook** (if not installed yet):
+Now we also need the **cascading-scans hook** (if not installed yet):
 
 ```bash
-helm upgrade --install dssh ./hooks/declarative-subsequent-scans/
+helm upgrade --install cascading-scans secureCodeBox/cascading-scans
 ```
 
 Finally, setting up **Ncrack** is a little trickier though. Ncrack uses files with lists of usernames and passwords to brute-force an authentication. In its default configuration, the scanner will check for all combinations of usernames and passwords provided by our lists. You can use your own existing files or just create two **dummy files** for the purpose of the tutorial:
