@@ -37,8 +37,10 @@ kind: ParseDefinition
 metadata:
   name: zap-json
 spec:
-  image: "{{ .Values.parser.image.repository }}:{{ .Values.parser.image.tag | default .Chart.Version }}"
-  ttlSecondsAfterFinished: {{ .Values.parser.ttlSecondsAfterFinished }}
-  env: 
-    {{- toYaml .Values.parser.env | nindent 4 }}
+  image: docker.io/securecodebox/parser-zap
+  imagePullSecrets:
+  - name: dockerhub-token
+  ttlSecondsAfterFinished: 60
 ```
+The Parse definition is different when integrating a new scanner. We use specific conventions when adding new ParseDefinitions to the secureCodeBox repository. 
+More information can be found on the [templates folder documentation page for integrating new scanners](docs/contributing/integrating-a-scanner/templates-dir)

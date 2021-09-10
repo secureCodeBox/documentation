@@ -19,8 +19,20 @@ Please take a look at [ScanType | secureCodeBox](/docs/api/crds/scan-type) on ho
 ### new-scanner-parse-definition.yaml
 
 This file contains the ParseDefinition of your scanner.
-Please take a look at [ParseDefinition | secureCodeBox](/docs/api/crds/parse-definition) on how to configure your `ParseDefinition`.
-
+We use the convention where the values to the parse definition are taken from the `values.yaml` in the scanner's folder.
+#### Example
+```yaml
+apiVersion: execution.securecodebox.io/v1
+kind: ParseDefinition
+metadata:
+  name: zap-json
+spec:
+  image: "{{ .Values.parser.image.repository }}:{{ .Values.parser.image.tag | default .Chart.Version }}"
+  ttlSecondsAfterFinished: {{ .Values.parser.ttlSecondsAfterFinished }}
+  env: 
+    {{- toYaml .Values.parser.env | nindent 4 }}
+```
+More information under [ParseDefinition | secureCodeBox](/docs/api/crds/parse-definition) 
 ### cascading-rules.yaml
 
 The `CascadingRules` define under which conditions your scanner will be run after other scanners.
