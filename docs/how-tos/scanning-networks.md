@@ -17,7 +17,7 @@ For the sake of the tutorial, we assume that you have your Kubernetes cluster al
 If not done yet, **install the nmap scanner:**
 
 ```bash
-helm upgrade --install nmap ./scanners/nmap/
+helm upgrade --install nmap secureCodeBox/nmap
 ```
 
 Now we also need the **declarative subsequent scan hook** (if not installed yet):
@@ -44,7 +44,7 @@ kubectl create secret generic --from-file users.txt --from-file passwords.txt nc
 Lastly, we now **install Ncrack** and configure the scanType to mount our secret, so that we get access to the username and password files via the mount path `/ncrack/`:
 
 ```bash
-cat <<EOF | helm upgrade --install ncrack ./scanners/ncrack --values -
+cat <<EOF | helm upgrade --install ncrack secureCodeBox/ncrack --values -
 scannerJob:
   extraVolumes:
     - name: ncrack-lists
