@@ -49,7 +49,7 @@ const content = {
     buttonHeader: "Get in contact and let us know:",
     button: "Get in contact",
     mail: {
-      recipient: "",
+      recipient: "securecodebox@iteratec.com",
       subject: "",
       message: "",
     },
@@ -67,6 +67,29 @@ const content = {
       image: "/static/img/roles/jh_small.jpg",
       name: "Jannik Hollenbach",
       role: "Core Team",
+    },
+  },
+  sponsors: {
+    title: "Sponsors",
+    iteratec: {
+      srcLight: "/static/img/Logo_Black.svg",
+      srcDark: "/static/img/Logo_White.svg",
+      link: "https://www.iteratec.com/",
+    },
+    sdaSe: {
+      srcLight: "/static/img/sponsors/Logo_sda-se.png",
+      srcDark: "/static/img/sponsors/Logo_sda-se.png",
+      link: "https://sda.se/",
+    },
+    secura: {
+      srcLight: "/static/img/sponsors/Logo_secura.svg",
+      srcDark: "/static/img/sponsors/Logo_secura.svg",
+      link: "https://www.secura.com/",
+    },
+    timoPagel: {
+      srcLight: "/static/img/sponsors/Logo_timo-pagel-it-consulting.png",
+      srcDark: "/static/img/sponsors/Logo_timo-pagel-it-consulting.png",
+      link: "https://pagel.pro/",
     },
   },
 };

@@ -19,8 +19,8 @@ export default function Accordion({
       allowMultipleExpanded={false}
       className={styles.accordion}
     >
-      {items.map((item) => (
-        <AccordionItem className={styles.accordionItem}>
+      {items.map((item, i) => (
+        <AccordionItem className={styles.accordionItem} key={i}>
           <AccordionItemHeading>
             <AccordionItemButton className={styles.accordionButton}>
               {item.title}

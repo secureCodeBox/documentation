@@ -44,20 +44,12 @@ const HookIntegrations = () => {
   );
 };
 
-const ThemedImage = ({ lightImgSrc, darkImgSrc }) => {
+//* In order to use useThemeContext() on the homepage, the main content is separated from the default export due to how "@theme/Layout" works
+function HomePage() {
   const { isDarkTheme } = useThemeContext();
-  return <img src={isDarkTheme ? darkImgSrc : lightImgSrc} />;
-};
-
-function Home() {
-  const context = useDocusaurusContext();
-  const { siteConfig } = context;
 
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
-    >
+    <>
       <header className={clsx("hero", styles.heroBanner)}>
         <div className="container">
           <h1>{content.heroBanner.title}</h1>
@@ -126,15 +118,14 @@ function Home() {
               </div>
             }
           >
-            <div className="row" style={{ marginTop: 20 }}>
+            <div className="row margin-top--lg">
               <div className="col col--4">
                 <p>{content.about.question}</p>
                 <div>
                   <strong>{content.about.buttonHeader}</strong>
                 </div>
                 <a
-                  className="button button--outline button--primary button--md"
-                  style={{ marginTop: 20 }}
+                  className="button button--outline button--primary button--md margin-top--lg"
                   href={`mailto:${
                     content.about.mail.recipient
                   }?subject=${encodeURI(
@@ -167,26 +158,77 @@ function Home() {
               </div>
             </div>
           </Section>
-          <Section title="Sponsors" alignment="center">
-            <div className={styles.partners}>
-              <ThemedImage
-                lightImgSrc="static/img/Logo_Black.svg"
-                darkImgSrc="static/img/Logo_White.svg"
-              />
-              <ThemedImage
-                lightImgSrc="static/img/Logo_Black.svg"
-                darkImgSrc="static/img/Logo_White.svg"
-              />
-              <ThemedImage
-                lightImgSrc="static/img/Logo_Black.svg"
-                darkImgSrc="static/img/Logo_White.svg"
-              />
+          <Section title={content.sponsors.title} alignment="center">
+            <div className="row margin-top--xl margin-bottom--lg">
+              <a
+                href={content.sponsors.iteratec.link}
+                target="_blank"
+                className="col"
+              >
+                <img
+                  src={
+                    isDarkTheme
+                      ? content.sponsors.iteratec.srcDark
+                      : content.sponsors.iteratec.srcLight
+                  }
+                />
+              </a>
+              <a
+                href={content.sponsors.sdaSe.link}
+                target="_blank"
+                className="col"
+              >
+                <img
+                  src={
+                    isDarkTheme
+                      ? content.sponsors.sdaSe.srcDark
+                      : content.sponsors.sdaSe.srcLight
+                  }
+                />
+              </a>
+              <a
+                href={content.sponsors.secura.link}
+                target="_blank"
+                className="col"
+              >
+                <img
+                  src={
+                    isDarkTheme
+                      ? content.sponsors.secura.srcDark
+                      : content.sponsors.secura.srcLight
+                  }
+                />
+              </a>
+              <a
+                href={content.sponsors.timoPagel.link}
+                target="_blank"
+                className="col"
+              >
+                <img
+                  src={
+                    isDarkTheme
+                      ? content.sponsors.timoPagel.srcDark
+                      : content.sponsors.timoPagel.srcLight
+                  }
+                />
+              </a>
             </div>
           </Section>
         </Sections>
       </main>
-    </Layout>
+    </>
   );
 }
 
-export default Home;
+export default function Main() {
+  const { siteConfig } = useDocusaurusContext();
+
+  return (
+    <Layout
+      title={`Hello from ${siteConfig.title}`}
+      description="Description will go into a meta tag in <head />"
+    >
+      <HomePage />
+    </Layout>
+  );
+}
