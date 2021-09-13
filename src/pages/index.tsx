@@ -78,22 +78,7 @@ function HomePage() {
             title={content.useCases.title}
             subtitle={content.useCases.description}
           >
-            <Accordion
-              items={[
-                {
-                  title: content.useCases.dev.title,
-                  content: content.useCases.dev.description,
-                },
-                {
-                  title: content.useCases.ops.title,
-                  content: content.useCases.ops.description,
-                },
-                {
-                  title: content.useCases.sec.title,
-                  content: content.useCases.sec.description,
-                },
-              ]}
-            />
+            <Accordion items={content.useCases.items} />
           </Section>
           <Section
             title={content.goToSolution.title}
@@ -145,83 +130,29 @@ function HomePage() {
                   {content.about.button}
                 </a>
               </div>
-              <div className="col col--2">
-                <RoleCard
-                  imageSrc={content.about.robert.image}
-                  name={content.about.robert.name}
-                  role={content.about.robert.role}
-                />
-              </div>
-              <div className="col col--2">
-                <RoleCard
-                  imageSrc={content.about.sven.image}
-                  name={content.about.sven.name}
-                  role={content.about.sven.role}
-                />
-              </div>
-              <div className="col col--2">
-                <RoleCard
-                  imageSrc={content.about.jannik.image}
-                  name={content.about.jannik.name}
-                  role={content.about.jannik.role}
-                />
-              </div>
+              {content.about.roles.map((role, i) => (
+                <div className="col col--2" key={`role nr${i}`}>
+                  <RoleCard
+                    imageSrc={role.image}
+                    name={role.name}
+                    role={role.role}
+                  />
+                </div>
+              ))}
             </div>
           </Section>
           <Section title={content.sponsors.title} alignment="center">
             <div className="row margin-bottom--lg">
-              <a
-                href={content.sponsors.iteratec.link}
-                target="_blank"
-                className="col"
-              >
-                <img
-                  src={
-                    isDarkTheme
-                      ? content.sponsors.iteratec.srcDark
-                      : content.sponsors.iteratec.srcLight
-                  }
-                />
-              </a>
-              <a
-                href={content.sponsors.sdaSe.link}
-                target="_blank"
-                className="col"
-              >
-                <img
-                  src={
-                    isDarkTheme
-                      ? content.sponsors.sdaSe.srcDark
-                      : content.sponsors.sdaSe.srcLight
-                  }
-                />
-              </a>
-              <a
-                href={content.sponsors.secura.link}
-                target="_blank"
-                className="col"
-              >
-                <img
-                  src={
-                    isDarkTheme
-                      ? content.sponsors.secura.srcDark
-                      : content.sponsors.secura.srcLight
-                  }
-                />
-              </a>
-              <a
-                href={content.sponsors.timoPagel.link}
-                target="_blank"
-                className="col"
-              >
-                <img
-                  src={
-                    isDarkTheme
-                      ? content.sponsors.timoPagel.srcDark
-                      : content.sponsors.timoPagel.srcLight
-                  }
-                />
-              </a>
+              {content.sponsors.logos.map((item, i) => (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  className="col"
+                  key={`sponsor nr${i}`}
+                >
+                  <img src={isDarkTheme ? item.srcDark : item.srcLight} />
+                </a>
+              ))}
             </div>
           </Section>
         </Sections>

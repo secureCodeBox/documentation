@@ -15,21 +15,23 @@ const content = {
     title: "Security Use Cases",
     description:
       "Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:",
-    dev: {
-      title: "For Dev-Teams:",
-      description:
-        "Scan your applications to identify low-hanging fruit issues in an early stage during the development process and free the resources of pen-testers to concentrate on major security issues.",
-    },
-    ops: {
-      title: "For Ops-Teams:",
-      description:
-        "Orchestrate and perform continuous and automated routine scans of your applications in the live environment and thereby reduce vulnerability risks.",
-    },
-    sec: {
-      title: "For Sec-Teams:",
-      description:
-        "Use the secureCodeBox to run security scans on large-scale networks and identify vulnerabilities alongside your organization’s infrastructure.",
-    },
+    items: [
+      {
+        title: "For Dev-Teams:",
+        content:
+          "Scan your applications to identify low-hanging fruit issues in an early stage during the development process and free the resources of pen-testers to concentrate on major security issues.",
+      },
+      {
+        title: "For Ops-Teams:",
+        content:
+          "Orchestrate and perform continuous and automated routine scans of your applications in the live environment and thereby reduce vulnerability risks.",
+      },
+      {
+        title: "For Sec-Teams:",
+        content:
+          "Use the secureCodeBox to run security scans on large-scale networks and identify vulnerabilities alongside your organization’s infrastructure.",
+      },
+    ],
   },
   goToSolution: {
     title: "Your Go-to Solution for easy Security Scanning",
@@ -54,44 +56,48 @@ const content = {
       subject: "",
       message: "",
     },
-    robert: {
-      image: "/static/img/roles/rfe_hoch_cropped.jpg",
-      name: "Robert Felber",
-      role: "Core Team",
-    },
-    sven: {
-      image: "/static/img/roles/sst_hoodie_hoch_cropped.jpg",
-      name: "Sven Strittmatter",
-      role: "Inventor",
-    },
-    jannik: {
-      image: "/static/img/roles/jh_small.jpg",
-      name: "Jannik Hollenbach",
-      role: "Core Team",
-    },
+    roles: [
+      {
+        image: "/static/img/roles/rfe_hoch_cropped.jpg",
+        name: "Robert Felber",
+        role: "Core Team",
+      },
+      {
+        image: "/static/img/roles/sst_hoodie_hoch_cropped.jpg",
+        name: "Sven Strittmatter",
+        role: "Inventor",
+      },
+      {
+        image: "/static/img/roles/jh_small.jpg",
+        name: "Jannik Hollenbach",
+        role: "Core Team",
+      },
+    ],
   },
   sponsors: {
     title: "Sponsors",
-    iteratec: {
-      srcLight: "/static/img/Logo_Black.svg",
-      srcDark: "/static/img/Logo_White.svg",
-      link: "https://www.iteratec.com/",
-    },
-    sdaSe: {
-      srcLight: "/static/img/sponsors/Logo_sda-se.png",
-      srcDark: "/static/img/sponsors/Logo_sda-se.png",
-      link: "https://sda.se/",
-    },
-    secura: {
-      srcLight: "/static/img/sponsors/Logo_secura.svg",
-      srcDark: "/static/img/sponsors/Logo_secura.svg",
-      link: "https://www.secura.com/",
-    },
-    timoPagel: {
-      srcLight: "/static/img/sponsors/Logo_timo-pagel-it-consulting.png",
-      srcDark: "/static/img/sponsors/Logo_timo-pagel-it-consulting.png",
-      link: "https://pagel.pro/",
-    },
+    logos: [
+      {
+        srcLight: "/static/img/Logo_Black.svg",
+        srcDark: "/static/img/Logo_White.svg",
+        link: "https://www.iteratec.com/",
+      },
+      {
+        srcLight: "/static/img/sponsors/Logo_sda-se.png",
+        srcDark: "/static/img/sponsors/Logo_sda-se.png",
+        link: "https://sda.se/",
+      },
+      {
+        srcLight: "/static/img/sponsors/Logo_secura.svg",
+        srcDark: "/static/img/sponsors/Logo_secura.svg",
+        link: "https://www.secura.com/",
+      },
+      {
+        srcLight: "/static/img/sponsors/Logo_timo-pagel-it-consulting.png",
+        srcDark: "/static/img/sponsors/Logo_timo-pagel-it-consulting.png",
+        link: "https://pagel.pro/",
+      },
+    ],
   },
 };
 
