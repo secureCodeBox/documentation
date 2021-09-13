@@ -91,7 +91,7 @@ function HomePage() {
               <div className={clsx("col", styles.goToSolutionBulletList)}>
                 <ul>
                   {content.goToSolution.list.map((item, i) => (
-                    <li>
+                    <li key={`bullet nr${i}`}>
                       <label>{item.label}</label>
                       <div>{item.content}</div>
                     </li>
