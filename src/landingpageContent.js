@@ -35,6 +35,7 @@ const content = {
     title: "Your Go-to Solution for easy Security Scanning",
     description:
       "Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:",
+    image: "/static/img/Desktop_Screenshots.png",
   },
   multiScanner: {
     title: "Multi Scanner Security Platform",

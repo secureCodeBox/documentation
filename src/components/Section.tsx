@@ -28,7 +28,7 @@ const Section = ({
       >
         {title}
       </h2>
-      <div>{subtitle}</div>
+      <div style={{marginBottom: "40px"}}>{subtitle}</div>
     </div>
     {children}
   </>

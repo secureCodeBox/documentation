@@ -99,7 +99,17 @@ function HomePage() {
             title={content.goToSolution.title}
             subtitle={content.goToSolution.description}
           >
-            <div />
+            <div className="row">
+              <div className="col padding--xl">
+                <img src={content.goToSolution.image} />
+              </div>
+              <div className="col">
+                <ul>
+                  <li>1</li>
+                  <li>2</li>
+                </ul>
+              </div>
+            </div>
           </Section>
           <Section
             title={content.multiScanner.title}
@@ -118,7 +128,7 @@ function HomePage() {
               </div>
             }
           >
-            <div className="row margin-top--lg">
+            <div className="row">
               <div className="col col--4">
                 <p>{content.about.question}</p>
                 <div>
@@ -159,7 +169,7 @@ function HomePage() {
             </div>
           </Section>
           <Section title={content.sponsors.title} alignment="center">
-            <div className="row margin-top--xl margin-bottom--lg">
+            <div className="row margin-bottom--lg">
               <a
                 href={content.sponsors.iteratec.link}
                 target="_blank"
