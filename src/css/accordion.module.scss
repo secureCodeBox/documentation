@@ -1,7 +1,5 @@
 .accordion {
   margin: 20px auto;
-  max-width: 50rem;
-  width: 100%;
   border-top: 1px solid var(--accent-color-main);
   border-bottom: 1px solid var(--accent-color-main);
 }
@@ -47,7 +45,7 @@
 
 .accordionPanel {
   padding: 20px;
-  animation: fadein 0.35s ease-in;
+  animation: fadein 0.2s ease-in;
 }
 
 /* -------------------------------------------------- */

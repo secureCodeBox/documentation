@@ -26,7 +26,9 @@ export default function Accordion({
               {item.title}
             </AccordionItemButton>
           </AccordionItemHeading>
-          <AccordionItemPanel>{item.content}</AccordionItemPanel>
+          <AccordionItemPanel className={styles.accordionPanel}>
+            {item.content}
+          </AccordionItemPanel>
         </AccordionItem>
       ))}
     </AccessibleAccordion>
