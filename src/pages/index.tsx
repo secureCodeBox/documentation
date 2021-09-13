@@ -65,6 +65,7 @@ function HomePage() {
           </Link>
         </div>
       </header>
+
       <main>
         <Sections>
           <Section
@@ -74,12 +75,14 @@ function HomePage() {
           >
             <div />
           </Section>
+
           <Section
             title={content.useCases.title}
             subtitle={content.useCases.description}
           >
             <Accordion items={content.useCases.items} />
           </Section>
+
           <Section
             title={content.goToSolution.title}
             subtitle={content.goToSolution.description}
@@ -100,6 +103,7 @@ function HomePage() {
               </div>
             </div>
           </Section>
+
           <Section
             title={content.multiScanner.title}
             subtitle={content.multiScanner.description}
@@ -108,6 +112,7 @@ function HomePage() {
             <ScannerIntegrations />
             <HookIntegrations />
           </Section>
+
           <Section
             title={content.about.title}
             subtitle={
@@ -145,6 +150,7 @@ function HomePage() {
               ))}
             </div>
           </Section>
+
           <Section title={content.sponsors.title} alignment="center">
             <div className="row margin-bottom--lg">
               {content.sponsors.logos.map((item, i) => (
