@@ -17,7 +17,7 @@ A scanType will reference the **name** of a *ParseDefinition* via the [extractRe
 
 `image` is the reference to the parser container image which can transform the raw scan report into findings.
 
-To see how to write parsers and package them into images, checkout the [documentation page on integrating new scanners](docs/contributing/integrating-a-scanner).
+To see how to write parsers and package them into images, check out the [documentation page on integrating new scanners](docs/contributing/integrating-a-scanner).
 
 ### ImagePullSecrets (Optional)
 
@@ -42,3 +42,5 @@ spec:
   - name: dockerhub-token
   ttlSecondsAfterFinished: 60
 ```
+The Parse definition is different when integrating a new scanner. We use specific conventions when adding new ParseDefinitions to the secureCodeBox repository. 
+More information can be found on the [templates folder documentation page for integrating new scanners](docs/contributing/integrating-a-scanner/templates-dir)
