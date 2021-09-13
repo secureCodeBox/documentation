@@ -148,14 +148,14 @@ function HomePage() {
           <Section title={content.sponsors.title} alignment="center">
             <div className="row margin-bottom--lg">
               {content.sponsors.logos.map((item, i) => (
-                <a
-                  href={item.link}
-                  target="_blank"
-                  className="col"
+                <div
+                  className={clsx("col", styles.sponsors)}
                   key={`sponsor nr${i}`}
                 >
-                  <img src={isDarkTheme ? item.srcDark : item.srcLight} />
-                </a>
+                  <a href={item.link} target="_blank">
+                    <img src={isDarkTheme ? item.srcDark : item.srcLight} />
+                  </a>
+                </div>
               ))}
             </div>
           </Section>

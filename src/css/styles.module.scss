@@ -103,3 +103,15 @@ main {
     font-weight: bold;
   }
 }
+
+.sponsors {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    width:100%;
+    max-width: 300px;
+    object-fit: cover;
+  }
+}

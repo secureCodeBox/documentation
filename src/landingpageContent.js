@@ -100,8 +100,8 @@ const content = {
     title: "Sponsors",
     logos: [
       {
-        srcLight: "/static/img/Logo_Black.svg",
-        srcDark: "/static/img/Logo_White.svg",
+        srcLight: "/static/img/Logo_iteratec_rgb_black_SZ_rz.svg",
+        srcDark: "/static/img/Logo_iteratec_rgb_white_SZ_rz.svg",
         link: "https://www.iteratec.com/",
       },
       {
