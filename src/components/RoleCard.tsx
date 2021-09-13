@@ -9,15 +9,17 @@ export default function ({
   name: string;
   role: string;
 }) {
+  const size = "200px";
+
   return (
     <div className="card-demo">
-      <div className="card" style={{ width: "200px" }}>
+      <div className="card" style={{ width: size }}>
         <div className="card__image">
           {/* The image is designed ot be square, hence for the best looking result use square images. */}
           <img
             src={imageSrc}
             alt="Role image"
-            style={{ height: "200px", width: "200px", objectFit: "cover" }}
+            style={{ height: size, width: size, objectFit: "cover" }}
           />
         </div>
         <div className="card__body">

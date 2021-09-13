@@ -9,11 +9,14 @@ const Sections = ({ children }: { children: React.ReactNode }) => (
     {React.Children.map(children, (child, idx) => (
       <div
         style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           backgroundColor: idx % 2 == 1 ? "#E2E2E2" : "white",
           padding: "2rem 4rem",
         }}
       >
-        {child}
+        <div style={{ maxWidth: "1140px" }}>{child}</div>
       </div>
     ))}
   </div>

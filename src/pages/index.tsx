@@ -135,7 +135,7 @@ function HomePage() {
                 </a>
               </div>
               {content.about.roles.map((role, i) => (
-                <div className="col col--2" key={`role nr${i}`}>
+                <div className="col" key={`role nr${i}`}>
                   <RoleCard
                     imageSrc={role.image}
                     name={role.name}
