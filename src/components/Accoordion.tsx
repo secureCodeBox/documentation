@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import {
   Accordion as AccessibleAccordion,
@@ -10,14 +11,16 @@ import styles from "../css/accordion.module.scss";
 
 export default function Accordion({
   items,
+  fullWidth = false,
 }: {
   items: { title: string; content: string }[];
+  fullWidth?: boolean;
 }) {
   return (
     <AccessibleAccordion
       allowZeroExpanded={true}
       allowMultipleExpanded={false}
-      className={styles.accordion}
+      className={clsx(styles.accordion, fullWidth ? "" : styles.width80)}
     >
       {items.map((item, i) => (
         <AccordionItem className={styles.accordionItem} key={i}>

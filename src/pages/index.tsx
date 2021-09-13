@@ -88,7 +88,7 @@ function HomePage() {
             subtitle={content.goToSolution.description}
           >
             <div className="row">
-              <div className="col padding-left--xl padding-right--xl">
+              <div className="col padding-left--xl padding-right--xl margin-bottom--lg">
                 <img src={content.goToSolution.image} />
               </div>
               <div className={clsx("col", styles.goToSolutionBulletList)}>
@@ -129,7 +129,7 @@ function HomePage() {
                   <strong>{content.about.buttonHeader}</strong>
                 </div>
                 <a
-                  className="button button--outline button--primary button--md margin-top--lg"
+                  className="button button--outline button--primary button--md margin-top--lg  margin-bottom--xl"
                   href={`mailto:${
                     content.about.mail.recipient
                   }?subject=${encodeURI(
@@ -140,7 +140,10 @@ function HomePage() {
                 </a>
               </div>
               {content.about.roles.map((role, i) => (
-                <div className="col" key={`role nr${i}`}>
+                <div
+                  className={clsx("col", styles.defaultMarginBottom)}
+                  key={`role nr${i}`}
+                >
                   <RoleCard
                     imageSrc={role.image}
                     name={role.name}
@@ -155,7 +158,11 @@ function HomePage() {
             <div className="row margin-bottom--lg">
               {content.sponsors.logos.map((item, i) => (
                 <div
-                  className={clsx("col", styles.sponsors)}
+                  className={clsx(
+                    "col",
+                    styles.sponsor,
+                    styles.defaultMarginBottom
+                  )}
                   key={`sponsor nr${i}`}
                 >
                   <a href={item.link} target="_blank">

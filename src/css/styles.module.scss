@@ -104,14 +104,25 @@ main {
   }
 }
 
-.sponsors {
+.sponsor {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   img {
-    width:100%;
+    width: 100%;
     max-width: 300px;
     object-fit: cover;
+  }
+
+}
+
+/* ---------------- Mobile Utility ------------------ */
+
+.defaultMarginBottom {
+  margin-bottom: 40px;
+
+  @include xl {
+    margin-bottom: unset;
   }
 }
