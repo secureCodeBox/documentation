@@ -38,6 +38,28 @@ const content = {
     description:
       "Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:",
     image: "/static/img/Desktop_Screenshots.png",
+    list: [
+      {
+        label: "Quick & easy installation",
+        content:
+          "It's a quick and straight forward installation. It works on every system and is ready to use from start.",
+      },
+      {
+        label: "For professionals and rookies",
+        content:
+          "You can start scans without any configuration right away and use best practice tests. But each scanner also provides extensive configuration options.",
+      },
+      {
+        label: "Plug-and-play Architecture",
+        content:
+          "Our architecture is designed for open flexibility and free adjustments. New tools can be integrated fairly simple and you can design your own scan and monitor process.",
+      },
+      {
+        label: "Fully scalable",
+        content:
+          "Separately configurable for multiple teams, systems or clusters.",
+      },
+    ],
   },
   multiScanner: {
     title: "Multi Scanner Security Platform",

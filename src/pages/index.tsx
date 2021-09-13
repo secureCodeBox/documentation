@@ -85,13 +85,17 @@ function HomePage() {
             subtitle={content.goToSolution.description}
           >
             <div className="row">
-              <div className="col padding--xl">
+              <div className="col padding-left--xl padding-right--xl">
                 <img src={content.goToSolution.image} />
               </div>
-              <div className="col">
+              <div className={clsx("col", styles.goToSolutionBulletList)}>
                 <ul>
-                  <li>1</li>
-                  <li>2</li>
+                  {content.goToSolution.list.map((item, i) => (
+                    <li>
+                      <label>{item.label}</label>
+                      <div>{item.content}</div>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

@@ -79,3 +79,27 @@ main {
     color: black !important;
   }
 }
+
+.goToSolutionBulletList {
+  ul {
+    list-style: none; /* Remove default bullets, necessary to add back custom colored ones */
+  }
+
+  ul li::before {
+    content: "\25AA"; /* Add content: \2022 is the CSS Code/unicode for a default bullet, \25AA for a square bullet */
+    color: var(--accent-color-main); /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+  }
+
+  li {
+    margin-bottom: 20px;
+  }
+
+  label {
+    color: var(--accent-color-main);
+    font-weight: bold;
+  }
+}
