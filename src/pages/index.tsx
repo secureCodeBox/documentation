@@ -11,6 +11,7 @@ import clsx from "clsx";
 import React from "react";
 import Accordion from "../components/Accoordion";
 import Integration from "../components/Integration";
+import RoleCard from "../components/RoleCard";
 import Section from "../components/Section";
 import styles from "../css/styles.module.scss";
 import { Hooks, Scanners } from "../integrations";
@@ -68,7 +69,7 @@ function Home() {
             )}
             to={useBaseUrl("docs/getting-started/installation")}
           >
-            Get Started
+            {content.heroBanner.button}
           </Link>
         </div>
       </header>
@@ -118,9 +119,48 @@ function Home() {
           </Section>
           <Section
             title={content.about.title}
-            subtitle={content.about.description}
+            subtitle={
+              <div>
+                {content.about.description}{" "}
+                <a href="https://www.iteratec.com/">iteratec</a>.
+              </div>
+            }
           >
-            <div />
+            <div className="row" style={{ marginTop: 20 }}>
+              <div className="col col--4">
+                <p>{content.about.question}</p>
+                <div>
+                  <strong>{content.about.buttonHeader}</strong>
+                </div>
+                <button
+                  className="button button--outline button--primary button--md"
+                  style={{ marginTop: 20 }}
+                >
+                  {content.about.button}
+                </button>
+              </div>
+              <div className="col col--2">
+                <RoleCard
+                  imageSrc={content.about.robert.image}
+                  name={content.about.robert.name}
+                  role={content.about.robert.role}
+                />
+              </div>
+              <div className="col col--2">
+                <RoleCard
+                  imageSrc={content.about.sven.image}
+                  name={content.about.sven.name}
+                  role={content.about.sven.role}
+                />
+              </div>
+              <div className="col col--2">
+                <RoleCard
+                  imageSrc={content.about.jannik.image}
+                  name={content.about.jannik.name}
+                  role={content.about.jannik.role}
+                />
+              </div>
+            </div>
           </Section>
           <Section title="Sponsors" alignment="center">
             <div className={styles.partners}>

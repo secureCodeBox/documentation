@@ -4,6 +4,7 @@ const content = {
       "Identify vulnerabilities in your Network and Applications with the first of its kind Open-Source Multi-Scanner Platform.",
     description:
       "secureCodeBox is an automated and scalable Open-Source solution that integrates multiple security scanners with a simple and lightweight interface – for continuous and automated security testing.",
+    button: "Get Started",
   },
   automatedTesting: {
     title: "Automated Security Testing",
@@ -43,7 +44,25 @@ const content = {
   about: {
     title: "About us",
     description:
-      "secureCodeBox is an Open-Source project in cooperation with OWASP and with friendly support from iteratec.",
+      "secureCodeBox is an Open-Source project in cooperation with OWASP and with friendly support from",
+    question: "Do you have questions or feedback about secureCodeBox?",
+    buttonHeader: "Get in contact and let us know:",
+    button: "Get in contact",
+    robert: {
+      image: "/static/img/roles/rfe_hoch_cropped.jpg",
+      name: "Robert Felber",
+      role: "Core Team",
+    },
+    sven: {
+      image: "/static/img/roles/sst_hoodie_hoch_cropped.jpg",
+      name: "Sven Strittmatter",
+      role: "Inventor",
+    },
+    jannik: {
+      image: "/static/img/roles/jh_small.jpg",
+      name: "Jannik Hollenbach",
+      role: "Core Team",
+    },
   },
 };
 

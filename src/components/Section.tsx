@@ -12,7 +12,7 @@ const Section = ({
 }: {
   children: React.ReactNode;
   title?: string;
-  subtitle?: string;
+  subtitle?: string | JSX.Element;
   alignment?: "center" | "left" | "right";
 }) => (
   <>
