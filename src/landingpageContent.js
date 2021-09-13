@@ -82,12 +82,12 @@ const content = {
       {
         image: "/static/img/roles/rfe_hoch_cropped.jpg",
         name: "Robert Felber",
-        role: "Core Team",
+        role: "Inventor",
       },
       {
         image: "/static/img/roles/sst_hoodie_hoch_cropped.jpg",
         name: "Sven Strittmatter",
-        role: "Inventor",
+        role: "Core Team",
       },
       {
         image: "/static/img/roles/jh_small.jpg",
