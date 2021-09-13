@@ -30,12 +30,6 @@ module.exports = {
           },
           { to: "blog", label: "Blog", position: "left" },
           {
-            href: "https://owasp.org/www-project-securecodebox/",
-            position: "right",
-            className: "header-owasp-link",
-            "aria-label": "OWASP project",
-          },
-          {
             href: "https://github.com/secureCodeBox/",
             position: "right",
             className: "header-github-link",
