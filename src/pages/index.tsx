@@ -14,6 +14,7 @@ import Integration from "../components/Integration";
 import Section from "../components/Section";
 import styles from "../css/styles.module.scss";
 import { Hooks, Scanners } from "../integrations";
+import content from "../landingpageContent.js";
 import Sections from "../layouts/Sections";
 
 const ScannerIntegrations = () => {
@@ -58,15 +59,8 @@ function Home() {
     >
       <header className={clsx("hero", styles.heroBanner)}>
         <div className="container">
-          <h1>
-            Identify vulnerabilities in your Network and Applications with the
-            first of its kind Open-Source Multi-Scanner Platform.
-          </h1>
-          <p className={styles.description}>
-            secureCodeBox is an automated and scalable Open-Source solution that
-            integrates multiple security scanners with a simple and lightweight
-            interface – for continuous and automated security testing.
-          </p>
+          <h1>{content.heroBanner.title}</h1>
+          <p className={styles.description}>{content.heroBanner.description}</p>
           <Link
             className={clsx(
               "button button--outline button--secondary button--lg",
@@ -81,37 +75,54 @@ function Home() {
       <main>
         <Sections>
           <Section
-            title="Automated Security Testing"
-            subtitle="Use the power of leading open-source security testing tools to run routine scans continuously and automatically on your network or application."
+            title={content.automatedTesting.title}
+            subtitle={content.automatedTesting.description}
             alignment="center"
-          ><div /></Section>
-          <Section
-            title="Security Use Cases"
-            subtitle="Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:"
-          >
-            <Accordion items={[]}/>
-          </Section>
-          <Section
-            title="Your Go-to Solution for easy Security Scanning"
-            subtitle="Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:"
           >
             <div />
           </Section>
           <Section
-            title="Multi Scanner Security Platform"
-            subtitle="Combining more than 15 leading Open-Source Scanning Tools secureCodeBox covers a broad spectrum of possible threats and vulnerabilities for your network and applications; ranging from Kubernetes vulnerabilities, over SSL misconfigurations, to network authentication bruteforcing and many more:"
+            title={content.useCases.title}
+            subtitle={content.useCases.description}
+          >
+            <Accordion
+              items={[
+                {
+                  title: content.useCases.dev.title,
+                  content: content.useCases.dev.description,
+                },
+                {
+                  title: content.useCases.ops.title,
+                  content: content.useCases.ops.description,
+                },
+                {
+                  title: content.useCases.sec.title,
+                  content: content.useCases.sec.description,
+                },
+              ]}
+            />
+          </Section>
+          <Section
+            title={content.goToSolution.title}
+            subtitle={content.goToSolution.description}
+          >
+            <div />
+          </Section>
+          <Section
+            title={content.multiScanner.title}
+            subtitle={content.multiScanner.description}
             alignment="center"
           >
             <ScannerIntegrations />
             <HookIntegrations />
           </Section>
           <Section
-            title="About us"
-            subtitle="secureCodeBox is an Open-Source project in cooperation with OWASP and with friendly support from iteratec."
+            title={content.about.title}
+            subtitle={content.about.description}
           >
             <div />
           </Section>
-          <Section title="Partners" alignment="center">
+          <Section title="Sponsors" alignment="center">
             <div className={styles.partners}>
               <ThemedImage
                 lightImgSrc="static/img/Logo_Black.svg"
