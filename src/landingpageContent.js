@@ -48,6 +48,11 @@ const content = {
     question: "Do you have questions or feedback about secureCodeBox?",
     buttonHeader: "Get in contact and let us know:",
     button: "Get in contact",
+    mail: {
+      recipient: "",
+      subject: "",
+      message: "",
+    },
     robert: {
       image: "/static/img/roles/rfe_hoch_cropped.jpg",
       name: "Robert Felber",

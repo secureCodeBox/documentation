@@ -132,12 +132,17 @@ function Home() {
                 <div>
                   <strong>{content.about.buttonHeader}</strong>
                 </div>
-                <button
+                <a
                   className="button button--outline button--primary button--md"
                   style={{ marginTop: 20 }}
+                  href={`mailto:${
+                    content.about.mail.recipient
+                  }?subject=${encodeURI(
+                    content.about.mail.subject
+                  )}&body=${encodeURI(content.about.mail.message)}`}
                 >
                   {content.about.button}
-                </button>
+                </a>
               </div>
               <div className="col col--2">
                 <RoleCard
