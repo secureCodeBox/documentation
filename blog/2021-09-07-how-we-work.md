@@ -37,7 +37,7 @@ part in our development process (see last section).
 ## How We Work
 
 Both, students and full-time developers, work together in our team. In addition, we are highly geographically
-distributed over all of Germany. This, of course, requires some coordination,
+distributed all over Germany. This, of course, requires some coordination,
 because especially the regular employees often have to take some time for the open source project only. 
 That's why we are working in an *agile* setup and try to stick to the general ideas of 
 [Scrum](https://www.scrum.org/resources/what-is-scrum) and [Kanban](https://en.wikipedia.org/wiki/Kanban_(development)).
