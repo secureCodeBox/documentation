@@ -43,6 +43,7 @@ const docsConfig = {
       "Getting Started": [
         "getting-started/installation",
         "getting-started/first-scans",
+        "getting-started/troubleshooting",
         "getting-started/uninstallation",
       ],
       "How To's": [
