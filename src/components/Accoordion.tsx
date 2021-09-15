@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import useThemeContext from "@theme/hooks/useThemeContext";
 import {
   Accordion as AccessibleAccordion,
   AccordionItem,
@@ -16,6 +17,7 @@ export default function Accordion({
   items: { title: string; content: string }[];
   fullWidth?: boolean;
 }) {
+  const { isDarkTheme } = useThemeContext();
   return (
     <AccessibleAccordion
       allowZeroExpanded={true}
@@ -25,7 +27,12 @@ export default function Accordion({
       {items.map((item, i) => (
         <AccordionItem className={styles.accordionItem} key={i}>
           <AccordionItemHeading>
-            <AccordionItemButton className={styles.accordionButton}>
+            <AccordionItemButton
+              className={clsx(
+                styles.accordionButton,
+                isDarkTheme ? styles.dark : null
+              )}
+            >
               {item.title}
             </AccordionItemButton>
           </AccordionItemHeading>

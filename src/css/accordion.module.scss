@@ -19,9 +19,8 @@
 .accordionButton:hover {
   background-color: #ddd;
 }
-
-.accordionButton:hover {
-  background-color: #ddd;
+.accordionButton:hover.dark {
+  background-color: gray;
 }
 
 .accordionButton:before {
