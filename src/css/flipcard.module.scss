@@ -37,6 +37,7 @@
 /* Position the front and back side */
 .flipcardFront,
 .flipcardBack {
+  transform: rotateY(0deg);
   grid-row: 1;
   grid-column: 1;
   margin: 10px;
