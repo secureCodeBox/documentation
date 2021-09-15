@@ -15,25 +15,25 @@ const content = {
         title: "Powerful Scanning Tools",
         description:
           "Combines more than 15 different Scanners to provide a comprehensive overview of threats and vulnerabilities affecting your network and applications.",
-        imgSrc: "/static/img/features/scanning.svg",
+        imgSrc: "/img/features/scanning.svg",
       },
       {
         title: "SDLC",
         description:
           "Easily integrate the secureCodeBox into your CI/CD pipeline or Kubernetes environment with automated feedbacks.",
-        imgSrc: "/static/img/features/sdlc.svg",
+        imgSrc: "/img/features/sdlc.svg",
       },
       {
         title: "Multi-Layer Testing",
         description:
           "Allowing security tests on different layers – from deep dive Scans of single Applications to large-scale scanning of complete it landscapes.",
-        imgSrc: "/static/img/features/testing.svg",
+        imgSrc: "/img/features/testing.svg",
       },
       {
         title: "Easy Monitoring",
         description:
           "Easily monitor each scanner's results through pre-designed or customised dashboards, use a tool integration such as. DefectDojo or integrate persistence tool of your choice.",
-        imgSrc: "/static/img/features/monitoring.svg",
+        imgSrc: "/img/features/monitoring.svg",
       },
     ],
   },
@@ -63,7 +63,7 @@ const content = {
     title: "Your Go-to Solution for easy Security Scanning",
     description:
       "Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:",
-    image: "/static/img/Desktop_Screenshots.png",
+    image: "/img/Desktop_Screenshots.png",
     list: [
       {
         label: "Quick & easy installation",
@@ -106,17 +106,17 @@ const content = {
     },
     roles: [
       {
-        image: "/static/img/roles/rfe_hoch_cropped.jpg",
+        image: "/img/roles/rfe_hoch_cropped.jpg",
         name: "Robert Felber",
         role: "Inventor",
       },
       {
-        image: "/static/img/roles/sst_hoodie_hoch_cropped.jpg",
+        image: "/img/roles/sst_hoodie_hoch_cropped.jpg",
         name: "Sven Strittmatter",
         role: "Core Team",
       },
       {
-        image: "/static/img/roles/jh_small.jpg",
+        image: "/img/roles/jh_small.jpg",
         name: "Jannik Hollenbach",
         role: "Core Team",
       },
@@ -126,23 +126,23 @@ const content = {
     title: "Sponsors",
     logos: [
       {
-        srcLight: "/static/img/Logo_iteratec_rgb_black_SZ_rz.svg",
-        srcDark: "/static/img/Logo_iteratec_rgb_white_SZ_rz.svg",
+        srcLight: "/img/Logo_iteratec_rgb_black_SZ_rz.svg",
+        srcDark: "/img/Logo_iteratec_rgb_white_SZ_rz.svg",
         link: "https://www.iteratec.com/",
       },
       {
-        srcLight: "/static/img/sponsors/Logo_sda-se.png",
-        srcDark: "/static/img/sponsors/Logo_sda-se.png",
+        srcLight: "/img/sponsors/Logo_sda-se.png",
+        srcDark: "/img/sponsors/Logo_sda-se.png",
         link: "https://sda.se/",
       },
       {
-        srcLight: "/static/img/sponsors/Logo_secura.svg",
-        srcDark: "/static/img/sponsors/Logo_secura.svg",
+        srcLight: "/img/sponsors/Logo_secura.svg",
+        srcDark: "/img/sponsors/Logo_secura.svg",
         link: "https://www.secura.com/",
       },
       {
-        srcLight: "/static/img/sponsors/Logo_timo-pagel-it-consulting.png",
-        srcDark: "/static/img/sponsors/Logo_timo-pagel-it-consulting.png",
+        srcLight: "/img/sponsors/Logo_timo-pagel-it-consulting.png",
+        srcDark: "/img/sponsors/Logo_timo-pagel-it-consulting.png",
         link: "https://pagel.pro/",
       },
     ],
