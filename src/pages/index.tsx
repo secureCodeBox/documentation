@@ -10,6 +10,7 @@ import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React from "react";
 import Accordion from "../components/Accoordion";
+import FlipCard from "../components/FlipCard";
 import Integration from "../components/Integration";
 import RoleCard from "../components/RoleCard";
 import Section from "../components/Section";
@@ -73,7 +74,13 @@ function HomePage() {
             subtitle={content.automatedTesting.description}
             alignment="center"
           >
-            <div />
+            <div className="row margin-bottom--lg">
+              {content.automatedTesting.cards.map((card, idx) => (
+                <div className={clsx("col", styles.defaultMarginBottom)}>
+                  <FlipCard key={idx} {...card} />
+                </div>
+              ))}
+            </div>
           </Section>
 
           <Section

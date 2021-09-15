@@ -10,6 +10,32 @@ const content = {
     title: "Automated Security Testing",
     description:
       "Use the power of leading open-source security testing tools to run routine scans continuously and automatically on your network or application.",
+    cards: [
+      {
+        title: "Powerful Scanning Tools",
+        description:
+          "Combines more than 15 different Scanners to provide a comprehensive overview of threats and vulnerabilities affecting your network and applications.",
+        imgSrc: "/static/img/features/scanning.svg",
+      },
+      {
+        title: "SDLC",
+        description:
+          "Easily integrate the secureCodeBox into your CI/CD pipeline or Kubernetes environment with automated feedbacks.",
+        imgSrc: "/static/img/features/sdlc.svg",
+      },
+      {
+        title: "Multi-Layer Testing",
+        description:
+          "Allowing security tests on different layers – from deep dive Scans of single Applications to large-scale scanning of complete it landscapes.",
+        imgSrc: "/static/img/features/testing.svg",
+      },
+      {
+        title: "Easy Monitoring",
+        description:
+          "Easily monitor each scanner's results through pre-designed or customised dashboards, use a tool integration such as. DefectDojo or integrate persistence tool of your choice.",
+        imgSrc: "/static/img/features/monitoring.svg",
+      },
+    ],
   },
   useCases: {
     title: "Security Use Cases",
