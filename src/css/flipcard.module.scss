@@ -37,7 +37,6 @@
 /* Position the front and back side */
 .flipcardFront,
 .flipcardBack {
-  transform: rotateY(0deg);
   grid-row: 1;
   grid-column: 1;
   margin: 10px;
@@ -45,6 +44,10 @@
   text-align: center;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+}
+
+.flipcardFront {
+  transform: rotateY(0deg);
 }
 
 /* Style the back side */
