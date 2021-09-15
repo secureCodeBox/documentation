@@ -1,14 +1,12 @@
-import React, { useState, useRef } from "react";
-import styles from "../css/flipcard.module.scss";
 import clsx from "clsx";
+import React, { useState } from "react";
+import styles from "../css/flipcard.module.scss";
 
 const FlipCard = ({
-  key,
   title,
   description,
   imgSrc,
 }: {
-  key: number;
   title: string;
   description: string;
   imgSrc: string;

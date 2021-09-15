@@ -106,17 +106,17 @@ const content = {
     },
     roles: [
       {
-        image: "/img/roles/rfe_hoch_cropped.jpg",
+        imageSrc: "/img/roles/rfe_hoch_cropped.jpg",
         name: "Robert Felber",
         role: "Inventor",
       },
       {
-        image: "/img/roles/sst_hoodie_hoch_cropped.jpg",
+        imageSrc: "/img/roles/sst_hoodie_hoch_cropped.jpg",
         name: "Sven Strittmatter",
         role: "Core Team",
       },
       {
-        image: "/img/roles/jh_small.jpg",
+        imageSrc: "/img/roles/jh_small.jpg",
         name: "Jannik Hollenbach",
         role: "Core Team",
       },

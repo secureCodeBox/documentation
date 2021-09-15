@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # Documentation secureCodeBox
 
-This repository sources the [securecodebox.io] website. Our webpage is meant to provide an extensive documentation about our [secureCodeBox] and many helpful guides on how to start and operate it. The website is build with the [Docusaurus] Framework and hosted through [Netlify]. All important decision about this website are documented in our `/adr` folder in the [secureCodeBox] repo. If you want to contribute to our website, please follow the Style Guide down below.
+This repository sources the [securecodebox.io] website. Our webpage is meant to provide an extensive documentation about our [secureCodeBox] and many helpful guides on how to start and operate it. The website is build with the [Docusaurus] Framework and hosted through [Netlify]. All important decisions about this website are documented in our `/adr` folder in the [secureCodeBox] repo. If you want to contribute to our website, please follow the Style Guide down below.
 
 ## How the Documentation is Structured and Organized
 
@@ -32,6 +32,7 @@ In order to build and run this website you need to install [Node.js and NPM] for
 git clone https://github.com/secureCodeBox/documentation.git
 cd documentation
 nvm use
+npm install -g npm@7
 npm install
 ```
 
@@ -82,6 +83,9 @@ Included color palette:
 --ifm-color-primary-light: #2389d0;
 --ifm-color-primary-lighter: #2181c4;
 --ifm-color-primary-lightest: #1c6aa1;
+
+--accent-color-main: #00b2bb;
+--accent-color-highlight: #37dae2;
 ```
 
 If new colors will be used standardized, make sure to include them as a variable and list it here with it's purpose.
@@ -103,7 +107,7 @@ Recommended websites for free icons or images:
 
 ## Documentation Guide
 
-Since we work with various different tools, it is even more important to keep a clean and well structured Documentation. Our website's purpose is to provide a comfortable navigation and clear overview. But since no one is going to update the documentation if it's untraceable, it is also very important to keep the documentation's location clear and as less spread as possible throughout our project. So no single-page documentation hidden in the deep structure of a remote repository! In general we keep specific documentation in the respective directory (e.g. the Amass documentation is a README.md in the Amass directory). Documentation can also be housed in this repository, if it is not specifically categorized to something, but follow the guidelines of the documentation build scripts. One key feature our documentations share in order to be put on the website is a frontmatter in each documentation. It is mandatory since at least a title (and for integrations also a description) are required. But it also can provide helpful other information very easily, for a documentation see [frontmatter]. Don't be afraid to use it for including important information, which you can't get/provide otherwise very well, but don't overuse it! For more detailed examples see the following sections.
+Since we work with various different tools, it is even more important to keep a clean and well structured Documentation. Our website's purpose is to provide a comfortable navigation and clear overview. But since no one is going to update the documentation if it's untraceable, it is also very important to keep the documentation's location clear and as less spread as possible throughout our project. So no single-page documentation hidden in the deep structure of a remote repository! In general we keep specific documentation in the respective directory (e.g. the Amass documentation is a README.md in the Amass directory). Documentation can also be housed in this repository, if it is not specifically categorized to something, but follows the guidelines of the documentation build scripts. One key feature our documentations share in order to be put on the website is a frontmatter in each documentation. It is mandatory since at least a title (and for integrations also a description) are required. But it also can provide helpful other information very easily, for a documentation see [frontmatter]. Don't be afraid to use it for including important information, which you can't get/provide otherwise very well, but don't overuse it! For more detailed examples see the following sections.
 
 ### Adding a scanner or hook
 
@@ -167,7 +171,7 @@ Currently under development, this will be the guide for our "Docs" developer doc
 
 ## Scripts
 
-Since we want to have our documentation in the main repository available on this site as well, we use some custom scripts to build the documentation structure in the `docs/` folder, afterwards creating programmatically the sidebar and also provide the frontmatter information of integrations to the frontend. These scripts are located at the `scripts/` folder. Each script can be called and work independently from one another. The respective commands are defined in the `package.json` and chained together by a pre-hook to the general build command. If you want to add a new script it should be kept as an individually executable script and follow our naming convention: `<whatItCreatesOrMutates>.<generalOperation>.js`. The configuration for all scripts can be found at `scripts/utils/config.js`.
+Since we want to have our documentation in the main repository available on this site as well, we use some custom scripts to build the documentation structure in the `docs/` folder, afterwards creating programmatically the sidebar and also provide the frontmatter information of integrations to the frontend. These scripts are located at the `scripts/` folder. Each script can be called and work independently from one another. The respective commands are defined in the `package.json` and chained together by a pre-hook to the general build command. If you want to add a new script it should be kept as an individually executable script and follow our naming convention: `<whatItCreatesOrMutates>.<generalOperation>.js`. The configuration for all scripts can be found at `scripts/utils/config.js`. Though our frontend is built in TypeScript, those scripts remain in JavaScript currently.
 
 ### Docs builder
 
@@ -233,7 +237,6 @@ It reads the files of the given directories (not the subdirectories) and retriev
 title: <title>
 usecase: <usecase>
 ---
-
 ```
 
 The Integration class looks like this:
@@ -267,9 +270,9 @@ defaultIcon: string, // Default Icon when no imageUrl provided or could not reso
 All changes pushed to the `master` branch get automatically build by [Netlify]. This also means that the `npm run build` command is executed, thus executing our custom build scripts through a pre-hook.
 
 [securecodebox.io]: https://securecodebox.github.io
-[securecodebox]:    https://github.com/secureCodeBox/secureCodeBox
-[docusaurus]:       https://v2.docusaurus.io/
-[netlify]:          https://www.netlify.com/
-[node.js and npm]:  https://nodejs.org/en/download/
-[nvm]:              https://github.com/nvm-sh/nvm
-[frontmatter]:      https://v2.docusaurus.io/docs/markdown-features/#markdown-headers
+[securecodebox]: https://github.com/secureCodeBox/secureCodeBox
+[docusaurus]: https://v2.docusaurus.io/
+[netlify]: https://www.netlify.com/
+[node.js and npm]: https://nodejs.org/en/download/
+[nvm]: https://github.com/nvm-sh/nvm
+[frontmatter]: https://v2.docusaurus.io/docs/markdown-features/#markdown-headers
