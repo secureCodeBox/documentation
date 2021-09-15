@@ -76,8 +76,11 @@ function HomePage() {
           >
             <div className="row margin-bottom--lg">
               {content.automatedTesting.cards.map((card, idx) => (
-                <div className={clsx("col", styles.defaultMarginBottom)}>
-                  <FlipCard key={idx} {...card} />
+                <div
+                  className={clsx("col", styles.defaultMarginBottom)}
+                  key={`flipcard no${idx}`}
+                >
+                  <FlipCard {...card} />
                 </div>
               ))}
             </div>
@@ -151,11 +154,7 @@ function HomePage() {
                   className={clsx("col", styles.defaultMarginBottom)}
                   key={`role nr${i}`}
                 >
-                  <RoleCard
-                    imageSrc={role.image}
-                    name={role.name}
-                    role={role.role}
-                  />
+                  <RoleCard {...role} />
                 </div>
               ))}
             </div>
