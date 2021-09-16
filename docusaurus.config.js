@@ -35,6 +35,12 @@ module.exports = {
             className: "header-github-link",
             "aria-label": "GitHub repository",
           },
+          {
+            href: "https://owasp.org/www-project-securecodebox/",
+            position: "right",
+            className: "header-owasp-link",
+            "aria-label": "OWASP project",
+          },
         ],
       },
       footer: {
