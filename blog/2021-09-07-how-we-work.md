@@ -9,12 +9,12 @@ author_title: Core Developer
 author_url: https://github.com/SebieF
 author_image_url: https://avatars.githubusercontent.com/u/32578476?v=4
 tags:
-- secureCodeBox
-- agile
-- community
-- open source
-  description: This post gives some insights about how our core development team is organized.
-  image: /img/blog/2021-09-07-notes.jpg
+  - secureCodeBox
+  - agile
+  - community
+  - open source
+description: This post gives some insights about how our core development team is organized.
+image: /img/blog/2021-09-07-notes.jpg
 ---
 
 ![Notes](/img/blog/2021-09-07-notes.jpg)
@@ -77,7 +77,7 @@ You now know how our core development team is organized to work at the *secureCo
 If you are a regular user of the *secureCodeBox* and/or want to contribute more actively to the code, now is the best time to start!
 Of course, you can stay "anonymous", create your own pull requests and issues in our repository or chat with our
 developers about new features. If you, however, want to take one step further, we are very happy if you get in touch,
-for example by writing us an [e-mail](securecodebox@iteratec.com) 
+for example by writing us an [e-mail](mailto:securecodebox@iteratec.com) 
 or joining our [Slack channel](https://join.slack.com/t/securecodebox/shared_invite/enQtNDU3MTUyOTM0NTMwLTBjOWRjNjVkNGEyMjQ0ZGMyNDdlYTQxYWQ4MzNiNGY3MDMxNThkZjJmMzY2NDRhMTk3ZWM3OWFkYmY1YzUxNTU%22).
 
 Of course, we will face some new challenges when we integrate new stakeholders and developers into our meetings.
