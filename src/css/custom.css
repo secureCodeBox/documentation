@@ -42,8 +42,9 @@ body {
   padding: 0 var(--ifm-pre-padding);
 }
 
+/* closes big gap between the logos */
 .header-github-link {
-  padding-right: 0px;
+  padding-right: 0px !important;
 }
 
 .header-github-link::before {
