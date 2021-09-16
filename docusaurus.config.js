@@ -2,128 +2,129 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+/** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'secureCodeBox',
-  tagline: 'Testing your Software Security, Network and Applications',
-  url: 'https://docs.securecodebox.io',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  favicon: 'img/Favicon.svg',
-  organizationName: 'iteratec GmbH', // Usually your GitHub org/user name.
-  projectName: 'secureCodeBox.io', // Usually your repo name.
-  themeConfig: {
-    navbar: {
-      logo: {
-        alt: 'secureCodeBox Logo',
-        src: 'img/Logo_Color.svg',
+  title: "secureCodeBox",
+  tagline: "Testing your Software Security, Network and Applications",
+  url: "https://docs.securecodebox.io",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  favicon: "img/Favicon.svg",
+  organizationName: "iteratec GmbH", // Usually your GitHub org/user name.
+  projectName: "secureCodeBox.io", // Usually your repo name.
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      navbar: {
+        logo: {
+          alt: "secureCodeBox Logo",
+          src: "img/Logo_Black.svg",
+          srcDark: "img/Logo_White.svg",
+        },
+        items: [
+          {
+            to: `docs/getting-started/installation`,
+            activeBasePath: "docs",
+            label: "Docs",
+            position: "left",
+          },
+          { to: "blog", label: "Blog", position: "left" },
+          {
+            href: "https://github.com/secureCodeBox/",
+            position: "right",
+            className: "header-github-link",
+            "aria-label": "GitHub repository",
+          },
+        ],
       },
-      items: [
-        {
-          to: `docs/getting-started/installation`,
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
-        },
-        {to: 'blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/secureCodeBox/',
-          position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
-        },
-      ],
-    },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'https://github.com/securecodebox/docusaurus#Styleguide',
-            },
-            {
-              label: 'Icons',
-              to: 'https://www.flaticon.com/',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/secureCodeBox',
-            },
-            {
-              label: 'Slack',
-              href:
-                'https://join.slack.com/t/securecodebox/shared_invite/enQtNDU3MTUyOTM0NTMwLTBjOWRjNjVkNGEyMjQ0ZGMyNDdlYTQxYWQ4MzNiNGY3MDMxNThkZjJmMzY2NDRhMTk3ZWM3OWFkYmY1YzUxNTU"',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/securecodebox',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Imprint',
-              href: 'https://www.iteratec.com/en/legal-notice/',
-            },
-            {
-              label: 'Data Protection',
-              to: 'https://www.iteratec.com/en/data-protection/',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} iteratec GmbH. Built with Docusaurus.`,
-    },
-    prism: {
-      theme: require('prism-react-renderer/themes/dracula'),
-      additionalLanguages: ['python', 'java', 'rust', 'yaml', 'go'],
-    },
-  },
+      footer: {
+        style: "dark",
+        links: [
+          {
+            title: "Docs",
+            items: [
+              {
+                label: "Style Guide",
+                to: "https://github.com/securecodebox/docusaurus#Styleguide",
+              },
+              {
+                label: "Icons",
+                to: "https://www.flaticon.com/",
+              },
+            ],
+          },
+          {
+            title: "Community",
+            items: [
+              {
+                label: "GitHub",
+                href: "https://github.com/secureCodeBox",
+              },
+              {
+                label: "Slack",
+                href: 'https://join.slack.com/t/securecodebox/shared_invite/enQtNDU3MTUyOTM0NTMwLTBjOWRjNjVkNGEyMjQ0ZGMyNDdlYTQxYWQ4MzNiNGY3MDMxNThkZjJmMzY2NDRhMTk3ZWM3OWFkYmY1YzUxNTU"',
+              },
+              {
+                label: "Twitter",
+                href: "https://twitter.com/securecodebox",
+              },
+            ],
+          },
+          {
+            title: "More",
+            items: [
+              {
+                label: "Imprint",
+                href: "https://www.iteratec.com/en/legal-notice/",
+              },
+              {
+                label: "Data Protection",
+                to: "https://www.iteratec.com/en/data-protection/",
+              },
+            ],
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} iteratec GmbH. Built with Docusaurus.`,
+      },
+      prism: {
+        theme: require("prism-react-renderer/themes/dracula"),
+        additionalLanguages: ["python", "java", "rust", "yaml", "go"],
+      },
+    }),
   presets: [
     [
-      '@docusaurus/preset-classic',
-      {
+      "@docusaurus/preset-classic",
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.json'),
-          editUrl: 'https://github.com/securecodebox/docusaurus/edit/main/',
-          lastVersion: 'current',
+          sidebarPath: require.resolve("./sidebars.json"),
+          editUrl: "https://github.com/securecodebox/docusaurus/edit/main/",
+          lastVersion: "current",
           versions: {
             current: {
-              label: 'Current',
-              path: '',
+              label: "Current",
+              path: "",
             },
           },
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/securecodebox/docusaurus/edit/main/',
+          editUrl: "https://github.com/securecodebox/docusaurus/edit/main/",
           feedOptions: {
-            type: 'all',
-            title: 'The secureCodeBox Developer Blog',
+            type: "all",
+            title: "The secureCodeBox Developer Blog",
             description:
-              'In this blog the core maintainer will write about the development, roadmap, ideas RFCs etc. of the OWASP secureCodeBox.',
+              "In this blog the core maintainer will write about the development, roadmap, ideas RFCs etc. of the OWASP secureCodeBox.",
             copyright: `Copyright © ${new Date().getFullYear()} iteratec GmbH`,
-            language: 'en',
+            language: "en",
           },
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
-      },
+      }),
     ],
   ],
-  themes: ['@docusaurus/theme-live-codeblock'],
-  plugins: [
-    'docusaurus-plugin-sass',
-    '@cmfcmf/docusaurus-search-local'
-  ],
+  themes: ["@docusaurus/theme-live-codeblock"],
+  plugins: ["docusaurus-plugin-sass", "@cmfcmf/docusaurus-search-local"],
 };

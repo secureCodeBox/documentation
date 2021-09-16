@@ -34,6 +34,7 @@
     "node-fetch": "^3.0.0-beta.9",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.2",
+    "react-accessible-accordion": "^3.3.5",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.35.1"
@@ -51,11 +52,17 @@
     ]
   },
   "devDependencies": {
+    "@docusaurus/module-type-aliases": "^2.0.0-beta.3",
+    "@tsconfig/docusaurus": "^1.0.4",
     "@types/node": "^14.17.5",
+    "@types/react": "^17.0.20",
+    "@types/react-helmet": "^6.1.2",
+    "@types/react-router-dom": "^5.1.8",
     "eslint": "^7.30.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-security": "^1.4.0",
-    "sass-loader": "^12.1.0"
+    "sass-loader": "^12.1.0",
+    "typescript": "^4.4.2"
   }
 }
