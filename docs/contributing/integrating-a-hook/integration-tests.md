@@ -61,62 +61,9 @@ you can rather automatically update them via `npx jest --update-snapshot` (see b
 The last parameter would be the test timeout for jest in milliseconds, make sure it is high enough and
 higher than the timeout provided above.
 
-## Run your tests locally
+## Run your integration tests locally
 
-Before pushing them to the repository, make sure your tests run successfully in your local cluster.
-
-### Setting up the resources
-
-All of our tests run in a separate namespace called "integration-tests".
-
-```bash
-kubectl create namespace integration-tests
-```
-
-After that, install your created hook and *test-scan*:
-
-```bash
-helm -n integration-tests install test-scan ./scanner/test-scan
-helm -n integration-tests install your-hook ./hooks/your-hook
-```
-
-If not yet installed, install the targeted `demo-target`.
-
-```bash
-helm -n demo-targets install targeted-app ./demo-targets/targeted-app
-```
-
-Of course, you can also install other resources, if needed.
-
-### Install The Dependencies
-
-Go to tests directory:
-
-```bash
-cd tests/integration
-```
-
-Then install additional dependencies via `npm ci`
-
-### Run your tests
-
-Finally, you can run your tests via
-
-```bash
-npx jest hooks/your-test.test.js
-```
-
-You can also automatically update the snapshots with
-
-```bash
-npx jest --update-snapshot hooks/your-test.test.js
-```
-
-Or you can start an interactive mode via
-
-```bash
-npx jest --watch hooks/your-test.test.js
-```
+Before pushing them to the repository, make sure your tests run successfully in your local cluster. You may use the [makefile](docs/contributing/integrating-a-hook/makefile) to run your integration tests locally.
 
 ## Integrate in ci.yaml
 
