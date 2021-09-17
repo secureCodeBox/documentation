@@ -47,6 +47,11 @@ body {
   padding-right: 0px !important;
 }
 
+/* 
+Github Logo as CSS class by using a SVG in a Data-URL. 
+The SVG content must be URL escaped for this to work.
+See also: https://stackoverflow.com/questions/10768451/inline-svg-in-css
+*/
 .header-github-link::before {
   content: "";
   width: 24px;
@@ -61,6 +66,15 @@ html[data-theme="dark"] .header-github-link::before {
     no-repeat;
 }
 
+/*
+To create a  CSS class that represents the OWASP Logo we used the OWAS_LOGO_BLACK.svg and OWASP_LOGO_WHITE.svg
+from the static folder and base64 encoded the content using any programming language or online tool.
+We did not use Data-URL like for the Github Logo because it can be tedious to correctly URL Escape the content.
+To change the logo one can use any other svg, base64 encode the <svg> tag and it's content and insert it after "base64,"
+in the background attribute. If no Logo is shown try increasing the width and height to see if it is an offset/scaling issue
+which can be solved by adjusting the svg (viewbox etc.).
+See also: https://stackoverflow.com/questions/10768451/inline-svg-in-css
+*/
 .header-owasp-link::before {
   content: "";
   width: 24px;
