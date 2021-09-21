@@ -14,6 +14,7 @@ The directory structure of a hook Helm Chart will look something like this:
 
 ```bash
 ├── Chart.yaml
+├── Makefile
 ├── Dockerfile
 ├── hook.js
 ├── hook.test.js

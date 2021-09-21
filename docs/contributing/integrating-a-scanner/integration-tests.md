@@ -60,58 +60,9 @@ you can rather automatically update them via `npx jest --update-snapshot` (see b
 The last parameter would be the test timeout for jest in milliseconds, make sure it is high enough and 
 higher than the timeout provided above.  
 
-## Run your tests locally
+## Run your integration tests locally
 
-Before pushing them to the repository, make sure your tests run successfully in your local cluster. 
-
-### Setting up the resources
-
-All of our tests run in a separate namespace called "integration-tests". 
-
-`kubectl create namespace integration-tests`
-
-After that, install your created scanner:
-
-`helm -n integration-tests install your-scanner ./scanners/your-scanner`
-
-If not yet installed, install the targeted demo-target. 
-
-`helm -n demo-targets install targeted-app ./demo-targets/targeted-app`
-
-Of course, you can also install other resources, if needed.
-
-:::tip You can also install and test all resources at once
-
-  If you want to run all end-2-end tests at once you can
-
-  ```bash
-  # start in the secureCodeBox project directory
-  # install all resources at once
-  ./bin/install.sh --all -n integration-tests
-  # run all tests (incl. end-2-end tests)
-  npm test -- --ci --colors --coverage
-  ```
-
-:::
-
-
-### Install The Dependencies
-
-Go to tests directory: 
-`cd tests/integration`
-
-Then install additional dependencies via `npm ci`
-
-### Run your tests
-
-Finally, you can run your tests via 
-`npx jest scanner/your-test.test.js`
-
-You can also automatically update the snapshots with 
-`npx jest --update-snapshot scanner/your-test.test.js`
-
-Or you can start an interactive mode via 
-`npx jest --watch scanner/your-test.test.js`
+Before pushing them to the repository, make sure your tests run successfully in your local cluster. You may use the [makefile](docs/contributing/integrating-a-scanner/makefile) to run your integration tests locally.
 
 ## Integrate in ci.yaml
 

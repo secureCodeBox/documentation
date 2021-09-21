@@ -30,6 +30,7 @@ scanners/nmap
 │   ├── parser.test.js
 │   └── __testFiles__
 │       └── ...
+├── Makefile
 ├── README.md
 ├── README.md.gotmpl
 ├── scanner
