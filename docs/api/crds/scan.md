@@ -13,7 +13,7 @@ The secureCodeBox Operator will then use this specification to execute the scan.
 
 ### ScanType (Required)
 
-The `scanType` references the **name** of a [ScanType Custom Resource](https://docs.securecodebox.io/docs/crds/scan-type).
+The `scanType` references the **name** of a [ScanType Custom Resource](/docs/api/crds/scan-type/).
 
 ### Parameters (Required)
 

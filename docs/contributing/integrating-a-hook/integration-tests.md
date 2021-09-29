@@ -63,7 +63,7 @@ higher than the timeout provided above.
 
 ## Run your integration tests locally
 
-Before pushing them to the repository, make sure your tests run successfully in your local cluster. You may use the [makefile](docs/contributing/integrating-a-hook/makefile) to run your integration tests locally.
+Before pushing them to the repository, make sure your tests run successfully in your local cluster. You may use the [makefile](/docs/contributing/integrating-a-hook/makefile) to run your integration tests locally.
 
 ## Integrate in ci.yaml
 

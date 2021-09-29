@@ -27,7 +27,7 @@ If multiple rules are matching, the CascadingRule will still only create one sca
 
 Configures additional labels/annotations/ added to each subsequent scan (child). These labels/annotations overwrite any existing labels/annotations. You can use a simple templating scheme to gather details about the parent scan or finding (use `{{variable}}`, see example below). The following variables are available:
 
-- The parent [scan](docs/api/crds/scan) (e.g. `metadata.name`).
+- The parent [scan](/docs/api/crds/scan) (e.g. `metadata.name`).
 - The related [finding](/docs/api/finding) (e.g. `category`, `attributes.hostname`).
 - Custom variables (prepended with `$.`):
   - `hostOrIP`: `finding.hostname || finding.ip_address`

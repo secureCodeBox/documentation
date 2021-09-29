@@ -8,7 +8,7 @@ title: "ParseDefinition"
 
 ParseDefinitions are Custom Resource Definitions (CRD's) used to describe to the secureCodeBox how it can convert a raw finding report (e.g. XML report from nmap) into the generic [secureCodeBox finding format](/docs/api/finding).
 
-ParseDefinitions are generally packaged together with a [ScanType](https://docs.securecodebox.io/docs/crds/scan-type).
+ParseDefinitions are generally packaged together with a [ScanType](/docs/api/crds/scan-type/).
 A scanType will reference the **name** of a *ParseDefinition* via the [extractResults.type field](/docs/api/crds/scan-type#extractresultstype-required).
 
 ## Specification (Spec)
@@ -17,7 +17,7 @@ A scanType will reference the **name** of a *ParseDefinition* via the [extractRe
 
 `image` is the reference to the parser container image which can transform the raw scan report into findings.
 
-To see how to write parsers and package them into images, check out the [documentation page on integrating new scanners](docs/contributing/integrating-a-scanner).
+To see how to write parsers and package them into images, check out the [documentation page on integrating new scanners](/docs/contributing/integrating-a-scanner).
 
 ### ImagePullSecrets (Optional)
 
@@ -43,4 +43,4 @@ spec:
   ttlSecondsAfterFinished: 60
 ```
 The Parse definition is different when integrating a new scanner. We use specific conventions when adding new ParseDefinitions to the secureCodeBox repository. 
-More information can be found on the [templates folder documentation page for integrating new scanners](docs/contributing/integrating-a-scanner/templates-dir)
+More information can be found on the [templates folder documentation page for integrating new scanners](/docs/contributing/integrating-a-scanner/templates-dir)
