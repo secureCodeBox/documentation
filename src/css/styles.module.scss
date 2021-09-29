@@ -22,6 +22,9 @@
   @include lg {
     padding: 4rem 0;
   }
+  h1 {
+  color: white;
+  }
 }
 
 .description {
@@ -53,9 +56,6 @@ h2 {
   margin: 20px 0 0;
 }
 
-h1 {
-  color: white;
-}
 
 .dark {
   background-color: whitesmoke;
