@@ -6,7 +6,7 @@
 title: "ScheduledScan"
 ---
 
-The ScheduledScan Custom Resource Definition (CRD) lets you define a [Scan](https://docs.securecodebox.io/docs/crds/scan) which gets repeated in a specific time interval. E.g. every 24 hours or every 7 days.
+The ScheduledScan Custom Resource Definition (CRD) lets you define a [Scan](/docs/api/crds/scan-type/) which gets repeated in a specific time interval. E.g. every 24 hours or every 7 days.
 
 ## Specification (Spec)
 
@@ -25,7 +25,7 @@ We plan to improve this in the future, by providing a custom format which also s
 
 The `scanSpec` contains the specification of the scan which should be repeated.
 
-See the `spec` field of the [Scan CRD](https://docs.securecodebox.io/docs/crds/scan) for all supported attributes.
+See the `spec` field of the [Scan CRD](/docs/api/crds/scan-type/) for all supported attributes.
 
 ### SuccessfulJobsHistoryLimit (Optional)
 

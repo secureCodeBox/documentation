@@ -95,4 +95,4 @@ await expect(validateParser(findings)).resolves.toBeUndefined();
 
 If you need additional files for your test please save these in the `__testFiles__` directory. Please take a look at [Integration Tests | secureCodeBox](/docs/contributing/integrating-a-scanner/integration-tests) for more information.
 
-Assuming you've set up the scanner [makefile](docs/contributing/integrating-a-scanner/makefile), you can run your unit test with `make unit-test`.
+Assuming you've set up the scanner [makefile](/docs/contributing/integrating-a-scanner/makefile), you can run your unit test with `make unit-test`.
