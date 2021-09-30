@@ -15,7 +15,10 @@ The directory structure of a scanner Helm Chart will look something like this:
 scanners/nmap
 ├── cascading-rules
 │   └── ...
-├── Chart.yaml
+├── docs
+│   ├── README.ArtifactHub.md
+│   ├── README.DockerHub-Parser.md
+│   └── README.DockerHub-Scanner.md
 ├── examples
 │   ├── demo-target-ssh
 │   │   ├── findings.yaml
@@ -30,17 +33,19 @@ scanners/nmap
 │   ├── parser.test.js
 │   └── __testFiles__
 │       └── ...
-├── Makefile
-├── README.md
-├── README.md.gotmpl
-├── scanner
-│   ├── wrapper.sh
-│   └── Dockerfile
 ├── templates
 │   ├── cascading-rules.yaml
 │   ├── nmap-parse-definition.yaml
 │   └── nmap-scan-type.yaml
-└── values.yaml
+├── scanner
+│   └── Dockerfile
+├── Chart.yaml
+├── values.yaml
+├── Makefile
+├── README.md
+├── .helm-docs.gotmpl
+├── .helmignore
+└── .gitignore
 ```
 
 To create a new Helm Chart for your scanner you can use the following command (replace *new-scanner* with the name of the scanner):
