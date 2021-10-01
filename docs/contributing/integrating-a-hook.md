@@ -13,20 +13,27 @@ In the *secureCodeBox* we use Helm Charts for all our Resources to make the inst
 The directory structure of a hook Helm Chart will look something like this:
 
 ```bash
-├── Chart.yaml
-├── Makefile
-├── Dockerfile
-├── hook.js
-├── hook.test.js
-├── package.json
-├── package-lock.json
-├── README.md
-├── README.md.gotmpl
+├── docs
+│   ├── README.ArtifactHub.md
+│   └── README.DockerHub-Hook.md
+├── hook
+│   ├── Dockerfile
+│   ├── hook.js
+│   ├── hook.test.js
+│   ├── package.json
+│   ├── package-lock.json
+│   └── .dockerignore
 ├── templates
 │   ├── finding-post-processing-hook.yaml
 │   ├── _helpers.tpl
 │   └── NOTES.txt
-└── values.yaml
+├── Chart.yaml
+├── values.yaml
+├── Makefile
+├── README.md
+├── .helm-docs.gotmpl
+├── .helmignore
+└── .gitignore
 ```
 
 To create a new Helm Chart for your hook you can use the following command (replace *new-hook* with the name of the hook):
