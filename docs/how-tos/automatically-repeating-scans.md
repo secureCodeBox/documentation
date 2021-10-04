@@ -14,7 +14,7 @@ A repeating scan is useful, as it allows the developer to be aware of any new vu
 
 ## Setup
 
-For the sake of the tutorial, we assume that you have your Kubernetes cluster already up and running and that we can work in your default namespace. If not check out the [installation](/docs/getting-started/installation/) for more information.  
+For the sake of the tutorial, we assume that you have your Kubernetes cluster already up and running and that we can work in your default namespace. If not, check out the [installation](/docs/getting-started/installation/) for more information.
 
 We will start by installing the typo3 scanner:
 ```bash
@@ -52,7 +52,7 @@ We set the kind to `scheduled-scan.yaml`. This tells secureCodeBox to use the [S
 The interval here is set to 5 minutes (`5m`). This is only done to have quicker results for the example. If you're doing this on a real scan target, use a bigger time frame. It should be noted that hours (h) is the biggest unit that can be used. More info [here](/docs/api/crds/scheduled-scan#interval-required).  
 
 The `successfulJobsHistoryLimit` controls how many completed scans are supposed to be kept until the oldest one will be deleted.   
-And the The `failedJobsHistoryLimit` controls how many failed scans are supposed to be kept until the oldest one will be deleted.  
+And the `failedJobsHistoryLimit` controls how many failed scans are supposed to be kept until the oldest one will be deleted.
 
 The rest of the parameters are set according to your scanType. In this case it's `typo3scan`. It's corresponding scanner configuration can be found [here](/docs/scanners/typo3scan).
 
