@@ -10,8 +10,8 @@ module.exports = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   favicon: "img/Favicon.svg",
-  organizationName: "iteratec GmbH", // Usually your GitHub org/user name.
-  projectName: "secureCodeBox.io", // Usually your repo name.
+  organizationName: "secureCodeBox", // Usually your GitHub org/user name.
+  projectName: "secureCodeBox", // Usually your repo name.
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
