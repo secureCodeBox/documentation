@@ -12,6 +12,9 @@ module.exports = {
   favicon: "img/Favicon.svg",
   organizationName: "secureCodeBox", // Usually your GitHub org/user name.
   projectName: "secureCodeBox", // Usually your repo name.
+  customFields: {
+    keywords: ["security"]
+  },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
