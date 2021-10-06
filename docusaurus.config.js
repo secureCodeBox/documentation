@@ -13,7 +13,26 @@ module.exports = {
   organizationName: "secureCodeBox", // Usually your GitHub org/user name.
   projectName: "secureCodeBox", // Usually your repo name.
   customFields: {
-    keywords: ["security"]
+    keywords: [
+      "security",
+      "scanner",
+      "automation",
+      "devsecops",
+      "vulnerability",
+      "pipeline",
+      "kubernetes",
+      "docker",
+      "cloud",
+      "opensource",
+      "owasp",
+      "defectdojo",
+      "nmap",
+      "nikto",
+      "nuclei",
+      "typo3",
+      "joomla",
+      "wordpress"
+    ]
   },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
