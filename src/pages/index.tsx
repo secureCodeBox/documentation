@@ -189,7 +189,7 @@ export default function Main() {
 
   return (
     <Layout
-      title={`${siteConfig.title}`}
+      title={siteConfig.title}
       description={siteConfig.tagline}
     >
       <HomePage />
