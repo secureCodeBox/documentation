@@ -189,8 +189,9 @@ export default function Main() {
 
   return (
     <Layout
-      title={`${siteConfig.title}`}
+      title={siteConfig.title}
       description={siteConfig.tagline}
+      keywords={siteConfig.customFields.keywords}
     >
       <HomePage />
     </Layout>
