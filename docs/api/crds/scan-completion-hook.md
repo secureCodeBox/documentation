@@ -20,6 +20,31 @@ The `type` field can be either `ReadOnly` or `ReadAndWrite`.
 
 `ReadAndWrite` hooks have the ability to update both the findings and raw scan reports. This can be used to attach additional metadata to the findings by comparing the findings to external inventory systems or APIs of cloud providers.
 
+### Priority (Optional)
+
+The `priority` field helps determine the execution order of the hook.
+Hooks with a higher priority will be scheduled before hooks with a lower priority.
+By default, hooks are given a priority of 0.
+Hooks with equal priority are scheduled according to the default schedule:
+
+1. Run ReadAndWrite hooks one by one (undefined order).
+2. Once all ReadAndWrite hooks are completed, ReadOnly hooks are scheduled in parallel.
+
+The following diagram shows an example run:
+
+```text
+                                 Priority 2                                          Priority 1                    Priority 0
+    +-------------------------------------------------------------------+     +----------------------+      +----------------------+
+    |    +--------------+       +--------------+       +--------------+ |     |    +--------------+  |      |    +--------------+  | 
+    | -> | ReadAndWrite |------>| ReadAndWrite |------>|   ReadOnly   | |     | -> |   ReadOnly   |  | ---> | -> | ReadAndWrite |  |
+    |    +--------------+       +--------------+  |    +--------------+ |     |    +--------------+  |      |    +--------------+  |
+--> |                                             |                     | --> |                      |      +----------------------+
+    |                                             |    +--------------+ |     |    +--------------+  |
+    |                                             +--->|   ReadOnly   | |     | -> |   ReadOnly   |  |
+    |                                                  +--------------+ |     |    +--------------+  |
+    +-----------+-------------------------------------------------------+     +----------------------+
+```
+
 ### Image (Required)
 
 The `image` field contains a container image reference for the image supposed to run as the hook.
@@ -53,6 +78,7 @@ metadata:
   name: elastic-persistence-hook
 spec:
   type: ReadOnly
+  priority: 2
   image: docker.io/securecodebox/persistence-elastic:latest
   imagePullSecrets:
   - name: image-pull-secret
