@@ -123,6 +123,9 @@ const docsConfig = {
         "contributing/operator",
         "contributing/conventions",
       ],
+      Experimental: [
+        "experimental/windows-scanners"
+      ],
     },
   };
 
