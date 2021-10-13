@@ -26,7 +26,7 @@ These usually contain scanner specific configurations and target specification.
 `env` lets you pass in custom environment variables to the scan container.
 This can be useful to pass in secret values like login credentials scanner require without having to define them in plain text.
 
-Env has the same api as "env" property on Kubernetes Pods. 
+Env has the same API as "env" property on Kubernetes Pods. 
 
 See:
 - [Documentation](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
@@ -36,7 +36,7 @@ See:
 
 `cascades` let you start new scans based on the results of the current scan.
 
-The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which allow you to select which [CascadingRule](https://docs.securecodebox.io/docs/api/crds/cascading-rule) are allowed to be used by the cascading logic.
+The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which [CascadingRule](https://docs.securecodebox.io/docs/api/crds/cascading-rule) are allowed to be used by the cascading logic.
 
 Furthermore, in the cascade config you can specify whether cascading scan should inherit the parent's labels (`inheritLabels`) and annotations (`inheritAnnotations`). If not specified, the options will be considered as `true`.
 
