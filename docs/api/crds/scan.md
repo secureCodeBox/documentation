@@ -26,17 +26,92 @@ These usually contain scanner specific configurations and target specification.
 `env` lets you pass in custom environment variables to the scan container.
 This can be useful to pass in secret values like login credentials scanner require without having to define them in plain text.
 
-Env has the same api as "env" property on Kubernetes Pods. 
+Env has the same API as "env" property on Kubernetes Pods. 
 
 See:
 - [Documentation](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
 - [API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#envvar-v1-core)
 
+### Volumes (Optional)
+
+`volumes` lets you specify Kubernetes volumes that you want to use and make available to the scan container.
+Similarly to `env`, it can be used to pass data into a container.
+It has to be combined with [`volumeMounts`](#volumemounts-optional) to be useful (see below).
+It can also be used in combination with `initContainers` to provision files, VCS repositories, or other content into a scanner - see [`initContainers`](#initcontainers-optional) for an example.
+
+`volumes` has the same API as the `volumes` property on Kubernetes pods.
+
+See:
+- [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/)
+- [API Reference](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#volume-v1-core)
+
+### VolumeMounts (Optional)
+
+`volumeMounts` let you specify where you want the previously-created volumes to be mounted inside the container.
+It is used in combination with [`volumes`](#volumes-optional) (see above).
+
+`volumeMounts` has the same API as the `volumeMounts` property on Kubernetes pods.
+
+See:
+- [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/)
+- [API Reference](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#volumemount-v1-core)
+
+### InitContainers (Optional)
+
+`initContainers` lets you specify a (set of) container(s) that are run before the scan itself.
+You can specify arbitrary containers with any command that you desire.
+By default, init containers do not share a file system with the scan job.
+If you want to use init containers to provision files or directories for the scan job, you need to explicitly create a volume and mount it to both the init container and the scan job itself (using the [`volumeMounts`](#volumemounts-optional) discussed above).
+For example, if you want to download a file that contains a list of scan targets for nmap, you could configure the scan like this:
+
+```yaml
+apiVersion: "execution.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "nmap-from-web"
+spec:
+  # Specify a volume that will be used to share files between the containers
+  volumes:
+    - name: target-list
+      emptyDir: {}
+  # Mount the volume to the scanner at the path /targets
+  volumeMounts:
+    - mountPath: "/targets/"
+      name: target-list
+  # Declare the initContainers
+  initContainers:
+    # For this, we use only a single init container - you can specify multiple, and they will be executed sequentially
+    - name: "download-targets"
+      # Use the "busybox" image, which contains wget
+      image: busybox
+      # Launch wget to download a list of targets and place it in /targets/targets.txt
+      command: 
+        - wget
+        - "https://my.website.tld/targets.txt"
+        - "-O"
+        - /targets/targets.txt
+      # Make the volume used above available to the initContainer as well, at the same path
+      volumeMounts:
+        - mountPath: "/targets/"
+          name: target-list
+  # Declare the actual scan you want to perform, using the downloaded file
+  scanType: "nmap"
+  parameters:
+    - "-iL"
+    - "/targets/targets.txt"
+```
+
+`initContainers` has the same API as the `initContainers` property on Kubernetes pods, which is a list of `container`s.
+
+See:
+- [Documentation](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
+- [API Reference](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core)
+
 ### Cascades (Optional)
 
 `cascades` let you start new scans based on the results of the current scan.
 
-The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which allow you to select which [CascadingRule](https://docs.securecodebox.io/docs/api/crds/cascading-rule) are allowed to be used by the cascading logic.
+The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which [CascadingRule](https://docs.securecodebox.io/docs/api/crds/cascading-rule) are allowed to be used by the cascading logic.
 
 Furthermore, in the cascade config you can specify whether cascading scan should inherit the parent's labels (`inheritLabels`) and annotations (`inheritAnnotations`). If not specified, the options will be considered as `true`.
 
