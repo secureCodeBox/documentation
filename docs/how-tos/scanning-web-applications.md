@@ -17,7 +17,7 @@ We will start by installing the ZAP-Advanced scanner:
 ```bash
 helm upgrade --install zap-advanced secureCodeBox/zap-advanced
 ```
-And the Juice-shop demo-target.
+And the juice-shop demo-target.
 
 ```bash
 helm upgrade --install juice-shop secureCodeBox/juice-shop
@@ -63,7 +63,7 @@ spec:
       configMap:
         name: zap-advanced-scan-config
 ``` 
-We use `VolumeMount` and `volumes` to attach the configMap to our scan in `scan.yaml`. We also set up a context for our `zap-advanced` scan. This is where we can input ZAP related parameters-.
+We use `volumeMounts` and `volumes` to attach the configMap to our scan in `scan.yaml`. We also set up a context for our `zap-advanced` scan. This is where we can input ZAP related parameters.
 
 We can do a test run via:
 ```bash
@@ -102,7 +102,7 @@ data:
           - ".*\\.ico"
 ``` 
 
-Some URLs may not be reachable without a privileged user. In this case it makes sense to provide authentications credentials. This is done through the authentication, users, session parameters in our ConfigMap Context. It would look something like this: 
+Some URLs may not be reachable without a privileged user. In this case it makes sense to provide authentications credentials. This is done through the authentication, users and session parameters in our ConfigMap context. It would look something like this: 
 
 ```yaml
 apiVersion: v1
@@ -193,7 +193,7 @@ ZAP uses a [Spider-Tool](https://www.zaproxy.org/docs/desktop/start/features/spi
         maxDepth: 10
 ``` 
 ZAP also has the option for an [Active Scan](https://www.zaproxy.org/docs/desktop/start/features/ascan/).  
-Active scanning attempts to find potential vulnerabilities by using known attacks against the selected targets.  It's rules can be modified in the `scanners` parameter. An example for that would be :
+Active scanning attempts to find potential vulnerabilities by using known attacks against the selected targets.  Its rules can be modified in the `scanners` parameter. An example for that would be:
 
 ```yaml
  # ZAP ActiveScans Configuration 
@@ -371,5 +371,5 @@ NAME                                      TYPE                STATE   FINDINGS
 zap-authenticated-full-scan-juiceshop     zap-advanced-scan   Done    14
 ```
 
-If the scan's `STATE` is set to done, We can see our findings via the minio Instance. Information on how to do that [here](/docs/getting-started/installation#accessing-the-included-minio-instance)  
+If the scan's `STATE` is set to done, We can see our findings via the S3 bucket. If you've used the default installation method you can follow the [guide](/docs/getting-started/installation#accessing-the-included-minio-instance) to access the integrated Minio S3 Bucket to view the findings.
 And we're done ! Have Fun Scanning :)
