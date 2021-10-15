@@ -69,7 +69,7 @@ We can do a test run via:
 ```bash
 kubectl apply -f scan.yaml
 ```
-The ConfigMap right now is minimal. So we can start modifiying and adding to it to fit our needs.  
+The ConfigMap right now is minimal. So we can start modifying and adding to it to fit our needs.  
 For example let's start by setting the scope that we want for our scan. This is done by adding and excluding the paths that the scanner will use. This usually makes the scans faster.  
 Our ConfigMap will then look like this.
 
@@ -102,7 +102,88 @@ data:
           - ".*\\.ico"
 ``` 
 
-Some URLs may not be reachable without a privileged user. In this case it makes sense to provide authentications credentials. This is done through the authentication, users and session parameters in our ConfigMap context. It would look something like this: 
+ZAP uses a [Spider-Tool](https://www.zaproxy.org/docs/desktop/start/features/spider/) that is used to automatically discover new resources (URLs) on a particular Site. We can configure it's mode of operation through the parameter `spiders`. A possible configuration can look like this :
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zap-advanced-scan-config
+data:
+  2-zap-advanced-scan.yaml: |-
+
+    # ZAP Contexts Configuration 
+    contexts:
+      # Name to be used to refer to this context in other jobs, mandatory
+      - name: scb-juiceshop-context
+        # The top level url, mandatory, everything under this will be included
+        url: http://juice-shop.default.svc:3000/ 
+        # An optional list of regexes to include     
+        includePaths:
+          - "http://juice-shop.default.svc:3000.*"
+        # An optional list of regexes to exclude
+        excludePaths:
+          - ".*socket\\.io.*"
+          - ".*\\.png"
+          - ".*\\.jpeg"
+          - ".*\\.jpg"
+          - ".*\\.woff"
+          - ".*\\.woff2"
+          - ".*\\.ttf"
+          - ".*\\.ico"
+    # ZAP Spiders Configuration 
+    spiders:
+      - name: scb-juiceshop-spider
+        # String: Name of the context to spider, default: first context
+        context: scb-juiceshop-context
+        # String: Name of the user to authenticate with and used to spider
+        user: juiceshop-user-1
+        # String: Url to start spidering from, default: first context URL
+        url: http://juice-shop.default.svc:3000/
+        # zapConfiguration.spiders[0].ajax -- Bool: Whether to use the ZAP ajax spider, default: false
+        ajax: true
+        # Int: Fail if spider finds less than the specified number of URLs, default: 0
+        failIfFoundUrlsLessThan: 0
+        # Int: Warn if spider finds less than the specified number of URLs, default: 0
+        warnIfFoundUrlsLessThan: 0
+        # Int: The max time in minutes the spider will be allowed to run for, default: 0 unlimited
+        maxDuration: 5
+        # Int: The maximum tree depth to explore, default 5
+        maxDepth: 10
+``` 
+ZAP also has the option for an [Active Scan](https://www.zaproxy.org/docs/desktop/start/features/ascan/).  
+Active scanning attempts to find potential vulnerabilities by using known attacks against the selected targets.  Its rules can be modified in the `scanners` parameter. An example for that would be:
+
+```yaml
+ # ZAP ActiveScans Configuration 
+    scanners:
+      - name: scb-juiceshop-scan
+        # String: Name of the context to attack, default: first context
+        context: scb-juiceshop-context
+        # String: Name of the user to authenticate with and used to spider
+        user: juiceshop-user-1
+        # String: Url to start scaning from, default: first context URL
+        url: http://juice-shop.default.svc:3000/
+        # Int: The max time in minutes any individual rule will be allowed to run for, default: 0 unlimited
+        maxRuleDurationInMins: 1
+        # Int: The max time in minutes the active scanner will be allowed to run for, default: 0 unlimited
+        maxScanDurationInMins: 10
+        # Int: The max number of threads per host, default: 2
+        threadPerHost: 5
+        # Int: The delay in milliseconds between each request, use to reduce the strain on the target, default 0
+        delayInMs: 0
+        # Bool: If set will add an extra query parameter to requests that do not have one, default: false
+        addQueryParam: false
+        # Bool: If set then automatically handle anti CSRF tokens, default: false
+        handleAntiCSRFTokens: false
+        # Bool: If set then the relevant rule Id will be injected into the X-ZAP-Scan-ID header of each request, default: false
+        injectPluginIdInHeader: false
+        # Bool: If set then the headers of requests that do not include any parameters will be scanned, default: false
+        scanHeadersAllRequests: false
+```
+Some URLs may not be reachable without a privileged user. In this case, it makes sense to provide authentications credentials. This is done through the authentication, users and session parameters in our ConfigMap context. In our case here, we use custom zap scripts to authenticate into juice-shop. The scripts used can be found [here](https://github.com/secureCodeBox/secureCodeBox/tree/main/scanners/zap-advanced/scanner/scripts/).  
+It can be required to configure your own scripts to fit your scan target: more information on how these scripts integrate into ZAP can be found [here](https://www.zaproxy.org/docs/desktop/start/features/scripts/).  
+Our `contexts` parameter in our scan would then look something like this: 
 
 ```yaml
 apiVersion: v1
@@ -167,61 +248,8 @@ data:
             # A short description for the script.
             description: "This is a JuiceShop specific SessionManagement Script used to handle JWT."
 ``` 
-For more information on Authentication/Session parameters check out ZAP's documentation on the matter [here](https://www.zaproxy.org/docs/desktop/start/features/)  
+For more information on Authentication/Session parameters check out ZAP's documentation on the matter [here](https://www.zaproxy.org/docs/desktop/start/features/authentication/)  
 
-ZAP uses a [Spider-Tool](https://www.zaproxy.org/docs/desktop/start/features/spider/) that is used to automatically discover new resources (URLs) on a particular Site. We can configure it's mode of operation through the parameter `spiders`. A possible configuration can look like this :
-
-```yaml
-# ZAP Spiders Configuration 
-    spiders:
-      - name: scb-juiceshop-spider
-        # String: Name of the context to spider, default: first context
-        context: scb-juiceshop-context
-        # String: Name of the user to authenticate with and used to spider
-        user: juiceshop-user-1
-        # String: Url to start spidering from, default: first context URL
-        url: http://juice-shop.default.svc:3000/
-        # zapConfiguration.spiders[0].ajax -- Bool: Whether to use the ZAP ajax spider, default: false
-        ajax: true
-        # Int: Fail if spider finds less than the specified number of URLs, default: 0
-        failIfFoundUrlsLessThan: 0
-        # Int: Warn if spider finds less than the specified number of URLs, default: 0
-        warnIfFoundUrlsLessThan: 0
-        # Int: The max time in minutes the spider will be allowed to run for, default: 0 unlimited
-        maxDuration: 5
-        # Int: The maximum tree depth to explore, default 5
-        maxDepth: 10
-``` 
-ZAP also has the option for an [Active Scan](https://www.zaproxy.org/docs/desktop/start/features/ascan/).  
-Active scanning attempts to find potential vulnerabilities by using known attacks against the selected targets.  Its rules can be modified in the `scanners` parameter. An example for that would be:
-
-```yaml
- # ZAP ActiveScans Configuration 
-    scanners:
-      - name: scb-juiceshop-scan
-        # String: Name of the context to attack, default: first context
-        context: scb-juiceshop-context
-        # String: Name of the user to authenticate with and used to spider
-        user: juiceshop-user-1
-        # String: Url to start scaning from, default: first context URL
-        url: http://juice-shop.default.svc:3000/
-        # Int: The max time in minutes any individual rule will be allowed to run for, default: 0 unlimited
-        maxRuleDurationInMins: 1
-        # Int: The max time in minutes the active scanner will be allowed to run for, default: 0 unlimited
-        maxScanDurationInMins: 10
-        # Int: The max number of threads per host, default: 2
-        threadPerHost: 5
-        # Int: The delay in milliseconds between each request, use to reduce the strain on the target, default 0
-        delayInMs: 0
-        # Bool: If set will add an extra query parameter to requests that do not have one, default: false
-        addQueryParam: false
-        # Bool: If set then automatically handle anti CSRF tokens, default: false
-        handleAntiCSRFTokens: false
-        # Bool: If set then the relevant rule Id will be injected into the X-ZAP-Scan-ID header of each request, default: false
-        injectPluginIdInHeader: false
-        # Bool: If set then the headers of requests that do not include any parameters will be scanned, default: false
-        scanHeadersAllRequests: false
-```
 Our complete ZAP Scan file is then the following :
 
 ```yaml
