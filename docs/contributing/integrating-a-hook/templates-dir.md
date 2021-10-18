@@ -17,10 +17,14 @@ apiVersion: "execution.securecodebox.io/v1"
 kind: ScanCompletionHook
 metadata:
   name: {{ include "generic-webhook.fullname" . }}
+  labels:
+    {{- include "generic-webhook.labels" . | nindent 4 }}
 spec:
   type: ReadOnly
-  image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.Version }}"
+  image: "{{ .Values.hook.image.repository }}:{{ .Values.hook.image.tag | default .Chart.Version }}"
+  ttlSecondsAfterFinished: {{ .Values.hook.ttlSecondsAfterFinished }}
   env:
     - name: WEBHOOK_URL
-      value: {{ .Values.webhookUrl | quote }}```
+      value: {{ .Values.webhookUrl | quote }}
+```
 
