@@ -3,17 +3,17 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-title: README.md And README.gotmpl
+title: README.md And .helm-docs.gotmpl
 ---
 
-You may have noticed that all our hooks provide a `README.md` as well as a `README.md.gotmpl`.
+You may have noticed that all our hooks provide a `README.md` as well as a `.helm-docs.gotmpl`.
 The reason for this is that we want to provide the documentation of our Helm values directly in our `README.md`.
 To avoid the need to do this task manually we use a tool that creates a table with all our values directly from our `values.yaml`.
 Therefore there is no need to make any changes on the `README.md` it self.
-Every change has to be made in the `README.md.gotmpl` file.
+Every change has to be made in the `.helm-docs.gotmpl` file.
 
-The `README.md.gotmpl` should contain basic information about your hook like its purpose, how it is deployed, how it is configured as well as its Chart configurations generated out of the `values.yaml`.
-For example the `README.md.gotmpl` for *WPScan* looks like this:
+The `.helm-docs.gotmpl` should contain basic information about your hook like its purpose, how it is deployed, how it is configured as well as its Chart configurations generated out of the `values.yaml`.
+For example the `.helm-docs.gotmpl` for *WPScan* looks like this:
 
 ```markdown
 ---
@@ -39,4 +39,4 @@ helm upgrade --install gwh secureCodeBox/generic-webhook --set webhookUrl="http:
 {{ template "chart.valuesTable" . }}
 ```
 
-If you want to generate the `README.md` out of your `README.md.gotmpl` locally, you can use `helm-docs` (see: [https://github.com/norwoodj/helm-docs/](https://github.com/norwoodj/helm-docs/)).
+If you want to generate the `README.md` out of your `.helm-docs.gotmpl` locally, you can use `helm-docs` (see: [https://github.com/norwoodj/helm-docs/](https://github.com/norwoodj/helm-docs/)).
