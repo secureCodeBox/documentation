@@ -127,8 +127,16 @@ function HomePage() {
             title={content.about.title}
             subtitle={
               <div>
-                {content.about.description}{" "}
-                <a href="https://www.iteratec.com/">iteratec</a>.
+                <p>
+                  {content.about.description}{" "}
+                  <a href="https://www.iteratec.com/">iteratec</a>.
+                </p>
+                <p>
+                  <a href="https://owasp.org/">OWASP</a> is an open community dedicated to enabling organizations to conceive,
+                  develop, acquire, operate, and maintain applications that can be trusted.
+                  All of the OWASP tools, documents, forums, and chapters are free and open
+                  to anyone interested in improving application security.
+                </p>
               </div>
             }
           >
