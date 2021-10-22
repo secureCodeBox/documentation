@@ -53,8 +53,12 @@ function HomePage() {
     <>
       <header className={clsx("hero", styles.heroBanner)}>
         <div className="container">
-          <h1>{content.heroBanner.title}</h1>
-          <p className={styles.description}>{content.heroBanner.description}</p>
+          <h1>Identify vulnerabilities in your Network and Applications with the first of its kind Open-Source Multi-Scanner Platform.</h1>
+          <p className={styles.description}>
+            secureCodeBox is an <a href='https://owasp.org/www-project-securecodebox/'>OWASP project</a> providing an automated
+            and scalable Open-Source solution that integrates multiple security scanners with a simple and lightweight interface –
+            for continuous and automated security testing.
+          </p>
           <Link
             className={clsx(
               "button button--outline button--secondary button--lg",
@@ -62,7 +66,7 @@ function HomePage() {
             )}
             to={useBaseUrl("docs/getting-started/installation")}
           >
-            {content.heroBanner.button}
+            Get Started
           </Link>
         </div>
       </header>
