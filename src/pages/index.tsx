@@ -55,19 +55,26 @@ function HomePage() {
         <div className="container">
           <h1>Identify vulnerabilities in your Network and Applications with the first of its kind Open-Source Multi-Scanner Platform.</h1>
           <p className={styles.description}>
-            secureCodeBox is an <a href='https://owasp.org/www-project-securecodebox/'>OWASP project</a> providing an automated
+            secureCodeBox is an <a href="https://owasp.org/www-project-securecodebox/">OWASP project</a> providing an automated
             and scalable Open-Source solution that integrates multiple security scanners with a simple and lightweight interface –
             for continuous and automated security testing.
           </p>
-          <Link
-            className={clsx(
-              "button button--outline button--secondary button--lg",
-              styles.getStarted
-            )}
-            to={useBaseUrl("docs/getting-started/installation")}
-          >
-            Get Started
-          </Link>
+
+          <div className="flex-container">
+            <div className="flex-child">
+              <Link
+                className={clsx("button button--outline button--secondary button--lg",  styles.getStarted)}
+                to={useBaseUrl("docs/getting-started/installation")}>
+                  Get Started
+              </Link>
+            </div>
+
+            <div className="flex-child">
+              <a href="https://owasp.org/" target="_blank">
+                <img className="owasp-project-logo" src={useBaseUrl("/img/OWASP_Logo_White_with_name.png")} />
+              </a>
+            </div>
+          </div>
         </div>
       </header>
 
