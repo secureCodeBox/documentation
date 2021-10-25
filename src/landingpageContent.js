@@ -1,8 +1,5 @@
 const content = {
   automatedTesting: {
-    title: "Automated Security Testing",
-    description:
-      "Use the power of leading open-source security testing tools to run routine scans continuously and automatically on your network or application.",
     cards: [
       {
         title: "Powerful Scanning Tools",

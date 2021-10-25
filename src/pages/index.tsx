@@ -81,8 +81,8 @@ function HomePage() {
       <main>
         <Sections>
           <Section
-            title={content.automatedTesting.title}
-            subtitle={content.automatedTesting.description}
+            title="Automated Security Testing"
+            subtitle="Use the power of leading open-source security testing tools to run routine scans continuously and automatically on your network or application."
             alignment="center"
           >
             <div className="row margin-bottom--lg">
