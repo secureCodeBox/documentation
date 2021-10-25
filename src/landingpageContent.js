@@ -1,11 +1,4 @@
 const content = {
-  heroBanner: {
-    title:
-      "Identify vulnerabilities in your Network and Applications with the first of its kind Open-Source Multi-Scanner Platform.",
-    description:
-      "secureCodeBox is an automated and scalable Open-Source solution that integrates multiple security scanners with a simple and lightweight interface – for continuous and automated security testing.",
-    button: "Get Started",
-  },
   automatedTesting: {
     title: "Automated Security Testing",
     description:
