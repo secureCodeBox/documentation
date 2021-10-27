@@ -159,7 +159,7 @@ Consider the following cascading scan definition:
 apiVersion: "cascading.securecodebox.io/v1"
 kind: CascadingRule
 metadata:
-  name: "find-ua-parser-version"
+  name: "find-ua-parser-backdoor"
   # How invasive and resource intensive is this cascading scan?
   # Scans can use this to filter out specific CascadingRules (see the
   # 'cascades' definition in the example scan above)
@@ -223,7 +223,7 @@ By using another newly introduced feature of secureCodeBox: init containers.
 
 If you already have some experience with Kubernetes, you may already know the concept of [init containers][initc].
 Briefly, they are containers that are run before the main container of a job is run, and are used to provision specific data or configurations files for the main container.
-With secureCodeBox 3.2, we have [added support for init containers to secureCodeBox][initc-scb].
+With secureCodeBox 3.2, we have [added support for init containers][initc-scb].
 We can use this to provision the Git repository into the semgrep scan container, specifying a [shared volume between the init container and the main job][initc-volumes] so that they can share the downloaded data.
 We can thus complete the cascading rule we began writing above.
 
@@ -231,7 +231,7 @@ We can thus complete the cascading rule we began writing above.
 apiVersion: "cascading.securecodebox.io/v1"
 kind: CascadingRule
 metadata:
-  name: "find-ua-parser-version"
+  name: "find-ua-parser-backdoor"
   labels:
     securecodebox.io/invasive: non-invasive
     securecodebox.io/intensive: medium
@@ -310,7 +310,7 @@ For example, the following extended cascading scan definition now assigns each s
 apiVersion: "cascading.securecodebox.io/v1"
 kind: CascadingRule
 metadata:
-  name: "find-ua-parser-version"
+  name: "find-ua-parser-backdoor"
   labels:
     securecodebox.io/invasive: non-invasive
     securecodebox.io/intensive: medium
