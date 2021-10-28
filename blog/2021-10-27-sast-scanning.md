@@ -21,8 +21,8 @@ image: /img/blog/2021-09-07-notes.jpg
 
 Cover photo by [Agence Olloweb](https://unsplash.com/@olloweb) on [Unsplash](https://unsplash.com/photos/d9ILr-dbEdg).
 
-With secureCodeBox 3.3, we have added several features that allow you to use secureCodeBox for static application security testing (SAST).
-This blog post gives an introduction to how several new features of secureCodeBox 3.3 can be used to quickly run targeted SAST scans of your entire codebase.
+With _secureCodeBox_ 3.3, we have added several features that allow you to use _secureCodeBox_ for static application security testing (SAST).
+This blog post gives an introduction to how several new features of _secureCodeBox_ 3.3 can be used to quickly run targeted SAST scans of your entire codebase.
 By the end of this post, you will know how to build a SAST workflow to detect which of your repositories include a malicious dependency.
 We will cover all steps of the process: obtaining a list of all software repositories in your organization, cloning and scanning them, and even dropping all of the results into a DefectDojo instance for later inspection.
 
@@ -30,7 +30,7 @@ We will cover all steps of the process: obtaining a list of all software reposit
 
 ## Introduction
 
-SecureCodeBox has been able to run dynamic security tests of your infrastructure for quite a while.
+_secureCodeBox_ has been able to run dynamic security tests of your infrastructure for quite a while.
 However, some issues are easier to catch by analyzing the source code of the applications directly.
 This is the domain of static application security testing (SAST) tools, which detect dangerous code fragments and inform you long before they hit your production systems.
 Normally, you would integrate these tools directly into your continuous integration (CI) workflows, so that the warnings reach the developers directly.
@@ -150,7 +150,7 @@ So, now that we have a list of repositories, how do we scan them?
 
 ### Creating Follow-Up Scans
 
-[Cascading scans][cascadingscans] are probably one of the most useful features of secureCodeBox.
+[Cascading scans][cascadingscans] are probably one of the most useful features of _secureCodeBox_.
 They allow you to use results from a previous scan to dynamically create targeted follow-up scans.
 You can even include a selector to filter which results you want to act on, and which you want to ignore.
 Consider the following cascading scan definition:
@@ -186,7 +186,7 @@ In this example, we want to act on result with the name "GitHub Repo" that have 
 Of course, we can drop the latter part if we also want to analyze private repositories.
 
 So, this is all well and good, but how can we turn this into a SAST scan?
-For this, we turn to the newest member in the family of secureCodeBox scanners: semgrep.
+For this, we turn to the newest member in the family of _secureCodeBox_ scanners: semgrep.
 
 ### Detecting Affected Code
 
@@ -217,13 +217,13 @@ rules:
 
 This rule will search through all `package-lock.json` files and look for any references to the affected versions of the library (of course, in practice you may want to refine this rule a bit more, but it is good enough for this example).
 So, we have a rule, and we have a list of repositories - but how do we get the code from the repositories to where the scanner is?
-By using another newly introduced feature of secureCodeBox: init containers.
+By using another newly introduced feature of _secureCodeBox_: init containers.
 
 ### Getting The Code To The Scanner
 
 If you already have some experience with Kubernetes, you may already know the concept of [init containers][initc].
 Briefly, they are containers that are run before the main container of a job is run, and are used to provision specific data or configurations files for the main container.
-With secureCodeBox 3.2, we have [added support for init containers][initc-scb].
+With _secureCodeBox_ 3.2, we have [added support for init containers][initc-scb].
 We can use this to provision the Git repository into the semgrep scan container, specifying a [shared volume between the init container and the main job][initc-volumes] so that they can share the downloaded data.
 We can thus complete the cascading rule we began writing above.
 
@@ -301,8 +301,8 @@ However, maybe you want to also inspect the data in an application security mana
 
 ### Getting The Results Into DefectDojo
 
-SecureCodeBox has had a [DefectDojo integration][defectdojo-scb] for a while.
-It allows you to automatically import data from your scans to DefectDojo, and optionally pull the results of the import back into secureCodeBox.
+_secureCodeBox_ has had a [DefectDojo integration][defectdojo-scb] for a while.
+It allows you to automatically import data from your scans to DefectDojo, and optionally pull the results of the import back into _secureCodeBox_.
 You can control how the imported data is assigned to products, engagements and tests in DefectDojo by using scan annotations, which also support templating for cascading scans.
 For example, the following extended cascading scan definition now assigns each scan to a DefectDojo product for that repository, and also includes some version information.
 
@@ -336,12 +336,12 @@ spec:
 
 :::caution
 
-If you want to try this in practice, note that it will currently only work if the DefectDojo hook is configured not to write back its results to secureCodeBox (`--set="defectdojo.syncFindingsBack=false"` during installation of the hook).
+If you want to try this in practice, note that it will currently only work if the DefectDojo hook is configured not to write back its results to _secureCodeBox_ (`--set="defectdojo.syncFindingsBack=false"` during installation of the hook).
 Otherwise, the DefectDojo hook will overwrite the findings of the git-repo-scanner job, causing the cascading jobs not to be run.
 Also note that at the time of writing, the current version of DefectDojo has a [known issue with the semgrep importer being a bit too aggressive with deduplication][defectdojo-semgrep-issue], which should be fixed in the next release (but should not affect this example).
 :::
 
-Of course, we also want to help you follow security best practices in your security scanning infrastructure, so starting with secureCodeBox 3.3, you can also run the DefectDojo hook with an API key with limited permissions instead of the full administrative access that was previously required.
+Of course, we also want to help you follow security best practices in your security scanning infrastructure, so starting with _secureCodeBox_ 3.3, you can also run the DefectDojo hook with an API key with limited permissions instead of the full administrative access that was previously required.
 For more details, see the [DefectDojo Hook Documentation][defectdojo-scb-permissions].
 
 ## Conclusion
