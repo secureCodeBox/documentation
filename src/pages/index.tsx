@@ -53,10 +53,10 @@ function HomePage() {
     <>
       <header className={clsx("hero", styles.heroBanner)}>
         <div className="container">
-          <h1>Identify vulnerabilities in your Network and Applications with the first of its kind Open-Source Multi-Scanner Platform.</h1>
+          <h1>Automated Security Testing</h1>
           <p className={styles.description}>
-            secureCodeBox is an <a href="https://owasp.org/www-project-securecodebox/">OWASP project</a> providing an automated
-            and scalable Open-Source solution that integrates multiple security scanners with a simple and lightweight interface –
+            <em>secureCodeBox</em> is an <a href="https://owasp.org/www-project-securecodebox/">OWASP project</a> providing an automated
+            and scalable open source solution that integrates multiple security scanners with a simple and lightweight interface –
             for continuous and automated security testing.
           </p>
 
@@ -81,8 +81,8 @@ function HomePage() {
       <main>
         <Sections>
           <Section
-            title={content.automatedTesting.title}
-            subtitle={content.automatedTesting.description}
+            title="Identify Vulnerabilities in your Network and Applications"
+            subtitle="Use the power of leading open source security testing tools with the first of its kind open source multi-scanner platform to run routine scans continuously and automatically on your network infrastructure or applications."
             alignment="center"
           >
             <div className="row margin-bottom--lg">
