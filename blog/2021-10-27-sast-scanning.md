@@ -17,7 +17,7 @@ description: This post gives an introduction to using the new SAST functionality
 image: /img/blog/2021-09-07-notes.jpg
 ---
 
-![Notes](/img/blog/2021-10-27-magnifyingglass.jpg)
+![A magnifying glass pointed at a laptop keyboard](/img/blog/2021-10-27-magnifyingglass.jpg)
 
 Cover photo by [Agence Olloweb](https://unsplash.com/@olloweb) on [Unsplash](https://unsplash.com/photos/d9ILr-dbEdg).
 
@@ -239,6 +239,8 @@ spec:
   matches:
     anyOf:
       - name: "GitHub Repo"
+        # Remove the the next two lines to scan all repositories,
+        # or leave them to only scan public repositories
         attributes:
           visibility: public
   scanSpec:
@@ -295,7 +297,7 @@ spec:
                 key: token
 ```
 
-If you load this cascading rule and start the git-repo-scanner scan we defined above, it automatically starts scans for all detected (public) repositories (make sure the [git-repo-scanner][gitreposcanner] and [semgrep][semgrep-scb] scantypes as well as the [CascadingScans hook][cascadingscans] are installed).
+If you load this cascading rule and start the git-repo-scanner scan we defined above, it automatically starts scans for all repositories found by git-repo-scanner (make sure the [git-repo-scanner][gitreposcanner] and [semgrep][semgrep-scb] scantypes as well as the [CascadingScans hook][cascadingscans] are installed).
 After waiting a while for the scan to finish, you can see the results using `kubectl get scans` - since we have a simple rule that only matches one specific vulnerability, any finding that is shown in the results should be investigated (find out which repository it belongs to by running `kubectl describe scan [name of the scan] | grep github.com`).
 However, maybe you want to also inspect the data in an application security management system like [DefectDojo][defectdojo]?
 
