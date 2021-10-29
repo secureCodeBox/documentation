@@ -14,7 +14,7 @@ tags:
   - cascading scans
   - case study
 description: This post gives an introduction to using the new SAST functionality of secureCodeBox to find a malicious dependency
-image: /img/blog/2021-09-07-notes.jpg
+image: /img/blog/2021-10-27-magnifyingglass.jpg
 ---
 
 ![A magnifying glass pointed at a laptop keyboard](/img/blog/2021-10-27-magnifyingglass.jpg)
