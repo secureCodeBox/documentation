@@ -53,9 +53,25 @@ The `image` field contains a container image reference for the image supposed to
 
 The `imagePullSecrets` field can be used to specify pull secrets used to access the hooks image from a private registry.
 
+### ImagePullPolicy (Optional)
+The `imagePullPolicy` field can be used to specify under which circumstances the images should be pulled from the registry.
+One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.
+See the [Kubernetes docs](https://kubernetes.io/docs/concepts/containers/images#updating-images) for more information.
+	
 ### Env (Optional)
 
 The `env` field can be used to specify env variables and to mount secrets into containers.
+
+### Volumes (Optional)
+
+`volumes` lets you specify Kubernetes volumes that you want to use and make available to the hook.
+Similarly to `env`, it can be used to pass data into a container.
+It has to be combined with [`volumeMounts`](#volumemounts-optional) to be useful (see below).
+
+### VolumeMounts (Optional)
+
+`volumeMounts` let you specify where you want the previously-created volumes to be mounted inside the container.
+It has the same API as the `volumeMounts` property on Kubernetes pods.
 
 ### ServiceAccountName (Optional)
 

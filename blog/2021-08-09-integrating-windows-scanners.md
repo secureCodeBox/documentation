@@ -77,7 +77,7 @@ while the machine was connected automatically to the VPN
 (e.g. using [rasdial](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/ff859533(v=ws.11))).
 It would, however, perfectly do its job when being connected manually to the VPN! 
 We tried a lot here, and you can read all about our dirty workaround to finally make it work in our related extensive
-[Tutorial](https://github.com/secureCodeBox/secureCodeBox/blob/pingcastle/scanners/pingcastle/scanner/Tutorial.md).
+["Tutorial"](https://github.com/secureCodeBox/secureCodeBox/blob/pingcastle/scanners/pingcastle/scanner/Tutorial.md).
 
 ## Conclusion
 

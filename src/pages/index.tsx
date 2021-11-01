@@ -53,25 +53,36 @@ function HomePage() {
     <>
       <header className={clsx("hero", styles.heroBanner)}>
         <div className="container">
-          <h1>{content.heroBanner.title}</h1>
-          <p className={styles.description}>{content.heroBanner.description}</p>
-          <Link
-            className={clsx(
-              "button button--outline button--secondary button--lg",
-              styles.getStarted
-            )}
-            to={useBaseUrl("docs/getting-started/installation")}
-          >
-            {content.heroBanner.button}
-          </Link>
+          <h1>Automated Security Testing</h1>
+          <p className={styles.description}>
+            <em>secureCodeBox</em> is an <a href="https://owasp.org/www-project-securecodebox/">OWASP project</a> providing an automated
+            and scalable open source solution that integrates multiple security scanners with a simple and lightweight interface –
+            for continuous and automated security testing.
+          </p>
+
+          <div className="flex-container">
+            <div className="flex-child">
+              <Link
+                className={clsx("button button--outline button--secondary button--lg",  styles.getStarted)}
+                to={useBaseUrl("docs/getting-started/installation")}>
+                  Get Started
+              </Link>
+            </div>
+
+            <div className="flex-child">
+              <a href="https://owasp.org/" target="_blank">
+                <img className="owasp-project-logo" src={useBaseUrl("/img/OWASP_Logo_White_with_name.png")} />
+              </a>
+            </div>
+          </div>
         </div>
       </header>
 
       <main>
         <Sections>
           <Section
-            title={content.automatedTesting.title}
-            subtitle={content.automatedTesting.description}
+            title="Identify Vulnerabilities in your Network and Applications"
+            subtitle="Use the power of leading open source security testing tools with the first of its kind open source multi-scanner platform to run routine scans continuously and automatically on your network infrastructure or applications."
             alignment="center"
           >
             <div className="row margin-bottom--lg">
@@ -127,8 +138,16 @@ function HomePage() {
             title={content.about.title}
             subtitle={
               <div>
-                {content.about.description}{" "}
-                <a href="https://www.iteratec.com/">iteratec</a>.
+                <p>
+                  {content.about.description}{" "}
+                  <a href="https://www.iteratec.com/">iteratec</a>.
+                </p>
+                <p>
+                  <a href="https://owasp.org/">OWASP</a> is an open community dedicated to enabling organizations to conceive,
+                  develop, acquire, operate, and maintain applications that can be trusted.
+                  All of the OWASP tools, documents, forums, and chapters are free and open
+                  to anyone interested in improving application security.
+                </p>
               </div>
             }
           >
