@@ -24,6 +24,9 @@ hook:
     # @default -- defaults to the charts version
     tag: null
 
+  # -- Add Kubernetes Labels to the hook definition
+  labels: {}
+
   # -- Hook priority. Higher priority Hooks are guaranteed to execute before low priority Hooks.
   priority: null
 
@@ -36,6 +39,10 @@ hook:
 The `image` field specifies the Docker image that is used for your hook.
 The `repository` specifies Registry and Namespace and `tag` defines the desired image tag.
 These are the only mandatory fields for a hook to work.
+
+## Labels
+
+Adds Kubernetes labels to the Hook definition. See the [Hooks HowTo](/docs/how-tos/hooks#hook-selector) for examples on how to use it.
 
 ## Priority
 
