@@ -38,11 +38,51 @@ See:
 
 The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which allow you to select which [CascadingRule](https://docs.securecodebox.io/docs/api/crds/cascading-rule) are allowed to be used by the cascading logic.
 
-Furthermore, in the cascade config you can specify whether cascading scan should inherit the parent's labels (`inheritLabels`) and annotations (`inheritAnnotations`). If not specified, the options will be considered as `true`.
+Furthermore, in the cascade config you can specify whether cascading scan should inherit parent fields:
+
+* `inheritLabels`: `true`
+* `inheritAnnotations`: `true`
+* `inheritEnv`: `false`
+* `inheritVolumes`: `false`
+* `inheritInitContainers`: `false`
+* `inheritHookSelector`: `false`
+
+These fields will merge the parent's entries with entries defined in the cascading rules.
+Entries defined in cascading rules will only apply to the current scan.
+
+:::caution
+Defining identical entries in both the Scan AND the Cascading Rule resource will lead to undefined behaviour.
+See [#789](https://github.com/secureCodeBox/secureCodeBox/issues/789) for more details.
+:::
+
 
 To use cascades you'll need to have the [CombinedScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
 
 For an example on how they can be used see the [Scanning Networks HowTo](https://docs.securecodebox.io/docs/how-tos/scanning-networks)
+
+### HookSelector (Optional)
+
+`hookSelector` allows you to select which hooks to run using [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta).
+
+You can only select hooks in the namespace in which the scan is running.
+
+Leaving this field undefined will select all available hooks in this namespace.
+
+```yaml
+hookSelector:
+  matchExpressions:
+   - key: app.kubernetes.io/instance
+     operator: In
+     values: [ "defectdojo", "cascading-scans" ]
+```
+
+:::note
+To use cascading scans in combination with hookSelector, ensure that you also select the cascading scans hook.
+You should manually ensure that your other selectors don't override this selector in behavior.
+You can also use the existing label `securecodebox.io/internal` to select core features like cascading scans.
+:::
+
+For more examples on how this field can be used, see the [Hook HowTo](/docs/how-tos/hooks).
 
 ## Metadata
 

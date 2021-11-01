@@ -38,3 +38,8 @@ If your hook needs some additional information like an URL (`webhookUrl`) in the
 :::info
 Currently only ENVs are supported for hooks but we are working on supporting Volumes in the future as well.
 :::
+
+## Priority
+
+You can specify the priority of the hook with `hook.priorty`.
+By default, this priority should be zero since they regard deployment-specific configurations which the secureCodeBox team does not manage.

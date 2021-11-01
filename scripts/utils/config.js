@@ -51,6 +51,7 @@ const docsConfig = {
         "how-tos/automatically-repeating-scans",
         "how-tos/scanning-networks",
         "how-tos/scanning-web-applications",
+        "how-tos/hooks",
       ],
     },
     sidebarEnd: {
