@@ -131,7 +131,7 @@ See [#789](https://github.com/secureCodeBox/secureCodeBox/issues/789) for more d
 :::
 
 
-To use cascades you'll need to have the [CombinedScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
+To use cascades you'll need to have the [CascadingScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
 
 For an example on how they can be used see the [Scanning Networks HowTo](https://docs.securecodebox.io/docs/how-tos/scanning-networks)
 
@@ -152,16 +152,16 @@ hookSelector:
 ```
 
 :::note
+Cascading scans are currently implemented as a hook.
 To use cascading scans in combination with hookSelector, ensure that you also select the cascading scans hook.
-You should manually ensure that your other selectors don't override this selector in behavior.
-You can also use the existing label `securecodebox.io/internal` to select core features like cascading scans.
+The cascading scan hook, as well as any future core secureCodeBox features implemented as hooks, carry the label `securecodebox.io/internal: true` to make this easier.
 :::
 
 For more examples on how this field can be used, see the [Hook HowTo](/docs/how-tos/hooks).
 
 ## Metadata
 
-Metadata is a standard field on Kubernetes resources. It contains multiple relevant fields, e.g. the name of the resource, its namespace and a `creationTimestamp` of the resource. See more on the [Kubernetes Docs]https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) and the [Kubernetes API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#objectmeta-v1-meta))
+Metadata is a standard field on Kubernetes resources. It contains multiple relevant fields, e.g. the name of the resource, its namespace and a `creationTimestamp` of the resource. See more on the [Kubernetes Docs](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) and the [Kubernetes API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#objectmeta-v1-meta).
 
 ## Status
 

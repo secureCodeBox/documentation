@@ -51,4 +51,4 @@ By default, this priority should be zero since they regard deployment-specific c
 
 ## Additional Values
 
-If your hook needs some additional information like an URL (`webhookUrl` in the example above), environment variables or volume mounts, you need to provide an option to specify them in your `values.yaml` and access them in the hook implementation (See [templates](docs/contributing/integrating-a-hook/templates-dir) for information on how to access the provided values, and [ScanCompletionHook](/docs/api/crds/scan-completion-hook) for a list of possible keys you can set in the template).
+If your hook needs some additional information like an URL (`webhookUrl` in the example above), environment variables or volume mounts, you need to provide an option to specify them in your `values.yaml` and access them in the hook implementation (See [templates](/docs/contributing/integrating-a-hook/templates-dir) for information on how to access the provided values, and [ScanCompletionHook](/docs/api/crds/scan-completion-hook) for a list of possible keys you can set in the template).

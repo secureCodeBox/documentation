@@ -265,7 +265,7 @@ Note that we use `app.kubernetes.io/name` here to filter all releases of the Def
 
 :::caution
 You can use [`scan.spec.cascading.inheritHookSelector`](/docs/api/crds/scan#cascades-optional) on your initial scan definition to pass `hookSelector` entries on to cascaded scans.
-Selectors defined in Cascading Rules will however not be passed on to cascaded scans.
+Selectors defined in cascading rules will only apply to the scan triggered by the rule - if the results of that scan then trigger further cascading scans, the selectors defined in the cascading rule will be dropped and only those from the original scan are kept.
 Defining identical entries in both the Scan AND the Cascading Rule resource will lead to undefined behaviour.
 See [#789](https://github.com/secureCodeBox/secureCodeBox/issues/789) for more details.
 :::
