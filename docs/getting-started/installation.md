@@ -31,26 +31,26 @@ Your now ready to install your [first scan types and start your first scans](/do
 
 The secureCodeBox supports the 4 latest Kubernetes releases (`v1.22`, `v1.21`, `v1.20` & `v1.19`). Older version might also work but are not officially supported or tested.
 
-To install the secureCodeBox we recommend using Helm at version 3.
+## Accessing the included MinIO Instance
 
-## Accessing the included Minio Instance
+The default secureCodeBox Operator included a [MinIO](https://min.io/) instance, which acts as a local S3 filestorage API used by the secureCodeBox to store the results files of its scans. You can switch it out with a S3 compatible API provided by most cloud providers.
 
-The default secureCodeBox Operator included a [Minio](https://min.io/) instance, which acts as a local S3 filestorage api used by the secureCodeBox to store the results files of its scans. You can switch it out with a S3 compatible api provided by most cloud providers.
+You can access the MinIO instance included in the default installation like the following:
 
-You can access the minio instance included in the default installation like the following:
-
-Port Forward Minio UI: `kubectl port-forward -n securecodebox-system service/securecodebox-operator-minio 9000:9000`
+Port Forward MinIO UI: `kubectl port-forward -n securecodebox-system service/securecodebox-operator-minio 9000:9000`
 
 - AccessKey: `kubectl get secret securecodebox-operator-minio -n securecodebox-system -o=jsonpath='{.data.accesskey}' | base64 --decode; echo`
 - SecretKey: `kubectl get secret securecodebox-operator-minio -n securecodebox-system -o=jsonpath='{.data.secretkey}' | base64 --decode; echo`
 
 Then open your browser on [http://localhost:9000](http://localhost:9000) and login in with the credentials returned by the command listed above.
 
+If you find yourself running these snippets regularly, you might want to check out this [helper script](https://github.com/secureCodeBox/secureCodeBox/blob/main/bin/minio-port-forward.sh)
+
 ## Operator Configuration Options
 
 ### Using a hosted S3 Buckets as storage backend
 
-To change out the default minio instance with a S3 Bucket from a cloud provider you can update the helm values to connect the operator with you S3 bucket.
+To change out the default MinIO instance with a S3 Bucket from a cloud provider you can update the helm values to connect the operator with you S3 bucket.
 
 #### AWS S3 Buckets
 
@@ -152,17 +152,17 @@ Now you can [start with your first scan](/docs/getting-started/first-scans).
 
 ## Troubleshooting
 
-### Minio Startup Problems
+### MinIO Startup Problems
 
-If your secureCodeBox Operator install is failing , and you see that the operator pod seems to be working okay, but the minio pods started along side it does not start up properly, your probably cluster isn't configured to have a working default [Storage Class for Persistent Volumes](https://kubernetes.io/docs/concepts/storage/storage-classes/).
+If your secureCodeBox Operator install is failing, and you see that the operator pod seems to be working okay, but the MinIO pods started alongside it does not start up properly, your cluster probably isn't configured to have a working default [Storage Class for Persistent Volumes](https://kubernetes.io/docs/concepts/storage/storage-classes/).
 
 Suggested solutions:
 
-- Use a Cloud Storage provider instead of Minio. This has to provide a API compatible to AWS S3. Providers that we have tried and worked great include:
+- Use a Cloud Storage provider instead of MinIO. This has to provide a API compatible to AWS S3. Providers that we have tried and worked great include:
   - AWS S3
   - Google Cloud Storage
   - DigitalOcean Spaces
-- Configure Minio to use a HostPath Volume. This is more work to set up and manage, but also works for local / on-prem installation.
+- Configure MinIO to use a HostPath Volume. This is more work to set up and manage, but also works for local / on-prem installation.
 
 ### ClusterRole & CRD Issues
 

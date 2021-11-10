@@ -73,7 +73,7 @@ module.exports = {
             items: [
               {
                 label: "Style Guide",
-                to: "https://github.com/securecodebox/docusaurus#Styleguide",
+                to: "https://github.com/securecodebox/docusaurus#style-guide",
               },
               {
                 label: "Icons",

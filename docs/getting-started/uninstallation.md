@@ -12,7 +12,7 @@ path: "docs/getting-started/uninstallation"
 
 If you want to uninstall every scanner and every hook you can simply delete the namespace in which they were installed (if you did not install any resources you still need in the same namespace).
 
-If you want to uninstall specific scanners or hooks you can delete them via `helm`. For example if you installed nmap using `helm install nmap secureCodeBox/nmap --version v2.0.0-rc.11` you can delete nmap like this:
+If you want to uninstall specific scanners or hooks you can delete them via `helm`. For example if you installed nmap using `helm install nmap secureCodeBox/nmap` you can delete nmap like this:
 
 ```bash
 helm delete nmap
@@ -24,12 +24,12 @@ If you want to delete some CascadingRules you can do so using `kubectl`.
 For example if you want to uninstall a Cascading Rule for nmap:
 
 ```bash
-kubectl delete cascadingrules.cascading.securecodebox.io nmap-hostscan 
+kubectl delete cascadingrules.cascading.securecodebox.io nmap-hostscan
 ```
 
 ## Uninstall the Operator and Its Roles, ServiceAccounts and RoleBindings
 
-To uninstall the operator it is not enough to delete the operator via `helm` because the operator creates Roles, ServiceAccounts  and RoleBindings used by parsers, lurkers and hooks in every namespace where scanners and hooks are executed. These cannot be uninstalled via helm because they cannot be referenced via Kubernetes OwnerReferences.
+To uninstall the operator it is not enough to delete the operator via `helm` because the operator creates Roles, ServiceAccounts and RoleBindings used by parsers, lurkers and hooks in every namespace where scanners and hooks are executed. These cannot be uninstalled via helm because they cannot be referenced via Kubernetes OwnerReferences.
 
 Make sure you delete all scans and uninstall all scanners/hooks before uninstalling the operator to avoid problems.
 First delete the namespace for the operator:
