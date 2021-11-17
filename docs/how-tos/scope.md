@@ -15,6 +15,7 @@ In this example, we are going to set up Amass and Nmap and run a scan with rules
 
 For the sake of the tutorial, we assume that you have your Kubernetes cluster already up and running and that we can work in your default namespace.
 If not, check out the [installation](/docs/getting-started/installation/) for more information.
+We also assume that you have the latest version of cascading scans installed.
 
 We will start by installing Amass and Nmap:
 ```bash
