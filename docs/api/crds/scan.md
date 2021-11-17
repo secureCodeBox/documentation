@@ -116,8 +116,37 @@ The cascades config in the scans spec contains [Kubernetes Label Selectors](http
 Furthermore, in the cascade config you can specify whether cascading scan should inherit the parent's labels (`inheritLabels`) and annotations (`inheritAnnotations`). If not specified, the options will be considered as `true`.
 
 To use cascades you'll need to have the [CombinedScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
-
+like this:
 For an example on how they can be used see the [Scanning Networks HowTo](https://docs.securecodebox.io/docs/how-tos/scanning-networks)
+
+#### ScopeLimiter (Optional)
+
+`scopeLimiter` allows you to define certain rules to which cascading scans must comply before they may cascade.
+For example, you can define that you can only cascade on a host, if the found ip address is within your predefined ip range.
+You can use Mustache templating in order to select certain properties from findings.
+
+Under `scopeLimiter`, you may specify `anyOf`, `noneOf`, and `allOf` with a selector to limit your scope.
+If you specify multiple fields, all the rules must pass.
+
+A selector looks similar to the [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta).
+
+```yaml
+anyOf:
+  - key: "scope.cascading.securecodebox.io/cidr"
+    operator: "InCIDR"
+    values: ["{{attributes.ip}}"]
+```
+
+The `key` references one of the annotations defined on your scan.
+The annotation name _must_ start with `scope.cascading.securecodebox.io/`.
+These annotations can only be added on the initial scan and are inherited by default.
+Specifying a scope annotation in [`scanAnnotations`](/docs/api/crds/cascading-rule#scanlabels--scanannotations-optional) is not allowed.
+
+`operator` is one of  `In`, `NotIn`, `Exists`, `DoesNotExist`, `Contains`, `DoesNotContain`, `InCIDR`, `NotInCIDR`, `SubdomainOf`, `NotSubdomainOf`.
+
+`values` is a list of values for which the selector should pass.
+
+See the [Scope HowTo](/docs/how-tos/scope) for more information.
 
 ## Metadata
 
@@ -146,6 +175,9 @@ kind: Scan
 status: # Set during runtime. Do not edit via values.yaml etc. 
 metadata:
   name: "nmap-scanme.nmap.org"
+  annotations:
+    scope.cascading.securecodebox.io/cidr: "10.10.0.0/16"
+    scope.cascading.securecodebox.io/domain: "example.com"
 spec:
   scanType: "nmap"
   parameters:
@@ -169,4 +201,14 @@ spec:
       key: "securecodebox.io/invasive"
       operator: In
       values: [non-invasive, invasive]
+    scopeLimiter:
+      validOnMissingRender:  true
+      allOf:
+        - key: "scope.cascading.securecodebox.io/cidr"
+          operator: "InCIDR"
+          values: ["{{attributes.ip}}"]
+      noneOf:
+        - key: "scope.cascading.securecodebox.io/domain"
+          operator: "SubdomainOf"
+          values: ["{{attributes.hostname}}"]
 ```
