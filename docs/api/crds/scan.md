@@ -115,14 +115,14 @@ The cascades config in the scans spec contains [Kubernetes Label Selectors](http
 
 Furthermore, in the cascade config you can specify whether cascading scan should inherit the parent's labels (`inheritLabels`) and annotations (`inheritAnnotations`). If not specified, the options will be considered as `true`.
 
-To use cascades you'll need to have the [CombinedScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
+To use cascades you'll need to have the [CascadingScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
 like this:
 For an example on how they can be used see the [Scanning Networks HowTo](https://docs.securecodebox.io/docs/how-tos/scanning-networks)
 
 #### ScopeLimiter (Optional)
 
 `scopeLimiter` allows you to define certain rules to which cascading scans must comply before they may cascade.
-For example, you can define that you can only cascade on a host, if the found ip address is within your predefined ip range.
+For example, you can define that you can only trigger a follow-up scan against a host if its IP address is within your predefined IP range.
 You can use Mustache templating in order to select certain properties from findings.
 
 Under `scopeLimiter`, you may specify `anyOf`, `noneOf`, and `allOf` with a selector to limit your scope.
@@ -139,8 +139,7 @@ anyOf:
 
 The `key` references one of the annotations defined on your scan.
 The annotation name _must_ start with `scope.cascading.securecodebox.io/`.
-These annotations can only be added on the initial scan and are inherited by default.
-Specifying a scope annotation in [`scanAnnotations`](/docs/api/crds/cascading-rule#scanlabels--scanannotations-optional) is not allowed.
+These annotations can only be added on the initial scan (i.e., they cannot be modified using the [`scanAnnotations`](/docs/api/crds/cascading-rule#scanlabels--scanannotations-optional) field of the cascading scan rules) and are inherited by default.
 
 `operator` is one of  `In`, `NotIn`, `Exists`, `DoesNotExist`, `Contains`, `DoesNotContain`, `InCIDR`, `NotInCIDR`, `SubdomainOf`, `NotSubdomainOf`.
 

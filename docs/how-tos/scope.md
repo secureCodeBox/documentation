@@ -73,7 +73,7 @@ scan-nmap-scan-nmap-hostscan-86f2m-54pkd--1-pfpp6              0/2     Completed
 ```
 
 As you can see, amass found 65 domain names, but only a single nmap scan was created.
-In the cascading scans logs, you will see that lot's of rules were not triggered as the domain was out of scope.
+In the cascading scans logs, you will see that lots of rules were not triggered as the domain was out of scope.
 
 ```shell
 $ k
