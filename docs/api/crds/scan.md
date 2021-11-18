@@ -144,6 +144,61 @@ These annotations can only be added on the initial scan (i.e., they cannot be mo
 
 `values` is a list of values for which the selector should pass.
 
+##### Operators
+
+`In` & `NotIn`: The scope annotation value exists in one of `values`. Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "In"
+values: ["example.com", "subdomain.example.com"]
+```
+
+`Exists` & `DoesNotExist`: The scope annotation exists. Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "Exists"
+```
+
+:::note
+Specifying `values` together with the operator `Exists` is considered a syntax error.
+:::
+
+`Contains` & `DoesNotContain`: The scope annotation value is considered a comma-seperated list and checks if every `values` is in that list. Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com,subdomain.example.com,other.example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "Contains"
+values: ["example.com", "subdomain.example.com"]
+```
+
+`InCIDR` & `NotInCIDR`: The scope annotation value is considered [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and checks if every `values` is within the subnet of that CIDR. Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/cidr: "10.10.0.0/16"
+...
+key: "scope.cascading.securecodebox.io/cidr"
+operator: "InCIDR"
+values: ["10.10.1.2", "10.10.1.3"]
+```
+
+`SubdomainOf` & `NotSubdomainOf`: Checks if every `values` is a subdomain of the scope annotation value (inclusive; i.e. example.com is a subdomain of example.com). Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "SubdomainOf"
+values: ["subdomain.example.com", "example.com"]
+```
+
 See the [Scope HowTo](/docs/how-tos/scope) for more information.
 
 ## Metadata
