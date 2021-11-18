@@ -36,6 +36,9 @@ FROM securecodebox/parser-sdk-nodejs:${baseImageTag:-latest}
 WORKDIR /home/app/parser-wrapper/parser/
 COPY --chown=app:app ./parser.js ./parser.js
 ```
+
+See [Local Deployment](/docs/contributing/local-deployment) for instructions on how to build your parser.
+
 ## Parsing SDK
 
 To create a parser for your scanner you will have to execute the following steps in the parser directory:

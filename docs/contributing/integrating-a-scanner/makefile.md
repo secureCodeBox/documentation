@@ -19,6 +19,8 @@ custom_scanner = set                # Include this line if your scanner has a do
 include ../../scanners.mk           # Ensures that all the default makefile targets are included
 ```
 
+See [Local Deployment](/docs/contributing/local-deployment) for examples how to use the Makefiles.
+
 ## Available makefile targets
 
 | Target | Use |

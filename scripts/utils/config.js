@@ -120,6 +120,7 @@ const docsConfig = {
             "contributing/integrating-a-hook/integration-tests",
           ]
         },
+        "contributing/local-deployment",
         "contributing/operator",
         "contributing/conventions",
       ],
