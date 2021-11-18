@@ -76,7 +76,7 @@ As you can see, amass found 65 domain names, but only a single nmap scan was cre
 In the cascading scans logs, you will see that lots of rules were not triggered as the domain was out of scope.
 
 ```shell
-$ k
+$ kubectl logs cascading-scans-amass-scan-8cssx--1-hh2w6
 Starting hook for Scan "amass-scan"
 Fetched 65 findings from the file storage
 Fetching CascadingScans using LabelSelector: ""
