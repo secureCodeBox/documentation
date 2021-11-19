@@ -156,19 +156,6 @@ operator: "In"
 values: ["example.com", "subdomain.example.com"]
 ```
 
-`Exists` & `DoesNotExist`: The scope annotation exists. Matching example:
-```yaml
-annotations:
-  scope.cascading.securecodebox.io/domain: "example.com"
-...
-key: "scope.cascading.securecodebox.io/domain"
-operator: "Exists"
-```
-
-:::note
-Specifying `values` together with the operator `Exists` is considered a syntax error.
-:::
-
 `Contains` & `DoesNotContain`: The scope annotation value is considered a comma-seperated list and checks if every `values` is in that list. Matching example:
 ```yaml
 annotations:
