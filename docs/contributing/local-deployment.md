@@ -32,7 +32,7 @@ This document explains how to use these targets to deploy your scanner locally.
    1. **Minikube**: run `eval $(minikube docker-env) && make docker-build`.
    2. **Kind**: run `make docker-build docker-export kind-import`.
 
-4. Run `make deploy` to install your Helm chart into your active Kubernetes cluster.
+4. Run `make deploy` to install your Helm chart in your active Kubernetes cluster into the `integration-tests` namespace.
    The make target ensures that the image name and tag matches that built in the previous step.
 
 5. Now run an example scan and inspect whether the images are correctly used.
@@ -199,3 +199,27 @@ Don't forget that all images you want to use in your Minikube Kubernetes cluster
 * **Kind**: imported after building
   * Using Makefile: `make docker-export kind-import`.
   * Manually: `kind load docker-image parser-nmap:sha-a4490167`.
+
+### Namespace
+
+In some cases, you might accidentally install secureCodeBox in an unexpected namespace.
+Check that you don't have any left-over releases installed.
+
+```shell
+$ helm list --all-namespaces
+NAME                  	NAMESPACE           	REVISION	UPDATED                                	STATUS  	CHART                               	APP VERSION
+nmap                  	integration-tests   	1       	2021-11-18 15:00:14.712583292 +0100 CET	deployed	nmap-v3.1.0-alpha1                  	7.91-r0    
+securecodebox-operator	securecodebox-system	1       	2021-11-18 10:09:24.804277463 +0100 CET	deployed	operator-v3.1.0-alpha1              	           
+update-category       	integration-tests   	1       	2021-11-18 11:18:45.104860436 +0100 CET	deployed	update-field-hook-v3.1.0-alpha1     	           
+update-severity       	integration-tests   	1       	2021-11-18 11:18:45.267164462 +0100 CET	deployed	update-field-hook-v3.1.0-alpha1     	           
+```
+
+You can install secureCodeBox components in any namespace, however verify that you are starting your scans in the same namespace as where you deployed your scanner or hook.
+
+```shell
+$ kubectl apply -f ./nmap-scan.yaml -n integration-tests
+scan.execution.securecodebox.io/nmap created
+$ kubectl get scans -A
+NAMESPACE           NAME   TYPE   STATE   FINDINGS
+integration-tests   nmap   nmap   Done    1
+```
