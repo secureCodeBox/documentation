@@ -58,9 +58,9 @@ EOF
 
 ## Creating the Scan Cascade
 
-After everything is set up properly, it's now time to configure our scans. The **Nmap** Scan configuration is pretty straight forward. We create a **scan.yaml** where we define, what nmap should do:
+After everything is set up properly, it's now time to configure our scans. The **Nmap** Scan configuration is pretty straightforward. We create a **scan.yaml** where we define what Nmap should do:
 
-```yaml
+```yaml title="scan.yaml"
 apiVersion: "execution.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -98,7 +98,7 @@ kubectl delete scans --all
 kubectl delete scans nmap-ssh-tutorial
 ```
 
-Now we also want to start the **Ncrack scan** after Nmap has finished. We use cascading rules for that. Cascading rules allow us to automatically call any scanner that matches our given labels (see below) in order to start further security checks. As in our example for ssh, we don't only want to check if there are open ports on our server, but we also want to follow that up with a check, that it uses secure credentials and does not use an insecure password from our list. Fortunately, the secureCodeBox already comes with a [predefined ncrack cascading rule] for ssh scanning. We will take an in-depth look at the file (scanners/ncrack/cascading-rules) to understand what's happening:
+Now we also want to start the **Ncrack scan** after Nmap has finished. We use [cascading rules](/docs/hooks/cascading-scans/) for that. Cascading rules allow us to automatically call any scanner that matches our given labels (see below) in order to start further security checks. In this case, we want to follow up on with an ncrack scan to test the credentials configured for the server. Fortunately, the secureCodeBox already comes with a [predefined ncrack cascading rule] for ssh scanning. We will take an in-depth look at the cascading rule to understand what's happening:
 
 ```yaml
 apiVersion: "cascading.securecodebox.io/v1"
@@ -122,6 +122,7 @@ spec:
   scanSpec:
     scanType: "ncrack"
     parameters:
+      - -v
       - -d10
       - -U
       - /ncrack/users.txt
@@ -134,14 +135,14 @@ spec:
 
 Let's take a look at the attributes:
 
-* *name:* Obviously, our scan is called "ncrack-ssh" to identify it correctly.
-* *spec - matches - anyOf:* Here we specify that we want to subsequently scan every open port 22, or every port where a ssh service is running. You can use any attribute that is specified in the nmap findings, see for example: [Nmap Example Findings]
-* *scanSpec - scanType:* This is where the actual ncrack scan gets configured. We use the optional -d10 for a better console output, with -U we specify the usernames list, -P is for password list. Now it gets more interesting: The -p option is used in ncrack to specify a port for a service different from its standard port. We pick the needed port from the findings via `{{attributes.port}}`. After that, we just have to directly set the target IP with `"{{$.hostOrIP}}"` and we are done. The pattern `"{{$.hostOrIP}}"` is a special feature we implmented as an alternative to `{{attributes.ip_address}}` because it's often usefull to preserve the hostname for cascadingScans. This pattern allows you to use the hostname if it's defined and otherwise use the attribute `{{attributes.ip_address}}`.
-* *invasive & intensive:* Finally you may have noticed that we skipped these both attributes. A scan can either be *invasive* or *non-invasive* and its intensity can vary from *light* to *medium* to *high*.
+* *name:* Obviously, our cascading rule is called "ncrack-ssh" to identify it correctly.
+* *spec - matches - anyOf:* Here we specify that we want to subsequently scan every open port 22, or every port where a ssh service is running. You can use any attribute that is specified in the Nmap findings, see for example: [Nmap Example Findings]
+* *scanSpec - scanType:* This is where the actual ncrack scan gets configured. We use the optional `-d10` for a better console output, with `-U` we specify the usernames list, `-P` is for password list. Now it gets more interesting: The `-p` option is used in ncrack to specify a port for a service different from its standard port. We pick the needed port from the findings via `{{attributes.port}}`. After that, we just have to directly set the target IP with `"{{$.hostOrIP}}"` and we are done. The pattern `"{{$.hostOrIP}}"` is a special feature we implemented as an alternative to `{{attributes.ip_address}}` because it's often useful to preserve the hostname for cascadingScans. This pattern allows you to use the hostname if it's defined and otherwise use the attribute `{{attributes.ip_address}}`.
+* *invasive & intensive:* Finally you may have noticed that we skipped these two attributes. A scan can either be *invasive* or *non-invasive* and its intensity can vary from *light* to *medium* to *high*.
 
-These last two labels work as scan-triggers in the cascading rules, so our last step is to modify the nmap scan defined above and **add the cascading scan rules**:
+These last two labels work as scan-triggers in the cascading rules, so our last step is to modify the Nmap scan defined above and **add the cascading scan rules**:
 
-```yaml
+```yaml title="scan.yaml"
 apiVersion: "execution.securecodebox.io/v1"
 kind: Scan
 metadata:
@@ -162,11 +163,12 @@ spec:
       securecodebox.io/invasive: invasive
 ```
 
-Of course, you can just use one of both labels and change them as you need them.
+Of course, you can just use one of the two labels and change them as you need them.
 
-Now let's **run** our scan! Make sure to be in the correct directory where your scan.yaml is located:
+Now let's **run** our scan! Make sure to be in the correct directory where your `scan.yaml` is located:
 
 ```bash
+# make sure you have deleted the scan beforehand
 kubectl apply -f scan.yaml
 ```
 

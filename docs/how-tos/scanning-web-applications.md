@@ -22,7 +22,7 @@ And the juice-shop demo-target.
 ```bash
 helm upgrade --install juice-shop secureCodeBox/juice-shop
 ```
-## Creating the ZAP-advanced scan
+## Creating the ZAP-Advanced scan
 
 We can first start with a basic `zap-advanced` scan. We use here our CRD (Custom Resource definition) [Scan](/docs/api/crds/scan) and a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) to configure our scan.
 
