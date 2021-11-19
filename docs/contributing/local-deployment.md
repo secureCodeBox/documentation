@@ -186,7 +186,7 @@ securecodebox/hooks/your-custom-hook/$ helm upgrade --install your-custom-hook .
 ### `ImagePullBackOff`
 
 Kubernetes is reporting that it isn't able to find the specified image.
-Check with `kubectl describe pod scan-nmap-n6jpg--1-gxnhp` which image your scanner wants to use and whether you have made that image available.
+Check with `kubectl describe pod [name of pod]` which image your scanner wants to use and whether you have made that image available.
 Check your Docker build logs to verify that the image has been correctly tagged.
 You can also check if the image is actually available:
 
@@ -198,7 +198,7 @@ Don't forget that all images you want to use in your Minikube Kubernetes cluster
 * **Minikube**: built using `eval $(minikube docker-env)`.
 * **Kind**: imported after building
   * Using Makefile: `make docker-export kind-import`.
-  * Manually: `kind load docker-image parser-nmap:sha-a4490167`.
+  * Manually: `kind load docker-image parser-nmap:[tag]`.
 
 ### Namespace
 
