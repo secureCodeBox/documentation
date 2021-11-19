@@ -33,7 +33,7 @@ The secureCodeBox supports the 4 latest Kubernetes releases (`v1.22`, `v1.21`, `
 
 ## Accessing the included MinIO Instance
 
-The default secureCodeBox Operator included a [MinIO](https://min.io/) instance, which acts as a local S3 filestorage API used by the secureCodeBox to store the results files of its scans. You can switch it out with a S3 compatible API provided by most cloud providers.
+The default secureCodeBox Operator includes a [MinIO](https://min.io/) instance, which acts as a local S3 filestorage API used by the secureCodeBox to store the results files of its scans. You can switch it out with a S3 compatible API provided by most cloud providers.
 
 You can access the MinIO instance included in the default installation like the following:
 

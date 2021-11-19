@@ -8,7 +8,7 @@ title: "Repeating Scans on a Schedule"
 
 ## Introduction
 
-In this step-by-step tutorial, we will go through all the required stages to set up a repeating scan with the secureCodeBox. A repeating scan will run automatically each time, a time interval is passed. This time interval is set by the user. In this example, we are going to run a repeating typo3scan scan on the Typo3 local vulnerable demo-target (old-typo3). A repeating scan is useful, as it allows the developer to be aware of any new vulnerabilities that have been introduced in development.
+In this step-by-step tutorial, we will go through all the required stages to set up a repeating scan with the secureCodeBox. A repeating scan will run automatically each time a time interval is passed. This time interval is set by the user. In this example, we are going to run a repeating typo3scan scan on the Typo3 local vulnerable demo-target (old-typo3). A repeating scan is useful, as it allows the developer to be aware of any new vulnerabilities that have been introduced in development.
 
 ## Setup
 
