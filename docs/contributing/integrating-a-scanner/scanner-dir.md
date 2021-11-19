@@ -14,7 +14,7 @@ The Dockerfile should be minimal and based on the official *alpine* baseimage.
 Please make sure to add a new user for your scanner.
 Please change the user using `UID`. This enables the Image to run in clusters which have a strict `runAsNonRoot` policy (See [Pod Security Policies | Kubernetes](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups)).
 Use the Docker build argument `scannerVersion` to retrieve a specific version of your scanner.
-`scannerVersion` should be populated by your scanner's chart `AppVersion` field (see [local images](/docs/contributing/local-images)).
+`scannerVersion` should be populated by your scanner's chart `AppVersion` field (see [Local Deployment](/docs/contributing/local-deployment)).
 A Docker image for nmap would look the following:
 
 ```dockerfile

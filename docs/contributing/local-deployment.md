@@ -14,7 +14,7 @@ We also assume that you are or have followed the steps in either the [Integratin
 
 To make local testing easier, the secureCodeBox team has provided a Makefile based solution. The specific Make targets and examples to customize them are given in these documents:
 * [Makefile targets scanners](/docs/contributing/integrating-a-scanner/makefile)
-* [Makefile targets hooks](/docs/contributing/integrating-a-hooke/makefile)
+* [Makefile targets hooks](/docs/contributing/integrating-a-hook/makefile)
 
 This document explains how to use these targets to deploy your scanner locally.
 
