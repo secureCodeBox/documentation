@@ -22,3 +22,5 @@ WORKDIR /home/app/hook-wrapper/hook/
 COPY --from=build --chown=app:app /home/app/node_modules/ ./node_modules/
 COPY --chown=app:app ./hook.js ./hook.js
 ```
+
+See [Local Deployment](/docs/contributing/local-deployment) for instructions on how to build and deploy your hook.

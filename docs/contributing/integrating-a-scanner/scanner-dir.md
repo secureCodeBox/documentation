@@ -13,15 +13,20 @@ If it is not possible to use the official Docker Image of your scanner (e.g. the
 The Dockerfile should be minimal and based on the official *alpine* baseimage. 
 Please make sure to add a new user for your scanner.
 Please change the user using `UID`. This enables the Image to run in clusters which have a strict `runAsNonRoot` policy (See [Pod Security Policies | Kubernetes](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups)).
-A Dockerimage for nmap would look the following:
+Use the Docker build argument `scannerVersion` to retrieve a specific version of your scanner.
+`scannerVersion` should be populated by your scanner's chart `AppVersion` field (see [Local Deployment](/docs/contributing/local-deployment)).
+A Docker image for nmap would look the following:
 
 ```dockerfile
 FROM alpine:3.12
-RUN apk add --no-cache nmap=7.80-r2 nmap-scripts=7.80-r2
+ARG scannerVersion=latest
+RUN apk add --no-cache nmap=$scannerVersion nmap-scripts=$scannerVersion
 RUN addgroup --system --gid 1001 nmap && adduser nmap --system --uid 1001 --ingroup nmap
 USER 1001
 CMD [nmap]
 ```
+
+See [Local Deployment](/docs/contributing/local-deployment) for instructions on how to build and deploy your scanner.
 
 ## wrapper.sh
 

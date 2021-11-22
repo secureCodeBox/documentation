@@ -18,6 +18,8 @@ hook = finding-post-processing
 include ../../hooks.mk
 ```
 
+See [Local Deployment](/docs/contributing/local-deployment) for examples how to use the Makefiles.
+
 ## Available makefile targets
 
 | Target | Use |
