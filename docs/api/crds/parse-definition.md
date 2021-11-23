@@ -29,6 +29,10 @@ This uses the kubernetes default [imagePullSecrets structure](https://kubernetes
 `ttlSecondsAfterFinished` can be used to automatically delete the completed Kubernetes job used to run the parser.
 This sets the `ttlSecondsAfterFinished` field on the created job. This requires your cluster to have the [TTLAfterFinished](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/) feature gate enabled in your cluster.
 
+### Affinity and Tolerations (optional)
+[`affinity`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/) and [`tolerations`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) can be used to control which nodes the parser is executed on.
+The values should be set via Helm values (during install) or by specifying `affinity` and/or `tolerations` in the `Scan` specification.
+
 ## Example
 
 ```yaml

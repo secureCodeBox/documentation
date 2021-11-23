@@ -107,6 +107,9 @@ See:
 - [Documentation](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
 - [API Reference](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core)
 
+### Affinity and Tolerations (optional)
+[`affinity`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/) and [`tolerations`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) can be used to control which nodes the parser is executed on.
+
 ### Cascades (Optional)
 
 `cascades` let you start new scans based on the results of the current scan.
@@ -121,9 +124,12 @@ Furthermore, in the cascade config you can specify whether cascading scan should
 * `inheritVolumes`: `false`
 * `inheritInitContainers`: `false`
 * `inheritHookSelector`: `false`
+* `inheritAffinity`: `true`
+* `inheritTolerations`: `true`
 
 These fields will merge the parent's entries with entries defined in the cascading rules.
 Entries defined in cascading rules will only apply to the current scan.
+There are two exceptions to this rule: in the case of Affinity and Tolerations, entries will be replaced instead of merged, and will be used for all following scans.
 
 :::caution
 Defining identical entries in both the Scan AND the Cascading Rule resource will lead to undefined behaviour.
