@@ -69,6 +69,8 @@ const docsConfig = {
             "architecture/adr/adr_0005",
             "architecture/adr/adr_0006",
             "architecture/adr/adr_0007",
+            "architecture/adr/adr_0008",
+            "architecture/adr/adr_0009",
           ],
         },
       ],
