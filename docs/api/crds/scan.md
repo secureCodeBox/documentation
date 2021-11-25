@@ -166,14 +166,14 @@ operator: "Contains"
 values: ["example.com", "subdomain.example.com"]
 ```
 
-`InCIDR` & `NotInCIDR`: The scope annotation value is considered [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and checks if every `values` is within the subnet of that CIDR. Matching example:
+`InCIDR` & `NotInCIDR`: The scope annotation value is considered [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and checks if every `values` is within the subnet of that CIDR. Supports both IPv4 and IPv6. If the scope is defined in IPv4, will only validate IPv4 IPs in the finding values.  Vice-versa for IPv6 defined in scope and IPv4 found in values. Note that all IPs in finding values must be valid addresses, regardless of whether IPv4 or IPv6 was used in the scope definition. Matching example:
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/cidr: "10.10.0.0/16"
 ...
 key: "scope.cascading.securecodebox.io/cidr"
 operator: "InCIDR"
-values: ["10.10.1.2", "10.10.1.3"]
+values: ["10.10.1.2", "10.10.1.3", "2001:0:ce49:7601:e866:efff:62c3:fffe"]
 ```
 
 `SubdomainOf` & `NotSubdomainOf`: Checks if every `values` is a subdomain of the scope annotation value (inclusive; i.e. example.com is a subdomain of example.com). Matching example:
