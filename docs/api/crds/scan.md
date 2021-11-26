@@ -144,6 +144,33 @@ These annotations can only be added on the initial scan (i.e., they cannot be mo
 
 `values` is a list of values for which the selector should pass.
 
+##### Selecting lists
+
+A custom rendering function has been provided to select attributes in findings that are in a list. An example finding:
+
+```json title="Finding"
+{
+  name: "Subdomains found",
+  category: "Subdomain"
+  attributes: {
+    domains: ["example.com", "subdomain.example.com"],
+  }
+}
+```
+
+To select the domains data in this finding, use the notation as shown below.
+
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "In"
+values: ["{{#list}}{{attributes.domains}}{{/list}}"]
+```
+
+The values will render to: `["example.com", "subdomain.example.com"]`.
+
 ##### Operators
 
 `In` & `NotIn`: The scope annotation value exists in one of `values`. Matching example:
