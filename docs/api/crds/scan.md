@@ -140,7 +140,7 @@ The `key` references one of the annotations defined on your scan.
 The annotation name _must_ start with `scope.cascading.securecodebox.io/`.
 These annotations can only be added on the initial scan (i.e., they cannot be modified using the [`scanAnnotations`](/docs/api/crds/cascading-rule#scanlabels--scanannotations-optional) field of the cascading scan rules) and are inherited by default.
 
-`operator` is one of  `In`, `NotIn`, `Exists`, `DoesNotExist`, `Contains`, `DoesNotContain`, `InCIDR`, `NotInCIDR`, `SubdomainOf`, `NotSubdomainOf`.
+`operator` is one of  `In`, `NotIn`, `Contains`, `DoesNotContain`, `InCIDR`, `NotInCIDR`, `SubdomainOf`, `NotSubdomainOf`.
 
 `values` is a list of values for which the selector should pass.
 
