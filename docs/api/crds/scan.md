@@ -158,7 +158,7 @@ A custom rendering function has been provided to select attributes in findings t
 }
 ```
 
-To select the domains data in this finding, use the notation as shown below.
+To select the domains data in this finding, use the `asList` notation as shown below.
 
 ```yaml
 annotations:
@@ -166,10 +166,65 @@ annotations:
 ...
 key: "scope.cascading.securecodebox.io/domain"
 operator: "In"
-values: ["{{#list}}{{attributes.domains}}{{/list}}"]
+values: ["{{#asList}}{{attributes.domains}}{{/asList}}"]
 ```
 
 The values will render to: `["example.com", "subdomain.example.com"]`.
+
+Some findings have data in lists of objects, such as the following:
+
+```json title="Finding"
+{
+  name: "Subdomains found",
+  category: "Subdomain"
+  attributes: {
+    addresses: [
+      {
+        domain: "example.com",
+        ip: "127.0.0.1",
+      },
+      {
+        domain: "subdomain.example.com",
+        ip: "127.0.0.2",
+      }
+    ]
+  }
+}
+```
+
+To select the domains data in this finding, use the `pickValues` notation as shown below.
+
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "In"
+values: ["{{#pickValues}}{{attributes.addresses.domain}}{{/pickValues}}"]
+```
+
+You can also manually split values from findings manually if your finding is like so:
+
+```json title="Finding"
+{
+  name: "Subdomains found",
+  category: "Subdomain"
+  attributes: {
+    domains: "example.com,subdomain.example.com",
+  }
+}
+```
+
+To select the domains data in this finding, use the `split` notation as shown below.
+
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "In"
+values: ["{{#split}}{{attributes.domains}}{{/split}}"]
+```
 
 ##### Operators
 
