@@ -9,7 +9,7 @@ path: "docs/getting-started/first-scans"
 
 Now that you have installed the secureCodeBox, you can start you are close to being able to run your first scans.
 
-Before we can start scans, we need to install their `ScanTypes`, these tell the secureCodeBox Operator how to run the scans and how their results can be parsed to create a uniform and consistent finding data model. ScanTypes are namespaced [Custom Resource Definitions](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) in Kubernetes, this lets different teams operating in different namespaces use different Types of scanners and enables them to define their own custom ScanTypes.
+Before we can start scans, we need to install their `ScanTypes`, these tell the secureCodeBox Operator how to run the scans and how their results can be parsed to create a uniform and consistent finding data model. ScanTypes are namespaced [Custom Resource Definitions](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) in Kubernetes, this lets different teams operating in different namespaces use different types of scanners and enables them to define their own custom ScanTypes.
 
 ## Installing the Nmap ScanType
 
@@ -28,13 +28,13 @@ kubectl get scantypes
 This should print an output like this (your version might differ):
 
 ```text
-NAME   IMAGE
-nmap   securecodebox/nmap:7.80
+NAME     IMAGE
+nmap     docker.io/securecodebox/scanner-nmap:7.91-r0
 ```
 
 ## Starting a Scan
 
-Now that we have the ScanType nmap installed, we are ready to start our first scan. A scanner, like this Nmap ScanType, is a namespaced CRD. That means you can install them in our own namespace and you're not required to have privileged access to the cluster. Also they are defined via YAML and so you can easily create your own ones.
+Now that we have the ScanType Nmap installed, we are ready to start our first scan.
 
 This example creates a Nmap scan which probes the [scanme.nmap.org](http://scanme.nmap.org) host. This scan is equivalent to running `nmap scanme.nmap.org` locally.
 
@@ -200,24 +200,25 @@ Events:                      <none>
 ```
 
 This gives us an overview of the results of the scan.
-To view the actual findings produced by the scan you can use the download link to download the findings as JSON from Minio/S3.
+To view the actual findings produced by the scan you can use the download link to download the findings as JSON from MinIO/S3.
+
+:::note
+When using the default MinIO installation, you'll need to port-forward the to be able to access the finding download link. See: [installation](/docs/getting-started/installation#accessing-the-included-minio-instance)
+:::
 
 ## Next Steps
 
 ### Configure more Involved Nmap Scans
 
 Nmap is an extremely powerful tool, which can be used for much more than just scanning for ports.
-You can find more examples of nmap scans, including example findings for these scans on the documentation page of the [Nmap ScanType](/docs/scanners/Nmap).
+You can find more examples of Nmap scans, including example findings for these scans on the documentation page of the [Nmap ScanType](/docs/scanners/Nmap).
 
 ### Other ScanTypes
 
 Nmap is just one of the many security testing tools integrated into the secureCodeBox, you can find examples and documentation on how to use each of them on their documentation page in the sidebar.
 
-To get started you can also take a look at our more detailed guides:
+To get started you can also take a look at our more [detailed guides](/docs/how-tos)
 
-- [HowTo: Network Scans](/docs/how-tos/scanning-networks)
-- [HowTo: Scanning Web Applications](/docs/how-tos/scanning-web-applications)
-
-### Persistence Providers
+### Pushing Findings into External Systems
 
 You can also integrate the secureCodeBox to automatically push the scan results into an external system like [Elasticsearch](/docs/hooks/Elasticsearch) or [DefectDojo](/docs/hooks/DefectDojo) to better analyse your findings.
