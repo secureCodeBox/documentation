@@ -216,10 +216,11 @@ annotations:
 ...
 key: "scope.cascading.securecodebox.io/domain"
 operator: "In"
-values: ["{{#getValues}}{{attributes.addresses.domain}}{{/getValues}}"]
+# Note that the parameter is *not* set inside curly braces!
+values: ["{{#getValues}}attributes.addresses.domain{{/getValues}}"]
 ```
 
-You can also manually split values from findings manually if your finding is like so:
+You can also manually split values from findings if your finding is like so:
 
 ```json title="Finding"
 {
@@ -264,7 +265,7 @@ operator: "Contains"
 values: ["example.com", "subdomain.example.com"]
 ```
 
-`InCIDR` & `NotInCIDR`: The scope annotation value is considered [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and checks if every `values` is within the subnet of that CIDR. Supports both IPv4 and IPv6. If the scope is defined in IPv4, will only validate IPv4 IPs in the finding values.  Vice-versa for IPv6 defined in scope and IPv4 found in values. Note that all IPs in finding values must be valid addresses, regardless of whether IPv4 or IPv6 was used in the scope definition. Matching example:
+`InCIDR` & `NotInCIDR`: The scope annotation value is considered a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and checks if every `values` is within the subnet of that CIDR. Supports both IPv4 and IPv6. If the scope is defined in IPv4, will only validate IPv4 IPs in the finding values.  Vice-versa for IPv6 defined in scope and IPv4 found in values. Note that all IPs in finding values must be valid addresses, regardless of whether IPv4 or IPv6 was used in the scope definition. Matching example:
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/cidr: "10.10.0.0/16"

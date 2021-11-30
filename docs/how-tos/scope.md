@@ -134,11 +134,11 @@ When deploying your scanner, you can define `scopeLimiterAliases`.
 
 ```shell
 $ helm upgrade --install amass secureCodeBox/amass \
- --set parser.scopeLimiterAliases.hostname="{{attributes.name}}"
+ --set="parser.scopeLimiterAliases.hostname=\{\{attributes.name\}\}"
 Release "amass" has been upgraded. Happy Helming!
 [...]
 $ helm upgrade --install nmap secureCodeBox/nmap \
- --set parser.scopeLimiterAliases.hostname="{{attributes.hostname}}"
+ --set="parser.scopeLimiterAliases.hostname=\{\{attributes.hostname\}\}"
 Release "nmap" has been upgraded. Happy Helming!
 [...]
 ```
