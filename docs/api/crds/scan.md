@@ -208,7 +208,7 @@ Some findings have data in lists of objects, such as the following:
 }
 ```
 
-To select the domains data in this finding, use the `pickValues` notation as shown below.
+To select the domains data in this finding, use the `getValues` notation as shown below.
 
 ```yaml
 annotations:
@@ -216,7 +216,7 @@ annotations:
 ...
 key: "scope.cascading.securecodebox.io/domain"
 operator: "In"
-values: ["{{#pickValues}}{{attributes.addresses.domain}}{{/pickValues}}"]
+values: ["{{#getValues}}{{attributes.addresses.domain}}{{/getValues}}"]
 ```
 
 You can also manually split values from findings manually if your finding is like so:
