@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-title: "Enforcing engagement scope"
+title: "Enforcing Engagement Scope"
 ---
 
 ## Introduction
@@ -27,7 +27,7 @@ Release "nmap" does not exist. Installing it now.
 [...]
 ```
 
-## Start scan with scope limit
+## Start Scan With Scope Limit
 
 Next, we can start creating our scan definition.
 Let's assume that we would like amass to scan `nmap.org` for subdomains, but we would only like to run nmap on `scanme.nmap.org`.
@@ -85,7 +85,7 @@ Cascading Rule nmap-hostscan not triggered as scope limiter did not pass
 [...]
 ```
 
-## Handle differences in finding formats
+## Handle Differences in Finding Formats
 
 In many cases, you are cascading to more than one scanner.
 Unfortunately, not every scanner has the same finding format, making a scope as defined above more tricky.
@@ -99,7 +99,7 @@ This results in the scope rule failing, and prevents Nikto from getting cascaded
 
 To solve this situation, you have two options:
 
-### Option 1: enable `validOnMissingRender`
+### Option 1: Enable `validOnMissingRender`
 
 Enabling this option causes all defined rules which contain unresolved mustache templates to result in `true`. You can use this if you're sure that Nmap returns the valid hostname.
 
@@ -127,7 +127,7 @@ spec:
     - "nmap.org"
 ```
 
-### Option 2: create a hostname alias for all deployed scanners
+### Option 2: Create a Hostname Alias for All Deployed Scanners
 
 A more fool-proof solution is to ensure that the hostname field is available in the same place for each scanner.
 When deploying your scanner, you can define `scopeLimiterAliases`.
