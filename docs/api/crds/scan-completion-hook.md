@@ -73,6 +73,10 @@ It has to be combined with [`volumeMounts`](#volumemounts-optional) to be useful
 `volumeMounts` let you specify where you want the previously-created volumes to be mounted inside the container.
 It has the same API as the `volumeMounts` property on Kubernetes pods.
 
+### Affinity and Tolerations (optional)
+[`affinity`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/) and [`tolerations`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) can be used to control which nodes the parser is executed on.
+The values should be set via Helm values (during install) or by specifying `affinity` and/or `tolerations` in the `Scan` specification.
+
 ### ServiceAccountName (Optional)
 
 The `serviceAccountName` field can be used to specify a custom ServiceAccount to use for the Kubernetes Job running the hook.
