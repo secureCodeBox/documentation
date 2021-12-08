@@ -52,6 +52,7 @@ const docsConfig = {
         "how-tos/scanning-networks",
         "how-tos/scanning-web-applications",
         "how-tos/hooks",
+        "how-tos/scope",
       ],
     },
     sidebarEnd: {

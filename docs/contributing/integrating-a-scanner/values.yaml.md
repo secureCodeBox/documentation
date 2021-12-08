@@ -28,6 +28,9 @@ parser:
   # parser.env -- Optional environment variables mapped into each parseJob (see: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
   env: []
 
+  # parser.scopeLimiterAliases -- Optional finding aliases to be used in the scopeLimiter.
+  scopeLimiterAliases: {}
+
 # Do the same for the scanner containers
 scanner:
   image:
@@ -140,3 +143,7 @@ Optional additional Containers started with the job (see: [Init Containers | Kub
 ### securityContext
 
 Optional securityContext set on the container (see: [Configure a Security Context for a Pod or Container | Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)).
+
+### scopeLimiterAliases
+
+Optional scopeLimiterAliases set on the parse definition (see [ScopeLimiterAliases](/docs/api/crds/parse-definition#scopelimiteraliases-optional))

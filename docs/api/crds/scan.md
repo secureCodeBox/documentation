@@ -138,8 +138,160 @@ See [#789](https://github.com/secureCodeBox/secureCodeBox/issues/789) for more d
 
 
 To use cascades you'll need to have the [CascadingScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
-
 For an example on how they can be used see the [Scanning Networks HowTo](https://docs.securecodebox.io/docs/how-tos/scanning-networks)
+
+#### ScopeLimiter (Optional)
+
+`scopeLimiter` allows you to define certain rules to which cascading scans must comply before they may cascade.
+For example, you can define that you can only trigger a follow-up scan against a host if its IP address is within your predefined IP range.
+You can use Mustache templating in order to select certain properties from findings.
+
+Under `scopeLimiter`, you may specify `anyOf`, `noneOf`, and `allOf` with a selector to limit your scope.
+If you specify multiple fields, all the rules must pass.
+
+A selector looks similar to the [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta).
+
+```yaml
+anyOf:
+  - key: "scope.cascading.securecodebox.io/cidr"
+    operator: "InCIDR"
+    values: ["{{attributes.ip}}"]
+```
+
+The `key` references one of the annotations defined on your scan.
+The annotation name _must_ start with `scope.cascading.securecodebox.io/`.
+These annotations can only be added on the initial scan (i.e., they cannot be modified using the [`scanAnnotations`](/docs/api/crds/cascading-rule#scanlabels--scanannotations-optional) field of the cascading scan rules) and are inherited by default.
+
+`operator` is one of  `In`, `NotIn`, `Contains`, `DoesNotContain`, `InCIDR`, `NotInCIDR`, `SubdomainOf`, `NotSubdomainOf`.
+
+`values` is a list of values for which the selector should pass.
+
+##### Selecting lists
+
+A custom rendering function has been provided to select attributes in findings that are in a list. An example finding:
+
+```json title="Finding"
+{
+  name: "Subdomains found",
+  category: "Subdomain"
+  attributes: {
+    domains: ["example.com", "subdomain.example.com"],
+  }
+}
+```
+
+To select the domains data in this finding, use the `asList` notation as shown below.
+
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "In"
+values: ["{{#asList}}{{attributes.domains}}{{/asList}}"]
+```
+
+The values will render to: `["example.com", "subdomain.example.com"]`.
+
+Some findings have data in lists of objects, such as the following:
+
+```json title="Finding"
+{
+  name: "Subdomains found",
+  category: "Subdomain"
+  attributes: {
+    addresses: [
+      {
+        domain: "example.com",
+        ip: "127.0.0.1",
+      },
+      {
+        domain: "subdomain.example.com",
+        ip: "127.0.0.2",
+      }
+    ]
+  }
+}
+```
+
+To select the domains data in this finding, use the `getValues` notation as shown below.
+
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "In"
+# Note that the parameter is *not* set inside curly braces!
+values: ["{{#getValues}}attributes.addresses.domain{{/getValues}}"]
+```
+
+You can also manually split values from findings if your finding is like so:
+
+```json title="Finding"
+{
+  name: "Subdomains found",
+  category: "Subdomain"
+  attributes: {
+    domains: "example.com,subdomain.example.com",
+  }
+}
+```
+
+To select the domains data in this finding, use the `split` notation as shown below.
+
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "In"
+values: ["{{#split}}{{attributes.domains}}{{/split}}"]
+```
+
+##### Operators
+
+`In` & `NotIn`: The scope annotation value exists in one of `values`. Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "In"
+values: ["example.com", "subdomain.example.com"]
+```
+
+`Contains` & `DoesNotContain`: The scope annotation value is considered a comma-seperated list and checks if every `values` is in that list. Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com,subdomain.example.com,other.example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "Contains"
+values: ["example.com", "subdomain.example.com"]
+```
+
+`InCIDR` & `NotInCIDR`: The scope annotation value is considered a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and checks if every `values` is within the subnet of that CIDR. Supports both IPv4 and IPv6. If the scope is defined in IPv4, will only validate IPv4 IPs in the finding values.  Vice-versa for IPv6 defined in scope and IPv4 found in values. Note that all IPs in finding values must be valid addresses, regardless of whether IPv4 or IPv6 was used in the scope definition. Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/cidr: "10.10.0.0/16"
+...
+key: "scope.cascading.securecodebox.io/cidr"
+operator: "InCIDR"
+values: ["10.10.1.2", "10.10.1.3", "2001:0:ce49:7601:e866:efff:62c3:fffe"]
+```
+
+`SubdomainOf` & `NotSubdomainOf`: Checks if every `values` is a subdomain of the scope annotation value (inclusive; i.e. example.com is a subdomain of example.com). Matching example:
+```yaml
+annotations:
+  scope.cascading.securecodebox.io/domain: "example.com"
+...
+key: "scope.cascading.securecodebox.io/domain"
+operator: "SubdomainOf"
+values: ["subdomain.example.com", "example.com"]
+```
+
+See the [Scope HowTo](/docs/how-tos/scope) for more information.
 
 ### HookSelector (Optional)
 
@@ -192,6 +344,9 @@ kind: Scan
 status: # Set during runtime. Do not edit via values.yaml etc. 
 metadata:
   name: "nmap-scanme.nmap.org"
+  annotations:
+    scope.cascading.securecodebox.io/cidr: "10.10.0.0/16"
+    scope.cascading.securecodebox.io/domain: "example.com"
 spec:
   scanType: "nmap"
   parameters:
@@ -215,4 +370,14 @@ spec:
       key: "securecodebox.io/invasive"
       operator: In
       values: [non-invasive, invasive]
+    scopeLimiter:
+      validOnMissingRender:  true
+      allOf:
+        - key: "scope.cascading.securecodebox.io/cidr"
+          operator: "InCIDR"
+          values: ["{{attributes.ip}}"]
+      noneOf:
+        - key: "scope.cascading.securecodebox.io/domain"
+          operator: "SubdomainOf"
+          values: ["{{attributes.hostname}}"]
 ```

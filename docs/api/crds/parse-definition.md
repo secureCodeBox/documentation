@@ -29,6 +29,14 @@ This uses the kubernetes default [imagePullSecrets structure](https://kubernetes
 `ttlSecondsAfterFinished` can be used to automatically delete the completed Kubernetes job used to run the parser.
 This sets the `ttlSecondsAfterFinished` field on the created job. This requires your cluster to have the [TTLAfterFinished](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/) feature gate enabled in your cluster.
 
+### ScopeLimiterAliases (Optional)
+
+`scopeLimiterAliases` can be used in combination with `scopeLimiter` to create aliases for fields in findings.
+The goal of this field is to ensure that the `scopeSelector` can always select an alias, regardless of the underlying representation of the data in a finding.
+This field supports Mustache templating and has access to the finding object.
+
+See the [Scope HowTo](/docs/how-tos/scope) for more information.
+
 ### Affinity and Tolerations (optional)
 [`affinity`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/) and [`tolerations`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) can be used to control which nodes the parser is executed on.
 The values should be set via Helm values (during install) or by specifying `affinity` and/or `tolerations` in the `Scan` specification.
@@ -45,6 +53,8 @@ spec:
   imagePullSecrets:
   - name: dockerhub-token
   ttlSecondsAfterFinished: 60
+  scopeLimiterAliases:
+    domain: "{{attributes.host}}"
 ```
 The Parse definition is different when integrating a new scanner. We use specific conventions when adding new ParseDefinitions to the secureCodeBox repository. 
 More information can be found on the [templates folder documentation page for integrating new scanners](/docs/contributing/integrating-a-scanner/templates-dir)
