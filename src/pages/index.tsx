@@ -53,7 +53,7 @@ function HomePage() {
     <>
       <header className={clsx("hero", styles.heroBanner)}>
         <div className="container">
-          <h1>Automated Security Testing</h1>
+          <h1>Automated Security Testing Tool</h1>
           <p className={styles.description}>
             <em>secureCodeBox</em> is an <a href="https://owasp.org/www-project-securecodebox/">OWASP project</a> providing an automated
             and scalable open source solution that integrates multiple security scanners with a simple and lightweight interface –
