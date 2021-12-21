@@ -147,3 +147,11 @@ Optional securityContext set on the container (see: [Configure a Security Contex
 ### scopeLimiterAliases
 
 Optional scopeLimiterAliases set on the parse definition (see [ScopeLimiterAliases](/docs/api/crds/parse-definition#scopelimiteraliases-optional))
+
+### affinity
+
+Optional affinity settings that control how the job is scheduled (see: [Node Affinity | Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/))
+
+### tolerations
+
+Optional tolerations settings that control how the job is scheduled (see: [Tolerations | Kubernetes](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/))
