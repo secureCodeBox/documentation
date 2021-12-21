@@ -4,7 +4,7 @@
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "Automated Security Testing Tool | secureCodeBox",
+  title: "secureCodeBox",
   tagline: "Continuous automated security testing ✓ multi scanner security platform ✓ scalable open-source tool ✓ lightweight interface ✓",
   url: "https://docs.securecodebox.io",
   baseUrl: "/",

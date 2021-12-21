@@ -208,7 +208,7 @@ export default function Main() {
 
   return (
     <Layout
-      title={siteConfig.title}
+      title="Automated Security Testing Tool"
       description={siteConfig.tagline}
       keywords={siteConfig.customFields.keywords}
     >
