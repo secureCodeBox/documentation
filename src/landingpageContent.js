@@ -52,7 +52,7 @@ const content = {
   goToSolution: {
     title: "Your Go-to Solution for easy Security Scanning",
     description:
-      "Flexible configuration options make it possible to apply the secureCodeBox to a wide range of use cases, addressing security professionals as well as DevOps Teams. Discover the possibilities:",
+      "secureCodeBox offers a well-documented and beginner-friendly introduction to the world of DevSecOps:",
     image: "/img/Desktop_Screenshots.png",
     list: [
       {
