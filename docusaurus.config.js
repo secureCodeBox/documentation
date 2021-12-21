@@ -136,6 +136,8 @@ module.exports = {
           },
         },
         blog: {
+          blogTitle: 'Blog on Automated Security Testing',
+          blogDescription: 'In this blog the core maintainer will write about the development, roadmap, ideas RFCs etc. of the OWASP secureCodeBox.',
           showReadingTime: true,
           editUrl: "https://github.com/securecodebox/docusaurus/edit/main/",
           feedOptions: {
