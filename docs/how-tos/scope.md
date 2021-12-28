@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Enforcing Engagement Scope"
+sidebar_position: 5
 ---
 
 ## Introduction
@@ -18,6 +19,7 @@ If not, check out the [installation](/docs/getting-started/installation/) for mo
 We also assume that you have the latest version of cascading scans installed.
 
 We will start by installing Amass and Nmap:
+
 ```bash
 helm upgrade --install amass secureCodeBox/amass
 Release "amass" does not exist. Installing it now.

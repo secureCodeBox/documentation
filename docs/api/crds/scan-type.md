@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "ScanType"
+sidebar_position: 4
 ---
 
 The ScanType Custom Resource Definition (CRD) is used to define to the secureCodeBox how a specific scanner can be executed in Kubernetes. The main part of the ScanType is the [JobTemplate](#jobtemplate-required), which contains a Kubernetes Job definition that will be used to construct the scans Job.
@@ -61,7 +62,7 @@ spec:
               image: "{{ .Values.scanner.image.repository }}:{{ .Values.scanner.image.tag | default .Chart.AppVersion }}"
               command:
                 - "python3"
-                - "/home/typo3scan/typo3scan.py" 
+                - "/home/typo3scan/typo3scan.py"
                 # Remove any user-interation
                 - "--no-interaction"
                 # Output in json format

@@ -4,9 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "CRD Overview"
+sidebar_position: 1
 ---
 
-In the *secureCodeBox* we use multiple *Custom Resource Definitions* to manage resources like Scan, ScheduledScan, ScanType etc.
+In the _secureCodeBox_ we use multiple _Custom Resource Definitions_ to manage resources like Scan, ScheduledScan, ScanType etc.
 The following pages will describe their specification.
 
 1. [Scan](/docs/api/crds/scan)

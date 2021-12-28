@@ -4,24 +4,29 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Scanning Web Applications"
+sidebar_position: 3
 ---
 
 ## Introduction
 
-In this step-by-step tutorial, we will go through all the required stages to set up an in depth configured ZAP Scan against OWASP Juice Shop with the secureCodeBox.   
+In this step-by-step tutorial, we will go through all the required stages to set up an in depth configured ZAP Scan against OWASP Juice Shop with the secureCodeBox.
 
 ## Setup
+
 For the sake of the tutorial, we assume that you have your Kubernetes cluster already up and running and that we can work in your default namespace. If not, check out the [installation](/docs/getting-started/installation/) for more information.
 
 We will start by installing the ZAP-Advanced scanner:
+
 ```bash
 helm upgrade --install zap-advanced secureCodeBox/zap-advanced
 ```
+
 And the juice-shop demo-target.
 
 ```bash
 helm upgrade --install juice-shop secureCodeBox/juice-shop
 ```
+
 ## Creating the ZAP-Advanced scan
 
 We can first start with a basic `zap-advanced` scan. We use here our CRD (Custom Resource definition) [Scan](/docs/api/crds/scan) and a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) to configure our scan.
@@ -39,7 +44,7 @@ data:
       # Name to be used to refer to this context in other jobs, mandatory
       - name: scb-juiceshop-context
         # The top level url, mandatory, everything under this will be included
-        url: http://juice-shop.default.svc:3000/      
+        url: http://juice-shop.default.svc:3000/
 ---
 apiVersion: "execution.securecodebox.io/v1"
 kind: Scan
@@ -62,13 +67,16 @@ spec:
     - name: zap-advanced-scan-config
       configMap:
         name: zap-advanced-scan-config
-``` 
+```
+
 We use `volumeMounts` and `volumes` to attach the configMap to our scan in `scan.yaml`. We also set up a context for our `zap-advanced` scan. This is where we can input ZAP related parameters.
 
 We can do a test run via:
+
 ```bash
 kubectl apply -f scan.yaml
 ```
+
 The ConfigMap right now is minimal. So we can start modifying and adding to it to fit our needs.  
 For example let's start by setting the scope that we want for our scan. This is done by adding and excluding the paths that the scanner will use. This usually makes the scans faster.  
 Our ConfigMap will then look like this.
@@ -100,7 +108,7 @@ data:
           - ".*\\.woff2"
           - ".*\\.ttf"
           - ".*\\.ico"
-``` 
+```
 
 ZAP uses a [Spider-Tool](https://www.zaproxy.org/docs/desktop/start/features/spider/) that is used to automatically discover new resources (URLs) on a particular Site. We can configure it's mode of operation through the parameter `spiders`. A possible configuration can look like this :
 
@@ -150,40 +158,42 @@ data:
         maxDuration: 5
         # Int: The maximum tree depth to explore, default 5
         maxDepth: 10
-``` 
+```
+
 ZAP also has the option for an [Active Scan](https://www.zaproxy.org/docs/desktop/start/features/ascan/).  
-Active scanning attempts to find potential vulnerabilities by using known attacks against the selected targets.  Its rules can be modified in the `scanners` parameter. An example for that would be:
+Active scanning attempts to find potential vulnerabilities by using known attacks against the selected targets. Its rules can be modified in the `scanners` parameter. An example for that would be:
 
 ```yaml
- # ZAP ActiveScans Configuration 
-    scanners:
-      - name: scb-juiceshop-scan
-        # String: Name of the context to attack, default: first context
-        context: scb-juiceshop-context
-        # String: Name of the user to authenticate with and used to spider
-        user: juiceshop-user-1
-        # String: Url to start scaning from, default: first context URL
-        url: http://juice-shop.default.svc:3000/
-        # Int: The max time in minutes any individual rule will be allowed to run for, default: 0 unlimited
-        maxRuleDurationInMins: 1
-        # Int: The max time in minutes the active scanner will be allowed to run for, default: 0 unlimited
-        maxScanDurationInMins: 10
-        # Int: The max number of threads per host, default: 2
-        threadPerHost: 5
-        # Int: The delay in milliseconds between each request, use to reduce the strain on the target, default 0
-        delayInMs: 0
-        # Bool: If set will add an extra query parameter to requests that do not have one, default: false
-        addQueryParam: false
-        # Bool: If set then automatically handle anti CSRF tokens, default: false
-        handleAntiCSRFTokens: false
-        # Bool: If set then the relevant rule Id will be injected into the X-ZAP-Scan-ID header of each request, default: false
-        injectPluginIdInHeader: false
-        # Bool: If set then the headers of requests that do not include any parameters will be scanned, default: false
-        scanHeadersAllRequests: false
+# ZAP ActiveScans Configuration
+scanners:
+  - name: scb-juiceshop-scan
+    # String: Name of the context to attack, default: first context
+    context: scb-juiceshop-context
+    # String: Name of the user to authenticate with and used to spider
+    user: juiceshop-user-1
+    # String: Url to start scaning from, default: first context URL
+    url: http://juice-shop.default.svc:3000/
+    # Int: The max time in minutes any individual rule will be allowed to run for, default: 0 unlimited
+    maxRuleDurationInMins: 1
+    # Int: The max time in minutes the active scanner will be allowed to run for, default: 0 unlimited
+    maxScanDurationInMins: 10
+    # Int: The max number of threads per host, default: 2
+    threadPerHost: 5
+    # Int: The delay in milliseconds between each request, use to reduce the strain on the target, default 0
+    delayInMs: 0
+    # Bool: If set will add an extra query parameter to requests that do not have one, default: false
+    addQueryParam: false
+    # Bool: If set then automatically handle anti CSRF tokens, default: false
+    handleAntiCSRFTokens: false
+    # Bool: If set then the relevant rule Id will be injected into the X-ZAP-Scan-ID header of each request, default: false
+    injectPluginIdInHeader: false
+    # Bool: If set then the headers of requests that do not include any parameters will be scanned, default: false
+    scanHeadersAllRequests: false
 ```
+
 Some URLs may not be reachable without a privileged user. In this case, it makes sense to provide authentications credentials. This is done through the authentication, users and session parameters in our ConfigMap context. In our case here, we use custom zap scripts to authenticate into juice-shop. The scripts used can be found [here](https://github.com/secureCodeBox/secureCodeBox/tree/main/scanners/zap-advanced/scanner/scripts/).  
 It can be required to configure your own scripts to fit your scan target: more information on how these scripts integrate into ZAP can be found [here](https://www.zaproxy.org/docs/desktop/start/features/scripts/).  
-Our `contexts` parameter in our scan would then look something like this: 
+Our `contexts` parameter in our scan would then look something like this:
 
 ```yaml
 apiVersion: v1
@@ -247,8 +257,9 @@ data:
             filePath: "/home/zap/.ZAP_D/scripts/scripts/session/juiceshop-session-management.js"
             # A short description for the script.
             description: "This is a JuiceShop specific SessionManagement Script used to handle JWT."
-``` 
-For more information on Authentication/Session parameters check out ZAP's documentation on the matter [here](https://www.zaproxy.org/docs/desktop/start/features/authentication/)  
+```
+
+For more information on Authentication/Session parameters check out ZAP's documentation on the matter [here](https://www.zaproxy.org/docs/desktop/start/features/authentication/)
 
 Our complete ZAP Scan file is then the following :
 
@@ -384,13 +395,16 @@ spec:
       configMap:
         name: zap-advanced-scan-config
 ```
+
 Let's delete our first test scan and run a new one via :
+
 ```bash
 # Delete the scan created from scan.yaml:
 kubectl delete -f scan.yaml
 # Run the scan from scan.yaml:
 kubectl apply -f scan.yaml
 ```
+
 We can check on our scan via:
 
 ```bash

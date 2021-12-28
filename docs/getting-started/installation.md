@@ -5,6 +5,7 @@
 
 title: "Installation"
 sidebar_label: Installation
+sidebar_position: 1
 path: "docs/getting-started/installation"
 ---
 

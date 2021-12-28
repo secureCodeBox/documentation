@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "CascadingRule"
+sidebar_position: 7
 ---
 
 ## Specification (Spec)
@@ -22,7 +23,6 @@ These objects are compared using a partial deep comparison, meaning that all fie
 If multiple anyOf rules are specified at least one must match the finding.
 If multiple rules are matching, the CascadingRule will still only create one scan.
 
-
 ### ScanLabels & ScanAnnotations (Optional)
 
 Configures additional labels/annotations/ added to each subsequent scan (child). These labels/annotations overwrite any existing labels/annotations. You can use a simple templating scheme to gather details about the parent scan or finding (use `{{variable}}`, see example below). The following variables are available:
@@ -38,7 +38,7 @@ If you need more custom variables, please don't hesitate to [create an issue](ht
 
 Contains the [spec of the scan](/docs/api/crds/scan#specification-spec) which is supposed to be started of the a finding matches the CascadingRule.
 
-The `scanType`, `parameters`, values specified in `env` variables, as well as the `command` and `env` of any included `initContainers`,  can use [mustache](https://mustache.github.io/mustache.5.html) templates to refer to fields of the finding the CascadingRule has been applied to. The finding is passed in directly into the mustache templating call, so that fields of the findings can be directly referenced. E.g. the location can be directly referred to by: `{{location}}`.
+The `scanType`, `parameters`, values specified in `env` variables, as well as the `command` and `env` of any included `initContainers`, can use [mustache](https://mustache.github.io/mustache.5.html) templates to refer to fields of the finding the CascadingRule has been applied to. The finding is passed in directly into the mustache templating call, so that fields of the findings can be directly referenced. E.g. the location can be directly referred to by: `{{location}}`.
 
 For convenience a helper object has been added to the mustache call under the `$` shorthand.
 
@@ -68,7 +68,7 @@ spec:
           service: https
           state: open
   scanLabels:
-    mynewlabel: {{metadata.name}}
+    mynewlabel: { { metadata.name } }
   scanAnnotations:
     defectdojo.securecodebox.io/product-name: "{{$.hostOrIP}}"
     defectdojo.securecodebox.io/product-type-name: "{{metadata.labels.organization}}"
