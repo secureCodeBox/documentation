@@ -290,7 +290,12 @@ function copyFilesFromMainRepository(src, dst, exclude) {
     console.error(`${config.temp}/${src.info}.`.error);
   }
 
-  console.info(`Create target directory ${dstPath.info}...`.success);
+  if (fs.existsSync(dstPath)) {
+    removeExistingMarkdownFiles(dstPath);
+  } else {
+    fs.mkdirSync(dstPath);
+    console.info(`Create target directory ${dstPath.info}...`.success);
+  }
 
   fs.readdirSync(srcPath).map((fileName) => {
     if (!exclude.includes(fileName)) {
@@ -298,5 +303,17 @@ function copyFilesFromMainRepository(src, dst, exclude) {
 
       fs.copyFileSync(`${srcPath}/${fileName}`, `${dstPath}/${fileName}`);
     }
+  });
+}
+
+function removeExistingMarkdownFiles(dstPath) {
+  const existingMarkdownFiles = fs
+    .readdirSync(dstPath, { encoding: "utf-8" })
+    .filter((file) => file.endsWith(".md"));
+
+  existingMarkdownFiles.forEach((file) => {
+    const filePath = `${dstPath}/${file}`;
+    rimraf.sync(filePath);
+    console.warn(`WARN: ${filePath} already existed and was deleted.`.warn);
   });
 }
