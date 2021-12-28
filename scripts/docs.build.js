@@ -7,9 +7,9 @@ const fs = require("fs"),
   downloadCallback = require("download-git-repo"),
   colors = require("colors"),
   matter = require("gray-matter"),
-  {promisify} = require("util"),
-  {docsConfig: config} = require("./utils/config"),
-  {removeWhitespaces} = require("./utils/capitalizer"),
+  { promisify } = require("util"),
+  { docsConfig: config } = require("./utils/config"),
+  { removeWhitespaces } = require("./utils/capitalizer"),
   Mustache = require("mustache");
 
 const download = promisify(downloadCallback);
@@ -25,7 +25,7 @@ colors.setTheme({
 // For the documentation on this script look at the README.md of this repository
 
 async function main() {
-  const fullRepoName = config.repository+`#`+config.branch;
+  const fullRepoName = config.repository + `#` + config.branch;
   console.log(`Downloading ${fullRepoName} into ${config.temp}...`.info);
 
   await download(fullRepoName, config.temp).catch((err) => {
@@ -92,19 +92,20 @@ main().catch((err) => {
 
 function readDirectory(dir) {
   return new Promise((res, rej) => {
-    fs.readdir(dir, {encoding: "utf8", withFileTypes: true}, function (
-      err,
-      data
-    ) {
-      if (err) {
-        rej(err);
-      } else {
-        const directories = data
-          .filter((dirent) => dirent.isDirectory())
-          .map((dirent) => dirent.name);
-        res(directories);
+    fs.readdir(
+      dir,
+      { encoding: "utf8", withFileTypes: true },
+      function (err, data) {
+        if (err) {
+          rej(err);
+        } else {
+          const directories = data
+            .filter((dirent) => dirent.isDirectory())
+            .map((dirent) => dirent.name);
+          res(directories);
+        }
       }
-    });
+    );
   });
 }
 
@@ -120,12 +121,12 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     }
 
     // Read readme content of scanner / hook directory
-    const readmeContent = fs.readFileSync(readMe, {encoding: "utf8"});
+    const readmeContent = fs.readFileSync(readMe, { encoding: "utf8" });
 
     const examples = await getExamples(`${relPath}/${dirName}/examples`);
 
     // Add a custom editUrl to the frontMatter to ensure that it points to the correct repo
-    const {data: frontmatter, content} = matter(readmeContent);
+    const { data: frontmatter, content } = matter(readmeContent);
     const filePathInRepo = relPath.replace(/^githubRepo\//, "");
     const readmeWithEditUrl = matter.stringify(content, {
       ...frontmatter,
@@ -246,7 +247,7 @@ function copyFindingsForDownload(filePath) {
     fs.mkdirSync(`static/${config.findingsDir}`);
   }
 
-  fs.copyFileSync(filePath, "static"+targetPath);
+  fs.copyFileSync(filePath, "static" + targetPath);
   console.log(`SUCCESS: Created download link for ${name.info}.`.success);
 
   return targetPath;
@@ -256,7 +257,7 @@ function clearDocsOnFailure() {
   for (const dir of config.srcDirs) {
     const trgDir = `${config.targetPath}/${dir}`;
     if (fs.existsSync(trgDir)) {
-      rimraf(trgDir, {maxRetries: 3, recursive: true}, function (err) {
+      rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
         if (err) {
           console.error(
             `ERROR: Could not remove ${trgDir.info} on failure.`.error
@@ -281,34 +282,19 @@ function clearDocsOnFailure() {
 // @param dst     required target directory in this repository relative to config.targetPath
 // @param exclude optional array of files to exclude from src
 function copyFilesFromMainRepository(src, dst, exclude) {
-  const srcPath = `${config.temp}/${src}`
-  const dstPath = `${config.targetPath}/${dst}`
+  const srcPath = `${config.temp}/${src}`;
+  const dstPath = `${config.targetPath}/${dst}`;
   exclude = exclude || [];
 
   if (!fs.existsSync(srcPath)) {
-    console.error(`${config.temp}/${src.info}.`.error
-    );
+    console.error(`${config.temp}/${src.info}.`.error);
   }
 
-  if (fs.existsSync(dstPath)) {
-    rimraf.sync(dstPath);
-
-    console.warn(
-      `WARN: ${dstPath.info} already existed and was overwritten.`.warn
-    );
-  }
-
-  console.info(
-    `Create target directory ${dstPath.info}...`.success
-  )
-
-  fs.mkdirSync(dstPath);
+  console.info(`Create target directory ${dstPath.info}...`.success);
 
   fs.readdirSync(srcPath).map((fileName) => {
-    if(!exclude.includes(fileName)) {
-      console.log(
-        `Copy ${fileName.info} to ${dstPath.info}...`.success
-      );
+    if (!exclude.includes(fileName)) {
+      console.log(`Copy ${fileName.info} to ${dstPath.info}...`.success);
 
       fs.copyFileSync(`${srcPath}/${fileName}`, `${dstPath}/${fileName}`);
     }
