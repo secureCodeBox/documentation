@@ -4,10 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: values.yaml
+sidebar_position: 2
 ---
 
 The `values.yaml` is also created by `helm create new-scanner`.
-Most of these generated fields are not necessary for the *secureCodeBox*.
+Most of these generated fields are not necessary for the _secureCodeBox_.
 In the following we will describe the important fields.
 The final `values.yaml` will look something like this:
 
@@ -80,7 +81,7 @@ scanner:
 
 ## scanner and parser
 
-The two top-level fields `scanner` and `parser` define the containers and settings for the scanner and parser, respectively. 
+The two top-level fields `scanner` and `parser` define the containers and settings for the scanner and parser, respectively.
 All fields below are common for both scanner and parser.
 
 ### image

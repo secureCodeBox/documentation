@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: Local Scanner and Hook deployment
+sidebar_position: 3
 ---
 
 If you are integrating a new scanner or hook and want to test from a local build, this document will guide you through it.
@@ -13,8 +14,9 @@ We also assume that you are or have followed the steps in either the [Integratin
 ## Makefile-based build & deploy (recommended)
 
 To make local testing easier, the secureCodeBox team has provided a Makefile based solution. The specific Make targets and examples to customize them are given in these documents:
-* [Makefile targets scanners](/docs/contributing/integrating-a-scanner/makefile)
-* [Makefile targets hooks](/docs/contributing/integrating-a-hook/makefile)
+
+- [Makefile targets scanners](/docs/contributing/integrating-a-scanner/makefile)
+- [Makefile targets hooks](/docs/contributing/integrating-a-hook/makefile)
 
 This document explains how to use these targets to deploy your scanner locally.
 
@@ -23,12 +25,14 @@ This document explains how to use these targets to deploy your scanner locally.
    If you have defined your own Dockerfile in the `scanner/` directory, you should leave the line as-is.
 
 2. In the root of the secureCodeBox git repository, under `hook-sdk/nodejs/` and `scanner-sdk/nodejs/`, you need to build the Dockerfiles.
-  This ensures that you have the latest version of the SDK available locally.
-  You need this in order to build secureCodeBox parsers and hooks. To build the image:
+   This ensures that you have the latest version of the SDK available locally.
+   You need this in order to build secureCodeBox parsers and hooks. To build the image:
+
    1. **Minikube**: run `eval $(minikube docker-env) && make docker-build`.
    2. **Kind**: run `make docker-build`.
 
 3. In your scanner or hook directory, build the Dockerfiles:
+
    1. **Minikube**: run `eval $(minikube docker-env) && make docker-build`.
    2. **Kind**: run `make docker-build docker-export kind-import`.
 
@@ -70,10 +74,10 @@ NAMESPACE: integration-tests
 STATUS: deployed
 REVISION: 1
 TEST SUITE: None
-securecodebox/scanners/nmap$ kubectl get scantypes.execution.securecodebox.io -n integration-tests 
+securecodebox/scanners/nmap$ kubectl get scantypes.execution.securecodebox.io -n integration-tests
 NAME   IMAGE
 nmap   docker.io/securecodebox/scanner-nmap:sha-a4490167
-securecodebox/scanners/nmap$ kubectl get parsedefinitions.execution.securecodebox.io -n integration-tests 
+securecodebox/scanners/nmap$ kubectl get parsedefinitions.execution.securecodebox.io -n integration-tests
 NAME       IMAGE
 nmap-xml   docker.io/securecodebox/parser-nmap:sha-a4490167
 ```
@@ -85,6 +89,7 @@ Notice that the Make target automatically feeds the chart's `AppVersion` into th
 ## Manual build & deploy
 
 0. **Minikube only**:
+
 ```shell
 $ eval $(minikube docker-env).
 ```
@@ -92,6 +97,7 @@ $ eval $(minikube docker-env).
 ### Scanner & Parser
 
 1. Build your scanner image
+
 ```shell
 securecodebox/scanners/your-custom-scanner/scanner$ docker build \
 		--build-arg=scannerVersion="7.91-r0" \
@@ -112,6 +118,7 @@ securecodebox/parser-sdk/nodejs$ docker build -t securecodebox/parser-sdk-nodejs
 ```
 
 4. Build your parser image
+
 ```shell
 securecodebox/scanners/your-custom-scanner/parser$ docker build \
 		--build-arg=baseImageTag="local-dev" \
@@ -128,6 +135,7 @@ securecodebox$ kind load docker-image your-custom-parser:local-dev
 
 6. Update deployment image references.
    Change the fields in `values.yaml` file like this:
+
 ```yaml
 parser:
   image:
@@ -150,6 +158,7 @@ securecodebox/hook-sdk/nodejs$ docker build -t securecodebox/hook-sdk-nodejs:loc
 ```
 
 2. Build hook
+
 ```shell
 securecodebox/hooks/your-custom-hook/hook/$ docker build \
 		--build-arg=baseImageTag="local-dev" \
@@ -190,15 +199,15 @@ Check with `kubectl describe pod [name of pod]` which image your scanner wants t
 Check your Docker build logs to verify that the image has been correctly tagged.
 You can also check if the image is actually available:
 
-* **Minikube**: `minikube ssh docker images`
-* **Kind**: `docker exec kind-control-plane crictl images`
+- **Minikube**: `minikube ssh docker images`
+- **Kind**: `docker exec kind-control-plane crictl images`
 
 Don't forget that all images you want to use in your Minikube Kubernetes cluster must be either remotely available or made available in your Kubernetes cluster.
 
-* **Minikube**: built using `eval $(minikube docker-env)`.
-* **Kind**: imported after building
-  * Using Makefile: `make docker-export kind-import`.
-  * Manually: `kind load docker-image parser-nmap:[tag]`.
+- **Minikube**: built using `eval $(minikube docker-env)`.
+- **Kind**: imported after building
+  - Using Makefile: `make docker-export kind-import`.
+  - Manually: `kind load docker-image parser-nmap:[tag]`.
 
 ### Namespace
 
@@ -208,10 +217,10 @@ Check that you don't have any left-over releases installed.
 ```shell
 $ helm list --all-namespaces
 NAME                  	NAMESPACE           	REVISION	UPDATED                                	STATUS  	CHART                               	APP VERSION
-nmap                  	integration-tests   	1       	2021-11-18 15:00:14.712583292 +0100 CET	deployed	nmap-v3.1.0-alpha1                  	7.91-r0    
-securecodebox-operator	securecodebox-system	1       	2021-11-18 10:09:24.804277463 +0100 CET	deployed	operator-v3.1.0-alpha1              	           
-update-category       	integration-tests   	1       	2021-11-18 11:18:45.104860436 +0100 CET	deployed	update-field-hook-v3.1.0-alpha1     	           
-update-severity       	integration-tests   	1       	2021-11-18 11:18:45.267164462 +0100 CET	deployed	update-field-hook-v3.1.0-alpha1     	           
+nmap                  	integration-tests   	1       	2021-11-18 15:00:14.712583292 +0100 CET	deployed	nmap-v3.1.0-alpha1                  	7.91-r0
+securecodebox-operator	securecodebox-system	1       	2021-11-18 10:09:24.804277463 +0100 CET	deployed	operator-v3.1.0-alpha1
+update-category       	integration-tests   	1       	2021-11-18 11:18:45.104860436 +0100 CET	deployed	update-field-hook-v3.1.0-alpha1
+update-severity       	integration-tests   	1       	2021-11-18 11:18:45.267164462 +0100 CET	deployed	update-field-hook-v3.1.0-alpha1
 ```
 
 You can install secureCodeBox components in any namespace, however verify that you are starting your scans in the same namespace as where you deployed your scanner or hook.

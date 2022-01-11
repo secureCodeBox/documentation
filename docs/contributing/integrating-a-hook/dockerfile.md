@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: Dockerfile
+sidebar_position: 5
 ---
 
 The Dockerfile for a hook looks like the following.

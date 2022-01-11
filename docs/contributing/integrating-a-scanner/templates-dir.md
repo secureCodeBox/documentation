@@ -4,12 +4,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: templates (Directory)
+sidebar_position: 7
 ---
 
 The `templates` directory contains multiple files and dirs per default (using `helm create`).
 Those are not needed and should be deleted.
-For the *secureCodeBox* we will need files for the `ScanType`, `ParseDefinition` and `CascadingRule`.
-Please replace *new-scanner* with the name of your scanner for the following files.
+For the _secureCodeBox_ we will need files for the `ScanType`, `ParseDefinition` and `CascadingRule`.
+Please replace _new-scanner_ with the name of your scanner for the following files.
 
 ### new-scanner-scan-type.yaml
 
@@ -20,7 +21,9 @@ Please take a look at [ScanType | secureCodeBox](/docs/api/crds/scan-type) on ho
 
 This file contains the ParseDefinition of your scanner.
 We use the convention where the values to the parse definition are taken from the `values.yaml` in the scanner's folder.
+
 #### Example
+
 ```yaml
 apiVersion: execution.securecodebox.io/v1
 kind: ParseDefinition
@@ -28,11 +31,12 @@ metadata:
   name: zap-json
 spec:
   image: "{{ .Values.parser.image.repository }}:{{ .Values.parser.image.tag | default .Chart.Version }}"
-  ttlSecondsAfterFinished: {{ .Values.parser.ttlSecondsAfterFinished }}
-  env: 
-    {{- toYaml .Values.parser.env | nindent 4 }}
+  ttlSecondsAfterFinished: { { .Values.parser.ttlSecondsAfterFinished } }
+  env: { { - toYaml .Values.parser.env | nindent 4 } }
 ```
-More information under [ParseDefinition | secureCodeBox](/docs/api/crds/parse-definition) 
+
+More information under [ParseDefinition | secureCodeBox](/docs/api/crds/parse-definition)
+
 ### cascading-rules.yaml
 
 The `CascadingRules` define under which conditions your scanner will be run after other scanners.
@@ -60,4 +64,3 @@ cascadingRules:
   # cascadingRules.enabled -- Enables or disables the installation of the default cascading rules for this scanner
   enabled: true
 ```
-

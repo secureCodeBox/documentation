@@ -4,9 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: parser (Directory)
+sidebar_position: 6
 ---
 
-This directory contains the parser for your scanner to transform the results of your scanner to *Findings* (see: [Finding | secureCodeBox](/docs/api/finding)).
+This directory contains the parser for your scanner to transform the results of your scanner to _Findings_ (see: [Finding | secureCodeBox](/docs/api/finding)).
 
 ## Dockerfile
 
@@ -26,6 +27,7 @@ WORKDIR /home/app/parser-wrapper/parser/
 COPY --from=build --chown=app:app /home/app/node_modules/ ./node_modules/
 COPY --chown=app:app ./parser.js ./parser.js
 ```
+
 If your parser does not require any external dependencies, A multi-stage build is not needed.  
 Instead, A simpler Dockerfile can be used.
 

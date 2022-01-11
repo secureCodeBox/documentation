@@ -4,8 +4,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: Integration Tests
+sidebar_position: 8
 ---
- 
+
 After you have finished the implementation, it's very much recommended to add some End-2-End Integration Tests
 for your hook to check if everything is running smoothly together.
 
