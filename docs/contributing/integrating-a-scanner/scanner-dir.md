@@ -4,13 +4,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: scanner (Directory)
+sidebar_position: 5
 ---
 
 If it is not possible to use the official Docker Image of your scanner (e.g. there is no official repository) you will need to create a `scanner` directory containing a Dockerfile and maybe a `wrapper.sh`.
 
 ## Dockerfile
 
-The Dockerfile should be minimal and based on the official *alpine* baseimage. 
+The Dockerfile should be minimal and based on the official _alpine_ baseimage.
 Please make sure to add a new user for your scanner.
 Please change the user using `UID`. This enables the Image to run in clusters which have a strict `runAsNonRoot` policy (See [Pod Security Policies | Kubernetes](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups)).
 Use the Docker build argument `scannerVersion` to retrieve a specific version of your scanner.

@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: values.yaml
+sidebar_position: 2
 ---
 
 The final `values.yaml` will look something like this:

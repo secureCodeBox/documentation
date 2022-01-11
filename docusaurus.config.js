@@ -5,7 +5,8 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "secureCodeBox – Automated Security Testing",
-  tagline: "secureCodeBox is an automated and scalable Open-Source solution that integrates multiple security scanners with a simple and lightweight interface – for continuous and automated security testing.",
+  tagline:
+    "secureCodeBox is an automated and scalable Open-Source solution that integrates multiple security scanners with a simple and lightweight interface – for continuous and automated security testing.",
   url: "https://docs.securecodebox.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -31,8 +32,8 @@ module.exports = {
       "nuclei",
       "typo3",
       "joomla",
-      "wordpress"
-    ]
+      "wordpress",
+    ],
   },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -128,6 +129,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.json"),
           editUrl: "https://github.com/securecodebox/docusaurus/edit/main/",
           lastVersion: "current",
+          exclude: ["./*.md"],
           versions: {
             current: {
               label: "Current",

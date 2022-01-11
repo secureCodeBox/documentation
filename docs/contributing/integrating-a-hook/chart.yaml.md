@@ -4,12 +4,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: Chart.yaml
+sidebar_position: 1
 ---
 
 The `Chart.yaml` is a basic description of your hook helm chart and will look something like the following:
 
 ```yaml
-
 apiVersion: v2
 name: finding-post-processing
 description: Lets you add or override a field to every finding that meets specified conditions
@@ -38,7 +38,7 @@ You won't have to change this field.
 ## description
 
 Please change the `description` field to explain the basic purpose of your hook.
-For *generic-webhook* the `description` would be:
+For _generic-webhook_ the `description` would be:
 
 ```yaml
 description: Let's you send http webhooks after scans are completed
@@ -46,7 +46,7 @@ description: Let's you send http webhooks after scans are completed
 
 ## version and appVersion
 
-The fields for `version`  will be set automatically by our release process.
+The fields for `version` will be set automatically by our release process.
 Please set both values to `latest` for this purpose:
 
 ```yaml

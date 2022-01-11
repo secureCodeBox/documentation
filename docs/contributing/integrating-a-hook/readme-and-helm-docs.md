@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: README.md And .helm-docs.gotmpl
+sidebar_position: 7
 ---
 
 You may have noticed that all our hooks provide a `README.md` as well as a `.helm-docs.gotmpl`.
@@ -13,7 +14,7 @@ Therefore there is no need to make any changes on the `README.md` it self.
 Every change has to be made in the `.helm-docs.gotmpl` file.
 
 The `.helm-docs.gotmpl` should contain basic information about your hook like its purpose, how it is deployed, how it is configured as well as its Chart configurations generated out of the `values.yaml`.
-For example the `.helm-docs.gotmpl` for *WPScan* looks like this:
+For example the `.helm-docs.gotmpl` for _WPScan_ looks like this:
 
 ```markdown
 ---
@@ -25,6 +26,7 @@ usecase: "Publishes Scan Findings as WebHook."
 ---
 
 <!-- end -->
+
 This Hook will make a request to the specified `webhookUrl` containing the findings in its request body.
 
 ## Deployment

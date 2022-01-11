@@ -4,17 +4,19 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: hook.js and hook.test.js
+sidebar_position: 5
 ---
 
 ## hook.js
 
 This file will contain the actual code of your hook.
-For JavaScript, we provide a *hook-sdk*.
-This *hook-sdk* serves as helper for retrieving findings and as entrypoint for the Dockerfile.
+For JavaScript, we provide a _hook-sdk_.
+This _hook-sdk_ serves as helper for retrieving findings and as entrypoint for the Dockerfile.
 
 The only function required to be created is the `handle()` function.
-This function is called by the *hook-sdk* after scans are finished.
-As parameters for `handle()` the *hook-sdk* provides the following:
+This function is called by the _hook-sdk_ after scans are finished.
+As parameters for `handle()` the _hook-sdk_ provides the following:
+
 - [hook.js](#hookjs)
   - [getRawResults()](#getrawresults)
   - [getFindings()](#getfindings)
@@ -33,13 +35,11 @@ When the rawResults are in form of a json file, getRawResults will return the pa
 :::
 
 ```js
-async function handle({
-  getRawResults,
-}) {
-    const result = await getRawResults();
-    // outputs string representation of the scan result file
-    // e.g. the nmap xml output
-    console.log(result);
+async function handle({ getRawResults }) {
+  const result = await getRawResults();
+  // outputs string representation of the scan result file
+  // e.g. the nmap xml output
+  console.log(result);
 }
 module.exports.handle = handle;
 ```
@@ -51,12 +51,10 @@ This callback function will provide all findings to the hook as an array of find
 Example:
 
 ```js
-async function handle({
-  getFindings,
-}) {
-    const findings = await getFindings();
-    // logs the findings returned by the parser of the scantype
-    console.log(findings);
+async function handle({ getFindings }) {
+  const findings = await getFindings();
+  // logs the findings returned by the parser of the scantype
+  console.log(findings);
 }
 module.exports.handle = handle;
 ```
@@ -78,11 +76,9 @@ If you want to perform actions on all findings consider using the `updateFinding
 Example
 
 ```js
-async function handle({
-  updateRawResults,
-}) {
-    // Overrides the raw results with a fixed nmap report
-    await updateRawResults(`
+async function handle({ updateRawResults }) {
+  // Overrides the raw results with a fixed nmap report
+  await updateRawResults(`
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE nmaprun>
 <?xml-stylesheet href="file:///usr/local/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
@@ -110,7 +106,7 @@ This callback function will enable you to publish desired updates to the finding
 :::
 
 :::caution
-If you make changes to some findings you will have to call `updateFindings()` with ***ALL*** findings not just with the ones that have changed or unchanged findings will get lost!
+If you make changes to some findings you will have to call `updateFindings()` with **_ALL_** findings not just with the ones that have changed or unchanged findings will get lost!
 :::
 
 Example:
@@ -152,8 +148,8 @@ async function handle({
 
 ### Example
 
-This is a basic example for the *generic-webhook*
-As you can see this hook defines the `handle()` function but only uses `getFindings()` and `scan` provided by the *hook-sdk*.
+This is a basic example for the _generic-webhook_
+As you can see this hook defines the `handle()` function but only uses `getFindings()` and `scan` provided by the _hook-sdk_.
 This is fine because the other parameters are not needed.
 
 :::info
@@ -162,7 +158,7 @@ If you also need ENVs or Volumes see INSERT-LINK-HERE.
 :::
 
 :::info
-Notice that the `handle()` function has to be exported to use in the *hook-sdk*
+Notice that the `handle()` function has to be exported to use in the _hook-sdk_
 :::
 
 ```js
