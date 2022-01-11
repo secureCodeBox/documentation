@@ -129,7 +129,6 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.json"),
           editUrl: "https://github.com/securecodebox/docusaurus/edit/main/",
           lastVersion: "current",
-          exclude: ["./*.md"],
           versions: {
             current: {
               label: "Current",
