@@ -72,7 +72,7 @@ for (const dir of config.integrationDirs) {
   const integrations = [],
     fileNames = fs
       .readdirSync(`docs/${dir}`, { encoding: "utf8", withFileTypes: true })
-      .filter((dirent) => dirent.isFile())
+      .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".md"))
       .map((dirent) => dirent.name.split(".").slice(0, -1).join("."));
 
   for (const fileName of fileNames) {
@@ -131,9 +131,7 @@ export const ${constantName} = ${JSON.stringify(itgObject)};
 
 itgsStringArray.push(`export default { ${itgKeys.join(",")} };`);
 
-fs.writeFile(`${config.targetFile}`, itgsStringArray.join(""), function (
-  err
-) {
+fs.writeFile(`${config.targetFile}`, itgsStringArray.join(""), function (err) {
   if (err) {
     console.error(
       `ERROR: Could not build ${config.targetFile.help}.`.error,
