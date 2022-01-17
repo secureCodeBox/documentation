@@ -35,16 +35,18 @@ async function main() {
 
   console.log(`SUCCESS: ${fullRepoName} downloaded.`.success);
 
-  const promises = config.srcDirs.map((dir) =>
-    readDirectory(`${config.temp}/${dir}`).catch((err) =>
-      console.error(
-        `ERROR: Could not read directory at: ${dir}`.error,
-        err.message.error
-      )
+  const dataArray = await Promise.all(
+    config.filesFromRepository.map((dir) =>
+      readDirectory(`${config.temp}/${dir.src}`, false)
+        .then((res) => ({ ...dir, files: res }))
+        .catch((err) =>
+          console.error(
+            `ERROR: Could not read directory at: ${dir}`.error,
+            err.message.error
+          )
+        )
     )
   );
-
-  const dataArray = await Promise.all(promises);
 
   if (!fs.existsSync(config.targetPath)) {
     fs.mkdirSync(config.targetPath);
@@ -54,43 +56,37 @@ async function main() {
     rimraf.sync(config.findingsDir);
   }
 
-  for (const dir of config.srcDirs) {
-    const trgDir = `${config.targetPath}/${dir}`;
+  for (const dir of dataArray) {
+    const trgDir = `${config.targetPath}/${dir.dst}`;
+    const srcDir = `${config.temp}/${dir.src}`;
 
     // Overwrites existing directories with the same name
     if (fs.existsSync(trgDir)) {
-      rimraf.sync(trgDir);
+      await removeExistingMarkdownFilesFromDirectory(trgDir);
 
       console.warn(
         `WARN: ${trgDir.info} already existed and was overwritten.`.warn
       );
+    } else {
+      fs.mkdirSync(trgDir);
     }
 
-    fs.mkdirSync(trgDir);
-    await createDocFilesFromDir(
-      `${config.temp}/${dir}`,
-      trgDir,
-      dataArray[config.srcDirs.indexOf(dir)]
-    );
+    // If the source directory contains a ".helm-docs.gotmpl" file (such as in /scanners or /hooks), the doc files need to be generated.
+    // Else, the docs files are just copied to the destination path.
+    dir.files.includes(".helm-docs.gotmpl")
+      ? await createDocFilesFromDir(srcDir, trgDir, await readDirectory(srcDir))
+      : await copyFilesFromMainRepository(dir.src, dir.dst, dir.exclude);
   }
-
-  for (const cfg of config.filesFromRepository) {
-    copyFilesFromMainRepository(cfg.src, cfg.dst, cfg.exclude);
-  }
-
-  rimraf(config.temp, function (err) {
-    err
-      ? console.warn(`WARN: Could not remove ${config.temp.info}.`.warn)
-      : console.log(`Removed ${config.temp}.`.info);
-  });
+  deleteRepositoryDir();
 }
 
 main().catch((err) => {
   clearDocsOnFailure();
+  deleteRepositoryDir();
   console.error(err.stack.error);
 });
 
-function readDirectory(dir) {
+function readDirectory(dir, dirNamesOnly = true) {
   return new Promise((res, rej) => {
     fs.readdir(
       dir,
@@ -99,9 +95,8 @@ function readDirectory(dir) {
         if (err) {
           rej(err);
         } else {
-          const directories = data
-            .filter((dirent) => dirent.isDirectory())
-            .map((dirent) => dirent.name);
+          if (dirNamesOnly) data = data.filter((file) => file.isDirectory());
+          const directories = data.map((dirent) => dirent.name);
           res(directories);
         }
       }
@@ -254,8 +249,8 @@ function copyFindingsForDownload(filePath) {
 }
 
 function clearDocsOnFailure() {
-  for (const dir of config.srcDirs) {
-    const trgDir = `${config.targetPath}/${dir}`;
+  for (const dir of config.filesFromRepository) {
+    const trgDir = `${config.targetPath}/${dir.src}`;
     if (fs.existsSync(trgDir)) {
       rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
         if (err) {
@@ -273,6 +268,14 @@ function clearDocsOnFailure() {
   }
 }
 
+function deleteRepositoryDir() {
+  rimraf(config.temp, function (err) {
+    err
+      ? console.warn(`WARN: Could not remove ${config.temp.info}.`.warn)
+      : console.log(`Removed ${config.temp}.`.info);
+  });
+}
+
 // Copy files from a given src directory from the main repo into the given dst directory
 //
 // Example: copyFilesFromMainRepository("docs/adr", "docs/architecture/adr");
@@ -281,7 +284,7 @@ function clearDocsOnFailure() {
 // @param src     required source directory in main repository (docsConfig.repository)
 // @param dst     required target directory in this repository relative to config.targetPath
 // @param exclude optional array of files to exclude from src
-function copyFilesFromMainRepository(src, dst, exclude) {
+async function copyFilesFromMainRepository(src, dst, exclude) {
   const srcPath = `${config.temp}/${src}`;
   const dstPath = `${config.targetPath}/${dst}`;
   exclude = exclude || [];
@@ -291,7 +294,7 @@ function copyFilesFromMainRepository(src, dst, exclude) {
   }
 
   if (fs.existsSync(dstPath)) {
-    removeExistingMarkdownFiles(dstPath);
+    await removeExistingMarkdownFilesFromDirectory(dstPath);
   } else {
     fs.mkdirSync(dstPath);
     console.info(`Create target directory ${dstPath.info}...`.success);
@@ -306,13 +309,14 @@ function copyFilesFromMainRepository(src, dst, exclude) {
   });
 }
 
-function removeExistingMarkdownFiles(dstPath) {
-  const existingMarkdownFiles = fs
-    .readdirSync(dstPath, { encoding: "utf-8" })
-    .filter((file) => file.endsWith(".md"));
+async function removeExistingMarkdownFilesFromDirectory(dirPath) {
+  const allFiles = await readDirectory(dirPath, false);
+  const existingMarkdownFiles = allFiles.filter((fileName) =>
+    fileName.endsWith(".md")
+  );
 
   existingMarkdownFiles.forEach((file) => {
-    const filePath = `${dstPath}/${file}`;
+    const filePath = `${dirPath}/${file}`;
     rimraf.sync(filePath);
     console.warn(`WARN: ${filePath} already existed and was deleted.`.warn);
   });
