@@ -131,6 +131,11 @@ const content = {
         link: "https://www.secura.com/",
       },
       {
+        srcLight: "/img/sponsors/Logo_signal-iduna.svg",
+        srcDark: "/img/sponsors/Logo_signal-iduna.svg",
+        link: "https://www.signal-iduna.de/",
+      },
+      {
         srcLight: "/img/sponsors/Logo_timo-pagel-it-consulting.png",
         srcDark: "/img/sponsors/Logo_timo-pagel-it-consulting.png",
         link: "https://pagel.pro/",
