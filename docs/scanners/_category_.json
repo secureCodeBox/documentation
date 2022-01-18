@@ -3,6 +3,7 @@
   "position": 3,
   "link": {
     "type": "generated-index",
-    "title": "Scanners Overview"
+    "title": "Scanners Overview",
+    "slug": "scanners"
   }
 }
