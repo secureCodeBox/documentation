@@ -26,4 +26,6 @@ spec:
   env:
     - name: WEBHOOK_URL
       value: { { .Values.webhookUrl | quote } }
+  affinity: { { - toYaml .Values.hook.affinity | nindent 4 } }
+  tolerations: { { - toYaml .Values.hook.tolerations | nindent 4 } }
 ```

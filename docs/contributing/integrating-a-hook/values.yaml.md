@@ -50,6 +50,14 @@ Adds Kubernetes labels to the Hook definition. See the [Hooks HowTo](/docs/how-t
 You can specify the priority of the hook with `hook.priorty`.
 By default, this priority should be zero since they regard deployment-specific configurations which the secureCodeBox team does not manage.
 
+### Affinity
+
+Optional affinity settings that control how the hook is scheduled (see: [Node Affinity | Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/))
+
+### Tolerations
+
+Optional tolerations settings that control how the hook is scheduled (see: [Tolerations | Kubernetes](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/))
+
 ## Additional Values
 
 If your hook needs some additional information like an URL (`webhookUrl` in the example above), environment variables or volume mounts, you need to provide an option to specify them in your `values.yaml` and access them in the hook implementation (See [templates](/docs/contributing/integrating-a-hook/templates-dir) for information on how to access the provided values, and [ScanCompletionHook](/docs/api/crds/scan-completion-hook) for a list of possible keys you can set in the template).
