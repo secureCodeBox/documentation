@@ -4,5 +4,5 @@ Upstream-Contact: Robert Seedorff <robert.seedorff@iteratec.com>
 Source: https://github.com/secureCodeBox/documentation
 
 Files: static/img/*
-Copyright: 2021 iteratec GmbH
+Copyright: the secureCodeBox authors
 License: Apache-2.0
