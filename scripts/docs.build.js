@@ -252,18 +252,18 @@ function clearDocsOnFailure() {
   for (const dir of config.filesFromRepository) {
     const trgDir = `${config.targetPath}/${dir.src}`;
     if (fs.existsSync(trgDir)) {
-      rimraf(trgDir, { maxRetries: 3, recursive: true }, function (err) {
-        if (err) {
+      removeExistingMarkdownFilesFromDirectory(trgDir)
+        .then(() => {
+          console.log(
+            `Cleared ${trgDir.info} due to previous failure.`.magenta
+          );
+        })
+        .catch((err) => {
           console.error(
             `ERROR: Could not remove ${trgDir.info} on failure.`.error
           );
           console.error(err.message.error);
-        } else {
-          console.log(
-            `Removed ${trgDir.info} due to previous failure.`.magenta
-          );
-        }
-      });
+        });
     }
   }
 }
@@ -316,6 +316,6 @@ async function removeExistingMarkdownFilesFromDirectory(dirPath) {
   existingMarkdownFiles.forEach((file) => {
     const filePath = `${dirPath}/${file}`;
     rimraf.sync(filePath);
-    console.warn(`WARN: ${filePath} already existed and was deleted.`.warn);
+    console.warn(`WARN: ${filePath} was deleted.`.warn);
   });
 }
