@@ -60,7 +60,7 @@ async function main() {
     const trgDir = `${config.targetPath}/${dir.dst}`;
     const srcDir = `${config.temp}/${dir.src}`;
 
-    // Overwrites existing directories with the same name
+    // Clears existing md files from directories  
     if (fs.existsSync(trgDir)) {
       await removeExistingMarkdownFilesFromDirectory(trgDir);
 
