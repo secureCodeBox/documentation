@@ -75,7 +75,7 @@ async function main() {
     // Else, the docs files are just copied to the destination path.
     dir.files.includes(".helm-docs.gotmpl")
       ? await createDocFilesFromMainRepository(srcDir, trgDir, await readDirectory(srcDir))
-      : await copyFilesFromMainRepository(dir.src, dir.dst, dir.exclude);
+      : await copyFilesFromMainRepository(srcDir, trgDir, dir.exclude);
   }
   deleteRepositoryDir();
 }
@@ -284,13 +284,11 @@ function deleteRepositoryDir() {
 // @param src     required source directory in main repository (docsConfig.repository)
 // @param dst     required target directory in this repository relative to config.targetPath
 // @param exclude optional array of files to exclude from src
-async function copyFilesFromMainRepository(src, dst, exclude) {
-  const srcPath = `${config.temp}/${src}`;
-  const dstPath = `${config.targetPath}/${dst}`;
+async function copyFilesFromMainRepository(srcPath, dstPath, exclude) {
   exclude = exclude || [];
 
-  if (!fs.existsSync(srcPath)) {
-    console.error(`${config.temp}/${src.info}.`.error);
+  if (fs.existsSync(srcPath)) {
+    console.error(`${srcPath.info}.`.error);
   }
 
   if (fs.existsSync(dstPath)) {
