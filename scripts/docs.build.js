@@ -25,7 +25,7 @@ colors.setTheme({
 // For the documentation on this script look at the README.md of this repository
 
 async function main() {
-  const fullRepoName = config.repository + `#` + config.branch;
+  const fullRepoName = `${config.repository}#${config.branch}`;
   console.log(`Downloading ${fullRepoName} into ${config.temp}...`.info);
 
   await download(fullRepoName, config.temp).catch((err) => {
