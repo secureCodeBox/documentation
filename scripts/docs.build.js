@@ -74,7 +74,7 @@ async function main() {
     // If the source directory contains a ".helm-docs.gotmpl" file (such as in /scanners or /hooks), the doc files need to be generated.
     // Else, the docs files are just copied to the destination path.
     dir.files.includes(".helm-docs.gotmpl")
-      ? await createDocFilesFromDir(srcDir, trgDir, await readDirectory(srcDir))
+      ? await createDocFilesFromMainRepository(srcDir, trgDir, await readDirectory(srcDir))
       : await copyFilesFromMainRepository(dir.src, dir.dst, dir.exclude);
   }
   deleteRepositoryDir();
@@ -104,7 +104,7 @@ function readDirectory(dir, dirNamesOnly = true) {
   });
 }
 
-async function createDocFilesFromDir(relPath, targetPath, dirNames) {
+async function createDocFilesFromMainRepository(relPath, targetPath, dirNames) {
   for (const dirName of dirNames) {
     const readMe = `${relPath}/${dirName}/README.md`;
 
