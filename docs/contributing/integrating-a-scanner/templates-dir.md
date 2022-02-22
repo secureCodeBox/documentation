@@ -31,8 +31,8 @@ metadata:
   name: zap-json
 spec:
   image: "{{ .Values.parser.image.repository }}:{{ .Values.parser.image.tag | default .Chart.Version }}"
-  ttlSecondsAfterFinished: { { .Values.parser.ttlSecondsAfterFinished } }
-  env: { { - toYaml .Values.parser.env | nindent 4 } }
+  ttlSecondsAfterFinished: {{ .Values.parser.ttlSecondsAfterFinished }}
+  env: {{ - toYaml .Values.parser.env | nindent 4 }}
 ```
 
 More information under [ParseDefinition | secureCodeBox](/docs/api/crds/parse-definition)

@@ -17,15 +17,15 @@ This file contains the specification of your new hook. Please take a look at [Sc
 apiVersion: "execution.securecodebox.io/v1"
 kind: ScanCompletionHook
 metadata:
-  name: { { include "generic-webhook.fullname" . } }
-  labels: { { - include "generic-webhook.labels" . | nindent 4 } }
+  name: {{ include "generic-webhook.fullname" . }}
+  labels: {{ - include "generic-webhook.labels" . | nindent 4 }}
 spec:
   type: ReadOnly
   image: "{{ .Values.hook.image.repository }}:{{ .Values.hook.image.tag | default .Chart.Version }}"
-  ttlSecondsAfterFinished: { { .Values.hook.ttlSecondsAfterFinished } }
+  ttlSecondsAfterFinished: {{ .Values.hook.ttlSecondsAfterFinished }}
   env:
     - name: WEBHOOK_URL
-      value: { { .Values.webhookUrl | quote } }
-  affinity: { { - toYaml .Values.hook.affinity | nindent 4 } }
-  tolerations: { { - toYaml .Values.hook.tolerations | nindent 4 } }
+      value: {{ .Values.webhookUrl | quote }}
+  affinity: {{ - toYaml .Values.hook.affinity | nindent 4 }}
+  tolerations: {{ - toYaml .Values.hook.tolerations | nindent 4 }}
 ```

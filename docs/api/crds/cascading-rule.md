@@ -68,7 +68,7 @@ spec:
           service: https
           state: open
   scanLabels:
-    mynewlabel: { { metadata.name } }
+    mynewlabel: {{ metadata.name }}
   scanAnnotations:
     defectdojo.securecodebox.io/product-name: "{{$.hostOrIP}}"
     defectdojo.securecodebox.io/product-type-name: "{{metadata.labels.organization}}"
