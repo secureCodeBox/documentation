@@ -79,3 +79,5 @@ _NOTICE:_ You will need to uninstall the operator with `helm -n securecodebox-sy
 cd operator
 make run
 ```
+
+To run multiple operator instances locally (e.g. SCB operator and SCB Autodiscovery operator) the `metrics-bind-address` and `health-probe-bind-address` port needs to changed via commandline arguements for one of the operators.
