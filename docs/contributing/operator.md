@@ -1,5 +1,5 @@
 ---
-# SPDX-FileCopyrightText: 2021 iteratec GmbH
+# SPDX-FileCopyrightText: the secureCodeBox authors
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -41,13 +41,15 @@ We would recommend to use [Minio](https://min.io/download#/) inside a docker con
 docker container run \
   --name minio \
   -p 9000:9000 \
+  -p 9001:9001 \
   -d \
   --rm \
   minio/minio \
-  server /data
+  server /data \
+  --console-address ":9001"
 ```
 
-In the Minio management GUI you will need to add a new bucket for the operator. The default credentials for your minio instance are `minioadmin:minioadmin`. You might change those. Go to the management UI at <http://localhost:9000/> and add a new bucket. After creating your bucket you will need to specify some environment variables to enable the operator to use the bucket. For that export these variables:
+In the Minio management GUI you will need to add a new bucket for the operator. The default credentials for your minio instance are `minioadmin:minioadmin`. You might change those. Go to the management UI at <http://localhost:9001/> and add a new bucket. After creating your bucket you will need to specify some environment variables to enable the operator to use the bucket. For that export these variables:
 
 ```bash
 export MINIO_ACCESS_KEY="your-minio-access-key"
@@ -78,3 +80,9 @@ _NOTICE:_ You will need to uninstall the operator with `helm -n securecodebox-sy
 cd operator
 make run
 ```
+
+To run multiple operator instances locally (e.g. SCB operator and SCB Autodiscovery operator) the `metrics-bind-address` and `health-probe-bind-address` port needs to be changed via commandline arguements for one of the operators.<br/>
+```
+go run ./main.go -metrics-bind-address :9090 -health-probe-bind-address :9595
+```
+

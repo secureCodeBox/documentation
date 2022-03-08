@@ -1,12 +1,11 @@
-// SPDX-FileCopyrightText: 2021 iteratec GmbH
+// SPDX-FileCopyrightText: the secureCodeBox authors
 //
 // SPDX-License-Identifier: Apache-2.0
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "secureCodeBox – Automated Security Testing",
-  tagline:
-    "secureCodeBox is an automated and scalable Open-Source solution that integrates multiple security scanners with a simple and lightweight interface – for continuous and automated security testing.",
+  title: "secureCodeBox",
+  tagline: "Continuous automated security testing ✓ multi scanner security platform ✓ scalable open-source tool ✓ lightweight interface ✓",
   url: "https://docs.securecodebox.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -113,7 +112,7 @@ module.exports = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} iteratec GmbH. Built with Docusaurus.`,
+        copyright: `Copyright the secureCodeBox authors. Built with Docusaurus.`,
       },
       prism: {
         theme: require("prism-react-renderer/themes/dracula"),
@@ -138,6 +137,8 @@ module.exports = {
           },
         },
         blog: {
+          blogTitle: 'Blog on Automated Security Testing',
+          blogDescription: 'In this blog the core maintainer will write about the development, roadmap, ideas RFCs etc. of the OWASP secureCodeBox.',
           showReadingTime: true,
           editUrl: "https://github.com/securecodebox/docusaurus/edit/main/",
           feedOptions: {
