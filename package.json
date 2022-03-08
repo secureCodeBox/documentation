@@ -30,7 +30,7 @@
     "download-git-repo": "^3.0.2",
     "gray-matter": "^4.0.3",
     "mustache": "^4.2.0",
-    "node-fetch": "^3.0.0-beta.9",
+    "node-fetch": "^3.1.1",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.2",
     "react-accessible-accordion": "^3.3.5",
