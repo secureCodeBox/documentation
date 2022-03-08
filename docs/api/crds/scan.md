@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Scan"
+sidebar_position: 2
 ---
 
 The Scan Custom Resource Definition (CRD) lets you define how a specific scan should be configured.
@@ -26,9 +27,10 @@ These usually contain scanner specific configurations and target specification.
 `env` lets you pass in custom environment variables to the scan container.
 This can be useful to pass in secret values like login credentials scanner require without having to define them in plain text.
 
-Env has the same API as "env" property on Kubernetes Pods. 
+Env has the same API as "env" property on Kubernetes Pods.
 
 See:
+
 - [Documentation](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
 - [API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#envvar-v1-core)
 
@@ -42,6 +44,7 @@ It can also be used in combination with `initContainers` to provision files, VCS
 `volumes` has the same API as the `volumes` property on Kubernetes pods.
 
 See:
+
 - [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/)
 - [API Reference](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#volume-v1-core)
 
@@ -53,6 +56,7 @@ It is used in combination with [`volumes`](#volumes-optional) (see above).
 `volumeMounts` has the same API as the `volumeMounts` property on Kubernetes pods.
 
 See:
+
 - [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storage/)
 - [API Reference](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#volumemount-v1-core)
 
@@ -85,7 +89,7 @@ spec:
       # Use the "busybox" image, which contains wget
       image: busybox
       # Launch wget to download a list of targets and place it in /targets/targets.txt
-      command: 
+      command:
         - wget
         - "https://my.website.tld/targets.txt"
         - "-O"
@@ -104,10 +108,12 @@ spec:
 `initContainers` has the same API as the `initContainers` property on Kubernetes pods, which is a list of `container`s.
 
 See:
+
 - [Documentation](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
 - [API Reference](https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core)
 
 ### Affinity and Tolerations (optional)
+
 [`affinity`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/) and [`tolerations`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) can be used to control which nodes the parser is executed on.
 
 ### Cascades (Optional)
@@ -118,14 +124,14 @@ The cascades config in the scans spec contains [Kubernetes Label Selectors](http
 
 Furthermore, in the cascade config you can specify whether cascading scan should inherit parent fields:
 
-* `inheritLabels`: `true`
-* `inheritAnnotations`: `true`
-* `inheritEnv`: `false`
-* `inheritVolumes`: `false`
-* `inheritInitContainers`: `false`
-* `inheritHookSelector`: `false`
-* `inheritAffinity`: `true`
-* `inheritTolerations`: `true`
+- `inheritLabels`: `true`
+- `inheritAnnotations`: `true`
+- `inheritEnv`: `false`
+- `inheritVolumes`: `false`
+- `inheritInitContainers`: `false`
+- `inheritHookSelector`: `false`
+- `inheritAffinity`: `true`
+- `inheritTolerations`: `true`
 
 These fields will merge the parent's entries with entries defined in the cascading rules.
 Entries defined in cascading rules will only apply to the current scan.
@@ -135,7 +141,6 @@ There are two exceptions to this rule: in the case of Affinity and Tolerations, 
 Defining identical entries in both the Scan AND the Cascading Rule resource will lead to undefined behaviour.
 See [#789](https://github.com/secureCodeBox/secureCodeBox/issues/789) for more details.
 :::
-
 
 To use cascades you'll need to have the [CascadingScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
 For an example on how they can be used see the [Scanning Networks HowTo](https://docs.securecodebox.io/docs/how-tos/scanning-networks)
@@ -162,7 +167,7 @@ The `key` references one of the annotations defined on your scan.
 The annotation name _must_ start with `scope.cascading.securecodebox.io/`.
 These annotations can only be added on the initial scan (i.e., they cannot be modified using the [`scanAnnotations`](/docs/api/crds/cascading-rule#scanlabels--scanannotations-optional) field of the cascading scan rules) and are inherited by default.
 
-`operator` is one of  `In`, `NotIn`, `Contains`, `DoesNotContain`, `InCIDR`, `NotInCIDR`, `SubdomainOf`, `NotSubdomainOf`.
+`operator` is one of `In`, `NotIn`, `Contains`, `DoesNotContain`, `InCIDR`, `NotInCIDR`, `SubdomainOf`, `NotSubdomainOf`.
 
 `values` is a list of values for which the selector should pass.
 
@@ -185,7 +190,7 @@ To select the domains data in this finding, use the `asList` notation as shown b
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/domain: "example.com"
-...
+---
 key: "scope.cascading.securecodebox.io/domain"
 operator: "In"
 values: ["{{#asList}}{{attributes.domains}}{{/asList}}"]
@@ -219,7 +224,7 @@ To select the domains data in this finding, use the `getValues` notation as show
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/domain: "example.com"
-...
+---
 key: "scope.cascading.securecodebox.io/domain"
 operator: "In"
 # Note that the parameter is *not* set inside curly braces!
@@ -243,7 +248,7 @@ To select the domains data in this finding, use the `split` notation as shown be
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/domain: "example.com"
-...
+---
 key: "scope.cascading.securecodebox.io/domain"
 operator: "In"
 values: ["{{#split}}{{attributes.domains}}{{/split}}"]
@@ -252,40 +257,44 @@ values: ["{{#split}}{{attributes.domains}}{{/split}}"]
 ##### Operators
 
 `In` & `NotIn`: The scope annotation value exists in one of `values`. Matching example:
+
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/domain: "example.com"
-...
+---
 key: "scope.cascading.securecodebox.io/domain"
 operator: "In"
 values: ["example.com", "subdomain.example.com"]
 ```
 
 `Contains` & `DoesNotContain`: The scope annotation value is considered a comma-seperated list and checks if every `values` is in that list. Matching example:
+
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/domain: "example.com,subdomain.example.com,other.example.com"
-...
+---
 key: "scope.cascading.securecodebox.io/domain"
 operator: "Contains"
 values: ["example.com", "subdomain.example.com"]
 ```
 
-`InCIDR` & `NotInCIDR`: The scope annotation value is considered a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and checks if every `values` is within the subnet of that CIDR. Supports both IPv4 and IPv6. If the scope is defined in IPv4, will only validate IPv4 IPs in the finding values.  Vice-versa for IPv6 defined in scope and IPv4 found in values. Note that all IPs in finding values must be valid addresses, regardless of whether IPv4 or IPv6 was used in the scope definition. Matching example:
+`InCIDR` & `NotInCIDR`: The scope annotation value is considered a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) and checks if every `values` is within the subnet of that CIDR. Supports both IPv4 and IPv6. If the scope is defined in IPv4, will only validate IPv4 IPs in the finding values. Vice-versa for IPv6 defined in scope and IPv4 found in values. Note that all IPs in finding values must be valid addresses, regardless of whether IPv4 or IPv6 was used in the scope definition. Matching example:
+
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/cidr: "10.10.0.0/16"
-...
+---
 key: "scope.cascading.securecodebox.io/cidr"
 operator: "InCIDR"
 values: ["10.10.1.2", "10.10.1.3", "2001:0:ce49:7601:e866:efff:62c3:fffe"]
 ```
 
 `SubdomainOf` & `NotSubdomainOf`: Checks if every `values` is a subdomain of the scope annotation value (inclusive; i.e. example.com is a subdomain of example.com). Matching example:
+
 ```yaml
 annotations:
   scope.cascading.securecodebox.io/domain: "example.com"
-...
+---
 key: "scope.cascading.securecodebox.io/domain"
 operator: "SubdomainOf"
 values: ["subdomain.example.com", "example.com"]
@@ -304,9 +313,9 @@ Leaving this field undefined will select all available hooks in this namespace.
 ```yaml
 hookSelector:
   matchExpressions:
-   - key: app.kubernetes.io/instance
-     operator: In
-     values: [ "defectdojo", "cascading-scans" ]
+    - key: app.kubernetes.io/instance
+      operator: In
+      values: ["defectdojo", "cascading-scans"]
 ```
 
 :::note
@@ -326,22 +335,22 @@ Metadata is a standard field on Kubernetes resources. It contains multiple relev
 Defines the observed state of a Scan. This will be filled by Kubernetes.
 It contains (see: [Go Type ScanStatus](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/apis/execution/v1/scan_types.go#L49))
 
-* `State`: State of the scan (See: [secureCodeBox | ScanControler](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/controllers/execution/scans/scan_controller.go#L105))
-* `FinishedAt`: Time when scan, parsers and hooks for this scan are marked as 'Done'
-* `ErrorDescription`: Description of an Error (if there is one)
-* `RawResultType`: Determines which kind of ParseDefinition will be used to turn the raw results of the scanner into findings
-* `RawResultFile`: Filename of the result file of the scanner. e.g. `nmap-result.xml`
-* `FindingDownloadLink`: Link to download the finding json file from. Valid for 7 days
-* `RawResultDownloadLink`: RawResultDownloadLink link to download the raw result file from. Valid for 7 days
-* `Findings`: FindingStats (See [Go Type FindingStats](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/apis/execution/v1/scan_types.go#L89))
-* `ReadAndWriteHookStatus`: Status of the Read and Write Hooks
+- `State`: State of the scan (See: [secureCodeBox | ScanControler](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/controllers/execution/scans/scan_controller.go#L105))
+- `FinishedAt`: Time when scan, parsers and hooks for this scan are marked as 'Done'
+- `ErrorDescription`: Description of an Error (if there is one)
+- `RawResultType`: Determines which kind of ParseDefinition will be used to turn the raw results of the scanner into findings
+- `RawResultFile`: Filename of the result file of the scanner. e.g. `nmap-result.xml`
+- `FindingDownloadLink`: Link to download the finding json file from. Valid for 7 days
+- `RawResultDownloadLink`: RawResultDownloadLink link to download the raw result file from. Valid for 7 days
+- `Findings`: FindingStats (See [Go Type FindingStats](https://github.com/secureCodeBox/secureCodeBox/blob/main/operator/apis/execution/v1/scan_types.go#L89))
+- `ReadAndWriteHookStatus`: Status of the Read and Write Hooks
 
 ## Example
 
 ```yaml
 apiVersion: "execution.securecodebox.io/v1"
 kind: Scan
-status: # Set during runtime. Do not edit via values.yaml etc. 
+status: # Set during runtime. Do not edit via values.yaml etc.
 metadata:
   name: "nmap-scanme.nmap.org"
   annotations:
@@ -371,7 +380,7 @@ spec:
       operator: In
       values: [non-invasive, invasive]
     scopeLimiter:
-      validOnMissingRender:  true
+      validOnMissingRender: true
       allOf:
         - key: "scope.cascading.securecodebox.io/cidr"
           operator: "InCIDR"

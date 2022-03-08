@@ -56,14 +56,13 @@ yarn-error.log*
 # Build script
 /githubRepo
 /temp
-sidebars.json
 src/integrations.js
-docs/scanners/
-docs/hooks/
+docs/scanners/*.md
+docs/hooks/*.md
+docs/architecture/adr/*.md
 docs/guides/
 static/findings
 
 # Used by bin/create_post.sh
 .author_meta
 public/
-docs/architecture/adr/

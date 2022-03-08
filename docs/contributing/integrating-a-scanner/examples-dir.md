@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: examples (Directory)
+sidebar_position: 8
 ---
 
 The `examples` directory should contain some basic examples using your scanner.
@@ -16,19 +17,19 @@ This file contains a basic configuration for your scan for a demo target.
 For nmap a `scan.yaml` could look like the following:
 
 ```yaml
- apiVersion: "execution.securecodebox.io/v1"
- kind: Scan
- metadata:
-   name: "nmap-juice-shop-cluster-internal"
-   spec:
-   scanType: "nmap"
-   parameters:
-     # Internal cluster is blocking our ping probes, therefore we skip them
-     - "-Pn"
-     # Service Detection enabled
-     - "-sV"
-     # Actual Service Address will depend on you cluster and namespace configuration. 🤷<200d>
-     - juice-shop.demo-targets.svc.cluster.local
+apiVersion: "execution.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "nmap-juice-shop-cluster-internal"
+  spec:
+  scanType: "nmap"
+  parameters:
+    # Internal cluster is blocking our ping probes, therefore we skip them
+    - "-Pn"
+    # Service Detection enabled
+    - "-sV"
+    # Actual Service Address will depend on you cluster and namespace configuration. 🤷<200d>
+    - juice-shop.demo-targets.svc.cluster.local
 ```
 
 ## findings.yaml
@@ -38,43 +39,45 @@ For the provided nmap example this looks like the following:
 
 ```yaml
 [
-    {
-        "name": "http",
-        "description": "Port 3000 is open using tcp protocol.",
-        "category": "Open Port",
-        "location": "tcp://10.111.199.4:3000",
-        "osi_layer": "NETWORK",
-        "severity": "INFORMATIONAL",
-        "attributes": {
-            "port": 3000,
-            "state": "open",
-            "ip_address": "10.111.199.4",
-            "mac_address": null,
-            "protocol": "tcp",
-            "hostname": "juice-shop.demo-targets.svc.cluster.local",
-            "method": "probed",
-            "operating_system": null,
-            "service": "http",
-            "serviceProduct": "Node.js Express framework",
-            "serviceVersion": null,
-            "scripts": null
-        },
-        "id": "a9ec9f11-4cfa-461b-85c0-57ea31162112"
-    },
-    {
-        "name": "Host: juice-shop.demo-targets.svc.cluster.local",
-        "category": "Host",
-        "description": "Found a host",
-        "location": "juice-shop.demo-targets.svc.cluster.local",
-        "severity": "INFORMATIONAL",
-        "osi_layer": "NETWORK",
-        "attributes": {
-            "ip_address": "10.111.199.4",
-            "hostname": "juice-shop.demo-targets.svc.cluster.local",
-            "operating_system": null
-        },
-        "id": "080d888a-a9bc-4c74-8d03-c4c6cc40238d"
-    }
+  {
+    "name": "http",
+    "description": "Port 3000 is open using tcp protocol.",
+    "category": "Open Port",
+    "location": "tcp://10.111.199.4:3000",
+    "osi_layer": "NETWORK",
+    "severity": "INFORMATIONAL",
+    "attributes":
+      {
+        "port": 3000,
+        "state": "open",
+        "ip_address": "10.111.199.4",
+        "mac_address": null,
+        "protocol": "tcp",
+        "hostname": "juice-shop.demo-targets.svc.cluster.local",
+        "method": "probed",
+        "operating_system": null,
+        "service": "http",
+        "serviceProduct": "Node.js Express framework",
+        "serviceVersion": null,
+        "scripts": null,
+      },
+    "id": "a9ec9f11-4cfa-461b-85c0-57ea31162112",
+  },
+  {
+    "name": "Host: juice-shop.demo-targets.svc.cluster.local",
+    "category": "Host",
+    "description": "Found a host",
+    "location": "juice-shop.demo-targets.svc.cluster.local",
+    "severity": "INFORMATIONAL",
+    "osi_layer": "NETWORK",
+    "attributes":
+      {
+        "ip_address": "10.111.199.4",
+        "hostname": "juice-shop.demo-targets.svc.cluster.local",
+        "operating_system": null,
+      },
+    "id": "080d888a-a9bc-4c74-8d03-c4c6cc40238d",
+  },
 ]
 ```
 

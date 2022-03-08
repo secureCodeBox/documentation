@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: Chart.yaml
+sidebar_position: 1
 ---
 
 The `Chart.yaml` is a basic description of your scanner helm chart and will look something like the following:
@@ -47,15 +48,15 @@ You won't have to change this field.
 ## description
 
 Please change the `description` field to explain the basic purpose of your scanner.
-For *WPScan* the `description` would be:
+For _WPScan_ the `description` would be:
 
 ```yaml
-description: A Helm chart for the WordPress security scanner that integrates with the secureCodeBox. 
+description: A Helm chart for the WordPress security scanner that integrates with the secureCodeBox.
 ```
 
 ## version and appVersion
 
-The fields for `version`  will be set automatically by our release process.
+The fields for `version` will be set automatically by our release process.
 The `appVersion` should be set to the Version of the scanner. If the scanner does not use versions please use `latest`.
 Please set both values:
 
@@ -107,7 +108,7 @@ icon: https://docs.securecodebox.io/img/integrationIcons/WPScan.svg
 
 ## sources
 
-The `sources` field should be set the the URL of the *secureCodeBox* repository:
+The `sources` field should be set the the URL of the _secureCodeBox_ repository:
 
 ```yaml
 sources:
@@ -123,4 +124,3 @@ maintainers:
   - name: iteratec GmbH
   - email: secureCodeBox@iteratec.com
 ```
-

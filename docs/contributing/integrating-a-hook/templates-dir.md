@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: templates (Directory)
+sidebar_position: 6
 ---
 
 ## new-hook.yaml
@@ -17,8 +18,7 @@ apiVersion: "execution.securecodebox.io/v1"
 kind: ScanCompletionHook
 metadata:
   name: {{ include "generic-webhook.fullname" . }}
-  labels:
-    {{- include "generic-webhook.labels" . | nindent 4 }}
+  labels: {{ - include "generic-webhook.labels" . | nindent 4 }}
 spec:
   type: ReadOnly
   image: "{{ .Values.hook.image.repository }}:{{ .Values.hook.image.tag | default .Chart.Version }}"
@@ -26,9 +26,6 @@ spec:
   env:
     - name: WEBHOOK_URL
       value: {{ .Values.webhookUrl | quote }}
-  affinity:
-    {{- toYaml .Values.hook.affinity | nindent 4 }}
-  tolerations:
-    {{- toYaml .Values.hook.tolerations | nindent 4 }}
+  affinity: {{ - toYaml .Values.hook.affinity | nindent 4 }}
+  tolerations: {{ - toYaml .Values.hook.tolerations | nindent 4 }}
 ```
-

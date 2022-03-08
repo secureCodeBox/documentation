@@ -4,10 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: Makefile
+sidebar_position: 4
 ---
 
 To test your hook locally, you may use the following makefile.
-
 
 ```makefile
 #!/usr/bin/make -f
@@ -22,16 +22,16 @@ See [Local Deployment](/docs/contributing/local-deployment) for examples how to 
 
 ## Available makefile targets
 
-| Target | Use |
-| --- | --- |
-| clean-integration-tests | Resets the integration-tests namespace |
-| unit-tests | Run your hook unit tests |
-| docker-build | Builds your hook |
-| docker-export | Exports your hook into a .tar file |
-| kind-import | Loads your hook .tar files into your local kind cluster |
-| deploy | Deploys your hook helm chart into your local kind cluster |
-| deploy-test-deps | Deploys your hook's test dependencies (demo-targets) into your local kind cluster |
-| integration-tests | Deletes all scans and runs your integration test `scanners/SCANNER_NAME.test.js` |
+| Target                  | Use                                                                               |
+| ----------------------- | --------------------------------------------------------------------------------- |
+| clean-integration-tests | Resets the integration-tests namespace                                            |
+| unit-tests              | Run your hook unit tests                                                          |
+| docker-build            | Builds your hook                                                                  |
+| docker-export           | Exports your hook into a .tar file                                                |
+| kind-import             | Loads your hook .tar files into your local kind cluster                           |
+| deploy                  | Deploys your hook helm chart into your local kind cluster                         |
+| deploy-test-deps        | Deploys your hook's test dependencies (demo-targets) into your local kind cluster |
+| integration-tests       | Deletes all scans and runs your integration test `scanners/SCANNER_NAME.test.js`  |
 
 ## Configuring your makefile (examples)
 
@@ -62,7 +62,7 @@ integration-tests:
 
 ```
 
-This adds the http-webhook demo-target to your integration tests. 
+This adds the http-webhook demo-target to your integration tests.
 `deploy-test-dep-test-scan` is a sample scanner used in most hook integration tests.
 
 The above makefile also overrides the `integration-test` target such that it references the generic folder as a test suite.

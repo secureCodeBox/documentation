@@ -31,8 +31,8 @@ module.exports = {
       "nuclei",
       "typo3",
       "joomla",
-      "wordpress"
-    ]
+      "wordpress",
+    ],
   },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -128,6 +128,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.json"),
           editUrl: "https://github.com/securecodebox/docusaurus/edit/main/",
           lastVersion: "current",
+          exclude: ["telemetry.md"],
           versions: {
             current: {
               label: "Current",

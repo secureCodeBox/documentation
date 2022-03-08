@@ -5,6 +5,7 @@
 
 title: "Starting your First Scans"
 path: "docs/getting-started/first-scans"
+sidebar_position: 2
 ---
 
 Now that you have installed the secureCodeBox, you can start you are close to being able to run your first scans.
@@ -83,7 +84,7 @@ kubectl get jobs
 
 This should give you an output like this
 
-``` text
+```text
 NAME                               COMPLETIONS   DURATION   AGE
 parse-nmap-scanme.nmap.org-h8thd   1/1           30s        43m
 scan-nmap-scanme.nmap.org-w66rp    1/1           10s        25s

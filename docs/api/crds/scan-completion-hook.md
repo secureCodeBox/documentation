@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "ScanCompletionHook"
+sidebar_position: 6
 ---
 
 ScanCompletionHooks are Custom Resource Definitions (CRD's) used to define custom behavior which should be run after a scan has been completed.
@@ -35,7 +36,7 @@ The following diagram shows an example run:
 ```text
                                  Priority 2                                          Priority 1                    Priority 0
     +-------------------------------------------------------------------+     +----------------------+      +----------------------+
-    |    +--------------+       +--------------+       +--------------+ |     |    +--------------+  |      |    +--------------+  | 
+    |    +--------------+       +--------------+       +--------------+ |     |    +--------------+  |      |    +--------------+  |
     | -> | ReadAndWrite |------>| ReadAndWrite |------>|   ReadOnly   | |     | -> |   ReadOnly   |  | ---> | -> | ReadAndWrite |  |
     |    +--------------+       +--------------+  |    +--------------+ |     |    +--------------+  |      |    +--------------+  |
 --> |                                             |                     | --> |                      |      +----------------------+
@@ -54,10 +55,11 @@ The `image` field contains a container image reference for the image supposed to
 The `imagePullSecrets` field can be used to specify pull secrets used to access the hooks image from a private registry.
 
 ### ImagePullPolicy (Optional)
+
 The `imagePullPolicy` field can be used to specify under which circumstances the images should be pulled from the registry.
 One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.
 See the [Kubernetes docs](https://kubernetes.io/docs/concepts/containers/images#updating-images) for more information.
-	
+
 ### Env (Optional)
 
 The `env` field can be used to specify env variables and to mount secrets into containers.
@@ -74,6 +76,7 @@ It has to be combined with [`volumeMounts`](#volumemounts-optional) to be useful
 It has the same API as the `volumeMounts` property on Kubernetes pods.
 
 ### Affinity and Tolerations (optional)
+
 [`affinity`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/) and [`tolerations`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) can be used to control which nodes the parser is executed on.
 The values should be set via Helm values (during install) or by specifying `affinity` and/or `tolerations` in the `Scan` specification.
 
@@ -101,20 +104,20 @@ spec:
   priority: 2
   image: docker.io/securecodebox/persistence-elastic:latest
   imagePullSecrets:
-  - name: image-pull-secret
+    - name: image-pull-secret
   serviceAccountName: elastic-persistence
   env:
-  - name: ELASTICSEARCH_ADDRESS
-    value: https://data.chase.securecodebox.io
-  - name: ELASTICSEARCH_USERNAME
-    valueFrom:
-      secretKeyRef:
-        key: username
-        name: elastic-persistence-credentials
-  - name: ELASTICSEARCH_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        key: password
-        name: elastic-persistence-credentials
+    - name: ELASTICSEARCH_ADDRESS
+      value: https://data.chase.securecodebox.io
+    - name: ELASTICSEARCH_USERNAME
+      valueFrom:
+        secretKeyRef:
+          key: username
+          name: elastic-persistence-credentials
+    - name: ELASTICSEARCH_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: password
+          name: elastic-persistence-credentials
   ttlSecondsAfterFinished: 60
 ```

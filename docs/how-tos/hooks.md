@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Post-processing with Hooks"
+sidebar_position: 4
 ---
 
 ## Introduction
@@ -62,7 +63,7 @@ NAME                                                 READY   STATUS      RESTART
 parse-nmap-example-5p964--1-ctgrv                    0/1     Completed   0          18s
 scan-nmap-example-gg9kd--1-pjltd                     0/2     Completed   0          26s
 ufh1-update-field-hook-nmap-example-p8pcb--1-vx25q   0/1     Completed   0          10s
-ufh2-update-field-hook-nmap-example-drjmq--1-vzds2   0/1     Completed   0          3s 
+ufh2-update-field-hook-nmap-example-drjmq--1-vzds2   0/1     Completed   0          3s
 ```
 
 ## Inspecting the findings
@@ -96,7 +97,8 @@ With the `hook.priority` field, you can further customize the order of secureCod
 The higher the priority of a hook, the earlier it will execute.
 By default, all hooks have a priority of `0`.
 
-If we set `ufh2` hook's priority to `1`, we'll observe that it will execute before `ufh1`. 
+If we set `ufh2` hook's priority to `1`, we'll observe that it will execute before `ufh1`.
+
 ```bash
 $ helm upgrade --install ufh2 secureCodeBox/update-field-hook --set hook.priority="1" --set attribute.name="category" --set attribute.value="second-hook"
 ```
@@ -105,7 +107,7 @@ $ helm upgrade --install ufh2 secureCodeBox/update-field-hook --set hook.priorit
 $ kubectl get scancompletionhooks.execution.securecodebox.io
 NAME                     TYPE           PRIORITY   IMAGE
 ufh1-update-field-hook   ReadAndWrite   0          docker.io/securecodebox/hook-update-field:3.3.1
-ufh2-update-field-hook   ReadAndWrite   1          docker.io/securecodebox/hook-update-field:3.3.1  
+ufh2-update-field-hook   ReadAndWrite   1          docker.io/securecodebox/hook-update-field:3.3.1
 ```
 
 Start, the scan and observe orders:
@@ -181,9 +183,9 @@ ufh2-update-field-hook-nmap-example-lmljv--1-smgp5   0/1     Completed   0      
 
 The following labels are available by default:
 
-* `app.kubernetes.io/instance`: the Helm release name (e.g. `ufh1`, `ufh2`)
-* `app.kubernetes.io/name`: the Helm chart name (e.g. `update-field-hook`)
-* `securecodebox.io/internal`: boolean field for whether this hook has internal usages in secureCodeBox (e.g. Cascading Scans hook)
+- `app.kubernetes.io/instance`: the Helm release name (e.g. `ufh1`, `ufh2`)
+- `app.kubernetes.io/name`: the Helm chart name (e.g. `update-field-hook`)
+- `securecodebox.io/internal`: boolean field for whether this hook has internal usages in secureCodeBox (e.g. Cascading Scans hook)
 
 You can also deploy secureCodeBox hooks with your own labels like so:
 
@@ -215,7 +217,7 @@ spec:
   image: docker.io/securecodebox/hook-update-field:3.3.1
   ttlSecondsAfterFinished: null
   type: ReadAndWrite
-  ```
+```
 
 ### Cascading scans
 
@@ -256,7 +258,7 @@ spec:
       - /ncrack/users.txt
       - -P
       - /ncrack/passwords.txt
-      - -p 
+      - -p
       - ftp:{{attributes.port}}
       - "{{$.hostOrIP}}"
 ```

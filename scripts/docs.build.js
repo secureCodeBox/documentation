@@ -7,9 +7,9 @@ const fs = require("fs"),
   downloadCallback = require("download-git-repo"),
   colors = require("colors"),
   matter = require("gray-matter"),
-  {promisify} = require("util"),
-  {docsConfig: config} = require("./utils/config"),
-  {removeWhitespaces} = require("./utils/capitalizer"),
+  { promisify } = require("util"),
+  { docsConfig: config } = require("./utils/config"),
+  { removeWhitespaces } = require("./utils/capitalizer"),
   Mustache = require("mustache");
 
 const download = promisify(downloadCallback);
@@ -25,7 +25,7 @@ colors.setTheme({
 // For the documentation on this script look at the README.md of this repository
 
 async function main() {
-  const fullRepoName = config.repository+`#`+config.branch;
+  const fullRepoName = `${config.repository}#${config.branch}`;
   console.log(`Downloading ${fullRepoName} into ${config.temp}...`.info);
 
   await download(fullRepoName, config.temp).catch((err) => {
@@ -35,16 +35,18 @@ async function main() {
 
   console.log(`SUCCESS: ${fullRepoName} downloaded.`.success);
 
-  const promises = config.srcDirs.map((dir) =>
-    readDirectory(`${config.temp}/${dir}`).catch((err) =>
-      console.error(
-        `ERROR: Could not read directory at: ${dir}`.error,
-        err.message.error
-      )
+  const dataArray = await Promise.all(
+    config.filesFromRepository.map((dir) =>
+      readDirectory(`${config.temp}/${dir.src}`, false)
+        .then((res) => ({ ...dir, files: res }))
+        .catch((err) =>
+          console.error(
+            `ERROR: Could not read directory at: ${dir}`.error,
+            err.message.error
+          )
+        )
     )
   );
-
-  const dataArray = await Promise.all(promises);
 
   if (!fs.existsSync(config.targetPath)) {
     fs.mkdirSync(config.targetPath);
@@ -54,61 +56,55 @@ async function main() {
     rimraf.sync(config.findingsDir);
   }
 
-  for (const dir of config.srcDirs) {
-    const trgDir = `${config.targetPath}/${dir}`;
+  for (const dir of dataArray) {
+    const trgDir = `${config.targetPath}/${dir.dst}`;
+    const srcDir = `${config.temp}/${dir.src}`;
 
-    // Overwrites existing directories with the same name
+    // Clears existing md files from directories  
     if (fs.existsSync(trgDir)) {
-      rimraf.sync(trgDir);
+      await removeExistingMarkdownFilesFromDirectory(trgDir);
 
       console.warn(
         `WARN: ${trgDir.info} already existed and was overwritten.`.warn
       );
+    } else {
+      fs.mkdirSync(trgDir);
     }
 
-    fs.mkdirSync(trgDir);
-    await createDocFilesFromDir(
-      `${config.temp}/${dir}`,
-      trgDir,
-      dataArray[config.srcDirs.indexOf(dir)]
-    );
+    // If the source directory contains a ".helm-docs.gotmpl" file (such as in /scanners or /hooks), the doc files need to be generated.
+    // Else, the docs files are just copied to the destination path.
+    dir.files.includes(".helm-docs.gotmpl")
+      ? await createDocFilesFromMainRepository(srcDir, trgDir, await readDirectory(srcDir))
+      : await copyFilesFromMainRepository(srcDir, trgDir, dir.exclude);
   }
-
-  for (const cfg of config.filesFromRepository) {
-    copyFilesFromMainRepository(cfg.src, cfg.dst, cfg.exclude);
-  }
-
-  rimraf(config.temp, function (err) {
-    err
-      ? console.warn(`WARN: Could not remove ${config.temp.info}.`.warn)
-      : console.log(`Removed ${config.temp}.`.info);
-  });
+  deleteRepositoryDir();
 }
 
 main().catch((err) => {
   clearDocsOnFailure();
+  deleteRepositoryDir();
   console.error(err.stack.error);
 });
 
-function readDirectory(dir) {
+function readDirectory(dir, dirNamesOnly = true) {
   return new Promise((res, rej) => {
-    fs.readdir(dir, {encoding: "utf8", withFileTypes: true}, function (
-      err,
-      data
-    ) {
-      if (err) {
-        rej(err);
-      } else {
-        const directories = data
-          .filter((dirent) => dirent.isDirectory())
-          .map((dirent) => dirent.name);
-        res(directories);
+    fs.readdir(
+      dir,
+      { encoding: "utf8", withFileTypes: true },
+      function (err, data) {
+        if (err) {
+          rej(err);
+        } else {
+          if (dirNamesOnly) data = data.filter((file) => file.isDirectory());
+          const directories = data.map((dirent) => dirent.name);
+          res(directories);
+        }
       }
-    });
+    );
   });
 }
 
-async function createDocFilesFromDir(relPath, targetPath, dirNames) {
+async function createDocFilesFromMainRepository(relPath, targetPath, dirNames) {
   for (const dirName of dirNames) {
     const readMe = `${relPath}/${dirName}/README.md`;
 
@@ -120,12 +116,12 @@ async function createDocFilesFromDir(relPath, targetPath, dirNames) {
     }
 
     // Read readme content of scanner / hook directory
-    const readmeContent = fs.readFileSync(readMe, {encoding: "utf8"});
+    const readmeContent = fs.readFileSync(readMe, { encoding: "utf8" });
 
     const examples = await getExamples(`${relPath}/${dirName}/examples`);
 
     // Add a custom editUrl to the frontMatter to ensure that it points to the correct repo
-    const {data: frontmatter, content} = matter(readmeContent);
+    const { data: frontmatter, content } = matter(readmeContent);
     const filePathInRepo = relPath.replace(/^githubRepo\//, "");
     const readmeWithEditUrl = matter.stringify(content, {
       ...frontmatter,
@@ -246,30 +242,38 @@ function copyFindingsForDownload(filePath) {
     fs.mkdirSync(`static/${config.findingsDir}`);
   }
 
-  fs.copyFileSync(filePath, "static"+targetPath);
+  fs.copyFileSync(filePath, "static" + targetPath);
   console.log(`SUCCESS: Created download link for ${name.info}.`.success);
 
   return targetPath;
 }
 
 function clearDocsOnFailure() {
-  for (const dir of config.srcDirs) {
-    const trgDir = `${config.targetPath}/${dir}`;
+  for (const dir of config.filesFromRepository) {
+    const trgDir = `${config.targetPath}/${dir.src}`;
     if (fs.existsSync(trgDir)) {
-      rimraf(trgDir, {maxRetries: 3, recursive: true}, function (err) {
-        if (err) {
+      removeExistingMarkdownFilesFromDirectory(trgDir)
+        .then(() => {
+          console.log(
+            `Cleared ${trgDir.info} due to previous failure.`.magenta
+          );
+        })
+        .catch((err) => {
           console.error(
             `ERROR: Could not remove ${trgDir.info} on failure.`.error
           );
           console.error(err.message.error);
-        } else {
-          console.log(
-            `Removed ${trgDir.info} due to previous failure.`.magenta
-          );
-        }
-      });
+        });
     }
   }
+}
+
+function deleteRepositoryDir() {
+  rimraf(config.temp, function (err) {
+    err
+      ? console.warn(`WARN: Could not remove ${config.temp.info}.`.warn)
+      : console.log(`Removed ${config.temp}.`.info);
+  });
 }
 
 // Copy files from a given src directory from the main repo into the given dst directory
@@ -280,37 +284,38 @@ function clearDocsOnFailure() {
 // @param src     required source directory in main repository (docsConfig.repository)
 // @param dst     required target directory in this repository relative to config.targetPath
 // @param exclude optional array of files to exclude from src
-function copyFilesFromMainRepository(src, dst, exclude) {
-  const srcPath = `${config.temp}/${src}`
-  const dstPath = `${config.targetPath}/${dst}`
+async function copyFilesFromMainRepository(srcPath, dstPath, exclude) {
   exclude = exclude || [];
 
-  if (!fs.existsSync(srcPath)) {
-    console.error(`${config.temp}/${src.info}.`.error
-    );
+  if (fs.existsSync(srcPath)) {
+    console.error(`${srcPath.info}.`.error);
   }
 
   if (fs.existsSync(dstPath)) {
-    rimraf.sync(dstPath);
-
-    console.warn(
-      `WARN: ${dstPath.info} already existed and was overwritten.`.warn
-    );
+    await removeExistingMarkdownFilesFromDirectory(dstPath);
+  } else {
+    fs.mkdirSync(dstPath);
+    console.info(`Create target directory ${dstPath.info}...`.success);
   }
 
-  console.info(
-    `Create target directory ${dstPath.info}...`.success
-  )
-
-  fs.mkdirSync(dstPath);
-
   fs.readdirSync(srcPath).map((fileName) => {
-    if(!exclude.includes(fileName)) {
-      console.log(
-        `Copy ${fileName.info} to ${dstPath.info}...`.success
-      );
+    if (!exclude.includes(fileName)) {
+      console.log(`Copy ${fileName.info} to ${dstPath.info}...`.success);
 
       fs.copyFileSync(`${srcPath}/${fileName}`, `${dstPath}/${fileName}`);
     }
+  });
+}
+
+async function removeExistingMarkdownFilesFromDirectory(dirPath) {
+  const allFiles = await readDirectory(dirPath, false);
+  const existingMarkdownFiles = allFiles.filter((fileName) =>
+    fileName.endsWith(".md")
+  );
+
+  existingMarkdownFiles.forEach((file) => {
+    const filePath = `${dirPath}/${file}`;
+    rimraf.sync(filePath);
+    console.warn(`WARN: ${filePath} was deleted.`.warn);
   });
 }
