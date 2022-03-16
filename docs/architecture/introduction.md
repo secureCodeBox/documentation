@@ -56,16 +56,19 @@ Below, the most important qualities are described that this project strives for.
 
 ## Stakeholders
 
-| **Company** | **Name**          | **Role**       | **GitHub Account**                                 | **Expectations** |
-|-------------|-------------------|----------------|----------------------------------------------------|------------------|
-| Iteratec    | Robert Seedorff   |                | [@rseerdorff](https://github.com/rseedorff)        |                  |
-|             | Sven Strittmatter | Core Developer | [@Weltraumschaf](https://github.com/Weltraumschaf) |                  |
-|             | Jannik Hollenbach |                | [@J12934](https://github.com/J12934)               |                  |
-|             | Max Maass         | Core Developer | [@malexmave](https://github.com/malexmave)         |                  |
-| Secura      | Ralph Moonen      |                | N/A                                                |                  |       
-|             | Sander Maijers    |                | [@sanmai-NL](https://github.com/sanmai-NL)         |                  |
-|             | Jop Zitman        |                | [@EndPositive](https://github.com/EndPositive)     |                  |
-|             | Stijn van Es      | Developer      | [@Stijn-FE](https://github.com/Stijn-FE)           | Contributes      |
+| **Company** | **Name**          | **Role**                 | **GitHub Account**                                 | **Expectations** |
+| ----------- | ----------------- | ------------------------ | -------------------------------------------------- | ---------------- |
+| iteratec    | Robert Seedorff   | Product Owner            | [@rseerdorff](https://github.com/rseedorff)        |                  |
+|             | Sven Strittmatter | Scrum Master & Developer | [@Weltraumschaf](https://github.com/Weltraumschaf) |                  |
+|             | Jannik Hollenbach | Core Developer           | [@J12934](https://github.com/J12934)               |                  |
+|             | Max Maass         | Core Developer           | [@malexmave](https://github.com/malexmave)         |                  |
+|             | Ilyes Ben Dlala   | Core Developer           | [@Ilyesbdlala](https://github.com/Ilyesbdlala)     |                  |
+|             | Rami Souai        | Core Developer           | [@RamiSouai](https://github.com/RamiSouai)         |                  |
+| Secura      | Ralph Moonen      |                          | N/A                                                |                  |
+|             | Sander Maijers    |                          | [@sanmai-NL](https://github.com/sanmai-NL)         |                  |
+|             | Jop Zitman        |                          | [@EndPositive](https://github.com/EndPositive)     |                  |
+|             | Stijn van Es      | Developer                | [@Stijn-FE](https://github.com/Stijn-FE)           | Contributes      |
+
 
 ## Architecture constraints
 
