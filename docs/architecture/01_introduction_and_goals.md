@@ -33,7 +33,7 @@ The following goals have been established for this project:
 
 ## Quality Goals {#_quality_goals}
 
-Below, the most important qualities are described that this project strives for. The qualities are categorized using the [ISO 25010](https://iso25000.com/index.php/en/iso-25000-standards/iso-25010) standard. Most of these qualities are derived from [this](https://docs.securecodebox.io/blog/2021/07/20/the-architecture-of-securecodebox-v2) blog post. For the entire list of quality-goals see [Quality Requirements](./functional/quality-requirements)
+Below, the most important qualities are described that this project strives for. The qualities are categorized using the [ISO 25010][iso-25010] standard. Most of these qualities are derived from blog post [The Architecture of secureCodeBox v2][blog-architecture]. For the entire list of quality-goals see [Quality Requirements](/docs/architecture/quality_requirements).
 
 | **Category**           | **Quality**          | **Description**                                                      | **Scenario** |
 |------------------------|----------------------|----------------------------------------------------------------------|--------------|
@@ -69,3 +69,6 @@ Below, the most important qualities are described that this project strives for.
 |             | Sander Maijers    |                          | [@sanmai-NL](https://github.com/sanmai-NL)         |                  |
 |             | Jop Zitman        |                          | [@EndPositive](https://github.com/EndPositive)     |                  |
 |             | Stijn van Es      | Developer                | [@Stijn-FE](https://github.com/Stijn-FE)           | Contributes      |
+
+[iso-25010]:          https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
+[blog-architecture]:  https://www.securecodebox.io/blog/2021/07/20/the-architecture-of-securecodebox-v2

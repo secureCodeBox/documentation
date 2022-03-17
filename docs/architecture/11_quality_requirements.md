@@ -9,7 +9,7 @@ sidebar_position: 11
 ---
 # Quality Requirements {#section-quality-scenarios}
 
-Below, qualities are described that this project strives for. The qualities are categorized using the [ISO 25010](https://iso25000.com/index.php/en/iso-25000-standards/iso-25010) standard.
+Below, qualities are described that this project strives for. The qualities are categorized using the [ISO 25010][iso-25010] standard.
 
 ## Quality Tree {#_quality_tree}
 
@@ -36,3 +36,5 @@ Below, qualities are described that this project strives for. The qualities are 
 | SC2    | A company is running SCB in the cloud, due to limited resources on premise                            |
 | SC3    | SCB is out of resources and a new scan is initiated. The scan is queued until resources are available |
 | SC4    | A scan is easily created and started by writing and loading a config file                             |
+
+[iso-25010]:  https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
