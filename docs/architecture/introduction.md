@@ -24,7 +24,7 @@ The following goals have been established for this project:
 
 ## Requirements
 
-![Use-case diagram](/static/img/architecture/UseCaseDiagramSCB.png)
+![Use-case diagram](/img/architecture/UseCaseDiagramSCB.png)
 
 | **Id** | **Requirement**             | **Explanation**                                                    |
 |--------|-----------------------------|--------------------------------------------------------------------|
@@ -53,7 +53,7 @@ Below, the most important qualities are described that this project strives for.
 | SC1    | A third-party updates their software with a breaking change. Effort to support this update is minimal |
 | SC2    | A company is running SCB in the cloud, due to limited resources on premise                            |
 | SC3    | SCB is out of resources and a new scan is initiated. The scan is queued until resources are available |
-| SC4    | A scan is easily created and started by writing and loading a config file                             | 
+| SC4    | A scan is easily created and started by writing and loading a config file                             |
 
 ## Stakeholders
 
@@ -81,19 +81,19 @@ Below, the most important qualities are described that this project strives for.
 
 # Context & Scope
 
-SCB is an orchestration platform managing scan jobs and parsing results. The aim of this project is to make automated vulnerability scanning easy and efficient. The diagrams below, illustrate the external factors and the context in which SCB is used. 
+SCB is an orchestration platform managing scan jobs and parsing results. The aim of this project is to make automated vulnerability scanning easy and efficient. The diagrams below, illustrate the external factors and the context in which SCB is used.
 
 SCB only manages the scan tasks. The scanning functionality itself is considered out of scope and for this, third-party software is used.
 
 ## Business
 
-![Business context diagram](/static/img/architecture/BusinessContextDiagram.png)
+![Business context diagram](/img/architecture/BusinessContextDiagram.png)
 
 ## Technical
 
-![Technical context diagram](/static/img/architecture/TechnicalContextDiagram.png)
+![Technical context diagram](/img/architecture/TechnicalContextDiagram.png)
 
-# Solution Strategy 
+# Solution Strategy
 
 | **Goal/Requirement** | **Architectural Approach** | **Details** |
 |----------------------|----------------------------|-------------|
