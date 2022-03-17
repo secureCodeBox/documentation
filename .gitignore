@@ -59,7 +59,7 @@ yarn-error.log*
 src/integrations.js
 docs/scanners/*.md
 docs/hooks/*.md
-docs/architecture/adr/*.md
+docs/architecture/10_adr/*.md
 docs/guides/
 static/findings
 
