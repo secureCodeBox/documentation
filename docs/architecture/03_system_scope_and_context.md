@@ -9,16 +9,20 @@ sidebar_position: 3
 ---
 # System Scope and Context {#section-system-scope-and-context}
 
+SCB is an orchestration platform managing scan jobs and parsing results. The aim of this project is to make automated vulnerability scanning easy and efficient. The diagrams below, illustrate the external factors and the context in which SCB is used.
+
+SCB only manages the scan tasks. The scanning functionality itself is considered out of scope and for this, third-party software is used.
+
 ## Business Context {#_business_context}
 
-**Diagram or Table**
+![Business context diagram](/img/architecture/BusinessContextDiagram.png)
 
-**optionally: Explanation of external domain interfaces**
+<!-- **optionally: Explanation of external domain interfaces** -->
 
 ## Technical Context {#_technical_context}
 
-**Diagram or Table**
+![Technical context diagram](/img/architecture/TechnicalContextDiagram.png)
 
-**optionally: Explanation of technical interfaces**
+<!-- **optionally: Explanation of technical interfaces** -->
 
-**Mapping Input/Output to Channels**
+<!-- **Mapping Input/Output to Channels** -->

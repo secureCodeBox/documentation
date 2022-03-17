@@ -10,20 +10,6 @@ sidebar_position: 1
 
 This document describes the secureCodeBox Project (SCB) and is based on the [arc42](https://arc42.org/overview/) architecture documentation template. SecureCodeBox is a Kubernetes based, modularized toolchain for continuous security scans of your software project. Its goal is to orchestrate and easily automate a bunch of security-testing tools out of the box. With secureCodeBox we provide a toolchain for continuous scanning of applications to find the low-hanging fruit issues early in the development process and free the resources of the penetration tester to concentrate on the major security issues.
 
-# Context & Scope
-
-SCB is an orchestration platform managing scan jobs and parsing results. The aim of this project is to make automated vulnerability scanning easy and efficient. The diagrams below, illustrate the external factors and the context in which SCB is used.
-
-SCB only manages the scan tasks. The scanning functionality itself is considered out of scope and for this, third-party software is used.
-
-## Business
-
-![Business context diagram](/img/architecture/BusinessContextDiagram.png)
-
-## Technical
-
-![Technical context diagram](/img/architecture/TechnicalContextDiagram.png)
-
 # Solution Strategy
 
 | **Goal/Requirement** | **Architectural Approach** | **Details** |
