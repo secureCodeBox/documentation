@@ -15,13 +15,13 @@ SCB only manages the scan tasks. The scanning functionality itself is considered
 
 ## Business Context {#_business_context}
 
-![Business context diagram](/img/architecture/BusinessContextDiagram.png)
+![Business context diagram](/img/docs/architecture/BusinessContextDiagram.png)
 
 <!-- **optionally: Explanation of external domain interfaces** -->
 
 ## Technical Context {#_technical_context}
 
-![Technical context diagram](/img/architecture/TechnicalContextDiagram.png)
+![Technical context diagram](/img/docs/architecture/TechnicalContextDiagram.png)
 
 <!-- **optionally: Explanation of technical interfaces** -->
 
