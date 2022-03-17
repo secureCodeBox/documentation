@@ -9,6 +9,8 @@ sidebar_position: 7
 ---
 # Deployment View {#section-deployment-view}
 
+<!-- TODO: #21 Here we could add the three scenarios from our slides. -->
+
 ## Infrastructure Level 1 {#_infrastructure_level_1}
 
 ***Overview Diagram***

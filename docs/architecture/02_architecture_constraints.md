@@ -8,3 +8,5 @@ sidebar_label: "Architecture Constraints"
 sidebar_position: 2
 ---
 # Architecture Constraints {#section-architecture-constraints}
+
+<!-- TODO #41: Here we could write about the constraint that we run only on K8s. -->
