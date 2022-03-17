@@ -19,7 +19,7 @@ The following goals have been established for this project:
 | 2            | The project is scalable and resource efficient (FaaS).                                                            |
 | 3            | The project implements additional scanners that are a useful addition for the current suite, limiting redundancy. |
 | 4            | The findings are displayed in a navigable way with least amount of duplication.                                   |
-| 5            | SecureCodeBox starts new relevant scans in an agile way, based on previous findings.      
+| 5            | SecureCodeBox starts new relevant scans in an agile way, based on previous findings.                              |
 
 ## Requirements Overview {#_requirements_overview}
 
@@ -58,7 +58,7 @@ Below, the most important qualities are described that this project strives for.
 ## Stakeholders {#_stakeholders}
 
 | **Company** | **Name**          | **Role**                 | **GitHub Account**                                 | **Expectations** |
-| ----------- | ----------------- | ------------------------ | -------------------------------------------------- | ---------------- |
+|-------------|-------------------|--------------------------|----------------------------------------------------|------------------|
 | iteratec    | Robert Seedorff   | Product Owner            | [@rseerdorff](https://github.com/rseedorff)        |                  |
 |             | Sven Strittmatter | Scrum Master & Developer | [@Weltraumschaf](https://github.com/Weltraumschaf) |                  |
 |             | Jannik Hollenbach | Core Developer           | [@J12934](https://github.com/J12934)               |                  |
