@@ -31,6 +31,8 @@ _Scan Type_: Own _custom resource definition_ for the _secureCodeBox_ _scanners_
 
 _Sidecar_ : This is a [common DevOps pattern][k8s-sidecar] for Kubernetes. It is a container with one responsibility which extends a _container_. We use this pattern for the _lurker_ and _parsers_.
 
+_Security Operations Center (SOC)_: A unit, team or department responsible for monitoring and handle security issues and vulnerabilities in an organisation.
+
 _Storage_: The component we use to store lurked and parsed _findings_. 
 
 [wiki-container]:         https://en.wikipedia.org/wiki/OS-level_virtualization
