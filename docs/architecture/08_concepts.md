@@ -9,22 +9,12 @@ sidebar_position: 8
 ---
 # Cross-cutting Concepts {#section-concepts}
 
+This section describes the cross-cutting concepts of _secureCodeBox_. These are concepts which affect all components. Instead of concepts only affecting a single or some components. They are described here particularly because they are not easy exchangeable with something differently. In fact, they are strong coupled dependencies, and therefore must be chosen carefully. 
+
+## Custom Resources {#_custom_resources}
+
 :::note
 Not documented yet.
 :::
+<!-- TODO: https://github.com/secureCodeBox/documentation/issues/236 -->
 
-<!-- TODO: #21 Here we could add a description about CRDs. -->
-
-## Concept 1 {#__emphasis_concept_1_emphasis}
-
-*explanation*
-
-## Concept 2 {#__emphasis_concept_2_emphasis}
-
-*explanation*
-
-...
-
-## Concept n {#__emphasis_concept_n_emphasis}
-
-*explanation*
