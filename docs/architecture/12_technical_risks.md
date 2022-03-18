@@ -8,3 +8,7 @@ sidebar_label: "Risks and Technical Debts"
 sidebar_position: 12
 ---
 # Risks and Technical Debts {#section-technical-risks}
+
+:::note 
+Not defined yet.
+:::

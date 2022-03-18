@@ -9,4 +9,8 @@ sidebar_position: 2
 ---
 # Architecture Constraints {#section-architecture-constraints}
 
+:::note
+Not documented yet.
+:::
+
 <!-- TODO #41: Here we could write about the constraint that we run only on K8s. -->

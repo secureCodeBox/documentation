@@ -9,6 +9,10 @@ sidebar_position: 8
 ---
 # Cross-cutting Concepts {#section-concepts}
 
+:::note
+Not documented yet.
+:::
+
 <!-- TODO: #21 Here we could add a description about CRDs. -->
 
 ## Concept 1 {#__emphasis_concept_1_emphasis}
