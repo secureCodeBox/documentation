@@ -9,7 +9,7 @@ sidebar_position: 1
 ---
 # Introduction and Goals {#section-introduction-and-goals}
 
-Initially, the goal of secureCodeBox was to provide a tool for easy integrating security test tools into your CI/CD pipeline to run against your web project. Some years ago we asked ourselves: Why only scan a single project? So a great idea was born: Consider the whole company as a project. Additionally, secureCodeBox can aid penetration testers in the recon and discovery phase of a security assessment. The purpose of secureCodeBox is not to replace the penetration testers or make them obsolete. We strongly recommend running extensive tests by experienced penetration testers on all your applications.
+Initially, the goal of _secureCodeBox_ was to provide a tool for easy integrating security test tools into your CI/CD pipeline to run against your web project. Some years ago we asked ourselves: Why only scan a single project? So a great idea was born: Consider the whole company as a project. Additionally, _secureCodeBox_ can aid penetration testers in the recon and discovery phase of a security assessment. The purpose of _secureCodeBox_ is not to replace the penetration testers or make them obsolete. We strongly recommend running extensive tests by experienced penetration testers on all your applications.
 
 The following goals have been established for this project:
 
