@@ -17,7 +17,7 @@ Cluster internal security scans with one dedicated namespace.
 
 ***Overview Diagram***
 
-![Cluster internal central scans diagram](/img/docs/architecture/deployment_cluster_internal_central_scans.png)
+![Cluster internal central scans diagram](/img/docs/architecture/deployment-cluster-internal-central-scans.png)
 
 ### Motivation
 
@@ -33,4 +33,4 @@ The motivation behind this scenario is to provide each development team its own 
 
 ***Overview Diagram***
 
-![Cluster internal central scans diagram](/img/docs/architecture/deployment_cluster_namespace_internal.png)
+![Cluster internal central scans diagram](/img/docs/architecture/deployment-cluster-namespace-internal.png)
