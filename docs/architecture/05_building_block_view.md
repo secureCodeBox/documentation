@@ -15,7 +15,7 @@ Below, an overview is given of the global design/architecture of secureCodeBox. 
 
 ***Overview Diagram***
 
-![Technical context diagram](/img/docs/architecture/TechnicalContextDiagram.png)
+![Technical context diagram](/img/docs/architecture/technical-context-diagram.png)
 
 Motivation
 

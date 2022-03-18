@@ -23,7 +23,7 @@ The following goals have been established for this project:
 
 ## Requirements Overview {#_requirements_overview}
 
-![Use-case diagram](/img/docs/architecture/UseCaseDiagramSCB.png)
+![Use-case diagram](/img/docs/architecture/use-case-diagram.png)
 
 | **Id** | **Requirement**             | **Explanation**                                                    |
 |--------|-----------------------------|--------------------------------------------------------------------|
