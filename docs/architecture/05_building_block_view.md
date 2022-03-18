@@ -9,7 +9,7 @@ sidebar_position: 5
 ---
 # Building Block View {#section-building-block-view}
 
-Below, an overview is given of the global design/architecture of secureCodeBox. This document is inspired by the [C4][C4] model for visualizing software architecture. Conform this model, this document is split in 4 parts (i.e. levels). First, a `context` level overview, displaying the context in which the application is used. The second level, `containers`, broadly describes the different data streams. The third level consists of a `components` overview, describing the different components and the interactions between them. The fourth and final level contains a `code` overview. Which will consist of class- and database-diagrams.
+Below, an overview is given of the global design/architecture of secureCodeBox. This document is inspired by the [C4][C4] model for visualizing software architecture. Conform this model, this document is split in 4 parts (i.e. levels). First, a _context_ level overview, displaying the context in which the application is used. The second level, _containers_, broadly describes the different data streams. The third level consists of a _components_ overview, describing the different components and the interactions between them. The fourth and final level contains a _code_ overview. Which will consist of class- and database-diagrams.
 
 ## Whitebox Overall System {#_whitebox_overall_system}
 
