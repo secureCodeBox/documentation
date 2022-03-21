@@ -33,7 +33,7 @@ _Sidecar_ : This is a [common DevOps pattern][k8s-sidecar] for Kubernetes. It is
 
 _Security Operations Center (SOC)_: A unit, team or department responsible for monitoring and handle security issues and vulnerabilities in an organisation.
 
-_Storage_: The component we use to store lurked and parsed _findings_. 
+_Storage_: The component we use to store raw and parsed _findings_. 
 
 [wiki-container]:         https://en.wikipedia.org/wiki/OS-level_virtualization
 [k8s-custom-resources]:   https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
