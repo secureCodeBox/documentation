@@ -27,6 +27,7 @@ skinparam default {
   FontName SansSerif
   FontSize 10
   Shadowing false
+  ComponentStyle uml2
 }
 
 skinparam activity {

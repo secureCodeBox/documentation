@@ -2,12 +2,9 @@
 '
 ' SPDX-License-Identifier: Apache-2.0
 
-@startuml 2020-11-04-architecture-v2
-!include ../_theme.ipuml
-!include ../_copyright.ipuml
-
-skinparam shadowing false
-skinparam componentStyle uml2
+@startuml 2021-07-20-architecture-v2
+!include ../../../src/puml/_theme.ipuml
+!include ../../../src/puml/_copyright.ipuml
 
 [Subject Under Test] as sut #White
 actor User as user #White

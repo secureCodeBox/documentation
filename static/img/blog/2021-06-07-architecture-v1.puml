@@ -1,12 +1,9 @@
 ' SPDX-FileCopyrightText: the secureCodeBox authors
 '
 ' SPDX-License-Identifier: Apache-2.0
-@startuml 2020-11-04-architecture-v1
-!include ../_theme.ipuml
-!include ../_copyright.ipuml
-
-skinparam shadowing false
-skinparam componentStyle uml2
+@startuml 2021-06-07-architecture-v1
+!include ../../../src/puml/_theme.ipuml
+!include ../../../src/puml/_copyright.ipuml
 
 node "Docker" {
   [secureCodeBox Engine] as engine <<Container>>
