@@ -23,17 +23,18 @@ The following diagram shows the_secureCodeBox_ as blackbox system and all other 
 
 The following table describes the systems _secureCodeBox_ interacts. The description is deliberately brief. The details of the used APIs and such are documented in the [building block view](/docs/architecture/building_block_view).
 
-| System            | Description                                                                                                                  |
-|:------------------|:-----------------------------------------------------------------------------------------------------------------------------|
-| _securecodeBox_   | This is the main system we regard in this documentation.                                                                     |
-| Container Runtime | _secureCodeBox_ depends on a container runtime (e.g. [Docker][docker], [Podman][podman] etc.) to build the container images. |
-| DockerHub         | _secureCodeBox_ depends on the public services from [DockerHub][docker-hub] to push/pull container images.                   |
-| Kubernetes        | [Kubernetes][k8s] is the main foundation of the _secureCodeBox_. We heavily rely on the API and _Custom Resources_.          |
-| Helm              | _secureCodeBox_ uses [Helm][helm] to build, publish and install the containers via _charts_ in [Kubernetes][k8s].            |
-| ArtifactHub       | _secureCodeBox_ depends on the public services from [ArtifactHub][artifact-hub] to publish Helm _charts_.                    |
-| S3                | _secureCodeBox_ depends on an [S3 API][s3-api] compliant backend to store its persistent data.                               |
-| DefectDojo        | (**optional**) _secureCodeBox_ can import findings into [DefectDojo][defectdojo] vulnerability management system.            |
-| Scanner Tools     | _secureCodeBox_ depends on [various security scanner](/docs/scanners) tools.                                                 |
+| System              | Description                                                                                                                  |
+|:--------------------|:-----------------------------------------------------------------------------------------------------------------------------|
+| _secureCodeBox_     | This is the main system we regard in this documentation.                                                                     |
+| _Container Runtime_ | _secureCodeBox_ depends on a container runtime (e.g. [Docker][docker], [Podman][podman] etc.) to build the container images. |
+| _DockerHub_         | _secureCodeBox_ depends on the public services from [DockerHub][docker-hub] to push/pull container images.                   |
+| _Kubernetes_        | [Kubernetes][k8s] is the main foundation of the _secureCodeBox_. We heavily rely on the API and _Custom Resources_.          |
+| _Helm_              | _secureCodeBox_ uses [Helm][helm] to build, publish and install the containers via _charts_ in [Kubernetes][k8s].            |
+| _ArtifactHub_       | _secureCodeBox_ depends on the public services from [ArtifactHub][artifact-hub] to publish Helm _charts_.                    |
+| _S3_                | _secureCodeBox_ depends on an [S3 API][s3-api] compliant backend to store its persistent data.                               |
+| _DefectDojo_        | (**optional**) _secureCodeBox_ can import findings into [DefectDojo][defectdojo] vulnerability management system.            |
+| _Scanner Tools_     | _secureCodeBox_ depends on [various security scanner](/docs/scanners) tools.                                                 |
+| _CI/CD_             | _Continous Integration_ (CI) and _Continous Deployemnt_ (CD) systems which may initialize a scan.                            | 
 
 
 ### Roles
