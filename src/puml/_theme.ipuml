@@ -5,43 +5,46 @@
 ' http://plantuml.com/skinparam
 ' https://plantuml-documentation.readthedocs.io/en/latest/formatting/all-skin-params.html
 
+' Some base color definitions:
 !define hellblau #cde6f5
 !define mittelblau #91c3e6
 !define tuerkisblau #008cd2
 !define kobaltblau #001eff
 !define lavendel #e6bedc
-!define iteragenta #bd218e
 !define dunkelpurpur #731964
 !define gelbbraun #ebd7be
 !define sand #e1c39b
 
-skinparam backgroundColor white
+' Colors with special meaning:
+' Used to highlight focused components of a diagram. Usually our own components of secureCodeBox.
+!define focusBorder #6c8ebf
+!define focusFill #dae8fc
 
 skinparam default {
-    ArrowColor black
-    BackgroundColor white
-    FontColor black
-    FontName SansSerif
-    FontSize 10
-    Shadowing false
+  ArrowColor black
+  BackgroundColor white
+  FontColor black
+  FontName SansSerif
+  FontSize 10
+  Shadowing false
 }
 
 skinparam activity {
     BorderColor dunkelpurpur
     StartColor kobaltblau
-    EndColor iteragenta
+    EndColor focusBorder
     BarColor lavendel
 }
 
 skinparam usecase {
     ActorBackgroundColor lavendel
-    ActorBorderColor iteragenta
+    ActorBorderColor focusBorder
     BorderColor dunkelpurpur
 }
 
 skinparam class {
-    BackgroundColor hellblau
-    BorderColor tuerkisblau
+    BackgroundColor focusFill
+    BorderColor focusBorder
 }
 
 skinparam package {
@@ -57,10 +60,10 @@ skinparam stereotype {
 }
 
 skinparam component {
-    BackgroundColor lavendel
-    BorderColor iteragenta
-    InterfaceBackgroundColor mittelblau
-    InterfaceBorderColor tuerkisblau
+    BackgroundColor focusFill
+    BorderColor focusBorder
+    InterfaceBackgroundColor focusFill
+    InterfaceBorderColor focusBorder
     Style uml2
 }
 
@@ -70,21 +73,21 @@ skinparam note {
 }
 
 skinparam state {
-    BackgroundColor lavendel
+    BackgroundColor focusFill
     BorderColor dunkelpurpur
     StartColor kobaltblau
-    EndColor iteragenta
+    EndColor focusBorder
 }
 
 skinparam sequence {
-    ActorBackgroundColor lavendel
-    ActorBorderColor dunkelpurpur
+    ActorBackgroundColor focusFill
+    ActorBorderColor focusBorder
     GroupBackgroundColor hellblau
-    LifeLineBackgroundColor lavendel
-    LifeLineBorderColor dunkelpurpur
-    ParticipantBackgroundColor hellblau
-    ParticipantBorderColor mittelblau
+    LifeLineBackgroundColor focusFill
+    LifeLineBorderColor focusBorder
+    ParticipantBackgroundColor focusFill
+    ParticipantBorderColor focusBorder
 }
 
-skinparam CollectionsBackgroundColor hellblau
-skinparam CollectionsBorderColor mittelblau
+skinparam CollectionsBackgroundColor focusFill
+skinparam CollectionsBorderColor focusBorder
