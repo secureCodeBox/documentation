@@ -25,7 +25,7 @@ _Operator_: This is the central component of the _secureCodeBox_ which controls 
 
 _Parser_: This _sidecar_ is a _scanner_ specific component which reads the raw stored findings from the _lurker_ and transforms them into the [well defined format](/docs/api/finding) for _secureCodeBox_ findings. Each scanner needs its own parser implementation. 
 
-_Scanner_: This is the main component to actually perform a scan. This is simply a container which encapsulates a scanner tool (e.g. nmap, nuclei etc.) and invokes it parameterized bey the _custom resource definition_ for this _scan type_.
+_Scanner_: This is the main component to actually perform a scan. This is simply a container which encapsulates a scanner tool (e.g. nmap, nuclei etc.) and invokes it, parameterized by the _custom resource definition_ for this _scan type_.
 
 _Scan Type_: Own _custom resource definition_ for the _secureCodeBox_ _scanners_.
 
