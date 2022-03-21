@@ -21,13 +21,15 @@ _Job_: A Job creates one or more Pods and will continue to retry execution of th
 
 _Engine_: TODO #21
 
-_Finding_: This is one single possible security issue found by a _scanner_ which is stored as [well defined format](/docs/api/finding).
+_Finding_: This is one single possible security issue found by a _scanner_ which is stored as [well-defined format](/docs/api/finding).
 
 _Lurker_: This _sidecar_ is a generic component responsible to "lurk" the results spit out by _scanners_ and stores it into the _storage_ for further processing by the parser. 
 
 _Operator_: This is the central component of the _secureCodeBox_ which controls the business logic. The [operator pattern][k82-operator] is also a common DevOps pattern in Kubernetes.
 
 _Parser_: This _job_ is a _scanner_ specific component which reads the raw stored findings from the _lurker_ and transforms them into the [well defined format](/docs/api/finding) for _secureCodeBox_ findings. Each scanner needs its own parser implementation. 
+
+_Raw finding_: In contrast to _findings_ these are the raw results from the scanner before they were converted into the [well-defined format](/docs/api/finding) for findings.
 
 _Scanner_: This is the main component to actually perform a scan. This is simply a container which encapsulates a scanner tool (e.g. nmap, nuclei etc.) and invokes it, parameterized by the _custom resource definition_ for this _scan type_.
 
