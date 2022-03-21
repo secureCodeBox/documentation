@@ -24,7 +24,7 @@ const docsConfig = {
     filesFromRepository: [
       {
         src: "docs/adr",
-        dst: "architecture/adr",
+        dst: "architecture/10_adr",
         exclude: ["adr_0000.md", "adr_README.md"],
       },
       {
