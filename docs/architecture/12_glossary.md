@@ -33,7 +33,9 @@ _Raw finding_: In contrast to _findings_ these are the raw results from the scan
 
 _Scanner_: This is the main component to actually perform a scan. This is simply a container which encapsulates a scanner tool (e.g. nmap, nuclei etc.) and invokes it, parameterized by the _custom resource definition_ for this _scan type_.
 
-_Scan Type_: Own _custom resource definition_ for the _secureCodeBox_ _scanners_.
+_Scanner tool_: These are the command line tools we integrate into _secureCodeBox_ to perform the actual scan (e.g. Nmpa, Nuclei, Nikto, ZAP etc.). 
+
+_Scan type_: Own _custom resource definition_ for the _secureCodeBox_ _scanners_.
 
 _Sidecar_ : This is a [common DevOps pattern][k8s-sidecar] for Kubernetes. It is a container with one responsibility which extends a _container_. We use this pattern for the _lurker_.
 
