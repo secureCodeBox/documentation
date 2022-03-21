@@ -40,11 +40,11 @@ The following table describes the systems _secureCodeBox_ interacts. The descrip
 
 The following table describes the roles interacting with _secureCodeBox_.
 
-| Role       | Description                                                                                                                                                            |
-|:-----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Operations | The role which operates the _secureCodeBox_ installation. (We use the term "operations" instead of operator to be distinguishable from the _secureCodeBox_ _operator_. |
-| Tester     | The role which utilizes _secureCodeBox_ to perform security tests.                                                                                                     |
-| Developer  | The role which develops the _secureCodeBox_.                                                                                                                           |
+| Role      | Description                                                                                                                                         |
+|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Operator  | The role which operates the _secureCodeBox_ installation. (Do not confuse with Kubernetes _operator_ pattern, which we implement for the _engine_.) |
+| Tester    | The role which utilizes _secureCodeBox_ to perform security tests.                                                                                  |
+| Developer | The role which develops the _secureCodeBox_.                                                                                                        |
 
 [artifact-hub]: https://artifacthub.io/docs/
 [defectdojo]:   https://www.defectdojo.org/

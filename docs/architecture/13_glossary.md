@@ -19,13 +19,13 @@ _Hook_: A _hook_ is a concept in _secureCodeBox_ to give the opportunity to reac
 
 _Job_: A Job creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate. (see [official Kubernetes documentation][k82-job-doc].)
 
-_Engine_: TODO #21
+_Engine_: This is the central component of the _secureCodeBox_ which controls the business logic. It implements the _operator_ pattern. 
 
 _Finding_: This is one single possible security issue found by a _scanner_ which is stored as [well-defined format](/docs/api/finding).
 
 _Lurker_: This _sidecar_ is a generic component responsible to "lurk" the results spit out by _scanners_ and stores it into the _storage_ for further processing by the parser. 
 
-_Operator_: This is the central component of the _secureCodeBox_ which controls the business logic. The [operator pattern][k82-operator] is also a common DevOps pattern in Kubernetes.
+_Operator_: The [operator pattern][k82-operator] is a common pattern in Kubernetes to extend Kubernetes.
 
 _Parser_: This _job_ is a _scanner_ specific component which reads the raw stored findings from the _lurker_ and transforms them into the [well defined format](/docs/api/finding) for _secureCodeBox_ findings. Each scanner needs its own parser implementation. 
 
