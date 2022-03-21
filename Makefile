@@ -11,6 +11,18 @@ all: help
 .PHONY: puml
 puml: $(IMAGES) ## Generate PlantUML images
 
+.PHONY: clean
+clean: ## Wipe node_modules
+	rm -rf $(PROJECT_DIR)/node_modules
+
+.PHONY: install
+install: ## Install Docusaurus stuff. (Needed once before you invoke start target).
+	npm install
+
+.PHONY: start
+start: ## Start local Docusaurus. (Visit http://localhost:3000)
+	npm start
+
 %.png: %.puml
 	plantuml -tpng $^
 
