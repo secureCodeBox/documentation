@@ -11,21 +11,28 @@ const docsConfig = {
     branch: "main",
 
     // Configures files which will be copied or generated from docsConfig.repository.
-    // This is an array of config maps. The map has the properties
-    // src: required source directory in main repository (docsConfig.repository)
-    // dst: required target directory in this repository relative to config.targetPath
-    // exclude: (optional) array of files to exclude from src, default is exclude nothing
+    // This is an array of maps.
+    //
+    // The map has the properties:
+    //
+    // src:                 required source directory in main repository (docsConfig.repository).
+    // dst:                 required target directory in this repository relative to config.targetPath.
+    // exclude: (optional)  array of files to exclude from src, default is exclude nothing.
+    // keep: (optional)     array of files to keep in dst, default is keep nothing (all files ending with .md will
+    //                      be wiped from dst.
     //
     // Example:
     // filesFromRepository: [
     //       {src: "foo", dst: "some/foo", exclude: ["snafu.md", "susfu.md"]},
     //       {src: "bar", dst: "some/bar"},
+    //       {src: "bar", dst: "some/bar", keep: ["index.md"]},
     //     ]
     filesFromRepository: [
       {
         src: "docs/adr",
-        dst: "architecture/10_adr",
+        dst: "architecture/09_architecture_decisions",
         exclude: ["adr_0000.md", "adr_README.md"],
+        keep: ["index.md"]
       },
       {
         src: "scanners",
