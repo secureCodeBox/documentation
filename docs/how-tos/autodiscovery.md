@@ -14,9 +14,9 @@ It is possible to automatically create scheduled scans for kubernetes entities w
 The container autodiscovery will create a scheduled scan with the given parameters (see configuration options below) for each unique container image in a kubernetes namespace.  
 It is currently disabled by default and must be enabled manually.
 
-Assume that a namespace contains two pods that run a _npm __V1.5__ _ container. The container autodiscovery will only create a single scheduled scan for the _npm_ containers, as both are identical.  
-When a third pod inside the namespace is started running a _npm_ __V1.6__ container, the container autodiscovery will create an additional scheduled scan for the _npm __V1.6__ _ container, as it is new and not scanned at this point in time.  
-When both _npm __V1.5__ _ pods get deleted the corresponding scheduled scans will also be automatically deleted because the specific container image is no longer present in the namespace.
+Assume that a namespace contains two pods that run a `nginx V1.5` container. The container autodiscovery will only create a single scheduled scan for the _nginx_ containers, as both are identical.  
+When a third pod inside the namespace is started running a `nginx V1.6` container, the container autodiscovery will create an additional scheduled scan for the `nginx V1.6` container, as it is new and not scanned at this point in time.  
+When both `nginx V1.5` pods get deleted the corresponding scheduled scans will also be automatically deleted because the specific container image is no longer present in the namespace.
 
 In other words: The container autodiscovery will create a single scheduled scan for each unique container image (taking specific version number into account) in a given namespace.
 
