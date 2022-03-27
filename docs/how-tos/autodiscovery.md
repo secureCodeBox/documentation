@@ -86,3 +86,5 @@ After some time all scheduled scans will be automatically deleted.
 $ kubectl get scheduledscans
 No resources found in default namespace.
 ```
+## Config
+All config options are automatically updated in the [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) in the Github repository.
