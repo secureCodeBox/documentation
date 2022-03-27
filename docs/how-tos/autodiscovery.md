@@ -43,7 +43,10 @@ Then install the SCB autodiscovery (ContainerAutodiscovery is explicitly enabled
 helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.containerAutoDiscovery.enabled=true
 ```
 
-Then annotate the namespace so that the autodiscovery searches the namespace (see section about resourceInclusionMode):
+Then annotate the namespace so that the autodiscovery searches the namespace. There are three so called `resourceInclusionModes`. 
+- enabled-per-namespace (default)
+- enabled-per-resource
+- scan-all (scans every service and/ or container in the whole cluster!)
 ```bash
 kubectl annotate namespace default auto-discovery.securecodebox.io/enabled=true
 ```
@@ -53,12 +56,33 @@ Then install juiceshop as a demo target:
 helm upgrade --install juice-shop secureCodeBox/juice-shop
 ```
 
-The autodiscovery will create two scheduled scans. One for the juiceshop servcie using `zap`, and one for the juiceship container using `trivy`:
+The autodiscovery will create two scheduled scans after some time. One for the juiceshop servcie using `zap`, and one for the juiceship container using `trivy`:
 ```bash
-$ kubectl get scheduled scans
+$ kubectl get scheduledscans
 NAME                                                             TYPE                INTERVAL   FINDINGS
 juice-shop-service-port-3000                                     zap-advanced-scan   168h0m0s   
 scan-juice-shop-at-350cf9a6ea37138b987a3968d046e61bcd3bb18d2ec   trivy               168h0m0s   
-
 ```
 
+Install a second juiceshop into the namespace:
+```bash
+helm upgrade --install juice-shop2 secureCodeBox/juice-shop
+```
+The autodiscovery will then create a second `zap` scan for the service, but no additonal `trivy` container scan, as the juiceshop container is already being scanned.
+```bash
+$ kubectl get scheduledscans
+NAME                                                             TYPE                INTERVAL   FINDINGS
+juice-shop-service-port-3000                                     zap-advanced-scan   168h0m0s   
+juice-shop2-service-port-3000                                    zap-advanced-scan   168h0m0s   
+scan-juice-shop-at-350cf9a6ea37138b987a3968d046e61bcd3bb18d2ec   trivy               168h0m0s   
+```
+
+Delete both juicehop deployments.
+```bash
+kubectl delete deployment,service juice-shop juice-shop2
+```
+After some time all scheduled scans will be automatically deleted.
+```
+$ kubectl get scheduledscans
+No resources found in default namespace.
+```
