@@ -11,7 +11,7 @@ sidebar_position: 6
 It is possible to automatically create scheduled scans for kubernetes entities with the secureCodeBox autodiscovery. There are two availble modes that can be activated if needed. A _service_ and a _container_ autodiscovery.
 
 #### Container Autodiscovery
-The container autodiscovery will create a scheduled scan with the given parameters (see configuration options below) for each unique container image in a kubernetes namespace.  
+The container autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options)  for each unique container image in a kubernetes namespace.  
 It is currently disabled by default and must be enabled manually.
 
 Assume that a namespace contains two pods that run a `nginx V1.5` container. The container autodiscovery will only create a single scheduled scan for the _nginx_ containers, as both are identical.  
@@ -23,7 +23,7 @@ In other words: The container autodiscovery will create a single scheduled scan 
 If a pod consists of multiple containers, the above described logic will be applied to each container individually.
 
 #### Service Autodiscovery
-The service autodiscovery will create a scheduled scan with the given parameters (see configuration options below) for each kubernetetes service it detects.  
+The service autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options) for each kubernetetes service it detects.  
 The service autodiscovery is enabled by default but can be disabled manually.
 
 The service autodiscovery will ignore services where the underlying pods do not serve http(s). It checks for open ports `80, 443, 3000, 5000, 8000, 8443, 8080`. It is also sufficient to name the ports `http` or `https` when a different port is used than the ports specified above.
