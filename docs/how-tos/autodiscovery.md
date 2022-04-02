@@ -10,40 +10,42 @@ sidebar_position: 6
 ## Introduction
 It is possible to automatically create scheduled scans for kubernetes entities with the secureCodeBox autodiscovery. There are two availble modes that can be activated if needed. A _service_ and a _container_ autodiscovery.
 
-#### Container Autodiscovery
+### Container Autodiscovery
 The container autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options)  for each unique container image in a kubernetes namespace.  
 It is currently disabled by default and must be enabled manually.
 
 Assume that a namespace contains two pods that run a `nginx V1.5` container. The container autodiscovery will only create a single scheduled scan for the _nginx_ containers, as both are identical.  
-When a third pod inside the namespace is started running a `nginx V1.6` container, the container autodiscovery will create an additional scheduled scan for the `nginx V1.6` container, as it is new and not scanned at this point in time.  
-When both `nginx V1.5` pods get deleted the corresponding scheduled scans will also be automatically deleted because the specific container image is no longer present in the namespace.
+When a third pod inside the namespace is started running a `nginx V1.6` container, the container autodiscovery will create an additional scheduled scan for the `nginx V1.6` container, as it is not scanned at this point in time. The container autodiscovery will look at the specific version number of each container when it determiens if the a container is scanned.
+When both `nginx V1.5` pods get deleted the corresponding scheduled scans will also be automatically deleted because the specific container image is no longer present in the namespace.  
+The scheduled scan for the `nginx V1.6` container will not be deleted, as it is still running in the namespace.
 
 In other words: The container autodiscovery will create a single scheduled scan for each unique container image (taking specific version number into account) in a given namespace.
 
 If a pod consists of multiple containers, the above described logic will be applied to each container individually.
 
-#### Service Autodiscovery
+### Service Autodiscovery
 The service autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options) for each kubernetetes service it detects.  
 The service autodiscovery is enabled by default but can be disabled manually.
 
-The service autodiscovery will ignore services where the underlying pods do not serve http(s). It checks for open ports `80, 443, 3000, 5000, 8000, 8443, 8080`. It is also sufficient to name the ports `http` or `https` when a different port is used than the ports specified above.
+The service autodiscovery will ignore services where the underlying pods do not serve http(s). It does this by simply checking for open ports `80, 443, 3000, 5000, 8000, 8443, 8080`. It is also sufficient to name the ports `http` or `https` when a different port is used than the ports specified above.  
+Every service using a different port or not naming the port accordingly will be ignored.
 
 ## Setup
-For the sake of the tutorial, it will be assumed that a Kubernetes cluster and the SCB operator is already up and running. If not, check out the [installation](/docs/getting-started/installation/) for more information.
+For the sake of the tutorial, it will be assumed that a Kubernetes cluster and the SCB operator is already up and running. If not, check out the [installation](/docs/getting-started/installation/) tutorial for more information.
 This tutorial will use the `default` and `securecodebox-system` namespace!
 
-First install `zap-andvanced`and `trivy`:
+First install `zap-andvanced` and `trivy`:
 ```bash
 helm upgrade --install zap-advanced secureCodeBox/zap-advanced
 helm upgrade --install trivy secureCodeBox/trivy
 ```
 
-Then install the SCB autodiscovery (ContainerAutodiscovery is explicitly enabled in this example):
+Then install the SCB autodiscovery (container autodiscovery is explicitly enabled in this example):
 ```bash
 helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.containerAutoDiscovery.enabled=true
 ```
 
-Then annotate the namespace so that the autodiscovery searches the namespace. There are three so called `resourceInclusionModes`. 
+Then annotate the `default` namespace to enable the autodiscovery in that default. There are three so called `resourceInclusionModes`. These controll which resources the autodiscovery will scan.
 - enabled-per-namespace (default)
 - enabled-per-resource
 - scan-all (scans every service and/ or container in the whole cluster!)
