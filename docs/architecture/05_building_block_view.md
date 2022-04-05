@@ -11,7 +11,7 @@ sidebar_position: 5
 
 This section describes the static view of building blocks for _secureCodeBox_. We use the common pattern in architecture to describe the building blocks starting from the context boundary diagram from section [System Scope and Context](/docs/architecture/system_scope_and_context). The context boundary diagram is a blackbox view of _secureCodeBox_. Here we go one level deeper and describe the _secureCodeBox_ as whitebox system and describe all contained components as blackbox. If necessary we drill-down for each component for another whitebox view which describes its components as blackboxes. This proces of drill-down is done for each component and as deep as necessary.
 
-To keep this part short and only as complicated needed we orientate on the [C4][C4] model for visualizing software architecture. This model suggest to drill down four levels. 
+To keep this part short and only as complicated as needed, we base our documentation on the [C4][C4] model for visualizing software architecture. This model suggest to drill down four levels. 
 
 1. _Context level_ overview, displaying the context in which the application is used. 
 2. _Containers level_ broadly describes the different data streams. 

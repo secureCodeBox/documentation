@@ -22,10 +22,10 @@ Some words about the structure, tools and style guide to follow, if you plan to 
 
 ### Structure
 
-As mentioned above we use [arc42][arc42] as template for this documentation. This means that the whole architecture documentation is structured into 12 chapters as described in the [arc42 overview][arc42-overview]. The basic concept of arc42 is to provide a standardized structure to "put your knowledge" into. This does not necessarily mean that you must write something into each chapter. The basic idea is to fill the chapters as needed: If you have something important to say about the architecture, then fill the free space given by the template. Thus we have some empty parts. They will disappear over team.
+As mentioned above we use [arc42][arc42] as template for this documentation. This means that the whole architecture documentation is structured into 12 chapters as described in the [arc42 overview][arc42-overview]. The basic concept of arc42 is to provide a standardized structure to "put your knowledge" into. This does not necessarily mean that you must write something into each chapter. The basic idea is to fill the chapters as needed: If you have something important to say about the architecture, then fill the free space given by the template. Thus we have some empty parts. They will disappear over time.
 
 :::info
-We do not have the aspiration to have a complete and comprehensive architecture documentation. This documentation is meant to be a living document evolving over time. There is no restriction who can contribute to the architecture documentation: Everybody who notice wrong, outdated or missing information is invited to open pull requests.
+We do not have the aspiration to have a complete and comprehensive architecture documentation. This documentation is meant to be a living document evolving over time. There is no restriction who can contribute to the architecture documentation: Everybody who notices wrong, outdated or missing information is invited to open pull requests.
 :::
 
 :::caution
@@ -34,7 +34,7 @@ We do not add linebreaks to split lines longer than 80 characters. **We write wh
 
 ### Images and Diagrams
 
-For diagrams we us [UML][wiki-uml] notation, if appropriate. This is a widely adopted industry standard and the most important concepts and syntax is widely understood. We try to use UML "the right" way, but we do not have the aspiration to draw perfect UML diagrams. The important part is that everyone understands the diagrams as easily as possibly. Therefore **a diagram should always have a legend**, unless the meaning of the "boxes and arrows" is obvious. Keep in mind: What is obvious for you, may be a mystery for someone else 😉
+For diagrams we us [UML][wiki-uml] notation, if appropriate. This is a widely adopted industry standard and the most important concepts and syntax is widely understood. We try to use UML "the right" way, but we do not have the aspiration to draw perfect UML diagrams. The important part is that everyone understands the diagrams as easily as possibly. Therefore **a diagram should always have a legend**, unless the meaning of the "boxes and arrows" is obvious. Keep in mind: What is obvious for you, may be a mystery for someone else 😉.
 
 As tool we use [Draw.io][drawio] with its default color scheme and as format we use _editable PNG_. The images are stored in the directory `static/img/docs/architecture/`.
 
@@ -46,7 +46,7 @@ This section describes how to markup text in this documentation:
 
 * _Emphasise named things_: Emphasis (usually formatted as _itallic_) is used for terms with special meaning. E.g. everything in the [glossary](/docs/architecture/glossary) is a good candidate. The rationale behind this rule is that readers easily recognize a term as something with special meaning in the context of _secureCodeBox_. For example the term _parser_ has a lot of different meaning depending on the context this term is used. In the context of _secureCodeBox_ a _parser_ has very special and narrow meaning. So, the reader sees that this word has a special meaning.
 * **Strong important things**: Important things which should be recognized, even if a reader only skims over the text, should be marked up strong.
-* `Use code for code`: The inline code markup should only be used for things which can be copy pasted as-is into the described context. For example you write about the image directory (`static/img/docs/architecture`) you can markup it as code because you can simply copy and paste this into your terminal. Same applies if itis a command or code snippet. Do not use this to emphasize things.
+* `Use code for code`: The inline code markup should only be used for things which can be copy pasted as-is into the described context. For example you write about the image directory (`static/img/docs/architecture`) you can markup it as code because you can simply copy and paste this into your terminal. Same applies if it is a command or code snippet. Do not use this to emphasize things.
 * "Quote direct speech or quotes": Usually developers tend to use single or double quotes in texts to emphasise things because we are used to this from the most programing languages, but here a prime school reminder: Quotes are for quoting someone or direct speech. 
 
 [arc42]:              https://arc42.org/

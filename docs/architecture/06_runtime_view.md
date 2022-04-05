@@ -11,7 +11,7 @@ sidebar_position: 6
 
 This section describes the runtime view of _secureCodeBox_. In contrast to the static building block view, this view shows the interactions of participants (components/actors) over time. This is typically done with [sequence diagrams][wiki-uml-sequence].
 
-Since sequence diagrams are hard to maintain and tend to by very complicated we focus here only on the top most important scenarios, and do not draw diagrams for every possible scenario.
+Since sequence diagrams are hard to maintain and tend to be very complicated we focus here only on the top most important scenarios, and do not draw diagrams for every possible scenario.
 
 ## Runtime Scenario 1: Basic Scan with kubectl {#__runtime_scenario_1}
 
