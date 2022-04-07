@@ -97,3 +97,6 @@ No resources found in default namespace.
 ## Config
 All config options are automatically updated in the [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) in the Github repository.
 
+
+## Conclusion
+This article explained the functionality of the SCB autodiscovery and gave a step by step example which gave a brief overview on how to use the autodiscovery.
