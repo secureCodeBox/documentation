@@ -95,6 +95,9 @@ $ kubectl get scheduledscans
 No resources found in default namespace.
 ```
 ## Config
+The scanType and scan parameters can be changed by providing `containerAutodiscovery.scanConfig.scanType` and `containerAutodiscovery.scanConfig.parameters` (replace `containerAutodiscovery` with `serviceAutodiscovery` to change scanType and scan parameters for the service autodiscovery).  
+The scan parameters support go templating extended with [_sprig_](https://github.com/Masterminds/sprig). An example for go templating would be the default parameters for the container autodiscovery: `{{ .ImageID }}`. _ImageID_ is the imageID of the scanned container, example: `docker.io/bkimminich/juice-shop@sha256:350cf9a6ea37138b987a3968d046e61bcd3bb18d2ec95290cfc6901bd6013826`
+
 All config options are automatically updated in the [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) in the Github repository.
 
 
