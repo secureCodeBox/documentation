@@ -8,33 +8,33 @@ sidebar_position: 6
 ---
 
 ## Introduction
-It is possible to automatically create scheduled scans for kubernetes entities with the secureCodeBox autodiscovery. There are two availble modes that can be activated if needed. A _service_ and a _container_ autodiscovery.
+It is possible to automatically create scheduled scans for kubernetes entities with the secureCodeBox autodiscovery. There are two available modes that can be activated if needed. A _service_ and a _container_ autodiscovery.
 
 ### Container Autodiscovery
-The container autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options)  for each unique container image in a kubernetes namespace.  
+The container autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options)  for each unique container image in a kubernetes namespace.
 It is currently disabled by default and must be enabled manually.
 
-Assume that a namespace contains two pods that run a `nginx V1.5` container. The container autodiscovery will only create a single scheduled scan for the _nginx_ containers, as both are identical.  
-When a third pod inside the namespace is started running a `nginx V1.6` container, the container autodiscovery will create an additional scheduled scan for the `nginx V1.6` container, as it is not scanned at this point in time. The container autodiscovery will look at the specific version number of each container when it determiens if the a container is scanned.
-When both `nginx V1.5` pods get deleted the corresponding scheduled scans will also be automatically deleted because the specific container image is no longer present in the namespace.  
+Assume that a namespace contains two pods that run a `nginx V1.5` container. The container autodiscovery will only create a single scheduled scan for the _nginx_ containers, as both are identical.
+When a third pod inside the namespace is started running a `nginx V1.6` container, the container autodiscovery will create an additional scheduled scan for the `nginx V1.6` container, as it is not scanned at this point in time. The container autodiscovery will look at the specific version number of each container when it determines if the a container is scanned.
+When both `nginx V1.5` pods get deleted the corresponding scheduled scans will also be automatically deleted because the specific container image is no longer present in the namespace.
 The scheduled scan for the `nginx V1.6` container will not be deleted, as it is still running in the namespace.
 
-In other words: The container autodiscovery will create a single scheduled scan for each unique container image (taking specific version number into account) in a given namespace.
+In other words: The container autodiscovery will create a single scheduled scan for each unique container image (taking the specific version number into account) in a given namespace.
 
 If a pod consists of multiple containers, the above described logic will be applied to each container individually.
 
 ### Service Autodiscovery
-The service autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options) for each kubernetetes service it detects.  
+The service autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options) for each kubernetes service it detects.
 The service autodiscovery is enabled by default but can be disabled manually.
 
-The service autodiscovery will ignore services where the underlying pods do not serve http(s). It does this by simply checking for open ports `80, 443, 3000, 5000, 8000, 8443, 8080`. It is also sufficient to name the ports `http` or `https` when a different port is used than the ports specified above.  
+The service autodiscovery will ignore services where the underlying pods do not serve http(s). It does this by simply checking for open ports `80, 443, 3000, 5000, 8000, 8443, 8080`. It is also sufficient to name the ports `http` or `https` when a different port is used than the ports specified above.
 Every service using a different port or not naming the port accordingly will be ignored.
 
 ## Setup
 For the sake of the tutorial, it will be assumed that a Kubernetes cluster and the SCB operator is already up and running. If not, check out the [installation](/docs/getting-started/installation/) tutorial for more information.
-This tutorial will use the `default` and `securecodebox-system` namespace!
+This tutorial will use the `default` and `securecodebox-system` namespace.
 
-First install `zap-andvanced` and `trivy`:
+First install the `zap-advanced` and `trivy` scan types:
 ```bash
 helm upgrade --install zap-advanced secureCodeBox/zap-advanced
 helm upgrade --install trivy secureCodeBox/trivy
@@ -45,7 +45,7 @@ Then install the SCB autodiscovery (container autodiscovery is explicitly enable
 helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.containerAutoDiscovery.enabled=true
 ```
 
-Then annotate the `default` namespace to enable the autodiscovery in that default. There are three so called `resourceInclusionModes`. These controll which resources the autodiscovery will scan.
+Then annotate the `default` namespace to enable the autodiscovery feature for the namespace. There are three so called `resourceInclusionModes`. These control which resources the autodiscovery will scan.
 - enabled-per-namespace (default)
 - enabled-per-resource
 - scan-all (scans every service and/ or container in the whole cluster!)
@@ -58,7 +58,7 @@ Then install juiceshop as a demo target:
 helm upgrade --install juice-shop secureCodeBox/juice-shop
 ```
 
-The autodiscovery will create two scheduled scans after some time. One for the juiceshop servcie using `zap`, and one for the juiceship container using `trivy`:
+The autodiscovery will create two scheduled scans after some time. One for the juiceshop service using `zap`, and one for the juiceshop container using `trivy`:
 ```bash
 $ kubectl get scheduledscans
 NAME                                                             TYPE                INTERVAL   FINDINGS
@@ -79,7 +79,7 @@ juice-shop2-service-port-3000                                    zap-advanced-sc
 scan-juice-shop-at-350cf9a6ea37138b987a3968d046e61bcd3bb18d2ec   trivy               168h0m0s   
 ```
 
-Delete both juicehop deployments.
+Delete both juiceshop deployments.
 ```bash
 kubectl delete deployment,service juice-shop juice-shop2
 ```
