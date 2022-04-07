@@ -8,7 +8,9 @@ sidebar_position: 6
 ---
 
 ## Introduction
-It is possible to automatically create scheduled scans for kubernetes entities with the secureCodeBox autodiscovery. There are two available modes that can be activated if needed. A _service_ and a _container_ autodiscovery.
+The securecodebox offers so called _scheduled scans_. As the name suggests these _scheduled scans_ run regularly based of a predefined time interval. The SCB autodiscovery automates the process of _scheduled scans_ by automatically creating _scheduled scans_ for kubernetes entities inside a cluster. The autodiscovery will observe the scanned kubernetes entities over their whole lifecycle. It will automatically create, update and delete scans when necessary.  
+Currently the SCB autodiscovery supports two modes that can be enabled independently: A _service_ and a _container_ autodiscovery.  
+This tutorial will explain both modes and will give a practical step by step example one can follow.
 
 ### Container Autodiscovery
 The container autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options)  for each unique container image in a kubernetes namespace.
@@ -94,3 +96,4 @@ No resources found in default namespace.
 ```
 ## Config
 All config options are automatically updated in the [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) in the Github repository.
+
