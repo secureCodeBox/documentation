@@ -45,10 +45,14 @@ Then install the SCB autodiscovery (container autodiscovery is explicitly enable
 helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.containerAutoDiscovery.enabled=true
 ```
 
-Then annotate the `default` namespace to enable the autodiscovery feature for the namespace. There are three so called `resourceInclusionModes`. These control which resources the autodiscovery will scan.
+ There are three so called `resourceInclusionModes`. These control which resources the autodiscovery will scan.
 - enabled-per-namespace (default)
 - enabled-per-resource
 - scan-all (scans every service and/ or container in the whole cluster!)
+
+Depending on the _resourceInclusionMode_ one has to annotate each namespace or kubernetes resource for which the autodiscovery should be enabled. If `scan-all` is used nothing has to be annotated as everything will be scanned.  
+This tutorial will use `enabled-per-namespace` as _ressourceInclusionMode_ which is the default.
+Annotate the `default` namespace to enable the autodiscovery feature for the namespace.
 ```bash
 kubectl annotate namespace default auto-discovery.securecodebox.io/enabled=true
 ```
