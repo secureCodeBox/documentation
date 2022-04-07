@@ -42,8 +42,8 @@ The basic idea of the new architecture is to define the *scanners* as *custom re
    1. The *scanner* which is a simple container running the CLI tool like [Zap](https://www.zaproxy.org/) or such (see [full list of integrated scanners](/docs/scanners)),
    2. and the *lurker* [sidecar](https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-sidecar-container-pattern-6d8c21f873d) which is a generic container used by all *scanners* which siphons all output from the CLI scanner into a S3 storage. (By default *secureCodeBox* contains [MinIO](https://min.io/), but you can use any S3 compatible storage.)
 3. Then the *operator* starts a *parser* container job for this particular *scanner* which transforms the raw results into our well defined [finding format](/docs/api/finding) and stores them back into the S3 storage.
-4. After that the *operator* submits *jobs* for all registered *read-write hooks*. This is a [concept](/docs/architecture/09_architecture_decisions/adr_0002) to allow post processing of findings. E.g. you can adjust fields or enrich the findings with data from other systems.
-5. As last step the *operator* submits *jobs* for all registered *read hooks*. This is a [concept](/docs/architecture/09_architecture_decisions/adr_0002) to exfiltrate data from the *secureCodeBox* into external systems (e.g. notifications via chat or email, import into a VMS like [DefectDojo](https://www.defectdojo.org/) etc.).
+4. After that the *operator* submits *jobs* for all registered *read-write hooks*. This is a [concept](/docs/architecture/architecture_decisions/adr_0002) to allow post processing of findings. E.g. you can adjust fields or enrich the findings with data from other systems.
+5. As last step the *operator* submits *jobs* for all registered *read hooks*. This is a [concept](/docs/architecture/architecture_decisions/adr_0002) to exfiltrate data from the *secureCodeBox* into external systems (e.g. notifications via chat or email, import into a VMS like [DefectDojo](https://www.defectdojo.org/) etc.).
 
 ### Design Goals
 
