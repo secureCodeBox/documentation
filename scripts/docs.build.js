@@ -60,9 +60,9 @@ async function main() {
     const trgDir = `${config.targetPath}/${dir.dst}`;
     const srcDir = `${config.temp}/${dir.src}`;
 
-    // Clears existing md files from directories  
+    // Clears existing md files from directories
     if (fs.existsSync(trgDir)) {
-      await removeExistingMarkdownFilesFromDirectory(trgDir);
+      await removeExistingMarkdownFilesFromDirectory(trgDir, dir.keep);
 
       console.warn(
         `WARN: ${trgDir.info} already existed and was overwritten.`.warn
@@ -75,7 +75,7 @@ async function main() {
     // Else, the docs files are just copied to the destination path.
     dir.files.includes(".helm-docs.gotmpl")
       ? await createDocFilesFromMainRepository(srcDir, trgDir, await readDirectory(srcDir))
-      : await copyFilesFromMainRepository(srcDir, trgDir, dir.exclude);
+      : await copyFilesFromMainRepository(srcDir, trgDir, dir.exclude, dir.keep);
   }
   deleteRepositoryDir();
 }
@@ -251,8 +251,9 @@ function copyFindingsForDownload(filePath) {
 function clearDocsOnFailure() {
   for (const dir of config.filesFromRepository) {
     const trgDir = `${config.targetPath}/${dir.src}`;
+
     if (fs.existsSync(trgDir)) {
-      removeExistingMarkdownFilesFromDirectory(trgDir)
+      removeExistingMarkdownFilesFromDirectory(trgDir, dir.keep)
         .then(() => {
           console.log(
             `Cleared ${trgDir.info} due to previous failure.`.magenta
@@ -283,16 +284,18 @@ function deleteRepositoryDir() {
 //
 // @param src     required source directory in main repository (docsConfig.repository)
 // @param dst     required target directory in this repository relative to config.targetPath
-// @param exclude optional array of files to exclude from src
-async function copyFilesFromMainRepository(srcPath, dstPath, exclude) {
+// @param exclude optional array of files to exclude from srcPath
+// @param keep    optional array of files to keep in dstPath
+async function copyFilesFromMainRepository(srcPath, dstPath, exclude, keep) {
   exclude = exclude || [];
+  keep = keep || [];
 
   if (fs.existsSync(srcPath)) {
     console.error(`${srcPath.info}.`.error);
   }
 
   if (fs.existsSync(dstPath)) {
-    await removeExistingMarkdownFilesFromDirectory(dstPath);
+    await removeExistingMarkdownFilesFromDirectory(dstPath, keep);
   } else {
     fs.mkdirSync(dstPath);
     console.info(`Create target directory ${dstPath.info}...`.success);
@@ -307,15 +310,36 @@ async function copyFilesFromMainRepository(srcPath, dstPath, exclude) {
   });
 }
 
-async function removeExistingMarkdownFilesFromDirectory(dirPath) {
+async function removeExistingMarkdownFilesFromDirectory(dirPath, filesToKeep) {
+  console.info(`Remove existing markdown files from ${dirPath.info}`)
   const allFiles = await readDirectory(dirPath, false);
-  const existingMarkdownFiles = allFiles.filter((fileName) =>
-    fileName.endsWith(".md")
-  );
+  allFiles
+    .filter((fileName) => fileName.endsWith(".md"))
+    .filter(fileName => doNotKeepFile(fileName, filesToKeep))
+    .forEach((fileName) => {
+      const filePath = `${dirPath}/${fileName}`;
+      rimraf.sync(filePath);
+      console.warn(`WARN: ${filePath} was deleted.`.warn);
+    });
+}
 
-  existingMarkdownFiles.forEach((file) => {
-    const filePath = `${dirPath}/${file}`;
-    rimraf.sync(filePath);
-    console.warn(`WARN: ${filePath} was deleted.`.warn);
-  });
+function doNotKeepFile(fileName, filesToKeep) {
+  // Helper method to make it harder to oversee the !. It is easier to see the negation in the name instead
+  // somewhere in the used filter invocation.
+  return !keepFile(fileName, filesToKeep);
+}
+
+function keepFile(fileName, filesToKeep) {
+  console.info(`Determine whether to keep '${fileName}' (${filesToKeep})`.info);
+
+  for (let index in filesToKeep) {
+    const fileToKeep = filesToKeep[index];
+
+    if (fileName.normalize() === fileToKeep.normalize()) {
+      console.info(`Keeping file ${fileName}`.info);
+      return true;
+    }
+  }
+
+  return false;
 }

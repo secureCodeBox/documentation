@@ -14,7 +14,7 @@
 #    - spaces replaced by dashes
 # 2. Adds basic frontmatter into it.
 #
-# You may place a file .author_meta into theroot of the repo to define some varaibles
+# You may place a file .author_meta into the root of the repo to define some variables
 # for the frontmatter. The script will tell you if no meta file was found.
 #
 

@@ -42,8 +42,8 @@ The basic idea of the new architecture is to define the *scanners* as *custom re
    1. The *scanner* which is a simple container running the CLI tool like [Zap](https://www.zaproxy.org/) or such (see [full list of integrated scanners](/docs/scanners)),
    2. and the *lurker* [sidecar](https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-sidecar-container-pattern-6d8c21f873d) which is a generic container used by all *scanners* which siphons all output from the CLI scanner into a S3 storage. (By default *secureCodeBox* contains [MinIO](https://min.io/), but you can use any S3 compatible storage.)
 3. Then the *operator* starts a *parser* container job for this particular *scanner* which transforms the raw results into our well defined [finding format](/docs/api/finding) and stores them back into the S3 storage.
-4. After that the *operator* submits *jobs* for all registered *read-write hooks*. This is a [concept](/docs/architecture/adr/adr_0002) to allow post processing of findings. E.g. you can adjust fields or enrich the findings with data from other systems.
-5. As last step the *operator* submits *jobs* for all registered *read hooks*. This is a [concept](/docs/architecture/adr/adr_0002) to exfiltrate data from the *secureCodeBox* into external systems (e.g. notifications via chat or email, import into a VMS like [DefectDojo](https://www.defectdojo.org/) etc.).
+4. After that the *operator* submits *jobs* for all registered *read-write hooks*. This is a [concept](/docs/architecture/architecture_decisions/adr_0002) to allow post processing of findings. E.g. you can adjust fields or enrich the findings with data from other systems.
+5. As last step the *operator* submits *jobs* for all registered *read hooks*. This is a [concept](/docs/architecture/architecture_decisions/adr_0002) to exfiltrate data from the *secureCodeBox* into external systems (e.g. notifications via chat or email, import into a VMS like [DefectDojo](https://www.defectdojo.org/) etc.).
 
 ### Design Goals
 
@@ -91,10 +91,10 @@ In v1 you needed a system which triggers a scan. Typically this was a CI/CD syst
 
 Since we learned that the full bloated web UI of *secureCodeBox* v1 was only a nice feature for management slides, we completely abandoned such a UI. Our main target audience are developers which are used to command line interfaces and embrace DevSecOps where you want to automate as much as possible. A CLI is obviously way more convenient to automate than a web UI.
 
-But anyway you may want some web UI to manage your findings. At the moment we provide simply Kibana and Elasticsearch to visualize them. But we're working hard on better solutions. Additionally you can import all the findings in any system you want with a [custom *read hook*](/docs/architecture/adr/adr_0002).
+But anyway you may want some web UI to manage your findings. At the moment we provide simply Kibana and Elasticsearch to visualize them. But we're working hard on better solutions. Additionally you can import all the findings in any system you want with a [custom *read hook*](/docs/architecture/architecture_decisions/adr_0002).
 
 #### Cascading Scans
 
 We had early the demand to trigger subsequent scans based on previous scan results. A very simple but common use case is to scan a host for open ports and afterwards scan these ports with dedicated *scanners*. In v1 we used a galactic workaround to achieve this: We first executed a Nmap scan and stored the result. Then we executed separate scans for the found open ports. The orchestration was done with [Jenkins pipelines](https://www.jenkins.io/doc/book/pipeline/) and some Python scripts. Actually we hacked a separate "engine" on top of the main [BPMN](https://en.wikipedia.org/wiki/Business_Process_Model_and_Notation) engine because we couldn't extend it to execute sub process models in a process model with separate scopes. You see this was not a very well engineered solution :wink:
 
-Since we introduced in v2 our own [YAML syntax](/docs/how-tos) to define scans,  we had the opportunity to just extend it for the purpose of [cascading scans](/docs/architecture/adr/adr_0003). We introduced the [Cascading Rule](/docs/api/crds/cascading-rule) custom resource. With this you can specify a scanner to be scheduled based on previous findings.
+Since we introduced in v2 our own [YAML syntax](/docs/how-tos) to define scans,  we had the opportunity to just extend it for the purpose of [cascading scans](docs/architecture/architecture_decisions/adr_0002). We introduced the [Cascading Rule](/docs/api/crds/cascading-rule) custom resource. With this you can specify a scanner to be scheduled based on previous findings.

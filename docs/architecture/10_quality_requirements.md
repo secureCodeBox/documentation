@@ -5,7 +5,7 @@
 
 title: "Quality Requirements"
 sidebar_label: "Quality Requirements"
-sidebar_position: 11
+sidebar_position: 10
 ---
 # Quality Requirements {#section-quality-scenarios}
 
