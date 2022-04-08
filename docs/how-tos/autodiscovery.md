@@ -13,7 +13,7 @@ Currently the SCB autodiscovery supports two modes that can be enabled independe
 This tutorial will explain both modes and will give a practical step by step example one can follow.
 
 ### Container Autodiscovery
-The container autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options)  for each unique container image in a kubernetes namespace.
+The container autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options)  for each unique container image in a kubernetes namespace. Currently it is only possible to scan public container images!  
 It is currently disabled by default and must be enabled manually.
 
 Assume that a namespace contains two pods that run a `nginx V1.5` container. The container autodiscovery will only create a single scheduled scan for the _nginx_ containers, as both are identical.
@@ -26,7 +26,7 @@ In other words: The container autodiscovery will create a single scheduled scan 
 If a pod consists of multiple containers, the above described logic will be applied to each container individually.
 
 ### Service Autodiscovery
-The service autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options) for each kubernetes service it detects.
+The service autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options) for each kubernetes service it detects. (It is possible to scan APIs that require authentication, see [ZAP Advanced](../scanners/zap-advanced.md) documentation).  
 The service autodiscovery is enabled by default but can be disabled manually.
 
 The service autodiscovery will ignore services where the underlying pods do not serve http(s). It does this by simply checking for open ports `80, 443, 3000, 5000, 8000, 8443, 8080`. It is also sufficient to name the ports `http` or `https` when a different port is used than the ports specified above.
