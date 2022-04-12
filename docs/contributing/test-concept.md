@@ -9,13 +9,13 @@ sidebar_position: 5
 
 ## Introduction
 In this section we will go over how the different modules (scanner/hook/operator) of secureCodeBox are tested. 
-We will present how each modules implements unit and integration tests,
+We will present how each modules implements unit and integration tests.
 
 
 ## Operator
 
 ### How to create a test
-The operator i.e the Kubernetes custom operator that we use for handling the SCB Custom ressource definitions (CRDs) uses Ginkgo, a BDD-style Go testing framework. (http://onsi.github.io/ginkgo/ to learn more about Ginkgo.)
+The operator i.e the Kubernetes custom operator that we use for handling the SCB Custom ressource definitions (CRDs) uses Ginkgo, a BDD-style Go testing framework (http://onsi.github.io/ginkgo/ to learn more about Ginkgo.).
 
 To test the functionalities of the operator, we create scenarios where the CRDs are in certain states and see how the operator reacts.
 Take the following example. Here we try to test whether the operator would retrigger a [ScheduledScan](docs/api/crds/scheduled-scan) if the corresponding [ScanType](/docs/api/crds/scan-type) is updated.
@@ -64,9 +64,9 @@ var _ = Describe("ScanType controller", func() {
 	})
 }    
 ```
-we start by creating a cloud cluster context to run the test in. And then we set the CRDs to their initial state. In this case the CRDs are [ScanType](/docs/api/crds/scan-type) and [ScheduledScan](docs/api/crds/scheduled-scan).
+We start by creating a cloud cluster context to run the test in. Then, we set the CRDs to their initial state. In this case the CRDs are [ScanType](/docs/api/crds/scan-type) and [ScheduledScan](docs/api/crds/scheduled-scan).
 
-The function `createScanType` sets the initial state for an `nmap` ScanType. The different metadata are set manually. This is since the test driven by Ginkgo do not actually run inside of a cluster, instead they run inside of a faked environment that allows the testing of the operator. The `createScanType` function would look like the following:
+The function `createScanType` sets the initial state for a `nmap` ScanType. The different metadata are set manually. This is since the test driven by Ginkgo do not actually run inside of a cluster. Instead they run inside of a faked environment that allows the testing of the operator. The `createScanType` function would look like the following:
 
 ```go
 func createScanType(ctx context.Context, namespace string) {
@@ -105,8 +105,8 @@ func createScanType(ctx context.Context, namespace string) {
 }
 ```
 We do the same for the Namespace and ScheduledScan in functions `createNamespace` and `createScheduledScan` accordingly.
-Before carrying on with our test. We first have to make sure that the scheduledScan has actually been triggered
-We do this by using the `Eventually` control loop of Ginkgo. As the documentation states "In the case of Eventually, Gomega polls the input repeatedly until the matcher is satisfied - once that happens the assertion exits successfully and execution continues. If the matcher is never satisfied Eventually will time out with a useful error message" (more info [here](https://onsi.github.io/ginkgo/#patterns-for-asynchronous-testing)).
+Before carrying on with our test, we first have to make sure that the scheduledScan has actually been triggered.
+We do this by using the `Eventually` control loop of Ginkgo. As the documentation states: "In the case of Eventually, Gomega polls the input repeatedly until the matcher is satisfied - once that happens the assertion exits successfully and execution continues. If the matcher is never satisfied Eventually will time out with a useful error message" (more info [here](https://onsi.github.io/ginkgo/#patterns-for-asynchronous-testing)).
 
 This would look like the following:
 
@@ -124,19 +124,19 @@ func waitForScheduledScanToBeTriggered(ctx context.Context, namespace string) {
 	}, timeout, interval).Should(BeTrue())
 }
 ```
-We then get the scheduledScan CRD from our context and save it to the `scheduledScan` variable, whilst taking note of the initial execution time of the ScheduledScan. This helps us determine whether the scheduledScan was retriggered or not.
+Afterwards, we get the scheduledScan CRD from our context and save it to the `scheduledScan` variable, whilst taking note of the initial execution time of the ScheduledScan. This helps us determine whether the scheduledScan was retriggered or not.
 
 
 In the same way that we set the initial metadata for the CRDs, we will now update the ScanType to hopefully trigger a rescan.
 
-For better test workflow visibility, the different sections of a test are seperated by the keyword "by" that describes what each section does. The scanType update is done in the `By("Update ScanType to trigger rescan")` section.
+For better test workflow visibility, the different sections of a test are seperated by the keyword "by", which describes what each section does. The scanType update is done in the `By("Update ScanType to trigger rescan")` section.
 
-In the following section we then check whether the timestamp of ScheduledScan execution time has changed. If it has changed, then it means the ScheduledScan has been retriggered.
-We again use the `Eventually` control loop to check for the fullfilment of our condition i.e comparing the context's scheduledScan last schedule time and the initial execution time.
+In the following section we then check whether the timestamp of ScheduledScan execution time has changed. If it has changed, it means that the ScheduledScan has been retriggered.
+We use the `Eventually` control loop again to check for the fulfillment of our condition i.e comparing the context's scheduledScan last schedule time and the initial execution time.
 
 ### How to run a test
 
-Running the test is easy through our makefiles. In the operator folder (securecodebox/operator), It is sufficient to run 
+Running the test is easy through our makefiles. In the operator folder (securecodebox/operator), it is sufficient to run 
 ```bash
 make test
 ```
