@@ -6,13 +6,14 @@
 title: "Scanner Testing"
 sidebar_position: 3
 ---
-## Scanner-Test
+## Scanner
 
-There are two type of tests: integration-tests and unit tests for the parser.
+We employ two type of tests: unit tests for the parser and integration-tests. Both types of tests are based upon the [Jest](https://jestjs.io/) testing framework.
 
 ### Unit Tests for Parser
 
-Each scanner has a parser and each parser has a unit test file. The unit test file is named parser.test.js. In this file the results from parser.js and the folder _snapshots_ are compared. If they are the same, the unit test was successful. A unit test can look like this:
+Each scanner has a parser and each parser has a unit test file. The unit test file is named parser.test.js. This file contains different test scenarios. In each test, the results from parser.js and the folder `_snapshots_` are compared. If they are the same, the unit test is successful. 
+A unit test can look like this:
 
 ```js
 test("parser parses large json result without vulnerable extensions successfully", async () => {
@@ -28,7 +29,7 @@ test("parser parses large json result without vulnerable extensions successfully
 });
 
 ```
-
+This test for example expects a test file, i.e a raw scanner output, to be found in `/__testFiles__/localhost.json`
 ### How to Run a Unit Test
 
 To run a unit-test it suffices to run
@@ -39,9 +40,9 @@ in the scanner directory.
 
 ### Integration Tests
 
-Each scanner has a folder with integration tests. For the integration tests we use the function scan. The functions expects as parameter: name of the scanner, scan type, required parameters for the scan and the timeout time.
+Each scanner has a folder with integration tests. For the integration tests we check the results of the `scan` function. This function runs an actual SCB scan in the Kind Cluster (Through the [Scan CRD](/docs/api/crds/scan)). It expects as parameter: name of the scan, scanType, scanner-specific parameters for the scan and the allowed timeout.
 
-An integration test for the scanner amass looks like this:
+An integration test for the amass scanner looks like this:
 
 ```js
 test(
@@ -58,7 +59,7 @@ test(
   6 * 60 * 1000
 );
 ```
-
+For this test to be considered successful, it has to match the expected condition. In this case, it's having the count of the findings being greater or equal to 20.
 ### How to Run an Integration Test
 
 To run the test it suffices to run:
@@ -67,3 +68,8 @@ make test
 ```
 All previous tests will be deleted and the current test will be run on a clean slate.
 
+if no clean install is needed before running the test, it's possible to only run the tests themselves through:
+
+```bash
+make integration-tests
+```
