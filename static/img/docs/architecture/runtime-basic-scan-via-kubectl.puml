@@ -15,12 +15,15 @@ participant Parser <<Job>>
 collections ReadWriteHook <<Job>>
 collections ReadHook <<Job>>
 participant Storage <<Pod,S3>> #White
-participant Elastic #White
 participant DefectDojo #White
+participant Elastic #White
 
 Developer -> Engine : initiate scan (kubectl)
 
 activate Engine
+activate Storage
+activate Elastic
+activate DefectDojo
 
 Engine -> Scanner : schedule
 activate Scanner
@@ -54,7 +57,7 @@ destroy Parser
 activate ReadWriteHook
 Engine -> ReadWriteHook
 ReadWriteHook -> Storage : read well-defined finding
-ReadWriteHook -> Storage : persist modified well-defined finding
+ReadWriteHook -> DefectDojo : import finding
 Engine <-- ReadWriteHook
 deactivate ReadWriteHook
 destroy ReadWriteHook
@@ -63,7 +66,6 @@ activate ReadHook
 Engine -> ReadHook
 ReadHook -> Storage : read well-defined finding
 ReadHook -> Elastic : persist
-ReadHook -> DefectDojo : import
 Engine <-- ReadHook
 deactivate ReadHook
 destroy ReadHook
