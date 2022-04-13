@@ -137,7 +137,7 @@ make test
 ```
 to execute a test run of the operator.
 
-if using VS Code, and you wish to also be able to use the IDE and Debug your code, you can use the following launch options:
+If using VS Code, and you wish to also be able to use the IDE and Debug your code, you can use the following launch options:
 
 ```json
 //launch.json
@@ -156,4 +156,4 @@ if using VS Code, and you wish to also be able to use the IDE and Debug your cod
     ]
 }
 ```
-You may need the adjust the `program` and `env` paths according to your workspace. 
+You may need to adjust the `program` and `env` paths according to your workspace. 
