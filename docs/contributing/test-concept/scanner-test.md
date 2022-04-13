@@ -8,7 +8,7 @@ sidebar_position: 3
 ---
 ## Scanner
 
-We employ two type of tests: unit tests for the parser and integration-tests. Both types of tests are based upon the [Jest](https://jestjs.io/) testing framework.
+We employ two types of tests: unit tests for the parser and integration-tests. Both types of tests are based upon the [Jest](https://jestjs.io/) testing framework.
 
 ### Unit Tests for Parser
 
@@ -42,7 +42,7 @@ in the scanner directory.
 
 Each scanner has a folder with integration tests. For the integration tests we check the results of the `scan` function. This function runs an actual SCB scan in the Kind Cluster (Through the [Scan CRD](/docs/api/crds/scan)). It expects as parameter: name of the scan, scanType, scanner-specific parameters for the scan and the allowed timeout.
 
-An integration test for the amass scanner looks like this:
+An integration test for, for example, the amass scanner looks like this:
 
 ```js
 test(
@@ -59,7 +59,7 @@ test(
   6 * 60 * 1000
 );
 ```
-For this test to be considered successful, it has to match the expected condition. In this case, it's having the count of the findings being greater or equal to 20.
+For this test to be considered successful, it has to match the expected condition. In this case, the condition is that the count of the findings is greater or equal to 20.
 ### How to Run an Integration Test
 
 To run the test it suffices to run:
@@ -68,7 +68,7 @@ make test
 ```
 All previous tests will be deleted and the current test will be run on a clean slate.
 
-if no clean install is needed before running the test, it's possible to only run the tests themselves through:
+If no clean install is needed before running the test, it is possible to run only the tests themselves through:
 
 ```bash
 make integration-tests

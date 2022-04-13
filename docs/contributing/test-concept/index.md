@@ -10,7 +10,7 @@ sidebar_position: 1
 
 ## Introduction
 In this section we will go over how the different modules (scanner/hook/operator) of secureCodeBox are tested. 
-We will present how each modules implements unit and integration tests.
+We will present how each module implements unit and integration tests.
 * [Operator](/docs/contributing/test-concept/operator-test)
 * [Scanner](/docs/contributing/test-concept/scanner-test)
 * [Hook](/docs/contributing/test-concept/hook-test)

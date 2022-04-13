@@ -12,7 +12,7 @@ sidebar_position: 2
 The operator i.e the Kubernetes custom operator that we use for handling the SCB Custom resource definitions (CRDs), uses Ginkgo, a BDD-style Go testing framework (http://onsi.github.io/ginkgo/ to learn more about Ginkgo.).
 
 To test the functionalities of the operator, we create scenarios where the CRDs are in certain states and see how the operator reacts.
-Take the following example. Here we try to test whether the operator would retrigger a [ScheduledScan](docs/api/crds/scheduled-scan) if the corresponding [ScanType](/docs/api/crds/scan-type) is updated.
+Take the following example. Here we try to test whether the operator would retrigger a [ScheduledScan](/docs/api/crds/scheduled-scan) if the corresponding [ScanType](/docs/api/crds/scan-type) is updated.
 
 ```go
 var _ = Describe("ScanType controller", func() {
@@ -58,9 +58,9 @@ var _ = Describe("ScanType controller", func() {
 	})
 }    
 ```
-We start by creating a cloud cluster context to run the test in. Then, we set the CRDs to their initial state. In this case the CRDs are [ScanType](/docs/api/crds/scan-type) and [ScheduledScan](docs/api/crds/scheduled-scan).
+We start by creating a cloud cluster context to run the test in. Then, we set the CRDs to their initial state. In this case the CRDs are [ScanType](/docs/api/crds/scan-type) and [ScheduledScan](/docs/api/crds/scheduled-scan).
 
-The function `createScanType` sets the initial state for a `nmap` ScanType. The different metadata are set manually. This is since the test, driven by Ginkgo, does not actually run inside of a cluster. Instead they run inside of a faked environment that allows the testing of the operator. The `createScanType` function would look like the following:
+The function `createScanType` sets the initial state for a `nmap` ScanType. The different metadata are set manually. This is since the test, driven by Ginkgo, does not actually run inside a cluster. Instead they run inside of a faked environment that allows the testing of the operator. The `createScanType` function would look like the following:
 
 ```go
 func createScanType(ctx context.Context, namespace string) {
