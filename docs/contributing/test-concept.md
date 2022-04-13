@@ -9,7 +9,9 @@ sidebar_position: 5
 
 ## Introduction
 In this section we will go over how the different modules (scanner/hook/operator) of secureCodeBox are tested. 
-We will present how each modules implements unit and integration tests.
+We will present how each modules implements unit and integration tests. 
+We use Make as a basis for our testing framework. The Makefiles expect additional software to be installed:
+git, node + npm, docker, kind, kubectl, helm and [yq](https://github.com/mikefarah/yq/).
 
 
 ## Operator
@@ -138,10 +140,31 @@ We use the `Eventually` control loop again to check for the fulfillment of our c
 
 Running the test is easy through our makefiles. In the operator folder (securecodebox/operator), it is sufficient to run 
 ```bash
+cd operator
 make test
 ```
-to execute a clean test run of the operator.
+to execute a test run of the operator.
 
+if using VS Code, and you wish to also be able to use the IDE and Debug your code, you can use the following launch options:
+
+```json
+//launch.json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Package",
+            "type": "go",
+            "request": "launch",
+            "mode": "test",
+            "program": "${workspaceFolder}/secureCodeBox/operator/controllers/execution",
+            "args": ["-test.v"],
+            "env": {"KUBEBUILDER_ASSETS": "${workspaceFolder}/secureCodeBox/operator/testbin/bin"}
+        }
+    ]
+}
+```
+You may need the adjust the `program` and `env` paths according to your workspace. 
 ## Hook
 wip
 
