@@ -3,14 +3,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-title: "Automatically Run Scans with Autodiscovery"
+title: "Automatically Scan Your Cluster with Autodiscovery"
 sidebar_position: 6
 ---
 
-## Introduction
-The secureCodeBox offers so called _scheduled scans_. As the name suggests these _scheduled scans_ run regularly based of a predefined time interval. The SCB autodiscovery automates the process of setting up _scheduled scans_ by automatically creating _scheduled scans_ for Kubernetes entities inside a cluster. The autodiscovery will observe the scanned Kubernetes entities over their whole lifecycle. It will automatically create, update and delete scans when necessary.
-Currently the SCB autodiscovery supports two modes that can be enabled independently: A _service_ and a _container_ autodiscovery.
-This tutorial will explain both modes and will give a practical step by step example you can follow.
+## Introduction 
+The secureCodeBox allows you to set up regular scans of your infrastructure using _scheduled scans_. As the name suggests, these _scheduled scans_ run based on a predefined time interval. However, it can be cumbersome to set this up for your entire infrastructure. If you are operating your infrastructure inside a Kubernetes cluster, there is an easier way to do this: The SCB autodiscovery automates the process of setting up _scheduled scans_ by creating _scheduled scans_ for Kubernetes entities inside a cluster.
+
+The autodiscovery will observe the scanned Kubernetes entities over their whole lifecycle. It will automatically create, update and delete scans when necessary. Currently the SCB autodiscovery supports two modes that can be enabled independently: A _service_ and a _container_ autodiscovery. This tutorial will explain both modes and will give a practical step by step example you can follow.
 
 ### Container Autodiscovery
 The container autodiscovery will create a scheduled scan with the given parameters (see [readme](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/README.md) for config options) for each unique container image in a Kubernetes namespace. Currently it is only possible to scan public container images.  
