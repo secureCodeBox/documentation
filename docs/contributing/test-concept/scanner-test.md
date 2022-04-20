@@ -8,7 +8,7 @@ sidebar_position: 3
 ---
 ## Scanner
 
-We employ two types of tests: unit tests for the parser and integration-tests. Both types of tests are based upon the [Jest](https://jestjs.io/) testing framework.
+We employ two types of tests: Unit tests for the parser and integration-tests. Both types of tests are based upon the [Jest](https://jestjs.io/) testing framework.
 
 ### Unit Tests for Parser
 
@@ -40,7 +40,7 @@ in the scanner directory.
 
 ### Integration Tests
 
-Each scanner has a folder with integration tests. For the integration tests we check the results of the `scan` function. This function runs an actual SCB scan in the Kind Cluster (Through the [Scan CRD](/docs/api/crds/scan)). It expects as parameter: name of the scan, scanType, scanner-specific parameters for the scan and the allowed timeout.
+Each scanner has a folder with integration tests. For the integration tests we check the results of the `scan` function. This function runs an actual SCB scan in the Kind Cluster (Through the [Scan CRD](/docs/api/crds/scan)). It expects the following parameters: Name of the scan, scanType, scanner-specific parameters for the scan and the allowed timeout.
 
 An integration test for, for example, the amass scanner looks like this:
 

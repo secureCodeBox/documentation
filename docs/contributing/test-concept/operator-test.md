@@ -58,9 +58,9 @@ var _ = Describe("ScanType controller", func() {
 	})
 }    
 ```
-We start by creating a cloud cluster context to run the test in. Then, we set the CRDs to their initial state. In this case the CRDs are [ScanType](/docs/api/crds/scan-type) and [ScheduledScan](/docs/api/crds/scheduled-scan).
+We start by creating a context to run the test in. Then, we set the CRDs to their initial state. In this case the CRDs are [ScanType](/docs/api/crds/scan-type) and [ScheduledScan](/docs/api/crds/scheduled-scan).
 
-The function `createScanType` sets the initial state for a `nmap` ScanType. The different metadata are set manually. This is since the test, driven by Ginkgo, does not actually run inside a cluster. Instead they run inside of a faked environment that allows the testing of the operator. The `createScanType` function would look like the following:
+The function `createScanType` sets the initial state for a `nmap` ScanType. The different metadata are set manually. This is because the test, driven by Ginkgo, does not actually run inside a real cluster. Instead the tests run inside of a simulated cluster that allows the isolated testing of the operator. The `createScanType` function would look like the following:
 
 ```go
 func createScanType(ctx context.Context, namespace string) {
@@ -137,7 +137,7 @@ make test
 ```
 to execute a test run of the operator.
 
-If using VS Code, and you wish to also be able to use the IDE and Debug your code, you can use the following launch options:
+If you are2 using VS Code, and you wish to also be able to use the IDE and Debug your code, you can use the following launch options:
 
 ```json
 //launch.json
@@ -149,11 +149,11 @@ If using VS Code, and you wish to also be able to use the IDE and Debug your cod
             "type": "go",
             "request": "launch",
             "mode": "test",
-            "program": "${workspaceFolder}/secureCodeBox/operator/controllers/execution",
+            "program": "${workspaceFolder}/operator/controllers/execution",
             "args": ["-test.v"],
-            "env": {"KUBEBUILDER_ASSETS": "${workspaceFolder}/secureCodeBox/operator/testbin/bin"}
+            "env": {"KUBEBUILDER_ASSETS": "${workspaceFolder}/operator/testbin/bin"}
         }
     ]
 }
 ```
-You may need to adjust the `program` and `env` paths according to your workspace. 
+You may need to adjust the `program` and `env` paths according to your workspace. Make to run `make test` once before debugging to ensure that the needed binaries in the `bin` folder are downloaded.
