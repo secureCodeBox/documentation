@@ -62,7 +62,7 @@ minio:
 s3:
   enabled: true
   # update the region to match the location of your bucket
-  endpoint: "s3-eu-west-1.amazonaws.com"
+  endpoint: "s3.eu-west-1.amazonaws.com"
   bucket: "your-own-securecodebox-bucket-name"
   # Name to a k8s secret with 'accesskey' and 'secretkey' as attributes in the same namespace as this release
   # Example creation via kubectl:
