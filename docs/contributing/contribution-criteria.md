@@ -30,7 +30,7 @@ Given that the formal acceptance criteria (see below) are met, we will merge the
 
 PRs other than the ones that we merge by default will be discussed by the core developer team. We will stay in close
 contact with you regarding the decision process. If you think that your PR falls into that category, it might be
-worth to [get in touch](/blog/2021-09-07-how-we-work) before you get started.
+worth to [get in touch](https://www.securecodebox.io/blog/2021/09/07/how-we-work#get-engaged) before you get started.
 
 * New features (especially scanners, hooks, tests)
 * Breaking changes (especially operator, auto-discovery)
