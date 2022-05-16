@@ -5,7 +5,8 @@
 
 title: "Windows Scanners"
 sidebar_label: Windows Scanners
-path: "docs/experimental/windows-scanners"
+path: "docs/community-features/windows-scanners"
+sidebar_position: 1
 ---
 
 # Integrating Windows™ Scanners into the secureCodeBox
