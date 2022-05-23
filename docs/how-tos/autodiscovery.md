@@ -47,9 +47,9 @@ helm upgrade --namespace securecodebox-system --install auto-discovery-kubernete
 ```
 
 There are three so-called `resourceInclusionModes`. These control which resources the autodiscovery will scan.
-- enabled-per-namespace (default)
-- enabled-per-resource
-- scan-all (scans every service and/ or container in the whole cluster!)
+- `enabled-per-namespace` (default)
+- `enabled-per-resource`
+- `all` (scans every service and/ or container in the whole cluster!)
 
 Depending on the _resourceInclusionMode_ one has to annotate each namespace or Kubernetes resource for which the autodiscovery should be enabled. If `scan-all` is used nothing has to be annotated as everything will be scanned.
 This tutorial will use `enabled-per-namespace` as _ressourceInclusionMode_ which is the default.
