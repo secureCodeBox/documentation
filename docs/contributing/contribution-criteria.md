@@ -18,20 +18,21 @@ your PR will fall. Creating an [issue](https://github.com/secureCodeBox/secureCo
 is a good way to get an overview of what has to be done and get feedback early! To create an issue is also a 
 must-have for any change that takes longer than one hour to complete.
 
-### Merge by default
+### Merge after approving review
 
-Given that the formal acceptance criteria (see below) are met, we will merge the following sorts of PRs by default:
+Given that the formal acceptance criteria (see below) are met, we will merge the following sorts of PRs without 
+additional internal discussion:
 * Bug fixes
 * Documentation enhancements
 * Maintenance work such as code style or typo fixes
-* Updates to existing features (operator, scans, hooks, auto-discovery, tests)
 
 ### Merge only after team decision
 
-PRs other than the ones that we merge by default will be discussed by the core developer team. We will stay in close
+PRs other than the ones above will be discussed by the core developer team. We will stay in close
 contact with you regarding the decision process. If you think that your PR falls into that category, it might be
 worth to [get in touch](https://www.securecodebox.io/blog/2021/09/07/how-we-work#get-engaged) before you get started.
 
+* Updates to existing features (operator, scans, hooks, auto-discovery, tests)
 * New features (especially scanners, hooks, tests)
 * Breaking changes (especially operator, auto-discovery)
 
