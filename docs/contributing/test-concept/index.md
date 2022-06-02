@@ -17,3 +17,7 @@ We will present how each module implements unit and integration tests.
   
 We use Make as a basis for our testing framework. The Makefiles expect additional software to be installed:
 git, node + npm, docker, kind, kubectl, helm and [yq](https://github.com/mikefarah/yq/).
+
+## SCB Testing structure
+
+![scb-testing-structure](/img/docs/testing/scb-testing.png)
