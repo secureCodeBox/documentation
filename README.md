@@ -31,8 +31,9 @@ In order to build and run this website you need to install [Node.js and NPM] for
 ```bash
 git clone https://github.com/secureCodeBox/documentation.git
 cd documentation
-nvm use
-npm install -g npm@7
+nvm install v16.15.1
+nvm use v16.15.1
+npm install -g npm@8.11.0
 npm install
 ```
 
