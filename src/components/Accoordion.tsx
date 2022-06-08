@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import useThemeContext from "@theme/hooks/useThemeContext";
+import {useColorMode} from '@docusaurus/theme-common';
 import {
   Accordion as AccessibleAccordion,
   AccordionItem,
@@ -17,7 +17,7 @@ export default function Accordion({
   items: { title: string; content: string }[];
   fullWidth?: boolean;
 }) {
-  const { isDarkTheme } = useThemeContext();
+  const { isDarkTheme } = useColorMode();
   return (
     <AccessibleAccordion
       allowZeroExpanded={true}
