@@ -112,7 +112,7 @@ module.exports = {
             ],
           },
         ],
-        copyright: `Copyright the secureCodeBox authors. Built with Docusaurus.`,
+        copyright: `Copyright the secureCodeBox authors. Built with Docusaurus. Powered by Netlify.`,
       },
       prism: {
         theme: require("prism-react-renderer/themes/dracula"),
