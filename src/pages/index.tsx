@@ -45,7 +45,7 @@ const HookIntegrations = () => {
   );
 };
 
-//* In order to use useColorMode() on the homepage, the main content is separated from the default export due to how "@theme/Layout" works
+//* In order to use useColorMode() on the homepage, the main content is separated from the default export due to how "@docusaurus/theme-common" works
 function HomePage() {
   const { isDarkTheme } = useColorMode();
 
