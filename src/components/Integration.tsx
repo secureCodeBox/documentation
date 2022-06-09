@@ -4,7 +4,7 @@
 
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import useThemeContext from "@theme/hooks/useThemeContext";
+import {useColorMode} from '@docusaurus/theme-common';
 import clsx from "clsx";
 import React from "react";
 import igStyles from "../css/integration.module.scss";
@@ -23,7 +23,7 @@ export default function Integration({
   type?: string;
   path: string;
 }) {
-  const { isDarkTheme } = useThemeContext();
+  const { isDarkTheme } = useColorMode();
 
   const imgUrl = useBaseUrl(imageUrl);
 

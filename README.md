@@ -32,7 +32,7 @@ In order to build and run this website you need to install [Node.js and NPM] for
 git clone https://github.com/secureCodeBox/documentation.git
 cd documentation
 nvm use
-npm install -g npm@7
+npm install -g npm@8.11.0
 npm install
 ```
 

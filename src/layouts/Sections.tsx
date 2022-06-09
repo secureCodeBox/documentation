@@ -2,11 +2,12 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import useThemeContext from "@theme/hooks/useThemeContext";
+import {useColorMode} from '@docusaurus/theme-common';
+
 import React from "react";
 
 const Sections = ({ children }: { children: React.ReactNode }) => {
-  const { isDarkTheme } = useThemeContext(),
+  const { isDarkTheme } = useColorMode(),
     bgColor = isDarkTheme ? "#5c5c5c" : "#E2E2E2";
 
   return (

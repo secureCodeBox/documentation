@@ -5,7 +5,7 @@
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useThemeContext from "@theme/hooks/useThemeContext";
+import {useColorMode} from '@docusaurus/theme-common';
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React from "react";
@@ -45,9 +45,9 @@ const HookIntegrations = () => {
   );
 };
 
-//* In order to use useThemeContext() on the homepage, the main content is separated from the default export due to how "@theme/Layout" works
+//* In order to use useColorMode() on the homepage, the main content is separated from the default export due to how "@docusaurus/theme-common" works
 function HomePage() {
-  const { isDarkTheme } = useThemeContext();
+  const { isDarkTheme } = useColorMode();
 
   return (
     <>
