@@ -109,6 +109,13 @@ module.exports = {
                 label: "Data Protection",
                 to: "https://www.iteratec.com/en/data-protection/",
               },
+              {
+                html: `
+                <a href="https://www.netlify.com" target="_blank" rel="noreferrer noopener" aria-label="Deploys by Netlify">
+                  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" width="114" height="51" />
+                </a>
+              `,
+              },
             ],
           },
         ],
