@@ -6,7 +6,7 @@
 module.exports = {
   title: "secureCodeBox",
   tagline: "Continuous automated security testing ✓ multi scanner security platform ✓ scalable open-source tool ✓ lightweight interface ✓",
-  url: "https://docs.securecodebox.io",
+  url: "https://www.securecodebox.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
   favicon: "img/Favicon.svg",

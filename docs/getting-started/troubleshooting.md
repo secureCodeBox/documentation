@@ -46,7 +46,7 @@ helm upgrade --install nmap secureCodeBox/nmap
 ```
 
 * If you want to use a local docker image for your scanner, check that your *values.yaml* file is correct and follow 
-these [instructions](https://docs.securecodebox.io/docs/contributing/integrating-a-scanner/values.yaml#using-local-images).
+these [instructions](https://www.securecodebox.io/docs/contributing/integrating-a-scanner/values.yaml#using-local-images).
 
 
 * If you use an image from the repository, make sure that it has already been included in the latest 

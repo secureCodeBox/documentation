@@ -120,7 +120,7 @@ See:
 
 `cascades` let you start new scans based on the results of the current scan.
 
-The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which [CascadingRule](https://docs.securecodebox.io/docs/api/crds/cascading-rule) are allowed to be used by the cascading logic.
+The cascades config in the scans spec contains [Kubernetes Label Selectors](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#labelselector-v1-meta) which allow you to select which [CascadingRule](https://www.securecodebox.io/docs/api/crds/cascading-rule) are allowed to be used by the cascading logic.
 
 Furthermore, in the cascade config you can specify whether cascading scan should inherit parent fields:
 
@@ -142,8 +142,8 @@ Defining identical entries in both the Scan AND the Cascading Rule resource will
 See [#789](https://github.com/secureCodeBox/secureCodeBox/issues/789) for more details.
 :::
 
-To use cascades you'll need to have the [CascadingScan hook](https://docs.securecodebox.io/docs/hooks/cascading-scans) installed.
-For an example on how they can be used see the [Scanning Networks HowTo](https://docs.securecodebox.io/docs/how-tos/scanning-networks)
+To use cascades you'll need to have the [CascadingScan hook](https://www.securecodebox.io/docs/hooks/cascading-scans) installed.
+For an example on how they can be used see the [Scanning Networks HowTo](https://www.securecodebox.io/docs/how-tos/scanning-networks)
 
 #### ScopeLimiter (Optional)
 
