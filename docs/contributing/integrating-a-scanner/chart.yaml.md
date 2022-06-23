@@ -94,7 +94,7 @@ The `home` field should be set to the home page of the project.
 For WPScan this would be:
 
 ```yaml
-home: https://docs.securecodebox.io/docs/scanners/WPScan
+home: https://www.securecodebox.io/docs/scanners/WPScan
 ```
 
 ## icon
@@ -103,7 +103,7 @@ The `icon` field should be set to the URL to a SVG or PNG (if existing).
 For WPScan `icon` would look the following:
 
 ```yaml
-icon: https://docs.securecodebox.io/img/integrationIcons/WPScan.svg
+icon: https://www.securecodebox.io/img/integrationIcons/WPScan.svg
 ```
 
 ## sources

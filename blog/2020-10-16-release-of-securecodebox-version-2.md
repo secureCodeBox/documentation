@@ -24,7 +24,7 @@ We are very happy and proud to announce the [release version 2.0.0](https://gith
 
 <!--truncate-->
 
-To get your hands on it you need a running [Kubernetes](https://kubernetes.io/) cluster and [Helm](https://helm.sh/). [Docker Desktop](https://www.docker.com/products/docker-desktop) with enabled Kubernetes is sufficient for your first steps. We have worked really hard to provide you a comprehensive [documentation](https://docs.securecodebox.io/). There you find [installation instructions](https://docs.securecodebox.io/docs/getting-started/installation) and how to [start your first scan](https://docs.securecodebox.io/docs/getting-started/first-scans).
+To get your hands on it you need a running [Kubernetes](https://kubernetes.io/) cluster and [Helm](https://helm.sh/). [Docker Desktop](https://www.docker.com/products/docker-desktop) with enabled Kubernetes is sufficient for your first steps. We have worked really hard to provide you a comprehensive [documentation](https://www.securecodebox.io/). There you find [installation instructions](https://www.securecodebox.io/docs/getting-started/installation) and how to [start your first scan](https://www.securecodebox.io/docs/getting-started/first-scans).
 
 :::caution
 
