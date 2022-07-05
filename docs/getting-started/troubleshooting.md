@@ -37,6 +37,11 @@ helm upgrade --install nmap secureCodeBox/nmap
 
 ### Error: ImagePullBackOff
 
+* Try to upgrade your helm repository before installing the scanner (it is a good idea to do this periodically):
+```bash
+helm repo update secureCodeBox
+```
+
 * Check that you actually use a scanner from the repo instead of a local one:
 ```bash
 # Local:
