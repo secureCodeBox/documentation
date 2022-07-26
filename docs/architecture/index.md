@@ -12,9 +12,12 @@ This document describes the _secureCodeBox_ Project (SCB) and is based on the [a
 
 ## Road Map
 
-:::note
-We should move the roadmap from the [OWASP project site](https://github.com/OWASP/www-project-securecodebox/blob/master/index.md) here and reference to this document.
-:::
+As of **Feb, 2021, the highest priorities for the next 12 months** are:
+
+- Finalize a new kubernetes *autodiscovery* service which is capable of generating new secureCodeBox Scans based on existing or newly spawned kubernetes resources.
+- Finalize the deep integration with the OWASP DefectDojo Project, as a building block for security finding analytics
+- Implement a  secureCodeBox UI to visualize the security scan findings as an alternative to OWASP DefectDojo and Kibana (ELK Stack)
+- Integrate new Cloud specific security scanners for AWS, GCP, Azure, DigitalOcean
 
 ## Conventions Used in this Documentation
 
