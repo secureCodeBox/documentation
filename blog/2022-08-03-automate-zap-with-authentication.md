@@ -26,7 +26,7 @@ The [OWASP Zed Attack Proxy (ZAP)](https://www.zaproxy.org/) can be a powerful t
 
 ## Why Use Authentication Scripts?
 
-Many web applications and APIs require authentication to expose all of their features. During a manual test of a web application, this can be achieved by logging in to the application by hand - however, when testing APIs, or when [using ZAP for regular scans inside the secureCodeBox](https://docs.securecodebox.io/docs/scanners/zap), manually authenticating for each test is no longer feasible. Here, the built-in scripting functionality of ZAP can prove useful. It allows us to authenticate against a server, retrieve a session cookie, JWT, or other authentication marker, and automatically add it to each following request. It can even provide session management to automatically detect if the session has expired and trigger a re-authentication.
+Many web applications and APIs require authentication to expose all of their features. During a manual test of a web application, this can be achieved by logging in to the application by hand - however, when testing APIs, or when [using ZAP for regular scans inside the secureCodeBox](https://docs.securecodebox.io/docs/scanners/zap), manual authentication for each test is no longer feasible. Here, the built-in scripting functionality of ZAP can prove useful. It allows us to authenticate against a server, retrieve a session cookie, JWT, or other authentication marker, and automatically add it to each following request. It can even provide session management to automatically detect if the session has expired and trigger a re-authentication.
 
 In this example, we will be developing and using an authentication script that implements the [client credentials flow of OAuth 2.0](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/). In our scenario, the system under test required POSTing three parameters to a URL backed by [KeyCloak](https://www.keycloak.org/): the `client_id` and `client_secret`, as well as the parameter `grant_type=client_credentials`.
 
@@ -44,7 +44,11 @@ For the purpose of this guide, we will assume that you are at least a little fam
 
 ### Creating A New Script
 
-First, you will have to open the ZAP scripting tab (it usually hides behind the green plus-sign, next to the "sites" menu). There, create a new script. In this case, we will call it `KeycloakClientCredentials.js`. Select the script type "Authentication", with the Oracle Nashorn scripting engine, and the "Authentication script.js" template.
+First, you will have to open the ZAP scripting tab (it usually hides behind the green plus-sign, next to the "sites" menu). 
+
+![ZAP Scripting Tab](/img/blog/2022-08-08-scriptingTab.png)
+
+There, create a new script. In this case, we will call it `KeycloakClientCredentials.js`. Select the script type "Authentication", with the Oracle Nashorn scripting engine, and the "Authentication script.js" template.
 
 ![Creating a Script](/img/blog/2022-08-08-scriptCreation.png)
 
@@ -285,7 +289,7 @@ Next, we need to tell ZAP about the authentication mechanism that is being used 
 
 ![Authentication Settings](/img/blog/2022-08-08-authSettings.png)
 
-Below that, you will see the session verification settings. These are used by ZAP to determine if the session is still valid. If it turns out that the session is invalid, it will automatically repeat the authentication to obtain a new session. This can happen if you are testing an API that is using short-lives bearer tokens, or if your tests accidentally invalidate your session (for example, because a test navigated to the logout function). 
+Below that, you will see the session verification settings. These are used by ZAP to determine if the session is still valid. If it turns out that the session is invalid, it will automatically repeat the authentication to obtain a new session. This can happen if you are testing an API that is using short-lived bearer tokens, or if your tests accidentally invalidate your session (for example, because a test navigated to the logout function). 
 
 There is no general rule for how you should fill this out - it may be that in your situation, there is a convenient API endpoint that only works while you are logged in, and unequivocally tells you your login status (like loading your user profile). In that case, you can use the "Poll the Specified URL" setting, which will send periodic requests to that endpoint and match a regular expression against the response to figure out if your session is still valid. In other cases, you may be able to use a different verification function. ZAP has some guidance about this [in their documentation](https://www.zaproxy.org/docs/authentication/finding-a-verification-url/).
 
@@ -309,9 +313,13 @@ To test the setup, you need to get ZAP to perform one or more network requests. 
 
 If authentication fails, check the log of the authentication script by going to the scripting tab and selecting the script. Below the window that shows the source code, you can find the logs of the script. This can aid in debugging any issues you may encounter. When updating the script, hitting the save button should be enough to get ZAP to use the updated script (no need to load it again in the context settings).
 
+![ZAP Scripting Console](/img/blog/2022-08-08-scriptingConsole.png)
+
 ### Forcing ZAP to Use Authentication for Everything
 
-In some situations, ZAP may not be using your authentication settings. In our testing, this seemed to occur most often when using the "Import an OpenAPI Definition from a URL" function. If this happens to you, you can try enabling the "force user mode" under Edit -> Enable Forced User Mode. This will tell ZAP to use the defined user for every request inside the context, no matter what. (NB: ensure that you set your scope correctly - a too-broad scope may result in your authentication token being sent to sites that should not receive it).
+In some situations, ZAP may not be using your authentication settings. In our testing, this seemed to occur most often when using the "Import an OpenAPI Definition from a URL" function. If this happens to you, you can try enabling the "force user mode" under Edit -> Enable Forced User Mode. This will tell ZAP to use the defined user for every request inside the context, no matter what. (NB: ensure that you set your scope correctly - a too-broad scope may result in your authentication token being sent to sites that should not receive it). The user that is used by the "forced user" mode can be configured in the context settings under "forced user", and defaults to the first user you created.
+
+![Forced User settings](/img/blog/2022-08-08-forcedUser.png)
 
 ### Resending Requests
 
