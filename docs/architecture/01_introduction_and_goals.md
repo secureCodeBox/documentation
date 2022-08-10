@@ -25,11 +25,15 @@ The following goals have been established for this project:
 
 ![Use-case diagram](/img/docs/architecture/use-case-diagram.png)
 
-| **Id** | **Requirement**             | **Explanation**                                                    |
-|--------|-----------------------------|--------------------------------------------------------------------|
-| UC1    | Initiate scans              | Initiating scans in parallel and orchestrating them.               |
-| UC1.1  | Initiating subsequent scans | Initiate scans based on previous results, through cascading rules. |
-| UC2    | Parse findings              | Parse findings in a human readable and friendly way.               |
+| **Id** | **Requirement**                   | **Explanation** |
+|--------|-----------------------------------|-----------------|
+| UC1    | Define scan                       | TODO            |
+| UC2    | Define cascading scan             | TODO            |
+| UC3    | Initiate scan                     | TODO            |
+| UC4    | Get scan results                  | TODO            |
+| UC5    | Deploy scan in namespace to k8s   | TODO            |
+| UC6    | Deploy scan cluster wide to k8s   | TODO            |
+| UC7    | Deploy engine cluster wide to k8s | TODO            |
 
 ## Quality Goals {#_quality_goals}
 
