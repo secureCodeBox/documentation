@@ -93,6 +93,7 @@ Once logged in, you need to get your *API v2 Key*. Click on the person symbol in
 ### secureCodeBox setup
 (General setup instructions can be found [here](https://www.securecodebox.io/docs/getting-started/installation))
 
+At first, we install the operator and a scanner:
 ```bash
 # Install the operator
 helm repo add secureCodeBox https://charts.securecodebox.io
@@ -139,8 +140,45 @@ kubectl apply -f scan.yaml
 If everything was set up correctly, you should see an *nmap-scanme.nmap.org* engagement in the DefectDojo engagements
 dashboard after a while.
 
-### Troubleshooting
-tbd
+<details>
+<summary>Troubleshooting</summary>
+Connecting the scb and DefectDojo might sometimes be a bit tricky. The following tips might help in case that something
+went wrong:
+<ul>
+<li> <b>Waiting:</b> It takes some time for the DefectDojo instance to come up. You might also have to refresh 
+several times in order to connect to localhost:8080 after the port-forward.
+</li>
+<li> <b>Verbose logging:</b> You can view verbose output for everything in your cluster, 
+for example via <a href="https://github.com/wercker/stern">stern</a>. 
+For the following steps, 
+you have to have <a href="https://krew.sigs.k8s.io/docs/user-guide/setup/install/#bash">krew</a> installed:
+<br />
+<code>
+kubectl krew install stern <br />
+# View all logs: <br />
+kubectl stern .* <br />
+# View for a specific namespace <br />
+kubectl stern .* --namespace securecodebox-system
+</code>
+</li>
+<li> <b>Re-Installation of DefectDojo:</b> Node that if anything went wrong and you have to re-install DefectDojo in the cluster,
+the createSecret* flags in the values.yaml file of DefectDojo must not be set. 
+You can find more 
+details <a href="https://github.com/DefectDojo/django-DefectDojo/blob/dev/readme-docs/KUBERNETES.md#re-install-the-chart">here</a>.
+</li>
+<li> <b>Using a local instance of DefectDojo rather than Kubernetes</b>: If nothing helps, you still have the option
+to run DefectDojo outside 
+your cluster (instructions <a href="https://github.com/DefectDojo/django-DefectDojo#quick-start">here</a>). After that,
+you can connect the DefectDojo hook treating it like a <i>remote</i> instance of DefectDojo. The helm install command
+for the hook would look like this: <br />
+<code>
+# $YOURLOCALIP should look something like http://192.168.2.242:8080 <br />
+helm upgrade --install persistence-defectdojo secureCodeBox/persistence-defectdojo \ <br />
+    --set="defectdojo.url=$YOURLOCALIP"
+</code>
+</li>
+</ul>
+</details>
 
 ### Managing findings via the secureCodeBox and DefectDojo
 tbd
