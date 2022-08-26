@@ -326,3 +326,29 @@ In some situations, ZAP may not be using your authentication settings. In our te
 ZAP will also use the session for requests you send manually, e.g. by using the repeater functionality for a previously-sent request. Regardless of the Authorization header you specify, ZAP will overwrite it with the session of the chosen user (if forced user mode is active). If you get a permission error on the first request, try sending it again - sometimes ZAP first has to create a new session because the old one has expired, and it will not automatically repeat the request in this case.
 
 ## Using Authentication with the ZAP Automation Framework in the SecureCodeBox
+
+If you followed the guide, you should know how to set up authentication using the ZAP GUI. We now describe how to include authentication in a SecureCodeBox ZAP Automation scan. Adding authentication to your scan is done by modifying the ConfigMap that defines the scan parameters. Fortunately, the ZAP GUI allows for exporting a .yaml file, from which the necessary changes to the ConfigMap can be copied. 
+First, make sure that you have the ZAP Automation Framework Add-On installed in your ZAP GUI. Then, navigate to the Automation tab as shown in the image below. 
+
+![Automation Framework Tab](/img/blog/2022-08-26-automationTab.PNG)
+
+Here, you press "Save Plan..." to create a .yaml file that includes the necessary configurations for SecureCodeBox to run your authentication script as part of a ZAP Automation scan. Your .yaml file will look similar to this example. 
+
+![Example .yaml file](/img/blog/2022-08-26-authYaml.PNG)
+
+Copy everything under "authentication:" and paste it to the ConfigMap that defines your ZAP Automation scan parameters. Make sure to define the authentication configuration under the correct context and not as a job.
+
+```yaml
+env:                               
+  contexts :                         
+    - name: "context name"              
+      urls:                            
+      includePaths:                    
+      excludePaths:                    
+      authentication:                  # Include your authentication method here
+        ...
+jobs:
+  ...
+```
+
+Additionally to script-based authentication, the ZAP Automation Framework supports manual, HTTP / NTLM, form-based, and JSON-based authentication, which can all be configured for use in a SecureCodeBox ZAP Automation scan. 
