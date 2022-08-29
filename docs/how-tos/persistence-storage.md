@@ -9,6 +9,12 @@ sidebar_position: 6
 
 ## Introduction 
 
+If you have to manage a wide cluster of potential security risks, like for example a large number of websites or
+your company's internal network, your needs will exceed the limitations of manual findings handling and our build-in
+*minio* instance quite soon. The solution comes with a so-called *persistence provider*, which not only allows you
+to store your findings over a long period of time (as the name suggests), but also to classify, prioritize and analyze 
+them. This tutorial discusses two persistence providers, DefectDojo and ElasticSearch, which can both be combined with
+the _secureCodeBox_.
 
 ## DefectDojo
 
@@ -117,7 +123,7 @@ helm upgrade --install dd secureCodeBox/persistence-defectdojo
 To verify that everything works, we now start an nmap scan and check that its results are uploaded to our DefectDojo
 instance. Create the following file:
 ```yaml
-# Scan.yaml
+# scan.yaml
 # SPDX-FileCopyrightText: the secureCodeBox authors
 #
 # SPDX-License-Identifier: Apache-2.0
@@ -181,4 +187,44 @@ helm upgrade --install persistence-defectdojo secureCodeBox/persistence-defectdo
 </details>
 
 ### Managing findings via the secureCodeBox and DefectDojo
-tbd
+To give you an idea of how a workflow with the _secureCodeBox_ and DefectDojo can look like, we will take a glance at
+DefectDojo's findings deduplication ability. When scanning the same target multiple times, e.g. with a 
+[scheduled scan](https://www.securecodebox.io/docs/how-tos/automatically-repeating-scans), we do not want to get 
+notified about findings that are duplicates of already existing ones. If we accepted a risk for a finding or marked
+it as a *false positive*, this should furthermore also apply to the new duplicated finding. DefectDojo handles all
+of this for us, let us try it out:
+
+1. As we already ran the nmap scan above, you should see an engagement in your local DefectDojo instance with name
+*nmap-scanme.nmap.org*. In the upper menu, click on *Findings -> View Active Findings*. 
+You should see four findings here.
+2. For the sake of this tutorial, we *Select all visible findings* via the checkbox next to *Severity* in the table 
+and click on the appearing *button* with label *Bulk Edit*, check the checkbox next to *Status* and then the one next to
+*Out of Scope*. Finally, press the *Submit* button.
+3. All findings should now have disappeared from the *Active Findings View* (they can be found again via 
+*Findings -> View All Findings*).
+
+4. Let us now verify that if we run the same scan again, our findings will still have the status *Out of Scope*:
+Create the following file (same as above but with a different name):
+```yaml
+# scan2.yaml
+# SPDX-FileCopyrightText: the secureCodeBox authors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: "execution.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "nmap-scanme.nmap.org-2"
+spec:
+  scanType: "nmap"
+  parameters:
+    - scanme.nmap.org
+```
+
+Apply it via kubectl:
+```bash
+kubectl apply -f scan2.yaml
+```
+
+After the scan and DefectDojo hook have finished, check again your local DefectDojo instance. There should not be
+any new *Active Findings*, and still only four findings in the table under *Findings -> View All Findings*. 
