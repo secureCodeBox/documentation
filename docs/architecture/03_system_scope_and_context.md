@@ -34,8 +34,7 @@ The following table describes the systems _secureCodeBox_ interacts with. The de
 | _S3_                | _secureCodeBox_ depends on an [S3 API][s3-api] compliant backend to store its persistent data.                               |
 | _DefectDojo_        | (**optional**) _secureCodeBox_ can import findings into the [DefectDojo][defectdojo] vulnerability management system.        |
 | _Scanner Tools_     | _secureCodeBox_ depends on [various security scanner](/docs/scanners) tools.                                                 |
-| _CI/CD_             | _Continous Integration_ (CI) and _Continous Deployment_ (CD) systems which may initialize a scan.                            | 
-
+| _CI/CD_             | _Continuous Integration_ (CI) and _Continuous Deployment_ (CD) systems which may initialize a scan.                          | 
 
 ### Roles
 
