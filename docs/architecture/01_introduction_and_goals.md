@@ -72,6 +72,7 @@ Below, the most important qualities are described that this project strives for.
 | Secura      | Ralph Moonen      | CTO                      | N/A                                                |
 |             | Sander Maijers    | Developer                | [@sanmai-NL](https://github.com/sanmai-NL)         |
 |             | Stijn van Es      | Developer                | [@Stijn-FE](https://github.com/Stijn-FE)           |
+|             | Ali Altun         | Developer                | N/A                                                |
 
 [iso-25010]:          https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
 [blog-architecture]:  https://www.securecodebox.io/blog/2021/07/20/the-architecture-of-securecodebox-v2
