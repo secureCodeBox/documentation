@@ -69,8 +69,8 @@ Below, the most important qualities are described that this project strives for.
 |             | Max Maass         | Core Developer           | [@malexmave](https://github.com/malexmave)         |
 |             | Ilyes Ben Dlala   | Core Developer           | [@Ilyesbdlala](https://github.com/Ilyesbdlala)     |
 |             | Rami Souai        | Core Developer           | [@RamiSouai](https://github.com/RamiSouai)         |
-| Secura      | Ralph Moonen      |                          | N/A                                                |
-|             | Sander Maijers    |                          | [@sanmai-NL](https://github.com/sanmai-NL)         |
+| Secura      | Ralph Moonen      | CTO                      | N/A                                                |
+|             | Sander Maijers    | Developer                | [@sanmai-NL](https://github.com/sanmai-NL)         |
 |             | Stijn van Es      | Developer                | [@Stijn-FE](https://github.com/Stijn-FE)           |
 
 [iso-25010]:          https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
