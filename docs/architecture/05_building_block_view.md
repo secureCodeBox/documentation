@@ -41,10 +41,10 @@ This part describes all components contained in the _secureCodeBox_ on the _cont
 
 ### Important Interfaces
 
-| Name           | Description                                                              |
-|:---------------|:-------------------------------------------------------------------------|
-| Kubernetes API | _secureCodeBox_ is highly integrated with the [Kubernetes API][k8s-api]. |
-| S3 API         | _secureCodeBox_ uses the [Amazon S3 API][s3-api] to persist all data.    |
+| Name             | Description                                                              |
+|:-----------------|:-------------------------------------------------------------------------|
+| _Kubernetes API_ | _secureCodeBox_ is highly integrated with the [Kubernetes API][k8s-api]. |
+| _S3 API_         | _secureCodeBox_ uses the [Amazon S3 API][s3-api] to persist all data.    |
 
 ### Engine Blackbox View {#_engine_blackbox_view}
 
