@@ -30,14 +30,19 @@ This part describes all components contained in the _secureCodeBox_ on the _cont
 
 ### Contained Building Blocks
 
-| Name         | Description                                                                              |
-|:-------------|:-----------------------------------------------------------------------------------------|
-| _Engine_     | The main component for scheduling scans.                                                 |
-| _Hooks_      | A mechanism to hook into the processing of findings.                                     |
-| _Hook SDK_   | Software development kit to help with writing custom _hooks_.                            |
-| _ScanType_   | _Custom resources_ to declare all available scans (e.g. Nmap, Nikto, Nuclei, Zap, etc.). |
-| _Parser SDK_ | Software development kit to help with writing custom _parsers_.                          |
-| _Lurker_     | Sidecar container to collect the raw findings of a scanner tool.                         |
+| Name                 | Description                                                                              |
+|:---------------------|:-----------------------------------------------------------------------------------------|
+| _Engine_             | The main component for scheduling scans.                                                 |
+| _Hook SDK_           | Software development kit to help with writing custom _hooks_.                            |
+| _Hook_               | A mechanism to hook into the processing of findings.                                     |
+| _Lurker_             | Sidecar container to collect the raw findings of a scanner tool.                         |
+| _Parser SDK_         | Software development kit to help with writing custom _parsers_.                          |
+| _ParserDefinition_   | TODO                                                                                     |
+| _Parser_             | TODO                                                                                     |
+| _ScanCompletionHook_ | TODO                                                                                     |
+| _ScanType_           | _Custom resources_ to declare all available scans (e.g. Nmap, Nikto, Nuclei, Zap, etc.). |
+| _Scan_               | TODO                                                                                     |
+| _Scanner_            | TODO                                                                                     |
 
 ### Important Interfaces
 
@@ -47,6 +52,160 @@ This part describes all components contained in the _secureCodeBox_ on the _cont
 | _S3 API_         | _secureCodeBox_ uses the [Amazon S3 API][s3-api] to persist all data.    |
 
 ### Component Blackbox Views
+
+#### Engine {#_engine_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### Hook {#_hook_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### Hook SDK {#_hook_sdk_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### Lurker {#_lurker_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### Parser {#_parser_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### Parser SDK {#_parser_sdk_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### ParserDefinition {#_parser_definition_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### Scan {#_scan_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### ScanCompletionHook {#_scan_completion_hook_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### ScanType {#_scan_type_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### Scanner {#_scanner_blackbox_view}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
 
 ### Important Interfaces Blackbox Views
 
