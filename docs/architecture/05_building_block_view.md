@@ -144,38 +144,6 @@ Not documented yet.
 Not documented yet.
 :::
 
-<!--
-## Level 2 {#_level_2}
-
-### White Box *building block 1* {#_white_box_emphasis_building_block_1_emphasis}
-
-*white box template*
-
-### White Box *building block 2* {#_white_box_emphasis_building_block_2_emphasis}
-
-*white box template*
-
-...
-
-### White Box *building block m* {#_white_box_emphasis_building_block_m_emphasis}
-
-*white box template*
-
-## Level 3 {#_level_3}
-
-### White Box _building block x.1_ {#_white_box_building_block_x_1}
-
-*white box template*
-
-### White Box _building block x.2_ {#_white_box_building_block_x_2}
-
-*white box template*
-
-### White Box _building block y.1_ {#_white_box_building_block_y_1}
-
-*white box template*
--->
-
 [C4]:       https://c4model.com/
 [C4-talk]:  https://youtu.be/x2-rSnhpw0g
 [k8s-api]:  https://kubernetes.io/docs/concepts/overview/kubernetes-api/
