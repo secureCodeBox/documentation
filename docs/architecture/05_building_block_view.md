@@ -46,99 +46,33 @@ This part describes all components contained in the _secureCodeBox_ on the _cont
 | _Kubernetes API_ | _secureCodeBox_ is highly integrated with the [Kubernetes API][k8s-api]. |
 | _S3 API_         | _secureCodeBox_ uses the [Amazon S3 API][s3-api] to persist all data.    |
 
-### Engine Blackbox View {#_engine_blackbox_view}
+### Component Blackbox Views
 
-#### Purpose/Responsibility
+### Important Interfaces Blackbox Views
 
-:::note
-Not documented yet.
-:::
+#### Kubernetes API {#_kubernetes_api}
 
-#### Interface(s)
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### Hooks Blackbox View {#_hooks_blackbox_view}
+##### Interface(s)
 
 :::note
 Not documented yet.
 :::
 
-#### Interface(s)
+#### S3 API {#_s3_api}
+
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### Hook Blackbox View {#_hook_blackbox_view}
-
-:::note
-Not documented yet.
-:::
-
-#### Interface(s)
-
-:::note
-Not documented yet.
-:::
-
-### ScanType Blackbox View {#_scantype_blackbox_view}
-
-:::note
-Not documented yet.
-:::
-
-#### Interface(s)
-
-:::note
-Not documented yet.
-:::
-
-### Parser SDK Blackbox View {#_parser_sdk_blackbox_view}
-
-:::note
-Not documented yet.
-:::
-
-#### Interface(s)
-
-:::note
-Not documented yet.
-:::
-
-### Lurker Blackbox View {#_lurker_blackbox_view}
-
-:::note
-Not documented yet.
-:::
-
-#### Interface(s)
-
-:::note
-Not documented yet.
-:::
-
-### Kubernetes API {#_kubernetes_api}
-
-:::note
-Not documented yet.
-:::
-
-#### Interface(s)
-
-:::note
-Not documented yet.
-:::
-
-### S3 API {#_s3_api}
-
-:::note
-Not documented yet.
-:::
-
-#### Interface(s)
+##### Interface(s)
 
 :::note
 Not documented yet.
