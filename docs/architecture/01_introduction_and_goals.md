@@ -71,7 +71,6 @@ Below, the most important qualities are described that this project strives for.
 |             | Rami Souai        | Core Developer           | [@RamiSouai](https://github.com/RamiSouai)         |                  |
 | Secura      | Ralph Moonen      |                          | N/A                                                |                  |
 |             | Sander Maijers    |                          | [@sanmai-NL](https://github.com/sanmai-NL)         |                  |
-|             | Jop Zitman        |                          | [@EndPositive](https://github.com/EndPositive)     |                  |
 |             | Stijn van Es      | Developer                | [@Stijn-FE](https://github.com/Stijn-FE)           | Contributes      |
 
 [iso-25010]:          https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
