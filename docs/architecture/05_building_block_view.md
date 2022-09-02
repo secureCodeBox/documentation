@@ -30,19 +30,19 @@ This part describes all components contained in the _secureCodeBox_ on the _cont
 
 ### Contained Building Blocks
 
-| Name                 | Description                                                                              |
-|:---------------------|:-----------------------------------------------------------------------------------------|
-| _Engine_             | The main component for scheduling scans.                                                 |
-| _Hook SDK_           | Software development kit to help with writing custom _hooks_.                            |
-| _Hook_               | A mechanism to hook into the processing of findings.                                     |
-| _Lurker_             | Sidecar container to collect the raw findings of a scanner tool.                         |
-| _Parser SDK_         | Software development kit to help with writing custom _parsers_.                          |
-| _ParserDefinition_   | TODO                                                                                     |
-| _Parser_             | TODO                                                                                     |
-| _ScanCompletionHook_ | TODO                                                                                     |
-| _ScanType_           | _Custom resources_ to declare all available scans (e.g. Nmap, Nikto, Nuclei, Zap, etc.). |
-| _Scan_               | TODO                                                                                     |
-| _Scanner_            | TODO                                                                                     |
+| Name                 | Description                                                                                |
+|:---------------------|:-------------------------------------------------------------------------------------------|
+| _Engine_             | The main component for scheduling scans.                                                   |
+| _Hook SDK_           | Software development kit to help with writing custom _hooks_.                              |
+| _Hook_               | A mechanism to hook into the processing of findings.                                       |
+| _Lurker_             | Sidecar container to collect the raw findings of a scanner tool.                           |
+| _Parser SDK_         | Software development kit to help with writing custom _parsers_.                            |
+| _ParserDefinition_   | K8s _Custom Resource_ to makes a _parser_ available in k8s.                                |
+| _Parser_             | Component to parse the results of a _scanner_. Each _scanner_ has a _parser_ as companion. |
+| _ScanCompletionHook_ | K8s _Custom Resource_ to makes a _hook_ available in k8s.                                  |
+| _ScanType_           | K8s _Custom Resources_ to makes a _scanner_ available in k8s.                              |
+| _Scan_               | TODO                                                                                       |
+| _Scanner_            | Component which wraps and run a concrete security scan tool.                               |
 
 ### Important Interfaces
 
