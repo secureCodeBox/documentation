@@ -23,13 +23,29 @@ The following goals have been established for this project:
 
 ## Requirements Overview {#_requirements_overview}
 
+The following use case diagram is only a visual overview of the most important use cases. We do not encourage to model all use cases in detail with UML because it is hard to grasp all nit-picky details of the official UML syntax. We just use bubbles and simple lines to show which actors need which use case scenario.
+
 ![Use-case diagram](/img/docs/architecture/use-case-diagram.png)
 
-| **Id** | **Requirement**             | **Explanation**                                                    |
-|--------|-----------------------------|--------------------------------------------------------------------|
-| UC1    | Initiate scans              | Initiating scans in parallel and orchestrating them.               |
-| UC1.1  | Initiating subsequent scans | Initiate scans based on previous results, through cascading rules. |
-| UC2    | Parse findings              | Parse findings in a human readable and friendly way.               |
+### Roles
+
+| **Actor** | **Description**                                                                           |
+|-----------|-------------------------------------------------------------------------------------------|
+| Tester    | This role is the actual end user performing scans and evaluating the results.             |
+| CI        | This role is a system periodically performing scans e.g. after build and deployment.      | 
+| Operator  | This role operates the _secureCodeBox_ (mainly the k8s cluster and the _Engine operator_. |
+
+### Use Cases
+
+| **Id** | **Requirement**                   | **Explanation**                                                                                                      |
+|--------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| UC1    | Define scan                       | The _Tester_ defines scans with a _target_ reachable by network and _scan types_ to be executed against this target. |
+| UC2    | Define cascading scan             | The _Tester_ defines a scan which triggers subsequent scans depending on the result of the current scan.             |
+| UC3    | Initiate scan                     | The _Tester_ or _CI_ triggers a defined scan.                                                                        |
+| UC4    | Get scan results                  | The _Tester_ retrieves the scan results for further examination.                                                     |
+| UC5    | Deploy scan in namespace to k8s   | The _Operator_ or _Tester_ deploys a scan into a namespace to make it available for defining scans.                  |
+| UC6    | Deploy scan cluster wide to k8s   | The _Operator_ deploys a scan cluster wide to make it available for defining scans.                                  |
+| UC7    | Deploy engine cluster wide to k8s | The _Operator_ deploys the _Engine operator_ cluster wide to make secureCodeBox available.                           |
 
 ## Quality Goals {#_quality_goals}
 
@@ -57,18 +73,18 @@ Below, the most important qualities are described that this project strives for.
 
 ## Stakeholders {#_stakeholders}
 
-| **Company** | **Name**          | **Role**                 | **GitHub Account**                                 | **Expectations** |
-|-------------|-------------------|--------------------------|----------------------------------------------------|------------------|
-| iteratec    | Robert Seedorff   | Product Owner            | [@rseerdorff](https://github.com/rseedorff)        |                  |
-|             | Sven Strittmatter | Scrum Master & Developer | [@Weltraumschaf](https://github.com/Weltraumschaf) |                  |
-|             | Jannik Hollenbach | Core Developer           | [@J12934](https://github.com/J12934)               |                  |
-|             | Max Maass         | Core Developer           | [@malexmave](https://github.com/malexmave)         |                  |
-|             | Ilyes Ben Dlala   | Core Developer           | [@Ilyesbdlala](https://github.com/Ilyesbdlala)     |                  |
-|             | Rami Souai        | Core Developer           | [@RamiSouai](https://github.com/RamiSouai)         |                  |
-| Secura      | Ralph Moonen      |                          | N/A                                                |                  |
-|             | Sander Maijers    |                          | [@sanmai-NL](https://github.com/sanmai-NL)         |                  |
-|             | Jop Zitman        |                          | [@EndPositive](https://github.com/EndPositive)     |                  |
-|             | Stijn van Es      | Developer                | [@Stijn-FE](https://github.com/Stijn-FE)           | Contributes      |
+| **Company** | **Name**          | **Role**                 | **GitHub Account**                                 |
+|-------------|-------------------|--------------------------|----------------------------------------------------|
+| iteratec    | Robert Seedorff   | Product Owner            | [@rseerdorff](https://github.com/rseedorff)        |
+|             | Sven Strittmatter | Scrum Master & Developer | [@Weltraumschaf](https://github.com/Weltraumschaf) |
+|             | Jannik Hollenbach | Core Developer           | [@J12934](https://github.com/J12934)               |
+|             | Max Maass         | Core Developer           | [@malexmave](https://github.com/malexmave)         |
+|             | Ilyes Ben Dlala   | Core Developer           | [@Ilyesbdlala](https://github.com/Ilyesbdlala)     |
+|             | Rami Souai        | Core Developer           | [@RamiSouai](https://github.com/RamiSouai)         |
+| Secura      | Ralph Moonen      | CTO                      | N/A                                                |
+|             | Sander Maijers    | Developer                | [@sanmai-NL](https://github.com/sanmai-NL)         |
+|             | Stijn van Es      | Developer                | [@Stijn-FE](https://github.com/Stijn-FE)           |
+|             | Ali Altun         | Developer                | N/A                                                |
 
 [iso-25010]:          https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
 [blog-architecture]:  https://www.securecodebox.io/blog/2021/07/20/the-architecture-of-securecodebox-v2

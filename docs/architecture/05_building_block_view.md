@@ -30,151 +30,212 @@ This part describes all components contained in the _secureCodeBox_ on the _cont
 
 ### Contained Building Blocks
 
-| Name         | Description                                                                              |
-|:-------------|:-----------------------------------------------------------------------------------------|
-| _Engine_     | The main component for scheduling scans.                                                 |
-| _Hooks_      | A mechanism to hook into the processing of findings.                                     |
-| _Hook SDK_   | Software development kit to help with writing custom _hooks_.                            |
-| _ScanType_   | _Custom resources_ to declare all available scans (e.g. Nmap, Nikto, Nuclei, Zap, etc.). |
-| _Parser SDK_ | Software development kit to help with writing custom _parsers_.                          |
-| _Lurker_     | Sidecar container to collect the raw findings of a scanner tool.                         |
+| Name                 | Description                                                                                |
+|:---------------------|:-------------------------------------------------------------------------------------------|
+| _Engine_             | The main component for scheduling scans.                                                   |
+| _Hook SDK_           | Software development kit to help with writing custom _hooks_.                              |
+| _Hook_               | A mechanism to hook into the processing of findings.                                       |
+| _Lurker_             | Sidecar container to collect the raw findings of a scanner tool.                           |
+| _Parser SDK_         | Software development kit to help with writing custom _parsers_.                            |
+| _ParserDefinition_   | K8s _Custom Resource_ to makes a _parser_ available in k8s.                                |
+| _Parser_             | Component to parse the results of a _scanner_. Each _scanner_ has a _parser_ as companion. |
+| _ScanCompletionHook_ | K8s _Custom Resource_ to makes a _hook_ available in k8s.                                  |
+| _ScanType_           | K8s _Custom Resources_ to makes a _scanner_ available in k8s.                              |
+| _Scan_               | TODO                                                                                       |
+| _Scanner_            | Component which wraps and run a concrete security scan tool.                               |
 
 ### Important Interfaces
 
-| Name           | Description                                                              |
-|:---------------|:-------------------------------------------------------------------------|
-| Kubernetes API | _secureCodeBox_ is highly integrated with the [Kubernetes API][k8s-api]. |
-| S3 API         | _secureCodeBox_ uses the [Amazon S3 API][s3-api] to persist all data.    |
+| Name             | Description                                                              |
+|:-----------------|:-------------------------------------------------------------------------|
+| _Kubernetes API_ | _secureCodeBox_ is highly integrated with the [Kubernetes API][k8s-api]. |
+| _S3 API_         | _secureCodeBox_ uses the [Amazon S3 API][s3-api] to persist all data.    |
 
-### Engine Blackbox View {#_engine_blackbox_view}
+### Component Blackbox Views
 
-#### Purpose/Responsibility
+#### Engine {#_engine_blackbox_view}
 
-:::note
-Not documented yet.
-:::
-
-#### Interface(s)
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### Hooks Blackbox View {#_hooks_blackbox_view}
+##### Interface(s)
 
 :::note
 Not documented yet.
 :::
 
-#### Interface(s)
+#### Hook {#_hook_blackbox_view}
+
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### Hook Blackbox View {#_hook_blackbox_view}
+##### Interface(s)
 
 :::note
 Not documented yet.
 :::
 
-#### Interface(s)
+#### Hook SDK {#_hook_sdk_blackbox_view}
+
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### ScanType Blackbox View {#_scantype_blackbox_view}
+##### Interface(s)
 
 :::note
 Not documented yet.
 :::
 
-#### Interface(s)
+#### Lurker {#_lurker_blackbox_view}
+
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### Parser SDK Blackbox View {#_parser_sdk_blackbox_view}
+##### Interface(s)
 
 :::note
 Not documented yet.
 :::
 
-#### Interface(s)
+#### Parser {#_parser_blackbox_view}
+
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### Lurker Blackbox View {#_lurker_blackbox_view}
+##### Interface(s)
 
 :::note
 Not documented yet.
 :::
 
-#### Interface(s)
+#### Parser SDK {#_parser_sdk_blackbox_view}
+
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### Kubernetes API {#_kubernetes_api}
+##### Interface(s)
 
 :::note
 Not documented yet.
 :::
 
-#### Interface(s)
+#### ParserDefinition {#_parser_definition_blackbox_view}
+
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-### S3 API {#_s3_api}
+##### Interface(s)
 
 :::note
 Not documented yet.
 :::
 
-#### Interface(s)
+#### Scan {#_scan_blackbox_view}
+
+##### Purpose/Responsibility
 
 :::note
 Not documented yet.
 :::
 
-<!--
-## Level 2 {#_level_2}
+##### Interface(s)
 
-### White Box *building block 1* {#_white_box_emphasis_building_block_1_emphasis}
+:::note
+Not documented yet.
+:::
 
-*white box template*
+#### ScanCompletionHook {#_scan_completion_hook_blackbox_view}
 
-### White Box *building block 2* {#_white_box_emphasis_building_block_2_emphasis}
+##### Purpose/Responsibility
 
-*white box template*
+:::note
+Not documented yet.
+:::
 
-...
+##### Interface(s)
 
-### White Box *building block m* {#_white_box_emphasis_building_block_m_emphasis}
+:::note
+Not documented yet.
+:::
 
-*white box template*
+#### ScanType {#_scan_type_blackbox_view}
 
-## Level 3 {#_level_3}
+##### Purpose/Responsibility
 
-### White Box _building block x.1_ {#_white_box_building_block_x_1}
+:::note
+Not documented yet.
+:::
 
-*white box template*
+##### Interface(s)
 
-### White Box _building block x.2_ {#_white_box_building_block_x_2}
+:::note
+Not documented yet.
+:::
 
-*white box template*
+#### Scanner {#_scanner_blackbox_view}
 
-### White Box _building block y.1_ {#_white_box_building_block_y_1}
+##### Purpose/Responsibility
 
-*white box template*
--->
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+### Important Interfaces Blackbox Views
+
+#### Kubernetes API {#_kubernetes_api}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
+
+#### S3 API {#_s3_api}
+
+##### Purpose/Responsibility
+
+:::note
+Not documented yet.
+:::
+
+##### Interface(s)
+
+:::note
+Not documented yet.
+:::
 
 [C4]:       https://c4model.com/
 [C4-talk]:  https://youtu.be/x2-rSnhpw0g

@@ -11,6 +11,8 @@ sidebar_position: 12
 
 _Charts_: Template files for [Helm][] to configure the deployment on [Kubernetes][k82].
 
+_CI_: [Continuous Integration][wiki-Continuous-integration].
+
 _Container_: Concept for [OS-level virtualization][wiki-container].
 
 _Custom Resource Definition (CRD)_: This is a [concept from Kubernetes][k8s-custom-resources] to define custom resource types additionally to the provided ones from Kubernetes. 
@@ -43,10 +45,11 @@ _Security Operations Center (SOC)_: A unit, team or department responsible for m
 
 _Storage_: The component we use to store raw and parsed _findings_. 
 
-[wiki-container]:         https://en.wikipedia.org/wiki/OS-level_virtualization
-[helm]:                   https://helm.sh/                  
-[k8s]:                    https://kubernetes.io/
-[k8s-custom-resources]:   https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
-[k82-job-doc]:            https://kubernetes.io/docs/concepts/workloads/controllers/job/
-[k82-operator]:           https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
-[k8s-sidecar]:            https://kubebyexample.com/en/learning-paths/operator-framework/kubernetes-api-fundamentals/side-car-pattern
+[helm]:                         https://helm.sh/                  
+[k8s]:                          https://kubernetes.io/
+[k8s-custom-resources]:         https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
+[k82-job-doc]:                  https://kubernetes.io/docs/concepts/workloads/controllers/job/
+[k82-operator]:                 https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
+[k8s-sidecar]:                  https://kubebyexample.com/en/learning-paths/operator-framework/kubernetes-api-fundamentals/side-car-pattern
+[wiki-container]:               https://en.wikipedia.org/wiki/OS-level_virtualization
+[wiki-Continuous-integration]:  https://en.wikipedia.org/wiki/Continuous_integration
