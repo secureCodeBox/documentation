@@ -43,6 +43,42 @@ See the [Scope HowTo](/docs/how-tos/scope) for more information.
 [`affinity`](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/) and [`tolerations`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) can be used to control which nodes the parser is executed on.
 The values should be set via Helm values (during install) or by specifying `affinity` and/or `tolerations` in the `Scan` specification.
 
+### Resources (Optional)
+
+`resources` lets you overwrite the resource limits and requests for the parser container. See https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+```yaml
+resources:
+  requests:
+    cpu: 42mi
+    memory: 256Mi
+  limits:
+    cpu: 4
+    memory: 4Gi
+```
+
+If no resources are set the following defaults are applied:
+
+```yaml
+resources:
+  requests:
+    cpu: 200m
+    memory: 100Mi
+  limits:
+    cpu: 400m
+    memory: 200Mi
+```
+
+When you want to only set either one if requests of limits you will have to set the other one explicitly to null to avoid the defaulting applied via the Kubernetes API, e.g. to disable the resource limits:
+
+```yaml
+resources:
+  requests:
+    cpu: 200m
+    memory: 100Mi
+  limits: null
+```
+
 ## Example
 
 ```yaml
@@ -57,6 +93,13 @@ spec:
   ttlSecondsAfterFinished: 60
   scopeLimiterAliases:
     domain: "{{attributes.host}}"
+  resources:
+    requests:
+      cpu: 42mi
+      memory: 256Mi
+    limits:
+      cpu: 4
+      memory: 4Gi
 ```
 
 The Parse definition is different when integrating a new scanner. We use specific conventions when adding new ParseDefinitions to the secureCodeBox repository.

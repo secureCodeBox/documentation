@@ -326,6 +326,20 @@ The cascading scan hook, as well as any future core secureCodeBox features imple
 
 For more examples on how this field can be used, see the [Hook HowTo](/docs/how-tos/hooks).
 
+### Resources (Optional)
+
+`resources` lets you overwrite the resource limits and requests for the primary scanner container from the values defined in the [ScanType](./scan-type). See https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+```yaml
+resources:
+  requests:
+    cpu: 42mi
+    memory: 256Mi
+  limits:
+    cpu: 4
+    memory: 4Gi
+```
+
 ## Metadata
 
 Metadata is a standard field on Kubernetes resources. It contains multiple relevant fields, e.g. the name of the resource, its namespace and a `creationTimestamp` of the resource. See more on the [Kubernetes Docs](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) and the [Kubernetes API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#objectmeta-v1-meta).
@@ -389,4 +403,11 @@ spec:
         - key: "scope.cascading.securecodebox.io/domain"
           operator: "SubdomainOf"
           values: ["{{attributes.hostname}}"]
+  resources:
+    requests:
+      cpu: 42mi
+      memory: 256Mi
+    limits:
+      cpu: 4
+      memory: 4Gi
 ```
