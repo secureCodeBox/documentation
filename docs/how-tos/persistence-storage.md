@@ -3,14 +3,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-title: "Store your findings with a persistence provider"
+title: "Storing Findings with A Persistence Provider"
 sidebar_position: 6
 ---
 
 ## Introduction 
 
-If you have to manage a wide cluster of potential security risks, like for example a large number of websites or
-your company's internal network, your needs will exceed the limitations of manual findings handling and our build-in
+Let's say you have to manage a wide cluster of potential security risks, like for example a large number of websites or
+your company's internal network. Your needs will exceed the limitations of manual findings handling and our build-in
 *minio* instance quite soon. The solution comes with a so-called *persistence provider*, which not only allows you
 to store your findings over a long period of time (as the name suggests), but also to classify, prioritize and analyze 
 them. This tutorial discusses two persistence providers, DefectDojo and ElasticSearch, which can both be combined with
@@ -170,7 +170,7 @@ kubectl stern .* <br />
 kubectl stern .* --namespace scanning
 </code>
 </li>
-<li> <b>Re-Installation of DefectDojo:</b> Node that if anything went wrong and you have to re-install DefectDojo in the cluster,
+<li> <b>Re-Installation of DefectDojo:</b> Node that if anything went wrong, and you have to re-install DefectDojo in the cluster,
 the createSecret* flags in the values.yaml file of DefectDojo must not be set. 
 You can find more 
 details <a href="https://github.com/DefectDojo/django-DefectDojo/blob/dev/readme-docs/KUBERNETES.md#re-install-the-chart">here</a>.
