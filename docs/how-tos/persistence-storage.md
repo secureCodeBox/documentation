@@ -106,18 +106,21 @@ helm repo add secureCodeBox https://charts.securecodebox.io
 kubectl create namespace securecodebox-system
 helm --namespace securecodebox-system upgrade --install securecodebox-operator secureCodeBox/operator
 
+# Create a namespace for scanning - makes it easier to read logs if something went wrong
+kubectl create namespace scanning
 # Install nmap scanner for the later tutorial steps
-helm upgrade --install nmap secureCodeBox/nmap
+helm upgrade --namespace scanning --install nmap secureCodeBox/nmap
 ```
 
 To install the DefectDojo hook, we need to create a secret with the API v2 Key we retrieved before:
 ```bash
-kubectl create secret generic defectdojo-credentials --from-literal="username=admin" --from-literal="apikey=<APIv2KEY>"
+kubectl create secret generic defectdojo-credentials -n scanning \
+  --from-literal="username=admin" --from-literal="apikey=<APIv2KEY>"
 ```
 
 Finally, we can install the DefectDojo hook via helm:
 ```bash
-helm upgrade --install dd secureCodeBox/persistence-defectdojo
+helm upgrade --namespace scanning --install dd secureCodeBox/persistence-defectdojo
 ```
 
 To verify that everything works, we now start an nmap scan and check that its results are uploaded to our DefectDojo
@@ -140,7 +143,7 @@ spec:
 
 We then apply it via:
 ```bash
-kubectl apply -f scan.yaml
+kubectl apply -n scanning -f scan.yaml
 ```
 
 If everything was set up correctly, you should see an *nmap-scanme.nmap.org* engagement in the DefectDojo engagements
@@ -161,10 +164,10 @@ you have to have <a href="https://krew.sigs.k8s.io/docs/user-guide/setup/install
 <br />
 <code>
 kubectl krew install stern <br />
-# View all logs: <br />
+# View all logs in default namespace: <br />
 kubectl stern .* <br />
 # View for a specific namespace <br />
-kubectl stern .* --namespace securecodebox-system
+kubectl stern .* --namespace scanning
 </code>
 </li>
 <li> <b>Re-Installation of DefectDojo:</b> Node that if anything went wrong and you have to re-install DefectDojo in the cluster,
@@ -223,7 +226,7 @@ spec:
 
 Apply it via kubectl:
 ```bash
-kubectl apply -f scan2.yaml
+kubectl apply -n scanning -f scan2.yaml
 ```
 
 After the scan and DefectDojo hook have finished, check again your local DefectDojo instance. There should not be
