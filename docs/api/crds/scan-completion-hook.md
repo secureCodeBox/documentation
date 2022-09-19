@@ -118,7 +118,7 @@ resources:
     memory: 200Mi
 ```
 
-When you want to only set either one if requests of limits you will have to set the other one explicitly to null to avoid the defaulting applied via the Kubernetes API, e.g. to disable the resource limits:
+When you only want to set either requests or limits, you will have to set the other one explicitly to null to avoid the defaulting applied via the Kubernetes API, e.g. to disable the resource limits:
 
 ```yaml
 resources:
