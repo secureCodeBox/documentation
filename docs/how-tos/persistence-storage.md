@@ -195,6 +195,44 @@ kubectl apply -n scanning -f scan2.yaml
 After the scan and DefectDojo hook have finished, check again your local DefectDojo instance. There should not be
 any new *Active Findings*, and still only four findings in the table under *Findings -> View All Findings*.
 
+### Advanced use-case: Hook annotations
+
+It is possible to overwrite the 
+[default values](https://www.securecodebox.io/docs/hooks/defectdojo#additional-chart-configurations) 
+that the DefectDojo hook uses to create products and engagements.
+This is especially handy when using the *secureCodeBox* 
+[Autodiscovery](https://www.securecodebox.io/docs/how-tos/autodiscovery) or 
+[CascadingScans](https://www.securecodebox.io/docs/api/crds/cascading-rule) to annotate your scans with useful
+names and to keep track of their origin. For the Autodiscovery, there are already pre-defined values that can be found
+[here](https://github.com/secureCodeBox/secureCodeBox/blob/main/auto-discovery/kubernetes/values.yaml#L40).
+
+To get you started with a simple example, we will now create an annotation in a manually executed scan. 
+Create the following file:
+```yaml
+# scanAnnotation.yaml
+# SPDX-FileCopyrightText: the secureCodeBox authors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: "execution.securecodebox.io/v1"
+kind: Scan
+metadata:
+  name: "nmap-scanme.nmap.org-annotation"
+  annotations:
+    defectdojo.securecodebox.io/product-name: "Annotation Example"
+spec:
+  scanType: "nmap"
+  parameters:
+    - scanme.nmap.org
+```
+
+Execute it via kubectl:
+```bash
+kubectl apply -n scanning -f scanAnnotation.yaml
+```
+
+After a while you should see a new engagement in your DefectDojo instance with product name `Annotation Example`.
+
 ## ElasticSearch
 
 [ElasticSearch](https://www.elastic.co/de/elasticsearch/) enables users to store and search pretty much any possible 
@@ -259,12 +297,12 @@ straight-forward. You can find a list of all available dashboards under
 
 <details>
 <summary>Troubleshooting</summary>
-Connecting the scb and to a persistence provider, especially DefectDojo, might sometimes be a bit tricky. 
+Connecting the scb to a persistence provider, especially DefectDojo, can sometimes be a bit tricky. 
 The following tips might help in case that something went wrong:
 <br /><br />
 <ul>
-<li> <b>Waiting:</b> It takes some time for the DefectDojo instance to come up. You might also have to refresh 
-several times in order to connect to localhost:8080 after the port-forward.
+<li> <b>Waiting:</b> It takes some time for the DefectDojo or Kibana instance to come up. You might also have to refresh 
+several times in order to connect to localhost after the port-forward.
 </li>
 <li> <b>Verbose logging:</b> You can view verbose output for everything in your cluster, 
 for example via <a href="https://github.com/wercker/stern">stern</a>. 
@@ -295,7 +333,7 @@ helm upgrade --install persistence-defectdojo secureCodeBox/persistence-defectdo
     --set="defectdojo.url=$YOURLOCALIP"
 </code>
 </li>
-<li> <b>Increasing cluster resources</b>: Running a lot of pods at the same time can be resources intensive. If you
+<li> <b>Increasing cluster resources</b>: Running a lot of pods at the same time can be resource-intensive. If you
 find that your persistence providers are not reacting in appropriate time, you might want to increase the number of
 cpus and memory usage for your minikube cluster: <br />
 <code>
