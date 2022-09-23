@@ -20,7 +20,7 @@ which can both be combined with the *secureCodeBox*.
 *All setups have been tested with Ubuntu 22.04 and Kubernetes 1.24*
 
 Make sure you have the following tools available on your system before starting:
-* [minikube](https://kubernetes.io/de/docs/tasks/tools/install-minikube/)
+* [minikube](https://kubernetes.io/de/docs/tasks/tools/install-minikube/) or [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 * [helm](https://helm.sh/docs/intro/install/)
 
@@ -38,6 +38,8 @@ we install the *secureCodeBox* and the [DefectDojo hook](https://www.securecodeb
 ### DefectDojo Kubernetes setup 
 
 (General, more detailed instructions can be found [here](https://github.com/DefectDojo/django-DefectDojo/blob/dev/readme-docs/KUBERNETES.md))
+
+Using *minikube* (for kind clusters see instructions below):
 ```bash
 # Download DefectDojo repo
 git clone https://github.com/DefectDojo/django-DefectDojo
@@ -66,6 +68,33 @@ helm upgrade --install \
   --set host="defectdojo.default.minikube.local" \
   --set "alternativeHosts={localhost,defectdojo.default.minikube.local:8080,defectdojo-django.default.svc}"
 ```
+
+<details>
+<summary>Using kind:</summary>
+<code>
+git clone https://github.com/DefectDojo/django-DefectDojo
+cd django-DefectDojo
+
+kind create cluster
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+helm dependency update ./helm/defectdojo
+
+helm upgrade --install \
+  defectdojo \
+  ./helm/defectdojo \
+  --set django.ingress.enabled=true \
+  --set django.ingress.activateTLS=false \
+  --set createSecret=true \
+  --set createRabbitMqSecret=true \
+  --set createRedisSecret=true \
+  --set createMysqlSecret=true \
+  --set createPostgresqlSecret=true \
+  --set host="defectdojo.default.kind.local" \
+  --set "alternativeHosts={localhost,defectdojo.default.kind.local:8080,defectdojo-django.default.svc}"
+</code>
+</details>
 
 After a while, you should see that all pods are running:
 ```bash
@@ -243,8 +272,10 @@ a ready-to-use ElasticSearch and Kibana instance.
 
 ### Setup
 
-At first, we create the *secureCodeBox* namespace and operator:
+At first, we create a cluster and the *secureCodeBox* namespace and operator:
 ```bash
+minikube start
+
 kubectl create namespace securecodebox-system
 helm --namespace securecodebox-system upgrade --install securecodebox-operator secureCodeBox/operator
 ```
@@ -321,6 +352,9 @@ kubectl stern .* --namespace scanning
 the createSecret* flags in the values.yaml file of DefectDojo must not be set. 
 You can find more 
 details <a href="https://github.com/DefectDojo/django-DefectDojo/blob/dev/readme-docs/KUBERNETES.md#re-install-the-chart">here</a>.
+</li>
+<li> <b>Server error in DefectDojo</b>: Make sure that all pods are running. If you are continuing to experience errors
+after a re-installation, consider to use a different cluster manager (e.g. kind instead of minikube).
 </li>
 <li> <b>Using a local instance of DefectDojo rather than Kubernetes</b>: If nothing helps, you still have the option
 to run DefectDojo outside 
