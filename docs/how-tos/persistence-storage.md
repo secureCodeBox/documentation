@@ -16,6 +16,11 @@ to store your findings over a long period of time (as the name suggests), but al
 them. This tutorial discusses two persistence providers, [DefectDojo](#defectdojo) and [ElasticSearch](#elasticsearch), 
 which can both be combined with the *secureCodeBox*.
 
+*Side-note: The tutorials are scanning scanme.nmap.org, which is a public service provided by nmap. It is meant
+to be used for port-scanning examples, but should not be abused with too much scanning per day. If you know that
+your local machine is providing meaningful findings as well, consider using *localhost* as target for all scans.
+We chose to use scanme.nmap.org in the tutorial however, because of reproducibility for most users.*
+
 ### Pre-Requirements
 *All setups have been tested with Ubuntu 22.04 and Kubernetes 1.24*
 
@@ -185,44 +190,28 @@ dashboard after a while. Should you have experienced any problems, you might fin
 To give you an idea of how a workflow with the *secureCodeBox* and DefectDojo can look like, we will take a glance at
 DefectDojo's findings de-duplication ability. When scanning the same target multiple times, e.g. with a 
 [scheduled scan](https://www.securecodebox.io/docs/how-tos/automatically-repeating-scans), we do not want to get 
-notified about findings that are duplicates of already existing ones. If we accepted a risk for a finding or marked
-it as a *false positive*, this should furthermore also apply to the new duplicated finding. DefectDojo handles all
-of this for us, let us try it out:
+notified about findings that are duplicates of already existing ones. DefectDojo handles this for us, 
+let us try it out:
 
-1. As we already ran the nmap scan above, you should see an engagement in your local DefectDojo instance with name
-*nmap-scanme.nmap.org*. In the upper menu, click on *Findings -> View Active Findings*. 
-You should see four findings here.
-2. For the sake of this tutorial, we *Select all visible findings* via the checkbox next to *Severity* in the table 
-and click on the appearing button with label *Bulk Edit*, check the checkbox next to *Status* and then the one next to
-*Out of Scope*. Finally, press the *Submit* button.
-3. All findings should now have disappeared from the *Active Findings View* (they can be found again via 
-*Findings -> View All Findings*).
+1. At first, make sure to activate 
+[De-Duplication in DefectDojo](https://defectdojo.github.io/django-DefectDojo/usage/features/#global-configuration):
+In your DefectDojo instance, click on the settings symbol in the menu bar at the left. Select *Systems Settings*. 
+Next, tick the checkbox next to *Deduplicate findings*. 
+![defectdojo-deduplication](/img/docs/how-tos/dd-deduplicate.png)
 
-4. Let us now verify that if we run the same scan again, our findings will still have the status *Out of Scope*:
-Create the following file (same as above but with a different name):
-```yaml
-# scan2.yaml
-# SPDX-FileCopyrightText: the secureCodeBox authors
-#
-# SPDX-License-Identifier: Apache-2.0
+2. Let us now verify that if we run an identical scan again, the amount of active findings does not change.
 
-apiVersion: "execution.securecodebox.io/v1"
-kind: Scan
-metadata:
-  name: "nmap-scanme.nmap.org-2"
-spec:
-  scanType: "nmap"
-  parameters:
-    - scanme.nmap.org
-```
-
-Apply it via kubectl:
+Delete the scan from before in kubernetes. Note that this does not affect DefectDojo.
 ```bash
-kubectl apply -n scanning -f scan2.yaml
+kubectl delete scan nmap-scanme.nmap.org -n scanning
+```
+Re-apply it via kubectl:
+```bash
+kubectl apply -f scan.yaml -n scanning 
 ```
 
-After the scan and DefectDojo hook have finished, check again your local DefectDojo instance. There should not be
-any new *Active Findings*, and still only four findings in the table under *Findings -> View All Findings*.
+After scan and DefectDojo hook have finished, check again your local DefectDojo instance. There should not be
+any new *Active Findings*. You can still find the duplicates under *Findings -> View All Findings*.
 
 ### Advanced use-case: Hook annotations
 
