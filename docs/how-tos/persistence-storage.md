@@ -318,6 +318,15 @@ Note that unlike DefectDojo, ElasticSearch does not automatically handle duplica
 pre-defined dashboards for some scanners implemented in the *secureCodeBox*, which makes visualizing their results
 straight-forward. You can find a list of all available dashboards under 
 [/app/dashboards#/list](http://localhost:5601/app/dashboards#/list) in your local Kibana instance.
+Adding note for using DD and ElasticSearch
+### Using DefectDojo and ElasticSearch simultaneously
+
+It is possible to use DefectDojo and ElasticSearch at the same time. 
+[Note that DefectDojo overwrites the findings of the SCB with its own format by default](https://github.com/secureCodeBox/secureCodeBox/blob/83088ca4a51b76ab15c88510f1f52877ab08fd9c/hooks/persistence-defectdojo/values.yaml#L43).
+So when using multiple persistence providers, hook execution order does matter. The problem can be solved in two
+ways: Either use the [hook order functionality](https://www.securecodebox.io/docs/how-tos/hooks/#hook-order) or
+set DefectDojo to [read-only mode](https://www.securecodebox.io/docs/hooks/defectdojo/#read-only-mode).
+
 
 ## Troubleshooting
 
