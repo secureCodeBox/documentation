@@ -318,7 +318,7 @@ Note that unlike DefectDojo, ElasticSearch does not automatically handle duplica
 pre-defined dashboards for some scanners implemented in the *secureCodeBox*, which makes visualizing their results
 straight-forward. You can find a list of all available dashboards under 
 [/app/dashboards#/list](http://localhost:5601/app/dashboards#/list) in your local Kibana instance.
-Adding note for using DD and ElasticSearch
+
 ### Using DefectDojo and ElasticSearch simultaneously
 
 It is possible to use DefectDojo and ElasticSearch at the same time. 
