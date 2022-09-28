@@ -92,6 +92,42 @@ The service account should have at least `get` rights on `scans.execution.secure
 `ttlSecondsAfterFinished` can be used to automatically delete the completed Kubernetes job used to run the hook.
 This sets the `ttlSecondsAfterFinished` field on the created job. This requires your cluster to have the [TTLAfterFinished](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/) feature gate enabled in your cluster.
 
+### Resources (Optional)
+
+`resources` lets you overwrite the resource limits and requests for the hook container. See https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+```yaml
+resources:
+  requests:
+    cpu: 42mi
+    memory: 256Mi
+  limits:
+    cpu: 4
+    memory: 4Gi
+```
+
+If no resources are set the following defaults are applied:
+
+```yaml
+resources:
+  requests:
+    cpu: 200m
+    memory: 100Mi
+  limits:
+    cpu: 400m
+    memory: 200Mi
+```
+
+When you only want to set either requests or limits, you will have to set the other one explicitly to null to avoid the defaulting applied via the Kubernetes API, e.g. to disable the resource limits:
+
+```yaml
+resources:
+  requests:
+    cpu: 200m
+    memory: 100Mi
+  limits: null
+```
+
 ## Example
 
 ```yaml
@@ -120,4 +156,11 @@ spec:
           key: password
           name: elastic-persistence-credentials
   ttlSecondsAfterFinished: 60
+  resources:
+    requests:
+      cpu: 42mi
+      memory: 256Mi
+    limits:
+      cpu: 4
+      memory: 4Gi
 ```
