@@ -32,7 +32,7 @@ Make sure you have the following tools available on your system before starting:
 ## DefectDojo
 
 [DefectDojo](https://github.com/DefectDojo/django-DefectDojo) is a widespread platform for vulnerability management
-and security orchestration. The *secureCodeBox* provides a hook that allows to directly connect the *scb* to a local
+and security orchestration. The *secureCodeBox* provides a hook that allows to directly connect the *SCB* to a local
 or remote DefectDojo instance. In this tutorial, we will at first guide you through a step-by-step setup manual.
 After that, you will learn about some features of DefectDojo and how you can use them in conjunction with the
 *secureCodeBox*.
@@ -108,8 +108,12 @@ kubectl get pods
 
 To access DefectDojo locally, you probably need to add the following lines to `/etc/hosts`:
 ```text
+# Minikube
 ::1       defectdojo.default.minikube.local
 127.0.0.1 defectdojo.default.minikube.local
+# Kind
+::1       defectdojo.default.kind.local
+127.0.0.1 defectdojo.default.kind.local
 ```
 
 Now, retrieve the admin password:
@@ -127,7 +131,9 @@ kubectl port-forward --namespace=default service/defectdojo-django 8080:80
 ```
 
 We are finally ready to access our DefectDojo instance! In your browser, switch to 
-[localhost:8080](http://localhost:8080). You should see the DefectDojo login mask. 
+[defectdojo.default.minikube.local:8080](http://defectdojo.default.minikube.local:8080) or
+[defectdojo.default.kind.local:8080](http://defectdojo.default.kind.local:8080). 
+You should see the DefectDojo login mask. 
 Enter `admin` as username and type the password that you received in the step before.
 Once logged in, you need to get your *API v2 Key*. Click on the person symbol in the upper-right corner and choose
 *API v2 Key*. There should be a line like `Your current API key is abcdef123456789...`. Save it for later.
@@ -299,7 +305,7 @@ Apply it via kubectl:
 kubectl apply -n elastic -f scan.yaml
 ```
 
-After the scan has finished, you can view the findings in Kibana. Therefore, create a port-forward:
+After the scan has finished, you can view the findings in Kibana. Create a port-forward:
 ```bash
 kubectl port-forward -n elastic services/persistence-elastic-kibana 5601:5601
 ```
@@ -317,7 +323,7 @@ straight-forward. You can find a list of all available dashboards under
 
 <details>
 <summary>Troubleshooting</summary>
-Connecting the scb to a persistence provider, especially DefectDojo, can sometimes be a bit tricky. 
+Connecting the SCB to a persistence provider, especially DefectDojo, can sometimes be a bit tricky. 
 The following tips might help in case that something went wrong:
 <br /><br />
 <ul>
@@ -337,8 +343,8 @@ kubectl stern .* <br />
 kubectl stern .* --namespace scanning
 </code>
 </li>
-<li> <b>Re-Installation of DefectDojo:</b> Node that if anything went wrong, and you have to re-install DefectDojo in the cluster,
-the createSecret* flags in the values.yaml file of DefectDojo must not be set. 
+<li> <b>Re-Installation of DefectDojo:</b> Node that if anything went wrong, and you have to re-install 
+DefectDojo in the cluster, the <i>createSecret</i> flags in the values.yaml file of DefectDojo must not be set. 
 You can find more 
 details <a href="https://github.com/DefectDojo/django-DefectDojo/blob/dev/readme-docs/KUBERNETES.md#re-install-the-chart">here</a>.
 </li>
