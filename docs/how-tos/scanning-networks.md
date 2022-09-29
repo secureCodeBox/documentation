@@ -42,7 +42,9 @@ Now we can create a **kubernetes secret**:
 kubectl create secret generic --from-file users.txt --from-file passwords.txt ncrack-lists
 ```
 
-Lastly, we now **install Ncrack** and configure the scanType to mount our secret, so that we get access to the username and password files via the mount path `/ncrack/`:
+Lastly, we now **install Ncrack** and configure the scanType to mount our secret, so that we get access to the username and password files via the mount path `/ncrack/`.
+
+And starting from secureCodeBox v4.0, it is also necessary to set `cascadingRules.enabled` to `true`.
 
 ```bash
 cat <<EOF | helm upgrade --install ncrack secureCodeBox/ncrack --values -
@@ -54,6 +56,8 @@ scannerJob:
   extraVolumeMounts:
     - name: ncrack-lists
       mountPath: "/ncrack/"
+cascadingRules:
+  enabled: true
 EOF
 ```
 
