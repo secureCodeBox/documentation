@@ -105,4 +105,4 @@ Incompatible choices (only one of each group/s can be used):
 {{- end }}
 ````
 
-If you want to generate the `README.md` out of your `.helm-docs.gotmpl` locally, you can use `helm-docs` (see: [https://github.com/norwoodj/helm-docs/](https://github.com/norwoodj/helm-docs/)).
+If you want to generate the `README.md` out of your `.helm-docs.gotmpl` locally, you need to install `helm-docs` (see: [https://github.com/norwoodj/helm-docs/](https://github.com/norwoodj/helm-docs/)) and run `make docs`.
