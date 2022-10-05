@@ -31,10 +31,6 @@ As mentioned above we use [arc42][arc42] as template for this documentation. Thi
 We do not have the aspiration to have a complete and comprehensive architecture documentation. This documentation is meant to be a living document evolving over time. There is no restriction who can contribute to the architecture documentation: Everybody who notices wrong, outdated or missing information is invited to open pull requests.
 :::
 
-:::caution
-We do not add linebreaks to split lines longer than 80 characters. **We write whole paragraphs as a single line** because all editors support soft-wrap for long lines and it is tedious to reformat a whole paragraph on insertion/deletion of a single word.
-:::
-
 ### Images and Diagrams
 
 For diagrams we us [UML][wiki-uml] notation, if appropriate. This is a widely adopted industry standard and the most important concepts and syntax is widely understood. We try to use UML "the right" way, but we do not have the aspiration to draw perfect UML diagrams. The important part is that everyone understands the diagrams as easily as possibly. Therefore **a diagram should always have a legend**, unless the meaning of the "boxes and arrows" is obvious. Keep in mind: What is obvious for you, may be a mystery for someone else 😉.
@@ -44,6 +40,10 @@ As tool we use [Draw.io][drawio] with its default color scheme and as format we 
 The **only exception** to not use Draw.io is for [sequence diagrams][wiki-uml-sequence]. This type of diagram is very tedious and time consuming to edit with mouse in a classical drawing tool. The reason is you end up in moving lifelines back and forth all the time when insert or remove something in the diagram. We use a text-based tool [PlantUML][plantuml] to generate sequence diagrams because insertion or removal of ne lifelines is simply add or remove a line of text. The PlantUML files (`*.puml`) are stored also in `static/img/docs/architecture/`. There is a make target to generate the images. Simply invoke `make` to see a help with the available targets.
 
 ### Style Guide
+
+:::caution
+We do not add linebreaks to split lines longer than 80 characters. **We write whole paragraphs as a single line** because all editors support soft-wrap for long lines, and it is tedious to reformat a whole paragraph on insertion/deletion of a single word.
+:::
 
 This section describes how to markup text in this documentation:
 
