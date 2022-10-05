@@ -31,6 +31,10 @@ As mentioned above we use [arc42][arc42] as template for this documentation. Thi
 We do not have the aspiration to have a complete and comprehensive architecture documentation. This documentation is meant to be a living document evolving over time. There is no restriction who can contribute to the architecture documentation: Everybody who notices wrong, outdated or missing information is invited to open pull requests.
 :::
 
+:::caution
+If you look closely, you will see that we omitted chapters from the [Arc42][arc42] template. This is intentional because it is not recommended to fill all the template, if it does not value to the documentation. E.g. we removed chapter two _architecture constraints_. That's done because we do not face any constraints driven from outside our team. All constraints are chosen by the team and therefore rather a _solution strategy_. 
+:::
+
 ### Images and Diagrams
 
 For diagrams we us [UML][wiki-uml] notation, if appropriate. This is a widely adopted industry standard and the most important concepts and syntax is widely understood. We try to use UML "the right" way, but we do not have the aspiration to draw perfect UML diagrams. The important part is that everyone understands the diagrams as easily as possibly. Therefore **a diagram should always have a legend**, unless the meaning of the "boxes and arrows" is obvious. Keep in mind: What is obvious for you, may be a mystery for someone else 😉.
