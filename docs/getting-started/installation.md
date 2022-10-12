@@ -38,10 +38,10 @@ The default secureCodeBox Operator includes a [MinIO](https://min.io/) instance,
 
 You can access the MinIO instance included in the default installation like the following:
 
-Port Forward MinIO UI: `kubectl port-forward -n securecodebox-system service/securecodebox-operator-minio 9000:9000`
+Port Forward MinIO UI: `kubectl port-forward -n securecodebox-system service/securecodebox-operator-minio 9000:9001`
 
-- AccessKey: `kubectl get secret securecodebox-operator-minio -n securecodebox-system -o=jsonpath='{.data.accesskey}' | base64 --decode; echo`
-- SecretKey: `kubectl get secret securecodebox-operator-minio -n securecodebox-system -o=jsonpath='{.data.secretkey}' | base64 --decode; echo`
+- AccessKey: `kubectl get secret securecodebox-operator-minio -n securecodebox-system -o=jsonpath='{.data.root-user}' | base64 --decode; echo`
+- SecretKey: `kubectl get secret securecodebox-operator-minio -n securecodebox-system -o=jsonpath='{.data.root-password}' | base64 --decode; echo`
 
 Then open your browser on [http://localhost:9000](http://localhost:9000) and login in with the credentials returned by the command listed above.
 
