@@ -30,6 +30,11 @@ This part describes all components contained in the _secureCodeBox_ on the _cont
 
 ### Contained Building Blocks
 
+:::note
+**TODO**: Document the naming issue of _engine_ vs _operator_.
+:::
+
+
 | Name                 | Description                                                                                |
 |:---------------------|:-------------------------------------------------------------------------------------------|
 | _Engine_             | The main component for scheduling scans.                                                   |
@@ -65,6 +70,8 @@ Not documented yet.
 
 :::note
 Not documented yet.
+
+**TODO**: Mention operator framework here.
 :::
 
 #### Hook {#_hook_blackbox_view}
