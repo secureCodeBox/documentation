@@ -9,7 +9,7 @@ sidebar_position: 1
 path: "docs/getting-started/installation"
 ---
 
-The secureCodeBox is running on [Kubernetes](https://kubernetes.io/). To install it you need [Helm](https://helm.sh), a package manager for Kubernetes. For your first steps Kubernetes from [Docker Desktop](https://www.docker.com/products/docker-desktop), [Minikube](https://minikube.sigs.k8s.io/docs/) or [KIND](https://kind.sigs.k8s.io/) is sufficient. We also provide a [Vargant](https://www.vagrantup.com/) based all-in-one installation (see [below](#vagrant-all-in-one-installation)).
+The secureCodeBox is running on [Kubernetes](https://kubernetes.io/). To install it you need [Helm](https://helm.sh), a package manager for Kubernetes. For your first steps Kubernetes from [Docker Desktop](https://www.docker.com/products/docker-desktop), [Minikube](https://minikube.sigs.k8s.io/docs/) or [KIND](https://kind.sigs.k8s.io/) is sufficient. We also provide a [Vagrant](https://www.vagrantup.com/) based all-in-one installation (see [below](#vagrant-all-in-one-installation)).
 
 First of all you need to install the secureCodeBox Operator which is responsible for starting all security scans.
 
