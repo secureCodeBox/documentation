@@ -3,6 +3,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+sidebar_label: Telemetry
 title: "secureCodeBox Telemetry Data"
 ---
 
