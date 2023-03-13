@@ -60,6 +60,11 @@ The 'findings.json' file that contains these Findings complies with the followin
             "HIGH"
           ]
         },
+        "mitigation": {
+          "description": "Contains a short description of how to mitigate the issue.",
+          "type": "string",
+          "nullable": true
+        },
         "attributes": {
           "description": "Attributes are not standardized. They differ from Scanner to Scanner.",
           "type": "object"
@@ -92,6 +97,7 @@ An example findings object is shown below:
   "category": "Open Port",
   "parsed_at": "2021-06-22T12:27:28.153Z",
   "identified_at": "2021-06-22T12:26:54.378Z",
+  "mitigation": null,
   "severity": "INFORMATIONAL",
   "attributes": {
     "port": 3306,
