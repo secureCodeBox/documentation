@@ -14,6 +14,7 @@ tags:
 - OWASP ZAP automation
 - Authentication
 description: This post describes how to automate ZAP to authenticate against an API
+draft: true
 ---
 
 <!-- TODO Change this -->
