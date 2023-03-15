@@ -138,7 +138,7 @@ From a naive perspective you fix the bug obviously in the head version of the _m
 One good practice is to initially fix the bug int the branch where it occurred. Also, a good practice is to first implement a _regression test_ which provokes the bug and fail initially. It is highly recommended to add this tests in a separate commits. Now the process is to go back all maintained older version (checkout their _Release branch_) and verify if the bug is there. Simply by looking at the source code, if it's a simple bug or by chery-picking the regression test and execute it. If the branch is affected then cherry-pick the bugfix commits. Then go through all newer release branches until up to the _main branch_ and do the same. (This is also called backporting, although it does not go backward but forward.)
 
 :::note 
-It's quite debatable if this approach is the best. The author of this site made good experience with this approach. Anyway whatever approach is used at the end, one thing is important: Define one approach and always stick to it. Otherwise, you will lose the overview where to fix the bug and where it is already fixed.
+It's quite debatable if this approach is the best. We made good experience with this approach. Anyway whatever approach is used at the end, one thing is important: Define one approach and always stick to it. Otherwise, you will lose the overview where to fix the bug and where it is already fixed.
 
 Also, it is not always possible to simply cherry-pick a bugfix. This may have different reasons:
 
