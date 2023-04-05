@@ -65,6 +65,22 @@ The 'findings.json' file that contains these Findings complies with the followin
           "type": "string",
           "nullable": true
         },
+        "references": {
+          "nullable": true,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": ["type", "value"]
+          }
+        },
         "attributes": {
           "description": "Attributes are not standardized. They differ from Scanner to Scanner.",
           "type": "object"
@@ -91,28 +107,30 @@ An example findings object is shown below:
 
 ```yaml
 {
-  "id": "e18cdc5e-6b49-4346-b623-28a4e878e154",
-  "name": "Open mysql Port",
-  "description": "Port 3306 is open using tcp protocol.",
-  "category": "Open Port",
-  "parsed_at": "2021-06-22T12:27:28.153Z",
-  "identified_at": "2021-06-22T12:26:54.378Z",
-  "mitigation": null,
-  "severity": "INFORMATIONAL",
-  "attributes": {
-    "port": 3306,
-    "state": "open",
-    "ip_address": "198.51.100.42",
-    "mac_address": null,
-    "protocol": "tcp",
-    "hostname": "example.com",
-    "method": "table",
-    "operating_system": null,
-    "service": "mysql",
-    "serviceProduct": null,
-    "serviceVersion": null,
-    "scripts": null
-  },
-  "location": "tcp://127.0.0.1:3306"
+    "id": "eef8dd78-5079-4d1d-8a4c-68e3268c439c",
+    "name": "Vulnerability in Dependency apk-tools (2.10.4-r3)",
+    "description": "libfetch before 2021-07-26, as used in apk-tools, xbps, and other products, mishandles numeric strings for the FTP and HTTP protocols. The FTP passive mode implementation allows an out-of-bounds read because strtol is used to parse the relevant numbers into address bytes. It does not check if the line ends prematurely. If it does, the for-loop condition checks for the '\\0' terminator one byte too late.",
+    "category": "Image Vulnerability",
+    "location": "bkimminich/juice-shop:v10.2.0",
+    "osi_layer": "NOT_APPLICABLE",
+    "severity": "HIGH",
+    "mitigation": "Update the affected package apk-tools to the fixed version: 2.10.7-r0 or remove the package from the image.",
+    "references": [{
+        "type": "CVE",
+        "value": "CVE-2021-36159"
+    },
+    {
+        "type": "URL",
+        "value": "https://lists.apache.org/thread.html/rbf4ce74b0d1fa9810dec50ba3ace0caeea677af7c27a97111c06ccb7@%3Cusers.kafka.apache.org%3E"
+    }]
+    ,
+    "attributes": {
+        "installedVersion": "2.10.4-r3",
+        "fixedVersion": "2.10.7-r0",
+        "packageName": "apk-tools",
+        "vulnerabilityId": "CVE-2021-36159",
+        "foundIn": "bkimminich/juice-shop:v10.2.0 (alpine 3.11.5)"
+    },
+    "parsed_at": "2023-04-05T15:46:46.601Z"
 }
 ```
