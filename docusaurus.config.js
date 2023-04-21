@@ -73,11 +73,11 @@ module.exports = {
             items: [
               {
                 label: "Style Guide",
-                to: "https://github.com/securecodebox/docusaurus#style-guide",
+                href: "https://github.com/securecodebox/docusaurus#style-guide",
               },
               {
                 label: "Icons",
-                to: "https://www.flaticon.com/",
+                href: "https://www.flaticon.com/",
               },
             ],
           },
@@ -107,7 +107,7 @@ module.exports = {
               },
               {
                 label: "Data Protection",
-                to: "https://www.iteratec.com/en/data-protection/",
+                href: "https://www.iteratec.com/en/data-protection/",
               },
               {
                 html: `
