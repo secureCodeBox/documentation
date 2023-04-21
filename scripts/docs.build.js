@@ -125,6 +125,7 @@ async function createDocFilesFromMainRepository(relPath, targetPath, dirNames) {
     const filePathInRepo = relPath.replace(/^githubRepo\//, "");
     const readmeWithEditUrl = matter.stringify(content, {
       ...frontmatter,
+      description: frontmatter?.usecase,
       custom_edit_url: `https://github.com/${config.repository}/edit/${config.branch}/${filePathInRepo}/${dirName}/.helm-docs.gotmpl`,
     });
 
