@@ -3,10 +3,24 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-title: "Installation"
-sidebar_label: "Installation"
+title: "AutoDiscovery Installation & Configuration"
+sidebar_label: "Installation & Configuration"
 path: "docs/auto-discovery/installation"
-sidebar_position: 0
+sidebar_position: 1
 ---
-# Overview
-The secureCodeBox (SCB) AutoDiscovery feature automates the process of setting up scheduled scans for Kubernetes entities inside a cluster. The AutoDiscovery will observe the scanned Kubernetes entities over their whole lifecycle. It will automatically create, update and delete scans when necessary. Currently the SCB AutoDiscovery supports two modes that can be enabled independently: A service and a container AutoDiscovery. 
+
+## Installation
+
+The secureCodeBox (SCB) AutoDiscovery is packaged as a helm chart. As the AutoDiscovery works by creating (Scheduled)Scan custom resources for the discovered resources it requires the operator to be installed first.
+
+```bash
+helm install --namespace securecodebox-system auto-discovery secureCodeBox/auto-discovery
+```
+
+## Configuration
+
+The AutoDiscovery chart can be modified by overwriting its default values using helm. See [helm install documentation](https://helm.sh/docs/intro/using_helm/#helm-install-installing-a-package)
+
+The values used by the AutoDiscovery chart are documented in the [AutoDiscovery Readme](https://github.com/secureCodeBox/secureCodeBox/tree/main/auto-discovery/kubernetes#values), or if you prefer the yaml representation in the [default values](https://github.com/secureCodeBox/secureCodeBox/tree/main/auto-discovery/kubernetes#values)
+
+The config values in the `config` attribute, e.g. `config.serviceAutoDiscovery.enabled`, are used to modify the actual AutoDiscovery behavior.
