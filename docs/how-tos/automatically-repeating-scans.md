@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Repeating Scans on a Schedule"
+description: "Getting started with ScheduledScans"
 sidebar_position: 1
 ---
 

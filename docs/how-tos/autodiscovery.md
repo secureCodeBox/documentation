@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Automatically Scan Your Cluster with Autodiscovery"
+description: "Automatically create and update scans for Kubernetes resources"
 sidebar_position: 6
 ---
 

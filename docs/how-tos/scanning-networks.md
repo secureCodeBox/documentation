@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Scanning Networks"
+description: "How to use CascadingScans to create in depth network scans"
 sidebar_position: 2
 ---
 

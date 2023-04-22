@@ -3,8 +3,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-title: "Storing Findings with A Persistence Provider"
-sidebar_position: 6
+title: "Storing Findings with Persistence Hooks"
+description: "Ingesting identified findings to DefectDojo or Elasticsearch"
+sidebar_position: 5
 ---
 
 ## Introduction 
