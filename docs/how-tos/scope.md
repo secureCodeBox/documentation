@@ -4,7 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Enforcing Engagement Scope"
-sidebar_position: 5
+description: "How to limit CascadingScans"
+sidebar_position: 7
 ---
 
 ## Introduction

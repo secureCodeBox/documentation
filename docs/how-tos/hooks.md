@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 title: "Post-processing with Hooks"
+description: "Automatically handle findings from your scans"
 sidebar_position: 4
 ---
 
