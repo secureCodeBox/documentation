@@ -15,4 +15,4 @@ The secureCodeBox (SCB) AutoDiscovery is a optional component that automates the
 
 - [Service AutoDiscovery](./service-auto-discovery): Creates scans for (http) services inside a kubernetes cluster. With it you can automatically start scanners like OWASP ZAP or nuclei for all web applications inside the cluster.
 
-- Container AutoDiscovery: Creates scans for containers running inside a kubernetes cluster. This allows you to automatically create trivy container image scans for all container images inside a cluster.
+- [Container AutoDiscovery](./container-auto-discovery): Creates scans for containers running inside a kubernetes cluster. This allows you to automatically create trivy container image scans for all container images inside a cluster.
