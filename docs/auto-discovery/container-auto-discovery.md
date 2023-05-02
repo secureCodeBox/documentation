@@ -39,7 +39,7 @@ AutoDiscovery has three modes of operation:
   
 These modes can be set via the `config.resourceInclusion` parameter in the helm chart:
 ```bash
-helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.resourceInclusion="enabled-per-resource"
+helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.resourceInclusion.mode="enabled-per-resource"
 ```
 The default mode is `enabled-per-namespace`.
 
@@ -47,8 +47,23 @@ Depending on the resourceInclusionMode one has to annotate each namespace or Kub
 
 To enable the AutoDiscovery for a namespace/resource one has to annotate it with `securecodebox.io/auto-discovery: "true"`:
 
+Annotation for a namespace is done as follows. Here the default namespace is annotated:
 ```bash
 kubectl annotate namespace default auto-discovery.securecodebox.io/enabled=true
 ```
+Annotation for a resource is done as follows. Here the deployment `juice-shop` in the namespace `default` is annotated.
+It is done by adding the annotation to the chart values, which is then passed to the deployment template. This results into the pod containing the service/deployment always having the annotation. The process may be different in your case:
 
-*** 
+```bash
+cat <<EOF | helm upgrade --install juice-shop secureCodeBox/juice-shop  --values -
+annotations: {
+      "auto-discovery.securecodebox.io/enabled": "true",
+}
+EOF
+```
+You should now see a Trivy [ScheduledScan](/docs/api/crds/scheduled-scan) created for juice-shop or any other service that you have annotated.
+```bash
+$ kubectl get scheduledscans.execution.securecodebox.io 
+NAME                                                             TYPE                INTERVAL   FINDINGS
+scan-juice-shop-at-350cf9a6ea37138b987a3968d046e61bcd3bb18d2ec   trivy-image         168h0m0s   106
+```
