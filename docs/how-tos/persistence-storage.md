@@ -45,6 +45,11 @@ we install the *secureCodeBox* and the [DefectDojo hook](https://www.securecodeb
 
 (General, more detailed instructions can be found [here](https://github.com/DefectDojo/django-DefectDojo/blob/dev/readme-docs/KUBERNETES.md))
 
+:::info
+At the moment **DefectDojo does not provide a Docker image for arm64**. As a workaround you can run a local instance
+of DefectDojo (see [Troubleshooting](#troubleshooting)).
+:::
+
 Using *minikube* (for kind clusters see instructions below):
 ```bash
 # Download DefectDojo repo
