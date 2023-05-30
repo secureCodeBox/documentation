@@ -120,6 +120,8 @@ async function createDocFilesFromMainRepository(relPath, targetPath, dirNames) {
 
     const examples = await getExamples(`${relPath}/${dirName}/examples`);
 
+    const imageTypes = await getSupportedImageTypes(`${relPath}/${dirName}/Chart.yaml`);
+
     // Add a custom editUrl to the frontMatter to ensure that it points to the correct repo
     const { data: frontmatter, content } = matter(readmeContent);
     const filePathInRepo = relPath.replace(/^githubRepo\//, "");
@@ -142,6 +144,8 @@ async function createDocFilesFromMainRepository(relPath, targetPath, dirNames) {
         readme: readmeWithEditUrl,
         examples,
         hasExamples: examples.length !== 0,
+        imageTypes,
+        hasImageTypes: imageTypes?.length > 0
       }
     );
 
@@ -226,6 +230,21 @@ async function getExamples(dir) {
       findings,
     };
   });
+}
+
+function getSupportedImageTypes(dir) {
+  if (fs.existsSync(dir)) {
+    const chartContent = fs.readFileSync(dir, {
+      encoding: "utf8",
+    });
+
+    // add an opening delimiter to help matter distinguish the file type
+    const { data: frontmatter} = matter(['---', ...chartContent.toString().split('\n')].join('\n'));
+
+    if ('annotations' in frontmatter && 'supported-platforms' in frontmatter.annotations) {
+     return frontmatter['annotations']['supported-platforms'].split(',');
+    }
+  }
 }
 
 function copyFindingsForDownload(filePath) {

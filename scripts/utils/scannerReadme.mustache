@@ -5,6 +5,17 @@
 }}
 {{{ readme }}}
 
+{{#hasImageTypes}}
+
+## CPU architectures
+
+The scanner is currently supported for these CPU architectures:
+
+{{#imageTypes}}
+- {{.}}
+{{/imageTypes}}
+
+{{/hasImageTypes}}
 
 {{#hasExamples}}
 ## Examples
