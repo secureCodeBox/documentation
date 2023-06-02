@@ -16,7 +16,7 @@ The Service AutoDiscovery will ignore services where the underlying pods do not 
 Services without a matching port number or name are currently ignored.
 
 ### Setup
-[Zap-advanced](/docs/scanners/zap-advanced) is the scanner that is used by the Service AutoDiscovery, It. It has to be installed in the same namespace as the containers that you wish to scan. The following steps will install zap-advanced in the `default` namespace:
+[Zap-advanced](/docs/scanners/zap-advanced) is the scanner that is used by the Service AutoDiscovery. It has to be installed in the same namespace as the containers that you wish to scan. The following steps will install zap-advanced in the `default` namespace:
 ```bash
 helm upgrade --install zap-advanced secureCodeBox/zap-advanced
 ```
