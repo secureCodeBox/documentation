@@ -11,7 +11,7 @@ sidebar_position: 0
 
 # Overview
 
-The secureCodeBox (SCB) AutoDiscovery is a optional component that automates the process of setting up scheduled scans for Kubernetes resources inside a cluster. The AutoDiscovery will observe the scanned Kubernetes resources over their whole lifecycle. It will automatically create, update and delete scans when necessary. Currently the SCB AutoDiscovery supports two modes that can be enabled independently:
+The secureCodeBox (SCB) AutoDiscovery is an optional component that automates the process of setting up scheduled scans for Kubernetes resources inside a cluster. The AutoDiscovery will observe the scanned Kubernetes resources over their whole lifecycle. It will automatically create, update and delete scans when necessary. Currently the SCB AutoDiscovery supports two modes that can be enabled independently:
 
 - [Service AutoDiscovery](./service-auto-discovery): Creates scans for (http) services inside a kubernetes cluster. With it you can automatically start scanners like OWASP ZAP or nuclei for all web applications inside the cluster.
 
