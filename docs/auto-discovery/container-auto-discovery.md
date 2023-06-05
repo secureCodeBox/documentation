@@ -20,50 +20,17 @@ The scheduled scan for the `nginx v1.6` container will not be deleted, as it is 
 In other words: The Container AutoDiscovery will create a single scheduled scan for each unique container image (taking the specific version number into account) in a given namespace.
 If a pod consists of multiple containers, the above described logic will be applied to each container individually.
 
-
 ### Setup
+
 [Trivy](/docs/scanners/trivy) is a container image scanner that is used by the Container AutoDiscovery. It has to be installed in the same namespace as the containers that you wish to scan. The following steps will install trivy in the `default` namespace:
 ```bash
 helm upgrade --install trivy secureCodeBox/trivy
 ```
-We also have to enable container AutoDiscovery. This is done through the `config.containerAutoDiscovery.enabled` parameter in the helm chart. It goes as follows:
+
+#### Deactivation
+
+The Container AutoDiscovery is enabled by default but can be disabled manually.
 
 ```bash
-helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.containerAutoDiscovery.enabled=true
-```
-### Rollout
-AutoDiscovery has three modes of operation:
-* enabled-per-namespace (default) : scans every container in an enabled namespace
-* enabled-per-resource :  scans every enabled container
-* all (scans every container in the whole cluster!)
-  
-These modes can be set via the `config.resourceInclusion` parameter in the helm chart:
-```bash
-helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.resourceInclusion.mode="enabled-per-resource"
-```
-The default mode is `enabled-per-namespace`.
-
-Depending on the resourceInclusionMode one has to annotate each namespace or Kubernetes resource for which the AutoDiscovery should be enabled. If `all` is used nothing has to be annotated as everything will be scanned (Which is not recommended unless you know what you're doing). These modes ease the gradual rollout to your cluster.
-
-To enable the AutoDiscovery for a namespace/resource one has to annotate it with `securecodebox.io/auto-discovery: "true"`:
-
-Annotation for a namespace is done as follows. Here the default namespace is annotated:
-```bash
-kubectl annotate namespace default auto-discovery.securecodebox.io/enabled=true
-```
-Annotation for a resource is done as follows. Here the deployment `juice-shop` in the namespace `default` is annotated.
-It is done by adding the annotation to the chart values, which is then passed to the deployment template. This results into the pod containing the service/deployment always having the annotation. The process may be different in your case:
-
-```bash
-cat <<EOF | helm upgrade --install juice-shop secureCodeBox/juice-shop  --values -
-annotations: {
-      "auto-discovery.securecodebox.io/enabled": "true",
-}
-EOF
-```
-You should now see a Trivy [ScheduledScan](/docs/api/crds/scheduled-scan) created for juice-shop or any other service that you have annotated.
-```bash
-$ kubectl get scheduledscans.execution.securecodebox.io 
-NAME                                                             TYPE                INTERVAL   FINDINGS
-scan-juice-shop-at-350cf9a6ea37138b987a3968d046e61bcd3bb18d2ec   trivy-image         168h0m0s   106
+helm upgrade --namespace securecodebox-system --install auto-discovery-kubernetes secureCodeBox/auto-discovery-kubernetes --set config.containerAutoDiscovery.enabled=false
 ```
