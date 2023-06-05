@@ -27,7 +27,7 @@ The config values in the `config` attribute, e.g. `config.serviceAutoDiscovery.e
 
 ### Gradual AutoDiscovery Rollout
 
-To ease the rollout of the auto-discovery in allready existing clusters the auto-discovery by default only works on namespaces specifically enabled by an annotation. This is meant to ensure that the enablement of the auto-discovery can be done in steps, e.g. one team at a time, and to ensure that the initial setup doesn't overwhelm the cluster by creating scans for every resource in it.
+To ease the rollout of the auto-discovery in already existing clusters the auto-discovery by default only works on namespaces specifically enabled by an annotation. This is meant to ensure that the enablement of the auto-discovery can be done in steps, e.g. one team at a time, and to ensure that the initial setup doesn't overwhelm the cluster by creating scans for every resource in it.
 
 This behavior can be configured using one of the following `resourceInclusion` modes:
 
