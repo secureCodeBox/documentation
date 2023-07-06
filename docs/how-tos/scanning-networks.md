@@ -104,7 +104,15 @@ kubectl delete scans --all
 kubectl delete scans nmap-ssh-tutorial
 ```
 
-Now we also want to start the **Ncrack scan** after Nmap has finished. We use [cascading rules](/docs/hooks/cascading-scans/) for that. Cascading rules allow us to automatically call any scanner that matches our given labels (see below) in order to start further security checks. In this case, we want to follow up on with an ncrack scan to test the credentials configured for the server. Fortunately, the secureCodeBox already comes with a [predefined ncrack cascading rule] for ssh scanning. We will take an in-depth look at the cascading rule to understand what's happening:
+Now we also want to start the **Ncrack scan** after Nmap has finished. We use [cascading rules](/docs/hooks/cascading-scans/) for that. Cascading rules allow us to automatically call any scanner that matches our given labels (see below) in order to start further security checks. In this case, we want to follow up on with an ncrack scan to test the credentials configured for the server. Fortunately, the secureCodeBox already comes with a [predefined ncrack cascading rule] for ssh scanning in **crack-ssh.yaml**.
+
+We must register our cascading rule with:
+
+```bash
+kubectl apply -f crack-ssh.yaml
+```
+
+To understand what's happening, we will take an in-depth look at the cascading rule:
 
 ```yaml
 apiVersion: "cascading.securecodebox.io/v1"
@@ -196,7 +204,7 @@ nmap-ssh-howto                      nmap     Done    8
 Nice, our scan was triggered as expected!
 Your network likely looks different. Depending on how many ssh hosts nmap was able to find you will see more ncrack scans started.
 
-Final hint: If you want to **create a cascading rule yourself**, you can create them like any resource in Kubernetes via:
+Final hint: As already shown above, you can **create a cascading rule yourself** like any resource in Kubernetes via:
 
 ```bash
 kubectl apply -f cascadingRule.yaml
