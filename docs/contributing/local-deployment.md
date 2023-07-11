@@ -24,7 +24,7 @@ This document explains how to use these targets to deploy your scanner locally.
    If your scanner uses a remote Docker image (such as one hosted on Dockerhub), you can comment out or remove the `custom_scanner` line.
    If you have defined your own Dockerfile in the `scanner/` directory, you should leave the line as-is.
 
-2. In the root of the secureCodeBox git repository, under `hook-sdk/nodejs/` and `scanner-sdk/nodejs/`, you need to build the Dockerfiles.
+2. In the root of the secureCodeBox git repository, under `hook-sdk/nodejs/` and `parser-sdk/nodejs/`, you need to build the Dockerfiles.
    This ensures that you have the latest version of the SDK available locally.
    You need this in order to build secureCodeBox parsers and hooks. To build the image:
 
