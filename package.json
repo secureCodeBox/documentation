@@ -26,7 +26,7 @@
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
     "colors": "^1.4.0",
-    "docusaurus-plugin-sass": "^0.2.1",
+    "docusaurus-plugin-sass": "^0.2.5",
     "download-git-repo": "^3.0.2",
     "gray-matter": "^4.0.3",
     "mustache": "^4.2.0",
