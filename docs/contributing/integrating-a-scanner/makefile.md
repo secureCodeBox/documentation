@@ -23,16 +23,16 @@ See [Local Deployment](/docs/contributing/local-deployment) for examples how to 
 
 ## Available makefile targets
 
-| Target                  | Use                                                                                  |
-| ----------------------- | ------------------------------------------------------------------------------------ |
-| clean-integration-tests | Resets the integration-tests namespace                                               |
-| unit-tests              | Run your parser unit tests                                                           |
-| docker-build            | Builds your parser (& scanner)                                                       |
-| docker-export           | Exports your parser (& scanner) into a .tar file                                     |
-| kind-import             | Loads your parser (& scanner) .tar files into your local kind cluster                |
-| deploy                  | Deploys your scanner helm chart into your local kind cluster                         |
-| deploy-test-deps        | Deploys your scanner's test dependencies (demo-targets) into your local kind cluster |
-| integration-tests       | Deletes all scans and runs your integration test `scanners/SCANNER_NAME.test.js`     |
+| Target                            | Use                                                                                  |
+| --------------------------------- | ------------------------------------------------------------------------------------ |
+| reset-integration-tests-namespace | Resets the integration-tests namespace                                               |
+| unit-tests                        | Run your parser unit tests                                                           |
+| docker-build                      | Builds your parser (& scanner)                                                       |
+| docker-export                     | Exports your parser (& scanner) into a .tar file                                     |
+| kind-import                       | Loads your parser (& scanner) .tar files into your local kind cluster                |
+| deploy                            | Deploys your scanner helm chart into your local kind cluster                         |
+| deploy-test-deps                  | Deploys your scanner's test dependencies (demo-targets) into your local kind cluster |
+| integration-tests                 | Deletes all scans and runs your integration test `scanners/SCANNER_NAME.test.js`     |
 
 ## Configuring your makefile (examples)
 
