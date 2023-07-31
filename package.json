@@ -60,7 +60,7 @@
     "eslint": "^7.30.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-security": "^1.7.1",
     "sass-loader": "^13.3.2",
     "typescript": "^5.1.6"
   }
