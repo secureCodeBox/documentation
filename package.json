@@ -57,7 +57,7 @@
     "@types/react": "^17.0.20",
     "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.8",
-    "eslint": "^7.30.0",
+    "eslint": "^8.46.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-security": "^1.4.0",
