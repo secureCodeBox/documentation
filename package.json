@@ -53,7 +53,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.4.1",
     "@tsconfig/docusaurus": "^2.0.0",
-    "@types/node": "^14.17.5",
+    "@types/node": "^20.5.1",
     "@types/react": "^17.0.20",
     "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.8",
