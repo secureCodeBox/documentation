@@ -152,7 +152,7 @@ Tom Alrich, the [founder of the SBOM Forum](https://securityboulevard.com/2023/0
 
 Apart from the naming problem, SBOMs are still not the perfect solution for software composition analysis.
 While SBOMs contain information about the software and version used, linux distributions often apply their own patches to the packages they distribute.
-These patches regularly include fixes for security vulnerabilities as backports as part of a distributions long term support commitments.
+These patches regularly include backported fixes for security vulnerabilities as part of a distributions long term support commitments.
 While getting this support is nice, it might lead to false positive vulnerability reports, because either the SBOM does not contain information about the specific distribution version of a package, or the vulnerability database it is matched against only contains information about fixes in the upstream version.
 
 As an example, [according to the NVD](https://nvd.nist.gov/vuln/detail/CVE-2022-4450), `CVE-2022-4450` affects `openssl` starting with `1.1.1` and is fixed in `1.1.1t`.
