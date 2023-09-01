@@ -41,7 +41,7 @@ _SBOMs_ __generalize__ this for applications of multiple ecosystems, multiple ap
 
 As mentioned, _SBOMs_ use standardized formats, [unfortunately with an emphasis on the plural-s of formats](https://xkcd.com/927/).
 The two most prolific standards are [_Software Package Data Exchange (SPDX)_](https://spdx.dev/), developed as a Linux Foundation Project and maintained as an ISO standard, and [_CycloneDX_](https://cyclonedx.org/), developed as an [OWASP Foundation](https://owasp.org/) project.
-Sometimes [Software Identification (SWID) Tags](https://csrc.nist.gov/projects/Software-Identification-SWID) are also regarded as a format of SBOMs, but their use is a bit diferent and they are not well supported by most tools that work with SBOMs.
+Sometimes [Software Identification (SWID) Tags](https://csrc.nist.gov/projects/Software-Identification-SWID) are also regarded as a format of SBOMs, but their use is a bit different, and they are not well-supported by most tools that work with SBOMs.
 There are some differences between _SPDX_ and _CycloneDX_ SBOMs, [documented here](https://docs.google.com/spreadsheets/d/1PIiSYLJHlt8djG5OoOYniy_I-J31UMhBKQ62UUBHKVA/edit).
 They can still be converted, for example by using the [CycloneDX CLI](https://github.com/CycloneDX/cyclonedx-cli) or the [cdx2spdx](https://github.com/spdx/cdx2spdx) tool.
 
@@ -136,7 +136,7 @@ It is licensed under the Apache-2.0 license and used by GitLab for their [Contai
 It supports containers, filesystem paths, archives, "and more" although it is not specified what "and more" entails.
 This means Trivy supports more targets, which might be interesting long term, but for now Syft is perfectly capable of generating SBOMs for our use case as well.
 Syft also supports [many ways](https://github.com/anchore/syft#supported-sources) to access container images, other than direct registry access or through the Docker or Podman daemons, tar archives, OCI or SIF images or plain directories and files are supported.
-[Credentails for private registries](https://github.com/anchore/syft#private-registry-authentication) can to be supplied as Docker `config.json`, which can also be shared as a Kubernetes secret.
+[Credentials for private registries](https://github.com/anchore/syft#private-registry-authentication) can to be supplied as Docker `config.json`, which can also be shared as a Kubernetes secret.
 More advanced options are available according to the [go-containerregistry docs](https://github.com/google/go-containerregistry/tree/main/pkg/authn).
 
 Example commandline:
@@ -172,13 +172,13 @@ tern report -f cyclonedxjson -i bkimminich/juice-shop:v15.0.0 -o results-tern-ju
 SBOM [format support](https://github.com/tern-tools/tern#report-formats) is pretty good, other than CycloneDX (json), SPDX (json and tag-value), custom yaml, html and json formats can be generated.
 
 Unfortunately, the generated SBOMs are quite lacking compared to the ones Trivy or Syft generate.
-While Tern finds the distribution and OS packages of the Juice Shop container, not a single nodejs/npm component is included in the output.
+While Tern finds the distribution and OS packages of the Juice Shop container, not a single NodeJS/npm component is included in the output.
 Other containers show similar results, only OS packages are listed.
 This is pretty unhelpful for creating an inventory of the software running in one's container infrastructure.
 
 Tern is a ["tern-tools"](https://github.com/tern-tools) project with 884 Stars and 185 Forks [on GitHub](https://github.com/tern-tools/tern).
 The most active maintainer is Rose Judge, an Open Source Engineer [at VMWare](https://blogs.vmware.com/opensource/author/rose-judge/).
-The documentation is provided as markdown documents in the [docs directory](https://github.com/tern-tools/tern/tree/main/docs), while general information can be found in the `README.md` file.
+The documentation is provided as Markdown documents in the [docs directory](https://github.com/tern-tools/tern/tree/main/docs), while general information can be found in the `README.md` file.
 Tern is licensed under a BSD-2-Clause license.
 
 #### Microsoft SBOM Tool
@@ -205,7 +205,7 @@ All the dependencies of the containerized applications will already be known fro
 
 The SBOM Tool and the Component Detection library are both maintained by [Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/tag/sbom/) and licensed under the MIT license.
 The SBOM Tool has 1.2k Stars and 89 Forks [on GitHub](https://github.com/microsoft/sbom-tool).
-The documentation could be better, there are only some markdown documents in the [docs directory](https://github.com/microsoft/sbom-tool/tree/main/docs) and the README.md file gives an overview.
+The documentation could be better, there are only some Markdown documents in the [docs directory](https://github.com/microsoft/sbom-tool/tree/main/docs) and the README.md file gives an overview.
 
 Component Detection (and with that, the SBOM Tool) [uses Syft internally to analyze Docker containers](https://github.com/microsoft/component-detection/blob/main/docs/detectors/linux.md).
 Since this tool is less convenient to use than Syft, and does not work as well either (for only analyzing containers), it makes more sense to just use Syft directly then.
@@ -227,7 +227,7 @@ Since it was developed for Kubernetes, [it focuses on Go applications](https://g
 Finding Go dependencies does not work for containers containing Go applications though, like Tern or the SBOM Tool, `bom` only finds OS packages there.
 This makes the generated SBOMs not very useful for our goals.
 
-`bom` is maintained as a [Kubernetes SIGs](https://github.com/kubernetes-sigs) (Special Interes Groups) project.
+`bom` is maintained as a [Kubernetes SIGs](https://github.com/kubernetes-sigs) (Special Interest Groups) project.
 It has 250 Stars and 31 Forks [on GitHub](https://github.com/kubernetes-sigs/bom).
 The documentation is decent, other than some basic usage information in the `README.md` file, there are is a generated [documentation website](https://kubernetes-sigs.github.io/bom/) with some subpages.
 
