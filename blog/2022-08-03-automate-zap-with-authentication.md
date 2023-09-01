@@ -345,7 +345,7 @@ env:
       urls:                            
       includePaths:                    
       excludePaths:                    
-      authentication:                  # Include your authentication method here
+      authentication:   # Include your authentication method here
         ...
 jobs:
   ...
@@ -365,7 +365,7 @@ data:
 
     env:                                   # The environment, mandatory
       contexts :                           # List of 1 or more contexts, mandatory
-        - name: test-config                  # Name to be used to refer to this context in other jobs, mandatory
+        - name: test-config                # Name to be used to refer to this context in other jobs, mandatory
           urls:
           - "https://.*.example.com"
           includePaths:
@@ -441,7 +441,7 @@ kubectl create secret generic pwordsecret --from-literal='password=<PASSWORD>'
 ```
 
 You can now include the secrets in the scan definition and reference them in the ConfigMap that defines the scan options.
-The following defines two secrets for the use in JSON-based authentication. The secrets can be referenced in the ConfigMap via ${EMAIl} and ${PASS}.
+The following defines two secrets for the use in JSON-based authentication. The secrets can be referenced in the ConfigMap via `${EMAIL}` and `${PASS}`.
 
 ```yaml
 apiVersion: "execution.securecodebox.io/v1"
@@ -475,3 +475,10 @@ spec:
           name: pwordsecret
           key: password
 ```
+
+## Conclusion
+
+With this, you should have everything you need to use a custom authentication script with ZAP in the secureCodeBox.
+Done right, scripting can become an indispensible part of your workflows for automated security scans, and enable you to gain a significantly improved scan coverage for applications that require authentication.
+To get you started, the [ZAP Community Scripts](https://github.com/zaproxy/community-scripts) repository contains a wide variety of scripts for different purposes, which illustrate the different ways scripting can be used, and which can serve as a template for your own scripting.
+We can't wait to see what you will do with the combined power of ZAP scripting and the secureCodeBox!
