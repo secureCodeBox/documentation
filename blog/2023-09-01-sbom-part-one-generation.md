@@ -257,6 +257,6 @@ This enables them to find packages which were not installed through the default 
 One remaining problem are packages installed directly as binary, without any kind of package manager.
 Especially in containers this is pretty prevalent for the "main software" of a container.
 This is a known issue for both Trivy and Syft: [trivy#481](https://github.com/aquasecurity/trivy/issues/481), [trivy#1064](https://github.com/aquasecurity/trivy/issues/1064), [trivy#2839](https://github.com/aquasecurity/trivy/issues/2839), [syft#1197](https://github.com/anchore/syft/issues/1197), [syft#1607](https://github.com/anchore/syft/issues/1607), [syft#1963](https://github.com/anchore/syft/issues/1963).
-It seems that Syft's support for those kinds of binaries is slightly better, in the Juice Shop image, only syft detects the actual node binary.
+It seems that Syft's support for those kinds of binaries is slightly better, in the Juice Shop image, only Syft detects the actual node binary.
 <!-- TODO: #346 Add link to part 2 -->
 Before selecting one of these two as a tool for the MVP, it makes sense to look at the other side of an SBOM workflow, the consuming side in a second upcoming blog post.
