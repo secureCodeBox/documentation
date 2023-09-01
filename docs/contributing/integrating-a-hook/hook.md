@@ -23,7 +23,6 @@ As parameters for `handle()` the _hook-sdk_ provides the following:
   - [updateRawResults()](#updaterawresults)
   - [updateFindings()](#updatefindings)
   - [scan](#scan)
-  - [Example](#example)
 - [hook.test.js](#hooktestjs)
 
 ### getRawResults()
@@ -145,6 +144,44 @@ async function handle({
 ```
 
 ### scan
+
+The scan object contains information about the scan resource in Kubernetes.
+The information is equivalent to what you get by running `kubectl get scan/<name> -o json`
+
+Example (shortened):
+
+```json
+{
+  "apiVersion": "execution.securecodebox.io/v1",
+  "kind": "Scan",
+  "metadata": {
+      "creationTimestamp": "2023-09-01T15:43:13Z",
+      "generation": 2,
+      "name": "trivy-image-sbom-juice-shop",
+      "namespace": "integration-tests",
+      ...
+  },
+  "spec": {
+      "parameters": [
+          "bkimminich/juice-shop:v15.0.0"
+      ],
+      "resourceMode": "namespaceLocal",
+      "resources": {},
+      "scanType": "trivy-image-sbom"
+  },
+  "status": {
+      "findingDownloadLink": "http://securecodebox-operator-minio...",
+      "findingHeadLink": "http://securecodebox-operator-minio...",
+      "findings": { ... },
+      "orderedHookStatuses": [ ... ],
+      "rawResultDownloadLink": "http://securecodebox-operator-minio...",
+      "rawResultFile": "sbom-cyclonedx.json",
+      "rawResultHeadLink": "http://securecodebox-operator-minio...",
+      "rawResultType": "sbom-cyclonedx",
+      "state": "HookProcessing"
+  }
+}
+```
 
 ### Example
 
