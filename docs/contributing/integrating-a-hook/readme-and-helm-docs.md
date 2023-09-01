@@ -42,3 +42,4 @@ helm upgrade --install gwh secureCodeBox/generic-webhook --set webhookUrl="http:
 ```
 
 If you want to generate the `README.md` out of your `.helm-docs.gotmpl` locally, you can use `helm-docs` (see: [https://github.com/norwoodj/helm-docs/](https://github.com/norwoodj/helm-docs/)).
+You can then update all `README.md` files automatically by running `make docs` from the top level directory.
