@@ -18,11 +18,11 @@ tags:
   - Syft
   - Dependency-Track
 description: We describe our plans to build an SBOM workflow for the secureCodeBox, including an SBOM tool comparison and interoperability troubles.
-image: /img/blog/2023-08-21-waterfall.jpg
+image: /img/blog/2023-09-01-waterfall.jpg
 draft: true
 ---
 
-![A burning log](/img/blog/2023-08-21-waterfall.jpg)
+![A burning log](/img/blog/2023-09-01-waterfall.jpg)
 
 Cover photo by [Mike Lewis HeadSmart Media](https://unsplash.com/@mikeanywhere) on [Unsplash](https://unsplash.com/photos/waAAaeC9hns).
 
