@@ -16,7 +16,6 @@ tags:
   - SPDX
   - Trivy
   - Syft
-  - Dependency-Track
 description: We describe our plans to build an SBOM workflow for the secureCodeBox, including an SBOM tool comparison and interoperability troubles. This part treats the aspects of generating SBOMs.
 image: /img/blog/2023-09-01-waterfall.jpg
 ---
