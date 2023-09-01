@@ -16,9 +16,8 @@ tags:
 description: This post describes how to automate ZAP to authenticate against an API
 ---
 
-<!-- TODO Change this -->
-![A burning log](/img/blog/2022-02-24-burninglog.jpg)
-Cover photo by [Ray Shrewsberry](https://unsplash.com/@ray12119) on [Unsplash](https://unsplash.com/photos/AXRYB88LAXs).
+![A Robot Hand](/img/blog/2023-09-21-robot.jpg)
+Cover photo by [@possessedphotography](https://unsplash.com/@possessedphotography) on [Unsplash](https://unsplash.com/de/fotos/jIBMSMs4_kA).
 
 The [OWASP Zed Attack Proxy (ZAP)](https://www.zaproxy.org/) can be a powerful tool for pentesters and AppSec testing. However, some of its functionality can be a bit hard to wrap your head around at first. In this post, we will describe how to use one of the more powerful features of the software: Authentication and session management. First, we will show you how to develop an authentication script for a new, previously-unsupported authentication scheme, using the graphical ZAP interface. Afterwards, we will dive into how the same can be achieved inside the secureCodeBox using the newly-supported ZAP Automation Framework.
    
