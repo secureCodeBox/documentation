@@ -27,7 +27,7 @@ draft: true
 
 This is part two of the SBOM story which covers the consuming side. If you missed part one, you can find it [here](/blog/2023/09/01/sbom-part-one-generation).
 
-One would assume that with a standardized format the combinations of generator and consumer are interchangeable, but as noted above, the SBOMs still vary in content and attributes.
+One would assume that with a standardized format the combinations of generator and consumer are interchangeable, but as noted previously, the SBOMs still vary in content and attributes.
 
 ## Possible SBOM Consumers and Interoperability Troubles
 
