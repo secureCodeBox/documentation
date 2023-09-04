@@ -9,13 +9,19 @@ sidebar_position: 12
 ---
 # Glossary {#section-glossary}
 
+_API_: An [Application Programming Interface](https://en.wikipedia.org/wiki/Application_programming_interface) (API) is a computing interface which defines interactions between multiple software intermediaries.
+
 _Charts_: Template files for [Helm][] to configure the deployment on [Kubernetes][k82].
 
 _CI_: [Continuous Integration][wiki-Continuous-integration].
 
 _Container_: Concept for [OS-level virtualization][wiki-container].
 
+_CRD_: Acronym for [Custom Ressource Definition](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+
 _Custom Resource Definition (CRD)_: This is a [concept from Kubernetes][k8s-custom-resources] to define custom resource types additionally to the provided ones from Kubernetes. 
+
+_GUID_: Acronym for [Globally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 
 _Hook_: A _hook_ is a concept in _secureCodeBox_ to give the opportunity to react on detected findings. _Hooks_ are invoked after parsing and storing the _Findings_. There are two kinds of _Hooks_: _ReadHooks_ and _ReadWriteHooks_. See the [_hooks_ documentation](/docs/hooks) for more details.
 
@@ -25,6 +31,8 @@ _Engine_: This is the central component of the _secureCodeBox_ which controls th
 
 _Finding_: This is one single possible security issue found by a _scanner_ which is stored as [well-defined format](/docs/api/finding).
 
+_K8S_: Acronym for [Kubernetes](https://kubernetes.io/docs/home/).
+
 _Lurker_: This _sidecar_ is a generic component responsible to "lurk" the results spit out by _scanners_ and stores it into the _storage_ for further processing by the parser. 
 
 _Operator_: The [operator pattern][k82-operator] is a common pattern in Kubernetes to extend Kubernetes.
@@ -32,6 +40,8 @@ _Operator_: The [operator pattern][k82-operator] is a common pattern in Kubernet
 _Parser_: This _job_ is a _scanner_ specific component which reads the raw stored findings from the _lurker_ and transforms them into the [well defined format](/docs/api/finding) for _secureCodeBox_ findings. Each scanner needs its own parser implementation. 
 
 _Raw finding_: In contrast to _findings_ these are the raw results from the scanner before they were converted into the [well-defined format](/docs/api/finding) for findings.
+
+_SCB_: Acronym for [secureCodeBox (This Project)](https://www.secureCodeBox.io).
 
 _Scanner_: This is the main component to actually perform a scan. This is simply a container which encapsulates a scanner tool (e.g. nmap, nuclei etc.) and invokes it, parameterized by the _custom resource definition_ for this _scan type_.
 
