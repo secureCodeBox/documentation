@@ -135,7 +135,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.json"),
           editUrl: "https://github.com/securecodebox/docusaurus/edit/main/",
           lastVersion: "current",
-          exclude: ["telemetry.md"],
+          exclude: ["telemetry.md", "architecture/09_architecture_decisions/adr_0000.md", "architecture/09_architecture_decisions/adr_README.md"],
           versions: {
             current: {
               label: "Current",
